@@ -1,0 +1,41 @@
+footer .dbewjbruwerwer_inner img {
+  width: 10rem;
+}
+footer .dbewjbruwerwer_inner h5 {
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+footer .dbewjbruwerwer_inner p a {
+  text-decoration: underline;
+  color: var(--grey-border-color);
+}
+footer .dbewjbruwerwer_inner ul.f-link li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+footer .dbewjbruwerwer_inner ul.f-link li a {
+  color: var(--text-main-color);
+}
+footer .dbewjbruwerwer_inner ul.f-fu-link li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+  display: inline;
+  margin-right: 2.2rem;
+  font-size: 1.4rem;
+}
+footer .dbewjbruwerwer_inner ul.f-fu-link li a {
+  text-decoration: none;
+  color: var(--text-main-color);
+}
+footer .footer-bottom p.jamdlkjwekrer a {
+  color: var();
+}
+footer .footer-bottom .fb-payment-options li {
+  list-style: none;
+  display: inline;
+  margin-inline: 1rem;
+  cursor: pointer;
+}
+footer .footer-bottom .fb-payment-options li img {
+  width: 3rem;
+}/*# sourceMappingURL=Footer.css.map */

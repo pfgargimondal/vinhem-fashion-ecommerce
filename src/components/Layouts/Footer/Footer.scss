@@ -1,0 +1,80 @@
+footer{
+
+    .dbewjbruwerwer_inner{
+
+        img{
+            width: 10rem;
+        }
+
+        h5{
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        p{
+
+            a{
+                text-decoration: underline;
+                color: var(--grey-border-color);
+            }
+        }
+
+        ul{
+
+            &.f-link{
+
+                li{
+                    list-style: none;
+                    margin-bottom: 0.5rem;
+
+                    a{
+                        color: var(--text-main-color);
+                    }
+                }
+            }    
+            
+            &.f-fu-link{
+
+                li{
+                    list-style: none;
+                    margin-bottom: 0.5rem;
+                    display: inline;
+                    margin-right: 2.2rem;
+                    font-size: 1.4rem;
+
+                    a{
+                        text-decoration: none;
+                        color: var(--text-main-color);
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-bottom{
+
+        p{
+
+            &.jamdlkjwekrer{
+
+                a{
+                    color: var();
+                }
+            }
+        }
+
+        .fb-payment-options{
+
+            li{
+                list-style: none;
+                display: inline;
+                margin-inline: 1rem;
+                cursor: pointer;
+
+                img{
+                    width: 3rem;
+                }
+            }
+        }
+    }
+}
