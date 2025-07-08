@@ -341,6 +341,7 @@ export const Home = () => {
       <div className="xfbxdfgsdf">
         <div className="container-fluid">
           <div className="dfngjhdfgdfg">
+             {/* eslint-disable-next-line */}
             <marquee behavior="" direction="" className="gfjhfgjfg">
               <span>
                 USE CODE: SALE70 <i className="fa-solid fa-bolt" />
