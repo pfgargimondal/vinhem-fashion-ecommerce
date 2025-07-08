@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,65 +9,68 @@ import "./Css/Home.css";
 import "./Css/HomeResponsive.css";
 
 export const Home = () => {
+
+  // eslint-disable-next-line
   const [featuredProducts, setFeaturedProducts] = useState([
     {
-    id: 1000,
-    img1: "/images/product1 (1).webp",
-    img2: "/images/product1 (2).webp",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1001,
-    img1: "/images/product3 (1).webp",
-    img2: "/images/product3 (2).webp",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1002,
-    img1: "/images/product2 (1).webp",
-    img2: "/images/product2 (2).webp",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1003,
-    img1: "/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
-    img2: "/images/h-co-cp-VMJ-mdKs-unsplash.jpg",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1004,
-    img1: "/images/r-n-tyfqOL1FAQc-unsplash.jpg",
-    img2: "/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1005,
-    img1: "/images/product1 (1).webp",
-    img2: "/images/product1 (2).webp",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  },
-  {
-    id: 1006,
-    img1: "/images/product2 (1).webp",
-    img2: "/images/product2 (2).webp",
-    title: "COLLETTE",
-    description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-    price: "48.99"
-  }
+      id: 1000,
+      img1: "/images/product1 (1).webp",
+      img2: "/images/product1 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1001,
+      img1: "/images/product3 (1).webp",
+      img2: "/images/product3 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1002,
+      img1: "/images/product2 (1).webp",
+      img2: "/images/product2 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1003,
+      img1: "/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
+      img2: "/images/h-co-cp-VMJ-mdKs-unsplash.jpg",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1004,
+      img1: "/images/r-n-tyfqOL1FAQc-unsplash.jpg",
+      img2: "/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1005,
+      img1: "/images/product1 (1).webp",
+      img2: "/images/product1 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1006,
+      img1: "/images/product2 (1).webp",
+      img2: "/images/product2 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    }
 
   ]);
+  // eslint-disable-next-line
   const [topCategories, setTopCategories] = useState([
     { id: "t1", img: "./images/fapo (1).jpg", ctgy: "Activewear" },
     { id: "t2", img: "./images/fapo (1).webp", ctgy: "Activewear" },

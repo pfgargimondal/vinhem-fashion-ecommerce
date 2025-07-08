@@ -22,17 +22,17 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                         <div className="selection-group">
                             <input id="a" type="radio" name="rate" defaultValue="a" />
                             <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" />
+                                <img src="/images/color1 (1).jpg" alt=""/>
                             </label>
 
                             <input id="b" type="radio" name="rate" defaultValue="b" />
                             <label htmlFor="b">
-                                <img src="/images/color1 (1).png" />
+                                <img src="/images/color1 (1).png" alt=""/>
                             </label>
 
                             <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
                             <label htmlFor="c">
-                                <img src="/images/color1 (2).png" />
+                                <img src="/images/color1 (2).png" alt=""/>
                             </label>
                         </div>
                         <p>MORE SIZE AVAILABLE</p>

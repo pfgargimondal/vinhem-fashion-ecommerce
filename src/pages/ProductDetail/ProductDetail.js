@@ -11,7 +11,63 @@ import "swiper/css";
 
 
 export const ProductDetail = () => {
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  // eslint-disable-next-line
+  const [featuredProducts, setFeaturedProducts] = useState([{
+      id: 1000,
+      img1: "/images/product1 (1).webp",
+      img2: "/images/product1 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1001,
+      img1: "/images/product3 (1).webp",
+      img2: "/images/product3 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1002,
+      img1: "/images/product2 (1).webp",
+      img2: "/images/product2 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1003,
+      img1: "/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
+      img2: "/images/h-co-cp-VMJ-mdKs-unsplash.jpg",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1004,
+      img1: "/images/r-n-tyfqOL1FAQc-unsplash.jpg",
+      img2: "/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1005,
+      img1: "/images/product1 (1).webp",
+      img2: "/images/product1 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    },
+    {
+      id: 1006,
+      img1: "/images/product2 (1).webp",
+      img2: "/images/product2 (2).webp",
+      title: "COLLETTE",
+      description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+      price: "48.99"
+    }]);
 
   //featured products
   
@@ -28,16 +84,16 @@ export const ProductDetail = () => {
       },
     };
   
-    useEffect(() => {
-      const fetchFeaturedProducts = async () => {
-        const URL = "http://localhost:8000/featured_products";
-        const response = await fetch(URL);
-        const data = await response.json();
-        setFeaturedProducts(data);
-      }
+    // useEffect(() => {
+    //   const fetchFeaturedProducts = async () => {
+    //     const URL = "http://localhost:8000/featured_products";
+    //     const response = await fetch(URL);
+    //     const data = await response.json();
+    //     setFeaturedProducts(data);
+    //   }
   
-      fetchFeaturedProducts();
-    }, []);
+    //   fetchFeaturedProducts();
+    // }, []);
 
   return (
     <>
@@ -582,46 +638,46 @@ export const ProductDetail = () => {
                 <h6>Featured Designers:</h6>
               </div>
               <div className="fbgdfgd">
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Isha Gupta Tayal </a>
-                <a href="">Deepika Arora</a>
-                <a href="">Palak &amp; Mehak</a>
-                <a href="">LABEL SHRISTI CHETANI </a>
-                <a href="">Nirmooha</a>
-                <a href="">Sheetal Batra</a>
-                <a href="">AFFROZ</a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Isha Gupta Tayal </a>
+                <a href="/">Deepika Arora</a>
+                <a href="/">Palak &amp; Mehak</a>
+                <a href="/">LABEL SHRISTI CHETANI </a>
+                <a href="/">Nirmooha</a>
+                <a href="/">Sheetal Batra</a>
+                <a href="/">AFFROZ</a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
               </div>
             </div>
             <div className="kdfbhjgdfg65468546">
@@ -629,46 +685,46 @@ export const ProductDetail = () => {
                 <h6>Top Designers for Wedding :</h6>
               </div>
               <div className="fbgdfgd">
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Isha Gupta Tayal </a>
-                <a href="">Deepika Arora</a>
-                <a href="">Palak &amp; Mehak</a>
-                <a href="">LABEL SHRISTI CHETANI </a>
-                <a href="">Nirmooha</a>
-                <a href="">Sheetal Batra</a>
-                <a href="">AFFROZ</a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Isha Gupta Tayal </a>
+                <a href="/">Deepika Arora</a>
+                <a href="/">Palak &amp; Mehak</a>
+                <a href="/">LABEL SHRISTI CHETANI </a>
+                <a href="/">Nirmooha</a>
+                <a href="/">Sheetal Batra</a>
+                <a href="/">AFFROZ</a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
               </div>
             </div>
             <div className="kdfbhjgdfg65468546">
@@ -676,46 +732,46 @@ export const ProductDetail = () => {
                 <h6>Celebrity Styles:</h6>
               </div>
               <div className="fbgdfgd">
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Isha Gupta Tayal </a>
-                <a href="">Deepika Arora</a>
-                <a href="">Palak &amp; Mehak</a>
-                <a href="">LABEL SHRISTI CHETANI </a>
-                <a href="">Nirmooha</a>
-                <a href="">Sheetal Batra</a>
-                <a href="">AFFROZ</a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Isha Gupta Tayal </a>
+                <a href="/">Deepika Arora</a>
+                <a href="/">Palak &amp; Mehak</a>
+                <a href="/">LABEL SHRISTI CHETANI </a>
+                <a href="/">Nirmooha</a>
+                <a href="/">Sheetal Batra</a>
+                <a href="/">AFFROZ</a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
               </div>
             </div>
             <div className="kdfbhjgdfg65468546">
@@ -723,46 +779,46 @@ export const ProductDetail = () => {
                 <h6>Shop By Occasions:</h6>
               </div>
               <div className="fbgdfgd">
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Isha Gupta Tayal </a>
-                <a href="">Deepika Arora</a>
-                <a href="">Palak &amp; Mehak</a>
-                <a href="">LABEL SHRISTI CHETANI </a>
-                <a href="">Nirmooha</a>
-                <a href="">Sheetal Batra</a>
-                <a href="">AFFROZ</a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Isha Gupta Tayal </a>
+                <a href="/">Deepika Arora</a>
+                <a href="/">Palak &amp; Mehak</a>
+                <a href="/">LABEL SHRISTI CHETANI </a>
+                <a href="/">Nirmooha</a>
+                <a href="/">Sheetal Batra</a>
+                <a href="/">AFFROZ</a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
               </div>
             </div>
             <div className="kdfbhjgdfg65468546">
@@ -770,46 +826,46 @@ export const ProductDetail = () => {
                 <h6>Aza Magazine:</h6>
               </div>
               <div className="fbgdfgd">
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Isha Gupta Tayal </a>
-                <a href="">Deepika Arora</a>
-                <a href="">Palak &amp; Mehak</a>
-                <a href="">LABEL SHRISTI CHETANI </a>
-                <a href="">Nirmooha</a>
-                <a href="">Sheetal Batra</a>
-                <a href="">AFFROZ</a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
-                <a href="">Fayon Kids </a>
-                <a href="">POMCHA JAIPUR</a>
-                <a href="">Masaba</a>
-                <a href="">Gulabo Jaipur</a>
-                <a href="">Chotibuti</a>
-                <a href="">Paulmi and Harsh</a>
-                <a href="">Basanti - Kapde Aur Koffee </a>
-                <a href="">LASHKARAA</a>
-                <a href="">Sabyasachi </a>
-                <a href="">Kasbah</a>
-                <a href="">Aryavir Malhotra </a>
-                <a href="">Samyukta Singhania</a>
-                <a href="">KARAJ JAIPUR</a>
-                <a href="">Aariyana Couture</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Isha Gupta Tayal </a>
+                <a href="/">Deepika Arora</a>
+                <a href="/">Palak &amp; Mehak</a>
+                <a href="/">LABEL SHRISTI CHETANI </a>
+                <a href="/">Nirmooha</a>
+                <a href="/">Sheetal Batra</a>
+                <a href="/">AFFROZ</a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
+                <a href="/">Fayon Kids </a>
+                <a href="/">POMCHA JAIPUR</a>
+                <a href="/">Masaba</a>
+                <a href="/">Gulabo Jaipur</a>
+                <a href="/">Chotibuti</a>
+                <a href="/">Paulmi and Harsh</a>
+                <a href="/">Basanti - Kapde Aur Koffee </a>
+                <a href="/">LASHKARAA</a>
+                <a href="/">Sabyasachi </a>
+                <a href="/">Kasbah</a>
+                <a href="/">Aryavir Malhotra </a>
+                <a href="/">Samyukta Singhania</a>
+                <a href="/">KARAJ JAIPUR</a>
+                <a href="/">Aariyana Couture</a>
               </div>
             </div>
           </div>
