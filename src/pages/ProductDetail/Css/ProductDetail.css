@@ -97,7 +97,7 @@
 .dgndfjgdf .form-select {
   padding: 10px;
   border: 1px solid var(--grey-border-color);
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .dgndfjgdf p {
@@ -299,6 +299,7 @@
 .coisdefisdhifhsdjifjhosd .dfgjhbdfg {
   border: 1px solid #ededed;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
 }
 .coisdefisdhifhsdjifjhosd .images img {
   height: 195px;

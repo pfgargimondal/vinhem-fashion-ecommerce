@@ -3,11 +3,16 @@
   padding: 40px 0;
 }
 
+.images {
+  border-radius: 10px;
+}
+
 .images img {
   width: 100%;
-  height: 427px;
+  height: 380px;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 10px;
 }
 
 .images .image {
@@ -134,13 +139,11 @@
   font-weight: 500;
 }
 .fdbdfgdfgdf h4 {
-  color: black;
-  font-size: 19px !important;
+  font-size: 1rem !important;
   font-weight: 500;
 }
 .fdbdfgdfgdf h5 {
-  color: #000;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .dsgdfgsdf label img {

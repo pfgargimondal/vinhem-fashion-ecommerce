@@ -16,7 +16,7 @@
     color: #fff;
     font-weight: 600;
     padding: 0.6rem 0.6rem;
-    border-radius: 0;
+    border-radius: 5px;
     border: 1px solid var(--black-background-color) !important;
     transition: 0.3s ease-in-out;
 }

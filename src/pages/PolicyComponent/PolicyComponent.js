@@ -1,9 +1,9 @@
-import "./Css/PolicyComponent.css";
+import styles from "./Css/PolicyComponent.module.css";
 
 export const PolicyComponent = ({PolicyDetails}) => {
   return (
-    <div>
-      <div className="banner postion-relative text-center">
+    <div> 
+      <div className={`${styles.banner} postion-relative text-center`}>
         {PolicyDetails.data?.banner_image && (
           <img
             src={`${PolicyDetails.image_url}/${PolicyDetails.data.banner_image}`}
@@ -13,7 +13,7 @@ export const PolicyComponent = ({PolicyDetails}) => {
         )}
       </div>
 
-      <div className="dhgdfhgdfg">
+      <div className={styles.dhgdfhgdfg}>
         <div className="container">
           <h1 className="mb-4">
             {PolicyDetails.data?.title &&

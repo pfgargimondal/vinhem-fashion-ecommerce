@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -68,6 +68,7 @@ export const ProductDetail = () => {
       description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99"
     }]);
+  const [activeTab, setActiveTab] = useState('tab-1');
 
   //featured products
   
@@ -105,25 +106,38 @@ export const ProductDetail = () => {
                 <div className="fhsdfsdf sticky-top">
                   <div className="bbb55525">
                     <div className="row">
+                      {/* Thumbnails */}
                       <div className="col-lg-3">
                         <div className="gdgsd">
                           <ul className="dfgdfgdfgjlk tabs">
-                            <li className="tab-link current" data-tab="tab-1">
+                            <li
+                              className={`tab-link ${activeTab === 'tab-1' ? 'current' : ''}`}
+                              onClick={() => setActiveTab('tab-1')}
+                            >
                               <div className="fgdf5545">
                                 <img src="../../images/product-eco (1).jpg" alt="" />
                               </div>
                             </li>
-                            <li className="tab-link" data-tab="tab-2">
+                            <li
+                              className={`tab-link ${activeTab === 'tab-2' ? 'current' : ''}`}
+                              onClick={() => setActiveTab('tab-2')}
+                            >
                               <div className="fgdf5545">
                                 <img src="../../images/product-eco (2).jpg" alt="" />
                               </div>
                             </li>
-                            <li className="tab-link" data-tab="tab-3">
+                            <li
+                              className={`tab-link ${activeTab === 'tab-3' ? 'current' : ''}`}
+                              onClick={() => setActiveTab('tab-3')}
+                            >
                               <div className="fgdf5545">
                                 <img src="../../images/product-eco (3).jpg" alt="" />
                               </div>
                             </li>
-                            <li className="tab-link" data-tab="tab-4">
+                            <li
+                              className={`tab-link ${activeTab === 'tab-4' ? 'current' : ''}`}
+                              onClick={() => setActiveTab('tab-4')}
+                            >
                               <div className="fgdf5545">
                                 <img src="../../images/product-eco (4).jpg" alt="" />
                               </div>
@@ -132,24 +146,28 @@ export const ProductDetail = () => {
                         </div>
                       </div>
 
+                      {/* Tab Contents */}
                       <div className="col-lg-9">
-                        <div className="gdgsd">
-                          <div id="tab-1" className="tab-content current">
-                            <div className="dfuihdfgvdf">
+                        <div className="gdgsd h-100">
+                          <div className={`tab-content h-100 ${activeTab === 'tab-1' ? 'current' : ''}`} id="tab-1">
+                            <div className="dfuihdfgvdf h-100">
                               <img src="../../images/product-eco (1).jpg" alt="" />
                             </div>
                           </div>
-                          <div id="tab-2" className="tab-content">
+
+                          <div className={`tab-content ${activeTab === 'tab-2' ? 'current' : ''}`} id="tab-2">
                             <div className="dfuihdfgvdf">
                               <img src="../../images/product-eco (2).jpg" alt="" />
                             </div>
                           </div>
-                          <div id="tab-3" className="tab-content">
+
+                          <div className={`tab-content ${activeTab === 'tab-3' ? 'current' : ''}`} id="tab-3">
                             <div className="dfuihdfgvdf">
                               <img src="../../images/product-eco (3).jpg" alt="" />
                             </div>
                           </div>
-                          <div id="tab-4" className="tab-content">
+                          
+                          <div className={`tab-content ${activeTab === 'tab-4' ? 'current' : ''}`} id="tab-4">
                             <div className="dfuihdfgvdf">
                               <img src="../../images/product-eco (4).jpg" alt="" />
                             </div>
@@ -157,7 +175,7 @@ export const ProductDetail = () => {
                         </div>
                       </div>
                     </div>
-                  </div>                  
+                  </div>
                 </div>
               </div>
 
@@ -245,11 +263,11 @@ export const ProductDetail = () => {
                     </button>
 
                     <button className="btn btn-main btn-transparent px-5">
-                      <i class="bi bi-bag me-1"></i> Speak To Us
+                      <i class="bi bi-bag me-1"></i> Buy Now
                     </button>
                   </div>
 
-                  <div className="kjidbwejgrwerwer col-lg-8 position-relative mt-5">
+                  <div className="kjidbwejgrwerwer col-lg-10 position-relative mt-5">
                     <i class="bi bi-geo-alt position-absolute"></i>
 
                     <input type="number" className="form-control" placeholder="ex. 700001" />
@@ -264,7 +282,7 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="diwenjrbwebrwehgrwer mt-5">
-                    <h4 className="pb-2">Customer Info</h4>
+                    <h4 className="pb-2">Need Assistance</h4>
 
                     <hr className="mt-0" />
 
@@ -296,17 +314,21 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="diwenjrbwebrwehgrwer mt-5">
-                    <h4 className="pb-2">Customer Support</h4>
+                    <h4 className="pb-2">Speak To Us</h4>
 
                     <hr className="mt-0" />
 
                     <div className="dopwejoirjhwer row">
-                      <div className="col-lg-6">
-                        <button className="btn w-100 btn-main"><i class="bi me-1 bi-chat-left-text"></i> Chat now</button>
+                      <div className="col-lg-4">
+                        <button className="btn w-100 btn-main"><i class="bi me-1 bi-chat-left-text"></i> Chat Now</button>
                       </div>
 
-                      <div className="col-lg-6">
-                        <button className="btn w-100 btn-transparent"><i class="bi me-1 bi-telephone-forward"></i> +91 85478 95458</button>
+                      <div className="col-lg-4">
+                        <button className="btn w-100 btn-transparent"><i class="bi me-1 bi-telephone-forward"></i> Call Us</button>
+                      </div>
+
+                      <div className="col-lg-4">
+                        <button className="btn w-100 btn-main"><i class="bi me-1 bi-envelope"></i> Mail Us</button>
                       </div>
                     </div>
                   </div>
@@ -347,8 +369,8 @@ export const ProductDetail = () => {
                     <p className="mb-4">Yellow saree made from 2x4 organza featuring intricate embroidery along the border. Paired with a padded silk chanderi blouse with a back tie-up detail.</p>
 
                     <div className="dikewnirhwerjwer">
-                      <Tabs defaultActiveKey="about" id="uncontrolled-tab-example" className="sticky-top mb-3" >
-                        <Tab eventKey="about" title="About">
+                      <Tabs defaultActiveKey="specification" id="uncontrolled-tab-example" className="sticky-top mb-3" >
+                        <Tab eventKey="specification" title="Specification">
                           <div className="row">
                             <div className="col-lg-6 mb-4">
                               <div className="idnewihrwer_inner">
@@ -438,19 +460,7 @@ export const ProductDetail = () => {
                               </div>
                             </div>
                           </div>
-                        </Tab>
-
-                        <Tab eventKey="saree" title="Saree">
-                          Tab content for Profile
-                        </Tab>
-
-                        <Tab eventKey="blouse" title="Blouse">
-                          Tab content for Profile
-                        </Tab>
-
-                        <Tab eventKey="petticoat" title="Petticoat">
-                          Tab content for Profile
-                        </Tab>
+                        </Tab>                        
                       </Tabs>
                     </div>
                   </div>
@@ -535,9 +545,25 @@ export const ProductDetail = () => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
 
-                    <div className="text-center">
-                      <button className="btn btn-main">View All</button>
+              <div className="col-lg-12">
+                <div className="diweurbhwer_inner mt-4">
+                  <div className="dfbgghdfdfgdf">
+                    <div className="sdf58sdfs">
+                      <h4 className="pb-2">Similar Items</h4>
+                    </div>
+          
+                    <div className="fgjhdfgdfgdf py-4">
+                      <Swiper {...swiperConfig}>
+                        {featuredProducts.map((featuredProduct) => (
+                          <SwiperSlide key={featuredProduct.id}>
+                            <FeaturedProducts featuredProduct={featuredProduct} />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     </div>
                   </div>
                 </div>
@@ -547,7 +573,27 @@ export const ProductDetail = () => {
                 <div className="diweurbhwer_inner mt-4">
                   <div className="dfbgghdfdfgdf">
                     <div className="sdf58sdfs">
-                      <h4 className="pb-2">Featured Products</h4>
+                      <h4 className="pb-2">Customer Also Viewed</h4>
+                    </div>
+          
+                    <div className="fgjhdfgdfgdf py-4">
+                      <Swiper {...swiperConfig}>
+                        {featuredProducts.map((featuredProduct) => (
+                          <SwiperSlide key={featuredProduct.id}>
+                            <FeaturedProducts featuredProduct={featuredProduct} />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-12">
+                <div className="diweurbhwer_inner mt-4">
+                  <div className="dfbgghdfdfgdf">
+                    <div className="sdf58sdfs">
+                      <h4 className="pb-2">Recently Viewed</h4>
                     </div>
           
                     <div className="fgjhdfgdfgdf py-4">
