@@ -1,3 +1,7 @@
+header{
+  z-index: 99999;
+}
+
 header .header-top {
   background: var(--black-background-color);
 }

@@ -5,6 +5,7 @@ import { register } from '../../api/auth';
 import { ToastContainer, toast } from "react-toastify";
 import "./Css/Register.css";
 import "react-toastify/dist/ReactToastify.css";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const Register = () => {
   const [inputs, setInputs] = useState({
@@ -14,6 +15,8 @@ export const Register = () => {
     password: '',
     confirm_password: ''
   });
+
+  const [captchaToken, setCaptchaToken] = useState('');
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -60,6 +63,10 @@ export const Register = () => {
       return newErrors;
     };
 
+  const handleCaptcha = (token) => {
+    setCaptchaToken(token);
+  };
+
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -71,10 +78,15 @@ export const Register = () => {
         return;
       }
 
+      if (!captchaToken) {
+        alert('Please verify reCAPTCHA');
+        return;
+      }
+
       setErrors({});
 
     try {
-      const response = await register(inputs);
+      const response = await register({ ...inputs, recaptcha_token: captchaToken });
       
       if (response.data.success) {
             toast.success(response.data.message, {
@@ -235,6 +247,14 @@ export const Register = () => {
                 <i className="fas fa-eye-slash"></i>
               </button>
             </div>
+
+            {/* ✅ reCAPTCHA Widget */}
+            <ReCAPTCHA
+              sitekey="6Lfg6HwrAAAAAIFNXRViSAvHT3R3edYCk8Hg_pHA" // 🔁 Replace this
+              onChange={handleCaptcha}
+              className="mb-3"
+            />
+            {!captchaToken && <p style={{ color: "red" }}>Please verify reCAPTCHA</p>}
 
             <button className="btn w-100 btn-main" type="submit">
               Sign Up

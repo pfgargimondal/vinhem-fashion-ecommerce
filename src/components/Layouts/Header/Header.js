@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Logo from "../../../assets/images/logo.png";
 
@@ -16,9 +16,17 @@ export const Header = () => {
     setResMenu(!resMenu);
   }
 
+  const navigate = useNavigate();
+  const token = localStorage.getItem('jwt_token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwt_token');
+    navigate('/login');
+  };
+
 
   return (
-    <header>
+    <header className="position-relative">
       <div className="header-top">
         <div className="row align-items-center">
           <div className="col-lg-6">
@@ -39,8 +47,16 @@ export const Header = () => {
             <div className="doewhruiwerwer_right">
               <ul className="mb-0 ps-0 me-4">
                 <li className="me-2"><p className="mb-0">Extra 10% OFF ON FIRST ORDER</p></li>
-
-                <li><Link to="/register"><i class="bi bi-person"></i></Link></li>
+                {token ? (
+                  <>
+                    <li><Link to="/profile"><i class="bi bi-person"></i></Link></li>
+                    <li onClick={handleLogout}><i class="bi bi-box-arrow-right"></i></li>
+                  </>
+                ) : (
+                  <> 
+                    <li><Link to="/register"><i class="bi bi-person"></i></Link></li>
+                  </>
+                )}
 
                 <li><i class="bi bi-heart"></i> <span>0</span></li>
 

@@ -5,12 +5,15 @@ import { useState } from "react";
 import { login } from "../../api/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const Login = () => {
     const [inputs, setInputs] = useState({
         email: '',
         password: ''
     });
+
+    const [captchaToken, setCaptchaToken] = useState('');
   
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
@@ -38,6 +41,11 @@ export const Login = () => {
 
         return newErrors;
       };
+
+    const handleCaptcha = (token) => {
+      setCaptchaToken(token);
+    };
+
   
   
     const handleLogin = async (e) => {
@@ -49,11 +57,16 @@ export const Login = () => {
           setErrors(validationErrors);
           return;
         }
+
+        if (!captchaToken) {
+          alert('Please verify reCAPTCHA');
+          return;
+        }
   
         setErrors({});
   
       try {
-        const response = await login(inputs);
+        const response = await login({ ...inputs, recaptcha_token: captchaToken });
         
         if (response.data.success) {
               toast.success(response.data.message, {
@@ -142,7 +155,14 @@ export const Login = () => {
               {" "}
               Forgot password?
             </Link>
-
+            {/* ✅ reCAPTCHA Widget */}
+            <ReCAPTCHA
+              sitekey="6Lfg6HwrAAAAAIFNXRViSAvHT3R3edYCk8Hg_pHA" // 🔁 Replace this
+              onChange={handleCaptcha}
+              className="mb-3"
+            />
+            {!captchaToken && <p style={{ color: "red" }}>Please verify reCAPTCHA</p>}
+            
             <button className="btn w-100 btn-main" type="submit">
               Login
             </button>
