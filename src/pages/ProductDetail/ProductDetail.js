@@ -184,7 +184,7 @@ export const ProductDetail = () => {
                   <div className="dsfbsdghfjs">
                     <div className="fgnjdfgfd">
                       <h2>
-                        Neha Khullar X AZA
+                        Neha Khullar X Vinhem Fashion
 
                         <i className="fa-solid fa-greater-than" />
                       </h2>
@@ -869,7 +869,7 @@ export const ProductDetail = () => {
             </div>
             <div className="kdfbhjgdfg65468546">
               <div className="fbgfd">
-                <h6>Aza Magazine:</h6>
+                <h6>Vinhem Fashion Magazine:</h6>
               </div>
               <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>

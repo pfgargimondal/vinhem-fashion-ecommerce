@@ -291,7 +291,7 @@ export const TermsCondition = () => {
 
             <div class="kdfbhjgdfg65468546">
               <div class="fbgfd">
-                <h6>Aza Magazine:</h6>
+                <h6>Vinhem Fashion Magazine:</h6>
               </div>
               <div class="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>

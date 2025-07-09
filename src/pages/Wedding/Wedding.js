@@ -362,7 +362,7 @@ export const Wedding = () => {
             style={{ backgroundImage: "url('./images/bannercontent3.png')" }}
           >
             <div className="sdjhds">
-              <h4>AZA Gift Cards | Flat 10% OFF</h4>
+              <h4>Vinhem Fashion Gift Cards | Flat 10% OFF</h4>
               <h3>Perfect Present for any occasion</h3>
             </div>
           </div>
@@ -847,7 +847,7 @@ export const Wedding = () => {
             </div>
             <div className="kdfbhjgdfg65468546">
               <div className="fbgfd">
-                <h6>Aza Magazine:</h6>
+                <h6>Vinhem Fashion Magazine:</h6>
               </div>
               <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>

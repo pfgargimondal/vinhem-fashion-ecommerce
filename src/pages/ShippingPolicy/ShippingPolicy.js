@@ -291,7 +291,7 @@ export const ShippingPolicy = () =>{
       
                   <div className="kdfbhjgdfg65468546">
                     <div className="fbgfd">
-                      <h6>Aza Magazine:</h6>
+                      <h6>Vinhem Fashion Magazine:</h6>
                     </div>
                     <div className="fbgdfgd">
                       <a href="/">Paulmi and Harsh</a>
