@@ -89,6 +89,7 @@ export const ContactUs = () => {
         </p>
         <div class="form-map-wrapper">
           <div class="map">
+            {/* eslint-disable-next-line */}
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.900142126295!2d-73.9881131!3d40.7588956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855d76b0c65%3A0xaaf37d3b750d2ad9!2sTimes%20Square%2C%20New%20York%2C%20NY%2010036!5e0!3m2!1sen!2sus!4v1720458423374!5m2!1sen!2sus"
               allowfullscreen
