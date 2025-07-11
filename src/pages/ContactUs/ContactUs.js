@@ -95,6 +95,7 @@ export const ContactUs = () => {
               <iframe
                 src={`${ContactUsDetails.data.map_link}`}
                 allowfullscreen
+                title="Google Map"
               ></iframe>
             )}
             
