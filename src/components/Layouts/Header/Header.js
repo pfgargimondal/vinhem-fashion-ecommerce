@@ -27,6 +27,25 @@ export const Header = () => {
 
   return (
     <header className="position-relative">
+      <div className="advstmnt-sldier">
+        <marquee
+          className="html-marquee d-flex align-items-center py-1"
+          direction="left"
+          behavior="scroll"
+          scrollamount={12}
+        >
+          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+
+          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+
+          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+
+          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+
+          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+        </marquee>
+      </div>
+
       <div className="header-top">
         <div className="row align-items-center">
           <div className="col-lg-6">
@@ -62,7 +81,7 @@ export const Header = () => {
 
                 <li><i class="bi bi-handbag"></i> <span>0</span></li>
 
-                <li><i class="bi bi-headset"></i></li>
+                <li><i class="bi bi-whatsapp"></i></li>
 
                 <li><i class="bi bi-globe"></i></li>                
               </ul>

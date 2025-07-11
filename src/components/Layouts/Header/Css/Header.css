@@ -117,6 +117,12 @@ header .header-main .doiewhirw_right .diewhrkewr_dropdown .dowiehrwer_left .fdpo
   font-weight: 500;
   font-size: 0.95rem;
 }
+.advstmnt-sldier{
+  background: var(--pink-main-color);
+}
+.advstmnt-sldier span{
+  color: #fff;
+}
 header .header-main .doiewhirw_right .diewhrkewr_dropdown .dowiehrwer_left .fdpoewjrwer_inner li {
   display: block;
   margin-bottom: 0.5rem;
@@ -127,3 +133,7 @@ header .header-main .doiewhirw_right .diewhrkewr_dropdown .dowiehrwer_left .fdpo
   font-weight: 400;
   text-transform: capitalize;
 }/*# sourceMappingURL=Header.css.map */
+
+.dsgdfgsdf{
+  display: none;
+}

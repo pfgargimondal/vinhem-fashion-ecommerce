@@ -10,7 +10,8 @@
 .gdfgdf215 img {
   width: 100%;
   height: 100%;
-  background-size: 100% 100%;
+  object-fit: cover;
+  background-size: cover;
 }
 
 .lvjhfbvdf558 {
@@ -26,6 +27,14 @@
   margin-top: 15px;
   border: 2px solid white;
   font-weight: 700;
+}
+
+.dbfggfhfh img{
+  width: 80%;
+}
+
+.fbsdsdf h4 a{
+  font-size: 1.1rem;
 }
 
 .jdfhbtn:hover {
@@ -156,13 +165,13 @@
 
 .fhdfgdf {
   width: 100%;
-  height: 650px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .fhdfgdf img {
   width: 100%;
-  height: 100%;
-  background-size: 100% 100%;
 }
 
 .fgnhfgh {
@@ -192,29 +201,32 @@
   color: red;
 }
 
-.xfbxdfgsdf {
-  width: 100%;
-  padding: 20px 0;
-}
-
 .nhgf65dfgdf {
   width: 100%;
-  height: 450px;
+  height: 365px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .nhgf65dfgdf img {
   width: 100%;
   height: 100%;
+  object-fit: cover;  
 }
 
 .dfdfdffd {
   width: 100%;
   height: 520px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .dfdfdffd img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .fvbhgfbfgvf5865 {
@@ -247,7 +259,9 @@
   height: 400px;
   background-size: 100% 100%;
   padding: 25px;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .dfgyhdfgdf span {

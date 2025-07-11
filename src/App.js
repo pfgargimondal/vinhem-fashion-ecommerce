@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-
-      <AllRoutes />
-
+      <main className="container">
+        <AllRoutes />
+      </main>
       <Footer /> 
     </div>
   );

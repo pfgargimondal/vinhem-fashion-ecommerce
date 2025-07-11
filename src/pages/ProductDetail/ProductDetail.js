@@ -99,7 +99,7 @@ export const ProductDetail = () => {
   return (
     <>
       <div className="fvjhfbdf">
-        <div className="container">
+        <div className="derthnjmfghu">
           <div className="fgnbdfgdf">
             <div className="row">
               <div className="col-lg-6">

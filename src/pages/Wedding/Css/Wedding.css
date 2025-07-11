@@ -6,13 +6,6 @@
   padding: 40px 0;
 }
 
-.fgjhdfgf {
-  display: grid;
-  grid-template-columns: 19% 19% 19% 19% 19%;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-}
-
 .dfgdfg255 {
   width: 100%;
   height: 350px;
@@ -159,7 +152,7 @@
   height: 421px;
   margin-bottom: 30px;
   border-radius: 25px;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 .dfghjhufggdfg {
@@ -169,22 +162,17 @@
 .dfbhhfgdf {
   width: 100%;
   height: 574px;
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   border-radius: 25px;
   margin-bottom: 30px;
-}
-
-.dfbhhfgdf {
-  width: 100%;
-  height: 574px;
-  background-size: 100% 100%;
-  border-radius: 25px;
 }
 
 .dfbhhfgdf55 {
   width: 100%;
   height: 371px;
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   border-radius: 25px;
 }
 

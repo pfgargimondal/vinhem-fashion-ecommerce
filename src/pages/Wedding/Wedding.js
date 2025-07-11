@@ -5,7 +5,7 @@ export const Wedding = () => {
   return (
     <>
       <div className="dfgjhdfgdf">
-        <div className="container-fluid">
+        <div className="fvxvfdfsf">
           <div className="fvgndfjhgdfg">
             <img src="./images/wedding.png" alt="" />
           </div>
@@ -16,8 +16,9 @@ export const Wedding = () => {
           <div className="dfgbdfjhgdf">
             <h2>Shop by Occasion</h2>
           </div>
-          <div className="fgjhdfgf">
-            <div
+          <div className="fgjhdfgf row">
+            <div className="col-lg-3 mb-4">
+              <div
               className="dfgdfg255"
               style={{ backgroundImage: "url('./images/weddingdress (1).jpg')" }}
             >
@@ -28,7 +29,11 @@ export const Wedding = () => {
                 </div>
               </div>
             </div>
-            <div
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
               className="dfgdfg255"
               style={{ backgroundImage: "url('./images/weddingdress (2).jpg')" }}
             >
@@ -39,7 +44,11 @@ export const Wedding = () => {
                 </div>
               </div>
             </div>
-            <div
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
               className="dfgdfg255"
               style={{ backgroundImage: "url('./images/weddingdress (3).jpg')" }}
             >
@@ -50,7 +59,11 @@ export const Wedding = () => {
                 </div>
               </div>
             </div>
-            <div
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
               className="dfgdfg255"
               style={{ backgroundImage: "url('./images/weddingdress (4).jpg')" }}
             >
@@ -61,7 +74,11 @@ export const Wedding = () => {
                 </div>
               </div>
             </div>
-            <div
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
               className="dfgdfg255"
               style={{ backgroundImage: "url('./images/weddingdress (5).jpg')" }}
             >
@@ -71,6 +88,51 @@ export const Wedding = () => {
                   <button>SHOP NOW</button>
                 </div>
               </div>
+            </div>
+            </div>
+            
+            <div className="col-lg-3 mb-4">
+              <div
+              className="dfgdfg255"
+              style={{ backgroundImage: "url('./images/weddingdress (3).jpg')" }}
+            >
+              <div className="overlay-black">
+                <div className="dfbghf">
+                  <h4>Reception &amp; Cocktail</h4>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
+              className="dfgdfg255"
+              style={{ backgroundImage: "url('./images/weddingdress (4).jpg')" }}
+            >
+              <div className="overlay-black">
+                <div className="dfbghf">
+                  <h4>Mehendi</h4>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+            </div>
+            
+
+            <div className="col-lg-3 mb-4">
+              <div
+              className="dfgdfg255"
+              style={{ backgroundImage: "url('./images/weddingdress (5).jpg')" }}
+            >
+              <div className="overlay-black">
+                <div className="dfbghf">
+                  <h4>Roka</h4>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>
@@ -188,6 +250,48 @@ export const Wedding = () => {
           </div>
           <div className="dfbgjhdfbgdfg">
             <div className="row">
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div
+                  className="dfbhhfgdf"
+                  style={{ backgroundImage: "url('./images/weddingbigg (1).jpg')" }}
+                >
+                  <div className="overlay-black2">
+                    <div className="dfbghf2">
+                      <h4>Roka</h4>
+                      <button>SHOP NOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div
+                  className="dfbhhfgdf"
+                  style={{ backgroundImage: "url('./images/weddingbigg (1).webp')" }}
+                >
+                  <div className="overlay-black2">
+                    <div className="dfbghf2">
+                      <h4>Roka</h4>
+                      <button>SHOP NOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div
+                  className="dfbhhfgdf"
+                  style={{ backgroundImage: "url('./images/weddingbigg (2).webp')" }}
+                >
+                  <div className="overlay-black2">
+                    <div className="dfbghf2">
+                      <h4>Roka</h4>
+                      <button>SHOP NOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div
                   className="dfbhhfgdf"

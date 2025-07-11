@@ -93,7 +93,7 @@ export const Home = () => {
 
   const swiperConfig = {
     spaceBetween: 20,
-    slidesPerView: 4,
+    slidesPerView: 5,
     navigation: true,
     pagination: { clickable: true },
     breakpoints: {
@@ -135,7 +135,7 @@ export const Home = () => {
   return (
     <>
       <div className="dfgdfvsdfsdfsdf">
-        <div className="container-fluid">
+        <div className="rehbgdfgnjh">
           <div className="sdfsdfd">
             <div className="row">
               <div className="col-lg-4 ps-0 pe-0">
@@ -183,7 +183,7 @@ export const Home = () => {
       </div>
 
       <div className="jdfgdfg65dfdf">
-        <div className="container-fluid">
+        <div className="sadasdc">
           <div className="dfghdfg548">
             <div className="row">
               <div className="col-6">
@@ -285,14 +285,12 @@ export const Home = () => {
             {topCategories.map((topCategorie) => (
               <div className="dfhdfg" key={topCategorie.id}>
                 <div className="fbdfg">
-                  <div className="row align-items-center">
-                    <div className="col-lg-6">
-                      <div className="dfgh">
-                        <img src={topCategorie.img} alt={topCategorie.ctgy} />
-                      </div>
+                  <div className="d-flex sdvsdfdvgdfg align-items-center">
+                    <div className="dbfggfhfh">
+                      <img src={topCategorie.img} className="img-fluid" alt={topCategorie.ctgy} />
                     </div>
 
-                    <div className="col-lg-6">
+                    <div className="adfdfddgdfg">
                       <div className="fbsdsdf">
                         <h4 className="mb-0">
                           <Link to="/">{topCategorie.ctgy}</Link>
@@ -313,12 +311,12 @@ export const Home = () => {
           </div>
           <div className="dfhgudfg">
             <div className="row">
-              <div className="col-lg-6 pe-0 ps-0">
+              <div className="col-lg-6">
                 <div className="fhdfgdf">
                   <img src="./images/poster (1).png" alt="" />
                 </div>
               </div>
-              <div className="col-lg-6  pe-0 ps-0">
+              <div className="col-lg-6">
                 <div className="fhdfgdf">
                   <img src="./images/poster (2).png" alt="" />
                 </div>
@@ -338,7 +336,8 @@ export const Home = () => {
           <div className="dfbghd5488"></div>
         </div>
       </div>
-      <div className="xfbxdfgsdf">
+
+      <div className="xfbxdfgsdf d-none">
         <div className="container-fluid">
           <div className="dfngjhdfgdfg">
              {/* eslint-disable-next-line */}
@@ -357,6 +356,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+
       <div className="fbnghksdfsdfsf">
         <div className="container-fluid">
           <div className="sdf58sdfs">
@@ -364,17 +364,17 @@ export const Home = () => {
           </div>
           <div className="dfgnhdfgdf">
             <div className="row">
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
                   <img src="./images/fashiondwn3 (1).png" alt="" />
                 </div>
               </div>
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
                   <img src="./images/fashiondwn3 (2).png" alt="" />
                 </div>
               </div>
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
                   <img src="./images/fashiondwn3 (3).png" alt="" />
                 </div>
@@ -387,12 +387,12 @@ export const Home = () => {
         <div className="container-fluid">
           <div className="gbfhdvgdfg">
             <div className="row">
-              <div className="col-lg-3 ps-0 pe-0">
+              <div className="col-lg-3">
                 <div className="dfdfdffd">
                   <img src="./images/fashion40.png" alt="" />
                 </div>
               </div>
-              <div className="col-lg-9 ps-0 pe-0">
+              <div className="col-lg-9">
                 <div className="dfdfdffd">
                   <img src="./images/fashion39.png" alt="" />
                 </div>
