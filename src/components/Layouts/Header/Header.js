@@ -28,6 +28,7 @@ export const Header = () => {
   return (
     <header className="position-relative">
       <div className="advstmnt-sldier">
+        {/* eslint-disable-next-line */}
         <marquee
           className="html-marquee d-flex align-items-center py-1"
           direction="left"
