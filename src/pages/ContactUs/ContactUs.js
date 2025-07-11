@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./ContactUs.css";
+import styles from "./ContactUs.module.css";
 import http from "../../http";
 export const ContactUs = () => {
   const [ContactUsDetails, setContactUsDetails] = useState({});
@@ -21,17 +21,18 @@ export const ContactUs = () => {
   }, []);
 
   return (
-    <div>
-      <div class="container">
+    <div className={styles.jvjhubjkjoij}>
+      <div className="container">
         <h1> {ContactUsDetails.data?.title && ContactUsDetails.data.title} </h1>
-        <div class="p1"
+        <div className={styles.p1}
             dangerouslySetInnerHTML={{
               __html:
                 ContactUsDetails.data?.description &&
                 ContactUsDetails.data.description,
             }}
         />
-        <div class="address-section">
+        <div className={styles.addressSection}>
+          <h3 className={styles.sjkdefnvb}>Regd. Office Address: </h3>
           <div
             dangerouslySetInnerHTML={{
               __html:
@@ -39,6 +40,7 @@ export const ContactUs = () => {
                 ContactUsDetails.data.regd_address,
             }}
           />
+          <h3> Branch Office Address: (Operation Center) </h3>
           <div
             dangerouslySetInnerHTML={{
               __html:
@@ -46,6 +48,7 @@ export const ContactUs = () => {
                 ContactUsDetails.data.branch_office_address,
             }}
           />
+          <h3> Warehouse Address: (Operation Center) </h3>
           <div
             dangerouslySetInnerHTML={{
               __html:
@@ -55,7 +58,7 @@ export const ContactUs = () => {
           />
           <br />
           <p>
-            <span class="highlight"> MOB : </span> +91 {ContactUsDetails.data?.mobile && ContactUsDetails.data.mobile} (Timings: IST
+            <span className={styles.highlight}> MOB : </span> +91 {ContactUsDetails.data?.mobile && ContactUsDetails.data.mobile} (Timings: IST
             10 to 7){" "}
           </p>
           <div
@@ -67,43 +70,44 @@ export const ContactUs = () => {
           />
           <br />
           <p>
-            <strong> Email Support: </strong> For Product Queries, Order &
+            <strong className={styles.jhsdrgbzxcfbv}> Email Support: </strong> For Product Queries, Order &
             Shipping, Payments Made, Please find details below:
           </p>
           <p>
-            <strong> By Mail : </strong>
+            <strong className={styles.jhsdrgbzxcfbv}> By Mail : </strong>
             <a href={`mailto:${ContactUsDetails.data?.support_email}`}>
               {ContactUsDetails.data?.support_email}
             </a>
             <br />
-            <strong> For Wholesale : </strong>
+            <strong className={styles.jhsdrgbzxcfbv}> For Wholesale : </strong>
             <a href={`mailto:${ContactUsDetails.data?.wholesale_mail}`}>
               {ContactUsDetails.data?.wholesale_mail}
             </a>
           </p>
         </div>
         <p>
-          If you are still finding queries or have any other opinion, you can
-          always fill this form, and contact us with your valuable ideas. We are
-          here waiting for you.
+          {ContactUsDetails.data?.form_title && ContactUsDetails.data.form_title}
         </p>
-        <div class="form-map-wrapper">
-          <div class="map">
+        <div className="row">
+          <div className="col-lg-6"> 
             {/* eslint-disable-next-line */}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.900142126295!2d-73.9881131!3d40.7588956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855d76b0c65%3A0xaaf37d3b750d2ad9!2sTimes%20Square%2C%20New%20York%2C%20NY%2010036!5e0!3m2!1sen!2sus!4v1720458423374!5m2!1sen!2sus"
-              allowfullscreen
-            ></iframe>
+            {ContactUsDetails.data?.map_link && (
+              <iframe
+                src={`${ContactUsDetails.data.map_link}`}
+                allowfullscreen
+              ></iframe>
+            )}
+            
           </div>
-          <form>
-            <input type="text" placeholder="Full Name" required />
-            <input type="text" placeholder="Contact No" required />
-            <input type="email" placeholder="E-Mail Address" required />
-            <input type="text" placeholder="Postal Address" />
-            <textarea placeholder="Enquiry" required></textarea>
-            <div class="form-buttons">
-              <button type="submit">SUBMIT</button>
-              <button type="reset">RESET</button>
+          <form className="col-lg-6">
+            <input className="forn-control" type="text" placeholder="Full Name" required />
+            <input className="forn-control" type="text" placeholder="Contact No" required />
+            <input className="forn-control" type="email" placeholder="E-Mail Address" required />
+            <input className="forn-control" type="text" placeholder="Postal Address" />
+            <textarea className="forn-control" placeholder="Enquiry" required></textarea>
+            <div className="">
+              <button type="submit" className="btn btn-main">SUBMIT</button>
+              <button type="reset" className="btn btn-tranparent" style={{textDecoration: 'underline'}}>RESET</button>
             </div>
           </form>
         </div>

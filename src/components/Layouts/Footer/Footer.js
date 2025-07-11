@@ -47,10 +47,10 @@ export const Footer = () => {
               <h5>Information</h5>
 
               <ul className="f-link mb-0 ps-0">
-                <li><Link to="">About Us</Link></li>
+                <li><Link to="about-us">About Us</Link></li>
 
                 <li><Link to="">Blog</Link></li>
-              </ul>
+              </ul> 
             </div>
           </div>
 
@@ -63,7 +63,7 @@ export const Footer = () => {
 
                 <li><Link to="">Advanced Search</Link></li>
 
-                <li><Link to="">Orders And Returns</Link></li>
+                <li><Link to="">Orders And Returns</Link></li> 
 
                 <li><Link to="/contact-us">Contact Us</Link></li>
 

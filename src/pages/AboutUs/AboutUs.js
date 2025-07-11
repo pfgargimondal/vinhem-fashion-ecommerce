@@ -1,24 +1,50 @@
+import { useEffect, useState } from "react";
 import "./Css/AboutUs.css";
+import http from "../../http";
+import { useNavigate } from "react-router-dom";
 
 export const AboutUs = () => {
+
+ 
+  const navigate = useNavigate();
+
+  const [AboutUsDetails, setAboutUsDetails] = useState({});
+  
+    useEffect(() => {
+      const fetchAboutUsData = async () => {
+        // setLoading(true);
+        try {
+          const getresponse = await http.get("/get-about-us-details");
+          setAboutUsDetails(getresponse.data);
+        } catch (error) {
+          console.error("Error fetching users:", error);
+        } finally {
+          // setLoading(false);
+        }
+      };
+  
+      fetchAboutUsData();
+    }, []);
+
   return (
     <div>
       <div
-        class="aboutusbannr"
+        className="aboutusbannr"
         style={{
-          backgroundImage: `url(./image/Vinham.png)`,
+          backgroundImage: AboutUsDetails?.image_url && AboutUsDetails?.data?.banner_image
+            ? `url(${AboutUsDetails.image_url}/${AboutUsDetails.data.banner_image})`
+            : "none",
         }}
       >
-        <div class="container-fluid">
-          <div class="dfgnhdfjhgdf">
-            <div class="row">
-              <div class="col-lg-7"></div>
-              <div class="col-lg-5">
-                <div class="dfbhdf">
-                  <h2>About Us</h2>
+        <div className="container-fluid">
+          <div className="dfgnhdfjhgdf">
+            <div className="row">
+              <div className="col-lg-7"></div>
+              <div className="col-lg-5">
+                <div className="dfbhdf">
+                  <h2>{AboutUsDetails.data?.banner_title && AboutUsDetails.data.banner_title}</h2>
                   <p>
-                    Celebrating style with every stitch – where trends meet
-                    timeless elegance.
+                    {AboutUsDetails.data?.banner_description && AboutUsDetails.data.banner_description}
                   </p>
                 </div>
               </div>
@@ -27,43 +53,55 @@ export const AboutUs = () => {
         </div>
       </div>
 
-      <div class="xfnhvjhdfbvgdfg">
-        <div class="container">
-          <div class="sdfhdfgdf">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="fghdfgdf">
-                  <div class="dfgdf">
-                    <img src="./image/about-icon (1).png" alt="" />
+      <div className="xfnhvjhdfbvgdfg">
+        <div className="container">
+          <div className="sdfhdfgdf">
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="fghdfgdf">
+                  <div className="dfgdf">
+                    {AboutUsDetails.data?.second_section_image_one && (
+                      <img
+                        src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.second_section_image_one}`}
+                        alt=""
+                      />
+                    )}
                   </div>
-                  <div class="fbgdfg">
-                    <h4>Affordable</h4>
-                    <p>Fashion for all – style that fits your budget.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="fghdfgdf">
-                  <div class="dfgdf">
-                    <img src="./image/about-icon (2).png" alt="" />
-                  </div>
-                  <div class="fbgdfg">
-                    <h4>High Quality</h4>
-                    <p>
-                      Style within reach – because fashion shouldn't cost a
-                      fortune.
-                    </p>
+                  <div className="fbgdfg">
+                    <h4>{AboutUsDetails.data?.second_section_title_one && AboutUsDetails.data.second_section_title_one}</h4>
+                    <p>{AboutUsDetails.data?.banner_description && AboutUsDetails.data.banner_description}</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">
-                <div class="fghdfgdf">
-                  <div class="dfgdf">
-                    <img src="./image/about-icon (3).png" alt="" />
+              <div className="col-lg-4">
+                <div className="fghdfgdf">
+                  <div className="dfgdf">
+                    {AboutUsDetails.data?.second_section_image_two && (
+                      <img
+                        src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.second_section_image_two}`}
+                        alt=""
+                      />
+                    )}
                   </div>
-                  <div class="fbgdfg">
-                    <h4>Cusmizabale</h4>
-                    <p>Look great, spend less – fashion made affordable.</p>
+                  <div className="fbgdfg">
+                    <h4>{AboutUsDetails.data?.second_section_title_two && AboutUsDetails.data.second_section_title_two}</h4>
+                    <p>{AboutUsDetails.data?.second_section_description_two && AboutUsDetails.data.second_section_description_two}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="fghdfgdf">
+                  <div className="dfgdf">
+                    {AboutUsDetails.data?.second_section_image_three && (
+                      <img
+                        src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.second_section_image_three}`}
+                        alt=""
+                      />
+                    )}
+                  </div>
+                  <div className="fbgdfg">
+                    <h4>{AboutUsDetails.data?.second_section_title_three && AboutUsDetails.data.second_section_title_three}</h4>
+                    <p>{AboutUsDetails.data?.second_section_description_three && AboutUsDetails.data.second_section_description_three}</p>
                   </div>
                 </div>
               </div>
@@ -72,38 +110,36 @@ export const AboutUs = () => {
         </div>
       </div>
 
-      <div class="dfgjhdfbgdfgd">
-        <div class="container-fluid">
-          <div class="dfdfhsdff">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="dfngjhdfgfd">
-                  <img src="./image/abouyt-down (2).png" alt="" />
+      <div className="dfgjhdfbgdfgd">
+        <div className="container-fluid">
+          <div className="dfdfhsdff">
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="dfngjhdfgfd">
+                  {AboutUsDetails.data?.third_section_image && (
+                      <img
+                        src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.third_section_image}`}
+                        alt=""
+                      />
+                    )}
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="gdfngjhdfg">
+              <div className="col-lg-6"> 
+                <div className="gdfngjhdfg">
                   <h4>
                     Vinhem <span>Fashion</span>
                   </h4>
-                  <h2>There are many variations of passages of Lorem Ipsum</h2>
-                  <p>
-                    There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration in some
-                    form, by injected humour, or randomised words which don't
-                    look even slightly believable. If you are going to use a
-                    passage of Lorem Ipsum, you need to be sure there isn't
-                    anything embarrassing hidden in the middle of text. All the
-                    Lorem Ipsum generators on the Internet tend to repeat
-                    predefined chunks as necessary, making this the first true
-                    generator on the Internet. It uses a dictionary of over 200
-                    Latin words, combined with a handful of model sentence
-                    structures, to generate Lorem Ipsum which looks reasonable.
-                    The generated Lorem Ipsum is therefore always free from
-                    repetition, injected humour, or non-characteristic words
-                    etc.
-                  </p>
-                  <button>Shop Now</button>
+                  <h2>{AboutUsDetails.data?.third_section_title && AboutUsDetails.data.third_section_title}</h2>
+                  <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          AboutUsDetails.data?.third_section_description &&
+                          AboutUsDetails.data.third_section_description,
+                      }}
+                    />
+                  <button onClick={() => navigate('/products')}>
+                    Shop Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -111,39 +147,64 @@ export const AboutUs = () => {
         </div>
       </div>
 
-      <div class="sdfgbdfghgdfgd">
-        <div class="container-fluid">
-          <div class="gdfbgjhdfgd">
+      <div className="sdfgbdfghgdfgd">
+        <div className="container-fluid">
+          <div className="gdfbgjhdfgd">
             <h2>
-              {" "}
-              Fashion-forward looks designed to empower, express,
-              <br /> and elevate your unique vibe.
+             {AboutUsDetails.data?.fourth_section_title && AboutUsDetails.data.fourth_section_title}
             </h2>
-            <p>
-              Explore the essence of our style through curated looks that blend
-              creativity, comfort, and confidence. Every image tells a story of{" "}
-              <br /> fashion that’s bold, inclusive, and uniquely you.
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  AboutUsDetails.data?.fourth_section_description &&
+                  AboutUsDetails.data.fourth_section_description,
+              }}
+            />
           </div>
-          <div class="jhdfdfgdfsg">
-            <div class="dfgbdfdf">
-              <img src="./image/about-fashion (1).png" alt="" />
+          <div className="jhdfdfgdfsg">
+            <div className="dfgbdfdf">
+              {AboutUsDetails.data?.fourth_section_image_one && (
+                  <img
+                    src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.fourth_section_image_one}`}
+                    alt=""
+                  />
+                )}
             </div>
 
-            <div class="dfgbdfdf dfdf ">
-              <img src="./image/about-fashion (2).png" alt="" />
+            <div className="dfgbdfdf dfdf ">
+              {AboutUsDetails.data?.fourth_section_image_two && (
+                <img
+                  src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.fourth_section_image_two}`}
+                  alt=""
+                />
+              )}
             </div>
 
-            <div class="dfgbdfdf  ">
-              <img src="./image/about-fashion (3).png" alt="" />
+            <div className="dfgbdfdf  ">
+              {AboutUsDetails.data?.fourth_section_image_three && (
+                <img
+                  src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.fourth_section_image_three}`}
+                  alt=""
+                />
+              )}
             </div>
 
-            <div class="dfgbdfdf dfdf">
-              <img src="./image/about-fashion (4).png" alt="" />
+            <div className="dfgbdfdf dfdf">
+              {AboutUsDetails.data?.fourth_section_image_four && (
+                <img
+                  src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.fourth_section_image_four}`}
+                  alt=""
+                />
+              )}
             </div>
 
-            <div class="dfgbdfdf">
-              <img src="./image/about-fashion (1).png" alt="" />
+            <div className="dfgbdfdf">
+              {AboutUsDetails.data?.fourth_section_image_five && (
+                <img
+                  src={`${AboutUsDetails.image_url}/${AboutUsDetails.data.fourth_section_image_five}`}
+                  alt=""
+                />
+              )}
             </div>
           </div>
         </div>
@@ -151,16 +212,16 @@ export const AboutUs = () => {
 
       <hr />
 
-      <div class="yudfdfgdfbgdfgdffgfg">
-        <div class="container-fluid">
-          <div class="dfgjhfdg2455f">
-            <div class="fgnjhdf">
+      <div className="yudfdfgdfbgdfgdffgfg">
+        <div className="container-fluid">
+          <div className="dfgjhfdg2455f">
+            <div className="fgnjhdf">
               <h6>
                 There are many variations of passages of Lorem Ipsum available
               </h6>
             </div>
 
-            <div class="dfghdfg654">
+            <div className="dfghdfg654">
               <h6>
                 Contrary to popular belief, Lorem Ipsum is not simply random
                 text:
@@ -177,7 +238,7 @@ export const AboutUs = () => {
               </p>
             </div>
 
-            <div class="dfghdfg654">
+            <div className="dfghdfg654">
               <h6>Contrary to popular belief, Lorem Ipsum is not simply:</h6>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
@@ -191,7 +252,7 @@ export const AboutUs = () => {
               </p>
             </div>
 
-            <div class="dfghdfg654">
+            <div className="dfghdfg654">
               <h6>Contrary to popular belief, Lorem:</h6>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
@@ -205,7 +266,7 @@ export const AboutUs = () => {
               </p>
             </div>
 
-            <div class="dfghdfg654">
+            <div className="dfghdfg654">
               <h6>Contrary to popular belief, Lorem Ipsum is not simply:</h6>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
@@ -220,12 +281,12 @@ export const AboutUs = () => {
             </div>
           </div>
 
-          <div class="dfngjhdfgd5151fg">
-            <div class="kdfbhjgdfg65468546">
-              <div class="fbgfd">
+          <div className="dfngjhdfgd5151fg">
+            <div className="kdfbhjgdfg65468546">
+              <div className="fbgfd">
                 <h6>Featured Designers:</h6>
               </div>
-              <div class="fbgdfgd">
+              <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>
                 <a href="/">Basanti - Kapde Aur Koffee </a>
                 <a href="/">LASHKARAA</a>
@@ -269,11 +330,11 @@ export const AboutUs = () => {
               </div>
             </div>
 
-            <div class="kdfbhjgdfg65468546">
-              <div class="fbgfd">
+            <div className="kdfbhjgdfg65468546">
+              <div className="fbgfd">
                 <h6>Top Designers for Wedding :</h6>
               </div>
-              <div class="fbgdfgd">
+              <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>
                 <a href="/">Basanti - Kapde Aur Koffee </a>
                 <a href="/">LASHKARAA</a>
@@ -317,11 +378,11 @@ export const AboutUs = () => {
               </div>
             </div>
 
-            <div class="kdfbhjgdfg65468546">
-              <div class="fbgfd">
+            <div className="kdfbhjgdfg65468546">
+              <div className="fbgfd">
                 <h6>Celebrity Styles:</h6>
               </div>
-              <div class="fbgdfgd">
+              <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>
                 <a href="/">Basanti - Kapde Aur Koffee </a>
                 <a href="/">LASHKARAA</a>
@@ -365,11 +426,11 @@ export const AboutUs = () => {
               </div>
             </div>
 
-            <div class="kdfbhjgdfg65468546">
-              <div class="fbgfd">
+            <div className="kdfbhjgdfg65468546">
+              <div className="fbgfd">
                 <h6>Shop By Occasions:</h6>
               </div>
-              <div class="fbgdfgd">
+              <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>
                 <a href="/">Basanti - Kapde Aur Koffee </a>
                 <a href="/">LASHKARAA</a>
@@ -413,11 +474,11 @@ export const AboutUs = () => {
               </div>
             </div>
 
-            <div class="kdfbhjgdfg65468546">
-              <div class="fbgfd">
+            <div className="kdfbhjgdfg65468546">
+              <div className="fbgfd">
                 <h6>Aza Magazine:</h6>
               </div>
-              <div class="fbgdfgd">
+              <div className="fbgdfgd">
                 <a href="/">Paulmi and Harsh</a>
                 <a href="/">Basanti - Kapde Aur Koffee </a>
                 <a href="/">LASHKARAA</a>
