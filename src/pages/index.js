@@ -19,7 +19,8 @@ export { OrderPolicy } from "./OrderPolicy/OrderPolicy";
 export { ShippingPolicy } from "./ShippingPolicy/ShippingPolicy";
 
 
-
+export { Testimonial } from "./Testimonial/Testimonial";
+export { Career } from "./Career/Career";
 
 
 

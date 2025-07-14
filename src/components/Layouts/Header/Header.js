@@ -27,24 +27,42 @@ export const Header = () => {
 
   return (
     <header className="position-relative">
-      <div className="advstmnt-sldier">
-        {/* eslint-disable-next-line */}
-        <marquee
-          className="html-marquee d-flex align-items-center py-1"
-          direction="left"
-          behavior="scroll"
-          scrollamount={12}
-        >
-          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+      <div className="advertisement-slider position-relative" style={{background: "url('/images/csadad.jpg') no-repeat", backgroundPosition: "top", backgroundSize: "cover"}}>
+        <div className="marquee-container">
+          <div className="marquee-track marquee-left">
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
 
-          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
 
-          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
 
-          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
 
-          <span className="mx-5">Summer sale: Up to 70% off selected items</span>
-        </marquee>
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
+
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
+
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
+
+            <div className="scroll-card">
+              <p className="mb-0"><a href="/">SUMMER SALE: UP TO 70% OFF SELECTED ITEMS</a></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="header-top">

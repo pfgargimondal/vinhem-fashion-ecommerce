@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 
 import { FeaturedProducts } from "../../components";
 
@@ -93,8 +94,15 @@ export const Home = () => {
 
   const swiperConfig = {
     spaceBetween: 20,
+    modules: [Autoplay, Pagination, Navigation, Mousewheel],
     slidesPerView: 5,
     navigation: true,
+    loop: true,
+    navigation: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
     pagination: { clickable: true },
     breakpoints: {
       320: { slidesPerView: 1 },
