@@ -98,7 +98,6 @@ export const Home = () => {
     slidesPerView: 5,
     navigation: true,
     loop: true,
-    navigation: true,
     autoplay: {
       delay: 3000,
       disableOnInteraction: false,

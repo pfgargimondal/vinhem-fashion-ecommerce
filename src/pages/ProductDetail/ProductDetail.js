@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
@@ -81,6 +81,7 @@ export const ProductDetail = () => {
       price: "48.99",
     },
   ]);
+  // eslint-disable-next-line
   const [activeTab, setActiveTab] = useState("tab-1");
 
   //featured products
