@@ -149,4 +149,26 @@
     flex-direction: column;
     gap: 0;
   }
-}/*# sourceMappingURL=Login.css.map */
+}
+.dwdwerwerwerr span {
+  width: 100%;
+  height: 1px;
+  background: var(--text-lighter-gray-color);
+  display: block;
+}
+.dwdwerwerwerr p {
+  color: var(--text-lighter-gray-color);
+}
+
+.doiwejojweojrwer .dwenriwerwer_inner .btn-main {
+  background: #fff;
+  border: 1px solid var(--text-lighter-gray-color) !important;
+  color: var(--grey-border-color);
+}
+.doiwejojweojrwer .dwenriwerwer_inner .btn-main img {
+  width: 2rem;
+  margin-right: 0.5rem;
+}
+
+
+/*# sourceMappingURL=Login.css.map */

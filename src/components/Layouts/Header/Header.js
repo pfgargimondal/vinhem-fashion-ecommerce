@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Logo from "../../../assets/images/logo.png";
 
 import "./Css/Header.css";
 import "./Css/HeaderResponsive.css";
+import  { DropdownLoggedIn } from "../../../components";
 
 export const Header = () => {
   const [resMenu, setResMenu] = useState(false);
@@ -15,14 +16,16 @@ export const Header = () => {
     html.classList.toggle("overflow-hidden");
     setResMenu(!resMenu);
   }
+  const [userDropdown, setUserDropdown] = useState(false);
 
-  const navigate = useNavigate();
-  const token = localStorage.getItem('jwt_token');
+  const token = localStorage.getItem('jwtToken');
 
-  const handleLogout = () => {
-    localStorage.removeItem('jwt_token');
-    navigate('/login');
-  };
+  const { pathname } = useLocation();
+
+  useEffect(()=>{
+    setUserDropdown(false);
+  },[pathname]);
+
 
 
   return (
@@ -87,14 +90,18 @@ export const Header = () => {
                 <li className="me-2"><p className="mb-0">Extra 10% OFF ON FIRST ORDER</p></li>
                 {token ? (
                   <>
-                    <li><Link to="/profile"><i class="bi bi-person"></i></Link></li>
-                    <li onClick={handleLogout}><i class="bi bi-box-arrow-right"></i></li>
+                    <li className="position-relative">
+                      <Link onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i></Link>
+                      { userDropdown && <DropdownLoggedIn /> }
+                    </li>
                   </>
                 ) : (
                   <> 
-                    <li><Link to="/register"><i class="bi bi-person"></i></Link></li>
+                    <li><Link to="/login"><i class="bi bi-person"></i></Link></li>
                   </>
                 )}
+
+                
 
                 <li><i class="bi bi-heart"></i> <span>0</span></li>
 

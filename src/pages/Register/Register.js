@@ -152,10 +152,10 @@ export const Register = () => {
           />
         </div>
 
-        <div className="col-lg-6 right-panel">
+        <div className="col-lg-6 right-panel text-center">
           <img
             src="/images/logo.png"
-            className="reg-log-img mb-4 img-fluid"
+            className="reg-log-img mb-4 mx-auto img-fluid"
             alt=""
           />
 
@@ -260,6 +260,34 @@ export const Register = () => {
               Sign Up
             </button>
           </form>
+
+           <div className="dwdwerwerwerr row my-4 align-items-center justify-content-center">
+            <div className="col-lg-3 pe-0">
+              <span></span>
+            </div>
+
+            <div className="col-lg-3">
+              <p className="mb-0">Or Login with</p>
+            </div>
+
+            <div className="col-lg-3 ps-0">
+              <span></span>
+            </div>
+          </div>
+
+          <div className="doiwejojweojrwer row align-items-center">
+            <div className="col-lg-6">
+              <div className="dwenriwerwer_inner">
+                <button className="btn btn-main w-100"><img src="/images/search (2).png" alt="" /> Google</button>
+              </div>
+            </div>
+
+            <div className="col-lg-6">
+              <div className="dwenriwerwer_inner">
+                <button className="btn btn-main w-100"><img src="/images/facebook (4)-Photoroom.png" alt="" /> Facebook</button>
+              </div>
+            </div>
+          </div>
 
           <p className="signup-text">
             Already have an account? <Link to="/login">Login</Link>
