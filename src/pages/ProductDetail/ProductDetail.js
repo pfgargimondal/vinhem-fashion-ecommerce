@@ -84,6 +84,8 @@ export const ProductDetail = () => {
   ]);
   // eslint-disable-next-line
   const [activeTab, setActiveTab] = useState("tab-1");
+  const [showTabs, setShowTabs] = useState(false);
+  const [showSizeModal, setShowSizeModal] = useState(false);
 
   //featured products
 
@@ -222,17 +224,50 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="jdfbdfgdf">
+                    
+                    <div class="diwenjrbwebrwehgrwer mt-5">
+                      <h4 class="pb-2">Stitching Options</h4>
+
+                      <hr class="mt-0" />
+                    </div>
+
+                    <div className="saoijhdekjwirwer d-flex align-items-center mb-3">
+                      <div className="dowekrwerwer me-3">
+                        <input type="radio" name="so" id="unstdf" className="d-none position-absolute" />
+
+                        <label htmlFor="unstdf" className="p-3">Unstitched Fabric <br /> <span>+<i class="bi bi-currency-rupee"></i>0.00</span></label>
+                      </div>
+
+                      <div className="dowekrwerwer">
+                        <input type="radio" name="so" id="cf" className="d-none position-absolute" />
+
+                        <label htmlFor="cf" className="p-3" id="cstm-fit-btn" onClick={() => setShowSizeModal(!showSizeModal)}>Custom-Fit <br /> <span>+<i class="bi bi-currency-rupee"></i>1000.00</span></label>
+                      </div>
+                    </div>
+
+                    <div className="ikasdnjiknswjirhwer mb-4">
+                      <p className="mb-1">Submit Measurement: <span><Link to="/">CLICK HERE</Link></span> or Later</p>
+
+                      <p className="mb-0">+3 days, for your chosen stitching options.</p>
+                    </div>
+                    
+                    {/* id="custmze-otft-btn"> */}
+
                     <div className="row">
                       <div className="col-lg-6">
                         <div className="dgndfjgdf">
                           <select name="" id="" className="form-select">
                             <option value="">Select Size</option>
 
-                            <option value="">Select Size</option>
 
                             <option value="">Select Size</option>
 
+
                             <option value="">Select Size</option>
+
+
+                            <option value="">Select Size</option>
+
 
                             <option value="">Select Size</option>
                           </select>
@@ -243,9 +278,7 @@ export const ProductDetail = () => {
 
                       <div className="col-lg-6">
                         <div className="dokewhkjrhuiwerwer">
-                          <button className="btn btn-main">
-                            <i class="bi me-1 bi-bounding-box"></i> Size Guide
-                          </button>
+                          <button className="btn btn-main"><i className="bi me-1 bi-bounding-box"></i> Size Guide</button>
                         </div>
                       </div>
                     </div>
@@ -795,6 +828,124 @@ export const ProductDetail = () => {
       </div>
 
       <hr />
+
+      
+      {showSizeModal && (<div className="customize-modal-backdrop position-fixed w-100 h-100"></div>)}
+
+      {showSizeModal && (<div className="customize-modal overflow-hidden position-fixed bg-white">
+        <div className="okdjeiwirwejrwerwer bg-white px-4 pt-4 mb-3">
+          <h4>Customize Options</h4>
+
+          <i className="bi position-absolute bi-x" id="co-close-btn" onClick={() => setShowSizeModal(false)}></i>
+        </div>
+
+        <div className="dhwekrwerwer px-4 py-4">
+          <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p>
+
+          <p className="mb-3">Choose a size to be customized:</p>
+
+          <div className="okemlkwnjrirwer mb-3 d-flex align-items-center">
+            <div className="doeiwjrkweirwe">
+              <input id="s1" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s1" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XS</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s2" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s2" className="text-center p-2"><span className="mb-1">31,500</span> <br /> S</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s3" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s3" className="text-center p-2"><span className="mb-1">31,500</span> <br /> L</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s4" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s4" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XL</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s5" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s5" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XXL</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s6" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s6" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 3XL</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s7" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s7" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 4XL</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s8" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s8" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 5XL</label>
+            </div>
+
+            <div className="doeiwjrkweirwe">
+              <input id="s9" name="s-optns" type="radio" className="d-none position-absolute" />
+
+              <label htmlFor="s9" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 6XL</label>
+            </div>
+          </div>
+
+          <p>Customized orders can take minimum 7 extra working days along with customization charges (if applicable). Our team may contact you to assist with your order.</p>
+
+          <div className="idjnejwhrewrwerwer mt-4">
+            <h5 className="d-flex align-items-center justify-content-between">
+              <span><i className="bi me-1 bi-arrows-expand-vertical"></i> Do you want to enter your measurements?</span>
+            
+              <div className="checkbox-wrapper-5 d-flex align-items-center">
+                <span>Yes</span>
+
+                <div className="check ms-2">
+                  <input id="check-5" type="checkbox" onChange={(e) => setShowTabs(e.target.checked)} />
+                  
+                  <label for="check-5"></label>
+                </div>
+              </div>
+            </h5>
+
+            {showTabs && (
+              <div className="doiewnjkrhwerwerwer mt-3">
+                <Tabs
+                  defaultActiveKey="customizesize"
+                  id="uncontrolled-tab-example"
+                  className="mb-3"
+                >
+                  <Tab eventKey="customizesize" title="Customize Size">
+                    Customize Size
+                  </Tab>
+                  <Tab eventKey="changecolor" title="Change Color">
+                    Change Color
+                  </Tab>
+                </Tabs>
+              </div>
+            )}
+
+            <div className="doeiwhrewrwer mt-4">
+              <p className="mb-0">Note: Additional delivery time & customization chanrges may apply post confirmation with the designer.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="doewrjhwerwerwer d-flex align-items-center justify-content-between p-4">
+          <p className="mb-0">0 Customizations selected</p>
+
+          <button className="btn btn-main">Add to Cart</button>
+        </div>
+      </div>)}
 
       <FooterTopComponent />
       </>

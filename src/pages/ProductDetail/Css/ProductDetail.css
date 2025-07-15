@@ -352,6 +352,193 @@
   border-radius: 0.375rem;
 }
 
+
+/*size modal*/
+
+.customize-modal-backdrop {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(1rem);
+          backdrop-filter: blur(1rem);
+  z-index: 9999;
+}
+
+.customize-modal {
+  border-radius: 10px;
+  width: 40%;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+}
+.customize-modal #co-close-btn {
+  right: 5%;
+  top: 5%;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.customize-modal .dhwekrwerwer {
+  height: 460px;
+  overflow-y: auto;
+}
+.customize-modal .dhwekrwerwer > p .btn-main {
+  border-radius: 50px;
+}
+.customize-modal .dhwekrwerwer .okemlkwnjrirwer {
+  flex-wrap: wrap;
+}
+.customize-modal .dhwekrwerwer .doeiwjrkweirwe {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.customize-modal .dhwekrwerwer .doeiwjrkweirwe:last-child {
+  margin-right: 0;
+}
+.customize-modal .dhwekrwerwer .doeiwjrkweirwe label {
+  border-radius: 3px;
+  font-weight: 600;
+  color: var(--grey-border-color);
+  line-height: 1 !important;
+  border: 1px solid var(--text-gray-color);
+  cursor: pointer;
+}
+.customize-modal .dhwekrwerwer .doeiwjrkweirwe label span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--pink-main-color);
+  display: inline-block;
+}
+.customize-modal .dhwekrwerwer .doeiwjrkweirwe input[type=radio]:checked + label {
+  border: 1px solid var(--pink-main-color);
+  box-shadow: rgba(161, 56, 110, 0.2) 3px 2px 10px 0px, rgba(161, 56, 110, 0.2) -3px -2px 10px 0px;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 {
+  font-weight: 400;
+  font-size: 1.01rem;
+  color: var(--grey-border-color);
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 i {
+  color: var(--pink-main-color);
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check {
+  --size: 1.5rem;
+  position: relative;
+  background: linear-gradient(90deg, var(--pink-main-color), var(--light-background-color));
+  line-height: 0;
+  perspective: 400px;
+  font-size: var(--size);
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox],
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label,
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label::before,
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label::after,
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: inline-block;
+  border-radius: var(--size);
+  border: 0;
+  transition: 0.35s ease-in-out;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label {
+  width: calc(2.2 * var(--size));
+  height: var(--size);
+  background: #d7d7d7;
+  overflow: hidden;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox] {
+  position: absolute;
+  z-index: 1;
+  width: calc(0.8 * var(--size));
+  height: calc(0.8 * var(--size));
+  top: calc(0.1 * var(--size));
+  left: calc(0.1 * var(--size));
+  background: linear-gradient(45deg, #dedede, #ffffff);
+  box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3);
+  outline: none;
+  margin: 0;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox]:checked {
+  left: calc(1.3 * var(--size));
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox]:checked + label {
+  background: transparent;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label::before,
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label::after {
+  content: "· ·";
+  position: absolute;
+  overflow: hidden;
+  left: calc(0.15 * var(--size));
+  top: calc(0.5 * var(--size));
+  height: var(--size);
+  letter-spacing: calc(-0.04 * var(--size));
+  color: #9b9b9b;
+  font-family: "Times New Roman", serif;
+  z-index: 2;
+  font-size: calc(0.6 * var(--size));
+  border-radius: 0;
+  transform-origin: 0 0 calc(-0.5 * var(--size));
+  backface-visibility: hidden;
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check label::after {
+  content: "●";
+  top: calc(0.65 * var(--size));
+  left: calc(0.2 * var(--size));
+  height: calc(0.1 * var(--size));
+  width: calc(0.35 * var(--size));
+  font-size: calc(0.2 * var(--size));
+  transform-origin: 0 0 calc(-0.4 * var(--size));
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox]:checked + label::before,
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox]:checked + label::after {
+  left: calc(1.55 * var(--size));
+  top: calc(0.4 * var(--size));
+  line-height: calc(0.1 * var(--size));
+  transform: rotateY(360deg);
+}
+.customize-modal .dhwekrwerwer .idjnejwhrewrwerwer h5 .checkbox-wrapper-5 .check input[type=checkbox]:checked + label::after {
+  height: calc(0.16 * var(--size));
+  top: calc(0.55 * var(--size));
+  left: calc(1.6 * var(--size));
+  font-size: calc(0.6 * var(--size));
+  line-height: 0;
+}
+
+.saoijhdekjwirwer .dowekrwerwer label {
+  font-weight: 500;
+  border: 1px solid var(--text-gray-color);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.saoijhdekjwirwer .dowekrwerwer label span {
+  color: var(--pink-main-color);
+}
+.saoijhdekjwirwer .dowekrwerwer input[type=radio]:checked + label {
+  border: 1px solid var(--pink-main-color);
+}
+
+.ikasdnjiknswjirhwer p {
+  color: var(--grey-border-color);
+}
+.ikasdnjiknswjirhwer p span a {
+  color: var(--pink-main-color);
+}
+.ikasdnjiknswjirhwer p span a:hover {
+  text-decoration: underline !important;
+}
+
+.doewrjhwerwerwer p {
+  font-size: 0.8rem;
+}
+
 /*end  Product   css   */
 /*end  Product   css   */
 /*end  Product   css   *//*# sourceMappingURL=ProductDetail.css.map */
