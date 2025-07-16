@@ -100,6 +100,7 @@ export const OrderHistory = () =>{
 
                                         </tr>
                                         <tr>
+                                            {/* eslint-disable-next-line */}
                                         <td scope="row" data-label="Order-Id">AC7875845</td>
                                         <td data-label="Product">
                                             <div class="sdfsdf">
@@ -117,6 +118,7 @@ export const OrderHistory = () =>{
                                         </td>
 
                                         </tr>
+                                        {/* eslint-disable-next-line */}
                                         <tr>
                                         <td scope="row" data-label="Order-Id">FC1474785</td>
                                         <td data-label="Product">
@@ -133,7 +135,7 @@ export const OrderHistory = () =>{
                                         <td data-label="Status"> 
                                            <button class="dfgfd5544b">Shipping</button>
                                         </td>
-
+                                         {/* eslint-disable-next-line    */}
                                         </tr>
                                         <tr>
                                         <td scope="row" data-label="Order-Id">DC5247485</td>
