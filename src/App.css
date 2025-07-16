@@ -36,6 +36,11 @@ input.form-control{
     border: 1px solid var(--black-background-color);
 }
 
+input.form-control:focus,
+.form-select:focus{
+    box-shadow: none !important;
+}
+
 h1, h2, h3, h4, h5, h6{
     color: var(--black-background-color);
 }

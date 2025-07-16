@@ -1,9 +1,28 @@
+footer {
+  background: #F6F7F5;
+  border-top: 1px solid var(--light-background-color);
+}
+footer .dbewjbruwerwer_inner .simg {
+  width: 6rem;
+}
 footer .dbewjbruwerwer_inner img {
   width: 10rem;
 }
 footer .dbewjbruwerwer_inner h5 {
-  font-weight: 800;
-  margin-bottom: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  position: relative;
+  color: var(--grey-border-color) !important;
+}
+footer .dbewjbruwerwer_inner h5:before {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 2px;
+  border-radius: 10px;
+  background: var(--pink-main-color);
+  bottom: -8px;
 }
 footer .dbewjbruwerwer_inner p a {
   text-decoration: underline;
@@ -23,26 +42,22 @@ footer .dbewjbruwerwer_inner ul.f-fu-link li {
   margin-right: 2.2rem;
   font-size: 1.4rem;
 }
-.f-top,
-.sdcasdsfsdfsdf{
-  background: var(--light-background-color);
-}
-.oianjdshihfsf{
-  background: var(--text-lighter-gray-color);
-}
 footer .dbewjbruwerwer_inner ul.f-fu-link li a {
   text-decoration: none;
   color: var(--text-main-color);
 }
-footer .footer-bottom p.jamdlkjwekrer a {
-  color: var();
+footer .idnweihrwerwe {
+  background: var(--light-background-color);
+}
+footer .idnweihrwerwe a:hover {
+  text-decoration: underline !important;
+}
+footer .footer-bottom ul.imprtnt-list li {
+  list-style: none;
+  margin: 0 0.5rem;
 }
 footer .footer-bottom .fb-payment-options li {
   list-style: none;
-  display: inline;
-  margin-inline: 1rem;
+  margin-inline: 0.3rem;
   cursor: pointer;
-}
-footer .footer-bottom .fb-payment-options li img {
-  width: 3rem;
 }/*# sourceMappingURL=Footer.css.map */

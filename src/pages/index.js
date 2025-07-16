@@ -22,6 +22,14 @@ export { ShippingPolicy } from "./ShippingPolicy/ShippingPolicy";
 export { Testimonial } from "./Testimonial/Testimonial";
 export { Career } from "./Career/Career";
 
+export { Profile } from "./UserProfile/Profile";
+export { CancelOrder } from "./UserProfile/CancelOrder";
+export { OrderHistory } from "./UserProfile/OrderHistory";
+export { ChangePassword } from "./UserProfile/ChangePassword";
+export { Wishlist } from "./UserProfile/Wishlist";
+export { Cart } from "./Cart/Cart";
+
+
 
 
 export { PageNotFound } from "./PageNotFound/PageNotFound";

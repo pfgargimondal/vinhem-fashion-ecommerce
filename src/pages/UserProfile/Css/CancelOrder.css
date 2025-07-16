@@ -1,0 +1,148 @@
+/*start cancel order  css   */
+/*start cancel order  css   */
+/*start cancel order  css   */
+.dfgndfjhbgdfgdf2 table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.dfgndfjhbgdfgdf2 table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+.dfgndfjhbgdfgdf2 table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+.dfgndfjhbgdfgdf2 table th,
+.dfgndfjhbgdfgdf2 table td {
+  padding: 0.625em;
+  text-align: left;
+}
+.dfgndfjhbgdfgdf2 table th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 600px) {
+  .dfgndfjhbgdfgdf2 table {
+    border: 0;
+  }
+  .dfgndfjhbgdfgdf2 table caption {
+    font-size: 1.3em;
+  }
+  .dfgndfjhbgdfgdf2 table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+  }
+  .dfgndfjhbgdfgdf2 table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 0.625em;
+  }
+  .dfgndfjhbgdfgdf2 table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: left;
+  }
+  .dfgndfjhbgdfgdf2 table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .dfgndfjhbgdfgdf2 table td:last-child {
+    border-bottom: 0;
+  }
+}
+.dfgndfjhbgdfgdf2 .sdfsdf {
+  display: flex;
+  align-items: baseline;
+}
+.dfgndfjhbgdfgdf2 .dsfhsd {
+  width: 130px;
+  height: 120px;
+}
+.dfgndfjhbgdfgdf2 .dsfhsd img {
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.dfgndfjhbgdfgdf2 .dbhdsf512 {
+  margin-left: 20px;
+}
+.dfgndfjhbgdfgdf2 .dbhdsf512 h6 {
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.dfgndfjhbgdfgdf2 .dbhdsf512 p {
+  color: gray;
+  font-size: 15px;
+  padding-top: 5px;
+}
+.dfgndfjhbgdfgdf2 .dfgfd5544 {
+  padding: 6px 15px !important;
+  background-color: #d1fbea !important;
+  color: #00c986 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+.dfgndfjhbgdfgdf2 .dfgfd5544a {
+  padding: 6px 15px !important;
+  background-color: #fbd1d1 !important;
+  color: #c90000 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+.dfgndfjhbgdfgdf2 .dfgfd5544b {
+  padding: 6px 15px !important;
+  background-color: #fbebd1 !important;
+  color: #c99000 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+.dfgndfjhbgdfgdf2 .dfgfd5544c {
+  padding: 6px 15px !important;
+  background-color: #d1f2fb !important;
+  color: #002fc9 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.dfgjhdfgdfg p {
+  margin-bottom: 0;
+}
+
+.dfgjhdfgdfg {
+  margin-top: 40px;
+}
+.dfgjhdfgdfg h4 {
+  color: #000;
+  font-weight: 600;
+}
+
+/*end cancel order  css   */
+/*end cancel order  css   */
+/*end cancel order  css   *//*# sourceMappingURL=style.css.map */

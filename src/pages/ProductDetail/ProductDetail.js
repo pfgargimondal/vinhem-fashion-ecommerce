@@ -20,8 +20,8 @@ export const ProductDetail = () => {
   const [featuredProducts, setFeaturedProducts] = useState([
     {
       id: 1000,
-      img1: "/images/product1 (1).webp",
-      img2: "/images/product1 (2).webp",
+      img1: "/images/golden-polished-temple-choker-necklace-set-v1-jpm6528.webp",
+      img2: "/images/temple-jewelry.webp",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -29,8 +29,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1001,
-      img1: "/images/product3 (1).webp",
-      img2: "/images/product3 (2).webp",
+      img1: "/images/1716298202051_1.webp",
+      img2: "/images/1749818038130_1.webp",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -38,8 +38,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1002,
-      img1: "/images/product2 (1).webp",
-      img2: "/images/product2 (2).webp",
+      img1: "/images/how-to-find-matching-saree-jewellery-320120_750x.webp",
+      img2: "/images/1723646143986_1.webp",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -47,8 +47,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1003,
-      img1: "/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
-      img2: "/images/h-co-cp-VMJ-mdKs-unsplash.jpg",
+      img1: "/images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp",
+      img2: "/images/JJ_JIMMY_WHITE_(6)_zoom.jpg",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -56,8 +56,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1004,
-      img1: "/images/r-n-tyfqOL1FAQc-unsplash.jpg",
-      img2: "/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg",
+      img1: "/images/1708949940342_1.webp",
+      img2: "/images/1719656075415_1.webp",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -65,8 +65,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1005,
-      img1: "/images/product1 (1).webp",
-      img2: "/images/product1 (2).webp",
+      img1: "/images/61n+KozlFVL._UF1000,1000_QL80_.jpg",
+      img2: "/images/images (2).jpg",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -74,8 +74,8 @@ export const ProductDetail = () => {
     },
     {
       id: 1006,
-      img1: "/images/product2 (1).webp",
-      img2: "/images/product2 (2).webp",
+      img1: "/images/1656282-0958632001659958447.webp",
+      img2: "/images/Untitled_design_-_2024-08-28T121432.760_480x480.webp",
       title: "COLLETTE",
       description:
         "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
@@ -684,9 +684,9 @@ export const ProductDetail = () => {
                           <div className="dfgjhbdfg p-2 mb-4">
                             <div className="images">
                               <div className="image position-relative">
-                                <img src="/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg" alt="not found" />
+                                <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
                                 
-                                <img className="first" src="/images/h-co-cp-VMJ-mdKs-unsplash.jpg" alt="not found" />
+                                <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
 
                                 <div className="fdbdfgdfgdf">
                                   <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
@@ -702,9 +702,9 @@ export const ProductDetail = () => {
                           <div className="dfgjhbdfg p-2 mb-4">
                             <div className="images">
                               <div className="image position-relative">
-                                <img src="/images/r-n-tyfqOL1FAQc-unsplash.jpg" alt="not found" />
+                                <img src="/images/msl-l4.webp" alt="not found" />
                                 
-                                <img className="first" src="/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg" alt="not found" />
+                                <img className="first" src="/images/woven-art-silk-scalloped-saree-in-dusty-green-v1-sew14703.webp" alt="not found" />
 
                                 <div className="fdbdfgdfgdf">
                                   <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
@@ -720,9 +720,9 @@ export const ProductDetail = () => {
                           <div className="dfgjhbdfg p-2 mb-4">
                             <div className="images">
                               <div className="image position-relative">
-                                <img src="/images/product1 (1).webp" alt="not found" />
+                                <img src="/images/red-net-designer-saree-with-sleeveless-readymade-blouse-sr27800.webp" alt="not found" />
                                 
-                                <img className="first" src="/images/product1 (2).webp" alt="not found" />
+                                <img className="first" src="/images/3-sp2017-0140548001642675559.webp" alt="not found" />
 
                                 <div className="fdbdfgdfgdf">
                                   <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
@@ -738,9 +738,9 @@ export const ProductDetail = () => {
                           <div className="dfgjhbdfg p-2 mb-4">
                             <div className="images">
                               <div className="image position-relative">
-                                <img src="/images/product1 (1).webp" alt="not found" />
+                                <img src="/images/medium-purple-tissue-silk-premium-designer-saree-fabsa22444.jpg" alt="not found" />
                                 
-                                <img className="first" src="/images/product1 (2).webp" alt="not found" />
+                                <img className="first" src="/images/IMG_2502.jpeg" alt="not found" />
 
                                 <div className="fdbdfgdfgdf">
                                   <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>

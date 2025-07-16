@@ -70,7 +70,7 @@ export const Header = () => {
 
       <div className="header-top">
         <div className="row align-items-center">
-          <div className="col-lg-6">
+          <div className="col-lg-5">
             <div className="doeiwhrkwdeor">
               <ul className="mb-0 ps-0">
                 <li><NavLink to="/product" end>GENTLEMAN</NavLink></li>
@@ -84,10 +84,18 @@ export const Header = () => {
             </div>
           </div>
 
-          <div className="col-lg-6 ps-0">
+          <div className="col-lg-3 ps-0">
+            <div className="search-field position-relative">
+              <input type="text" className="form-control" placeholder="Search here..." />
+
+              <i class="bi position-absolute bi-search"></i>
+            </div>
+          </div>
+
+          <div className="col-lg-4 ps-0">
             <div className="doewhruiwerwer_right">
               <ul className="mb-0 ps-0 me-4">
-                <li className="me-2"><p className="mb-0">Extra 10% OFF ON FIRST ORDER</p></li>
+                <li><p className="mb-0">Extra 10% OFF ON FIRST ORDER</p></li>
                 {token ? (
                   <>
                     <li className="position-relative">
@@ -105,7 +113,7 @@ export const Header = () => {
 
                 <li><i class="bi bi-heart"></i> <span>0</span></li>
 
-                <li><i class="bi bi-handbag"></i> <span>0</span></li>
+                <li><Link to="/cart"><i class="bi bi-handbag"></i> <span>0</span></Link></li>
 
                 <li><i class="bi bi-whatsapp"></i></li>
 
