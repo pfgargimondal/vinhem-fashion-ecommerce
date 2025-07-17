@@ -7,6 +7,6 @@ export const register = async (userData) => {
 };
 
 
-export const login = async (credentials) => {
+export const loginAPI = async (credentials) => {
   return await axios.post(`${API_URL}/user-login`, credentials);
 };

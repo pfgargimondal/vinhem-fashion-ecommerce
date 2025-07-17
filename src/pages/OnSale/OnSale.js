@@ -1,40 +1,38 @@
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css"; // core styles
+import "swiper/css/navigation"; // if using navigation
+import "swiper/css/pagination"; // if using pagination
+
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
 import "./OnSale.css";
+
 export const OnSale = () => {
   return (
     <div>
       <div class="dfgjhdfgdf">
-        <div class="container-fluid">
-          <div
-            class="fvgndfjhgdfg2"
-            style={{ backgroundImage: "url('./images/salesbanner.png')" }}
-          >
-            <div class="kmbgh25df">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="ghfgh54"></div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="frngfdgfd">
-                    <div class="ghfgh54">
-                      <h2>Regal Lehengas</h2>
-                    </div>
-                    <div class="dfvgbdfjhg">
-                      <p>80+ Styles | 450+ top Labels</p>
-                      <p>New Deals Every Day | Free Gift On Orders*</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop={true}
+        >
+          <SwiperSlide><img src="/images/Screenshot (41).png" className="img-fluid" alt="Slide 1" /></SwiperSlide>
+
+          <SwiperSlide><img src="/images/Screenshot (41).png" className="img-fluid" alt="Slide 2" /></SwiperSlide>
+
+          <SwiperSlide><img src="/images/Screenshot (41).png" className="img-fluid" alt="Slide 3" /></SwiperSlide>
+        </Swiper>
       </div>
 
       <div class="dfgnhidfjugd">
         <div class="container-fluid">
           <div class="dfjvdgd">
-            <h2>Shop by Category</h2>
+            <h2>Our Category</h2>
           </div>
           <div class="dffgydfdf mt-4">
             <div class="row">
@@ -157,6 +155,66 @@ export const OnSale = () => {
                   </div>
                 </div>
               </div>
+
+              <div class="col-lg-3">
+                <div
+                  class="fhgdfg"
+                  style={{
+                    backgroundImage: "url('/images/sale-product(1).png')",
+                  }}
+                >
+                  <div class="overlay-sales">
+                    <div class="cvbjhdfdf">
+                      <h4>Kurta Set</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div
+                  class="fhgdfg"
+                  style={{
+                    backgroundImage: "url('./images/sale-product(2).png')",
+                  }}
+                >
+                  <div class="overlay-sales">
+                    <div class="cvbjhdfdf">
+                      <h4>Kurta Set</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div
+                  class="fhgdfg"
+                  style={{
+                    backgroundImage: "url('./images/sale-product(3).png')",
+                  }}
+                >
+                  <div class="overlay-sales">
+                    <div class="cvbjhdfdf">
+                      <h4>Kurta Set</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div
+                  class="fhgdfg"
+                  style={{
+                    backgroundImage: "url('./images/sale-product(4).png')",
+                  }}
+                >
+                  <div class="overlay-sales">
+                    <div class="cvbjhdfdf">
+                      <h4>Kurta Set</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -165,11 +223,11 @@ export const OnSale = () => {
       <div class="fkvbhjhdfgdfg mt-4">
         <div class="container-fluid">
           <div class="dfjvdgd">
-            <h2>The Value Edit</h2>
+            <h2>Wardrobe by Value</h2>
           </div>
           <div class="fghdfg mt-4">
             <div class="row">
-              <div class="col-lg-4">
+              <div class="col-lg-4 mb-4">
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -185,7 +243,7 @@ export const OnSale = () => {
                 </div>
               </div>
 
-              <div class="col-lg-4">
+              <div class="col-lg-4 mb-4">
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -201,7 +259,55 @@ export const OnSale = () => {
                 </div>
               </div>
 
-              <div class="col-lg-4">
+              <div class="col-lg-4 mb-4">
+                <div
+                  class="dfgfdg7853"
+                  style={{
+                    backgroundImage: "url('./images/sale-product2(3).png')",
+                  }}
+                >
+                  <div class="hdfbjh554">
+                    <h5>STYLIES UNDER</h5>
+                    <h5>
+                      <i class="fa-solid fa-indian-rupee-sign"></i> 9,999
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mb-4">
+                <div
+                  class="dfgfdg7853"
+                  style={{
+                    backgroundImage: "url('./images/sale-product2(1).png')",
+                  }}
+                >
+                  <div class="hdfbjh554">
+                    <h5>STYLIES UNDER</h5>
+                    <h5>
+                      <i class="fa-solid fa-indian-rupee-sign"></i> 9,999
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mb-4">
+                <div
+                  class="dfgfdg7853"
+                  style={{
+                    backgroundImage: "url('./images/sale-product2(2).png')",
+                  }}
+                >
+                  <div class="hdfbjh554">
+                    <h5>STYLIES UNDER</h5>
+                    <h5>
+                      <i class="fa-solid fa-indian-rupee-sign"></i> 9,999
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mb-4">
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -223,6 +329,10 @@ export const OnSale = () => {
 
       <div class="sdhfdfgdf mt-5">
         <div class="container-fluid">
+          <div class="dfjvdgd">
+            <h2>Flash Sale</h2>
+          </div>
+
           <div class="dfngjhfdgdf">
             <img src="./images/Radhika Basu.png" alt="" />
           </div>
@@ -232,10 +342,85 @@ export const OnSale = () => {
       <div class="fjsdjhfsdf55">
         <div class="container-fluid">
           <div class="dfjvdgd">
-            <h2>Shop By Desinger</h2>
+            <h2>Ready to Ship</h2>
           </div>
 
           <div class="dfgjhdfgdfgf mt-4">
+            <div
+              class="dfbdff"
+              style={{ backgroundImage: "url('./images/sales3(1).png')" }}
+            >
+              <div class="overlay-sale">
+                <div class="fdbdfgdf">
+                  <h6>Up to 50% off</h6>
+                </div>
+                <div class="bsdfhsdfsdf">
+                  <h5>Neha khullar</h5>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="dfbdff"
+              style={{ backgroundImage: "url('./images/sales3(2).png')" }}
+            >
+              <div class="overlay-sale">
+                <div class="fdbdfgdf">
+                  <h6>Up to 50% off</h6>
+                </div>
+                <div class="bsdfhsdfsdf">
+                  <h5>Neha khullar</h5>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="dfbdff"
+              style={{ backgroundImage: "url('./images/sales3(3).png')" }}
+            >
+              <div class="overlay-sale">
+                <div class="fdbdfgdf">
+                  <h6>Up to 50% off</h6>
+                </div>
+                <div class="bsdfhsdfsdf">
+                  <h5>Neha khullar</h5>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="dfbdff"
+              style={{ backgroundImage: "url('./images/sales3(4).png')" }}
+            >
+              <div class="overlay-sale">
+                <div class="fdbdfgdf">
+                  <h6>Up to 50% off</h6>
+                </div>
+                <div class="bsdfhsdfsdf">
+                  <h5>Neha khullar</h5>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="dfbdff"
+              style={{ backgroundImage: "url('./images/sales3(5).png')" }}
+            >
+              <div class="overlay-sale">
+                <div class="fdbdfgdf">
+                  <h6>Up to 50% off</h6>
+                </div>
+                <div class="bsdfhsdfsdf">
+                  <h5>Neha khullar</h5>
+                  <button>SHOP NOW</button>
+                </div>
+              </div>
+            </div>
+
             <div
               class="dfbdff"
               style={{ backgroundImage: "url('./images/sales3(1).png')" }}
@@ -316,61 +501,27 @@ export const OnSale = () => {
 
       <div class="sdhfdfgdf">
         <div class="container-fluid">
-          <div class="dfngjhfdgdf">
-            <img src="./images/Radhika Basu.png" alt="" />
+          <div class="dfjvdgd">
+            <h2>Sale on Exclusive</h2>
           </div>
-        </div>
-      </div>
 
-      <div class="fjhdfbgdds">
-        <div class="container-fluid">
-          <div class="sdbfghdsfds">
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="dfgdgdg552">
-                  <div class="sdjhfd">
-                    <img src="./images/Successful Deliveries.png" alt="" />
-                  </div>
-                  <div class="dfhdfg528">
-                    <h4>2M+</h4>
-                    <p>Successful Deliveries</p>
-                  </div>
+          <div class="dfngjhfdgdf sdcvewfaasd overflow-hidden">
+            <div className="row">
+              <div className="col-lg-4 pe-0">
+                <div className="donhweirwer_inner">
+                  <img src="images/Sdsad.png" className="img-fluid" alt="" />
                 </div>
               </div>
 
-              <div class="col-lg-3">
-                <div class="dfgdgdg552">
-                  <div class="sdjhfd">
-                    <img src="./images/Expert Designers.png" alt="" />
-                  </div>
-                  <div class="dfhdfg528">
-                    <h4>1100+</h4>
-                    <p>Designers</p>
-                  </div>
+              <div className="col-lg-4 px-0">
+                <div className="donhweirwer_inner">
+                  <img src="images/sad.png" className="img-fluid" alt="" />
                 </div>
               </div>
 
-              <div class="col-lg-3">
-                <div class="dfgdgdg552">
-                  <div class="sdjhfd">
-                    <img src="./images/Countries Served.png" alt="" />
-                  </div>
-                  <div class="dfhdfg528">
-                    <h4>96+</h4>
-                    <p>Countries Served</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3">
-                <div class="dfgdgdg552aaa">
-                  <div class="sdjhfd">
-                    <img src="./images/_Dedicated Support.png" alt="" />
-                  </div>
-                  <div class="dfhdfg528">
-                    <h4>24/7</h4>
-                    <p>Customer Support</p>
-                  </div>
+              <div className="col-lg-4 ps-0">
+                <div className="donhweirwer_inner">
+                  <img src="images/sadw2.png" className="img-fluid" alt="" />
                 </div>
               </div>
             </div>

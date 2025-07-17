@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext"; 
 
 import Logo from "../../../assets/images/logo.png";
 
@@ -18,7 +19,8 @@ export const Header = () => {
   }
   const [userDropdown, setUserDropdown] = useState(false);
 
-  const token = localStorage.getItem('jwtToken');
+  const { token } = useAuth();
+
 
   const { pathname } = useLocation();
 

@@ -30,6 +30,10 @@ export const Filter = () => {
           <h4 className="mb-0">Designer Kurta Sets For Women <span>- Showing 66,154 Results</span></h4>
         </div>
 
+        <div className="advtsmnt-bnnr my-4 overflow-hidden" style={{borderRadius: "1rem"}}>
+          <img src="images/fltrdbnnr.png" className="img-fluid" alt="" />
+        </div>
+
         <div className="row mt-5">
           <div className="col-lg-3">
             <div className="filter-options">
@@ -477,13 +481,22 @@ export const Filter = () => {
 
           <div className="col-lg-9">
             <div className="filtered-products">
-              <div className="advtsmnt-bnnr overflow-hidden">
-                <img src="images/fltrdbnnr.png" className="img-fluid" alt="" />
-              </div>
 
-              <div className="iduhweihriweurwerwer mt-4 row align-items-center justify-content-between py-3">
+              <div className="iduhweihriweurwerwer row align-items-center justify-content-between pb-3">
                 <div className="col-lg-6">
-                  <h5 className="mb-0 view-list">View As</h5>
+                  <div className="d-flex align-items-center">
+                    <h5 className="mb-0 view-list me-3">View As</h5>
+
+                    <span className="divider me-2">|</span>
+
+                    <div className="view-options d-flex me-4 align-items-center">
+                      <div className="grid-view me-2"><i class="bi bi-grid-3x3-gap active"></i></div>
+
+                      <div className="list-view"><i class="bi bi-card-list"></i></div>
+                    </div>
+
+                    <button className="btn btn-main"><i class="bi me-1 bi-vignette"></i> Custom-fit</button>
+                  </div>
                 </div>
 
                 <div className="col-lg-4">
@@ -791,6 +804,14 @@ export const Filter = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="idwejrhewres pb-5 mt-5">
+          <h4>Lorem ipsum dolor, sit amet consectetur adipisicing.</h4>
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum officiis placeat tenetur reiciendis est, sint sapiente magni soluta blanditiis eligendi quis ipsam? Deleniti odit, cumque architecto sint porro eligendi provident, magnam voluptate assumenda temporibus ullam possimus facilis veritatis ab cupiditate delectus facere beatae quo perspiciatis dolore dignissimos soluta corrupti deserunt. Minus officiis, ea, fugit possimus, reiciendis aspernatur itaque alias facere provident molestiae voluptatibus. Amet obcaecati molestiae quaerat dolor voluptates nam dolorem, maiores qui fuga eos itaque, nisi excepturi sequi cum libero aperiam vel! Omnis eum iste voluptatem dignissimos laudantium ducimus ipsa, libero perferendis enim doloremque dolores dolor quidem voluptate adipisci veritatis consectetur saepe aliquam odit fugit illum at. Quo assumenda eveniet voluptatum blanditiis modi nisi molestias temporibus praesentium explicabo nihil?</p>
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum officiis placeat tenetur reiciendis est, sint sapiente magni soluta blanditiis eligendi quis ipsam? Deleniti odit, cumque architecto sint porro eligendi provident, magnam voluptate assumenda temporibus ullam possimus facilis veritatis ab cupiditate delectus facere beatae quo perspiciatis dolore dignissimos soluta corrupti deserunt. Minus officiis, ea, fugit possimus, reiciendis aspernatur itaque alias facere provident molestiae voluptatibus. Amet obcaecati molestiae quaerat dolor voluptates nam dolorem, maiores qui fuga eos itaque, nisi excepturi sequi cum libero aperiam vel! Omnis eum iste voluptatem dignissimos laudantium ducimus ipsa, libero perferendis enim doloremque dolores dolor quidem voluptate adipisci veritatis consectetur saepe aliquam odit fugit illum at. Quo assumenda eveniet voluptatum blanditiis modi nisi molestias.</p>
         </div>
       </div>
     </div>

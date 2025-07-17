@@ -102,6 +102,11 @@ export const ProductDetail = () => {
     },
   };
 
+  const handleShowModal = (e) => {
+    e.preventDefault(); // ✅ fixed spelling
+    setShowSizeModal(!showSizeModal);    // ✅ your modal function
+  };
+
   // useEffect(() => {
   //   const fetchFeaturedProducts = async () => {
   //     const URL = "http://localhost:8000/featured_products";
@@ -246,7 +251,7 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="ikasdnjiknswjirhwer mb-4">
-                      <p className="mb-1">Submit Measurement: <span><Link to="/">CLICK HERE</Link></span> or Later</p>
+                      <p className="mb-1">Submit Measurement: <span><Link to="" onClick={(e) => handleShowModal(e)}>CLICK HERE</Link></span> or Later</p>
 
                       <p className="mb-0">+3 days, for your chosen stitching options.</p>
                     </div>
