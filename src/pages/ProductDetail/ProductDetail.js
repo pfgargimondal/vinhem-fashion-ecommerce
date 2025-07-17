@@ -246,7 +246,7 @@ export const ProductDetail = () => {
                       <div className="dowekrwerwer">
                         <input type="radio" name="so" id="cf" className="d-none position-absolute" />
 
-                        <label htmlFor="cf" className="p-3" id="cstm-fit-btn" onClick={() => setShowSizeModal(!showSizeModal)}>Custom-Fit <br /> <span>+<i class="bi bi-currency-rupee"></i>1000.00</span></label>
+                        <label htmlFor="cf" className="p-3" id="cstm-fit-btn">Custom-Fit <br /> <span>+<i class="bi bi-currency-rupee"></i>1000.00</span></label>
                       </div>
                     </div>
 
