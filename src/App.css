@@ -49,3 +49,7 @@ a{
     text-decoration: none;
     color: var(--black-background-color);
 }
+
+.swiper-button-prev, .swiper-button-next, .swiper-pagination {
+    display: none;
+}
