@@ -147,12 +147,12 @@ export const Home = () => {
         <div className="rehbgdfgnjh">
           <div className="sdfsdfd">
             <div className="row">
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4 pe-0">
                 <div className="gdfgdf215">
                   <img src="./images/fashion (3).jpg" alt="" />
                 </div>
               </div>
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4 px-0">
                 <div
                   className="lvjhfbvdf558"
                   style={{
@@ -181,7 +181,7 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 ps-0 pe-0">
+              <div className="col-lg-4 ps-0">
                 <div className="gdfgdf215">
                   <img src="./images/fashion (2).jpg" alt="" />
                 </div>
@@ -212,7 +212,7 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="fbgvdsdfd6568">
+      <div className="fbgvdsdfd6568 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="ghbgfgdf">
             <div className="row align-items-center">
@@ -284,10 +284,11 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="dfndfjhdfgdf">
+      
+      <div className="dfndfjhdfgdf pb-5 mb-4">
         <div className="container-fluid">
           <div className="dfhdfgd464">
-            <h2>Top Categories</h2>
+            <h2 className="mb-3">Top Categories</h2>
           </div>
 
           <div className="fgjdfgf3298">
@@ -313,10 +314,11 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="sdfnjhdfbgdfg">
+
+      <div className="sdfnjhdfbgdfg pb-5 mb-4">
         <div className="container-fluid">
           <div className="fgnhfgh">
-            <h2>#MUST Have</h2>
+            <h2 className="mb-3">#MUST Have</h2>
           </div>
           <div className="dfhgudfg">
             <div className="row">
@@ -334,8 +336,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className="xfdjgdfgdfg"
+      
+      <div className="xfdjgdfgdfg mb-5"
         style={{
           background: "url('./images/downbanner (3).png')",
           backgroundSize: "100% 100%"
@@ -366,10 +368,10 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="fbnghksdfsdfsf">
+      <div className="fbnghksdfsdfsf mt-5 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4>Brand We Love</h4>
+            <h4 className="mb-3">Brand We Love</h4>
           </div>
           <div className="dfgnhdfgdf">
             <div className="row">
@@ -392,7 +394,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="fvbhgfbfgvf5865">
+
+      <div className="fvbhgfbfgvf5865 pb-5 mb-4">
         <div className="container-fluid">
           <div className="gbfhdvgdfg">
             <div className="row">
@@ -410,10 +413,11 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="fcknjhfvgdf">
+
+      <div className="fcknjhfvgdf pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4>New Arrivals</h4>
+            <h4 className="mb-3">New Arrivals</h4>
           </div>
           <div
             className="sdfsdfsdfsd"
@@ -421,10 +425,11 @@ export const Home = () => {
           ></div>
         </div>
       </div>
-      <div className="kdnfghdfsdf">
+
+      <div className="kdnfghdfsdf pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4>#Trend Now</h4>
+            <h4 className="mb-3">#Trend Now</h4>
           </div>
           <div className="dfdfhgdf65">
             <div className="row">
@@ -484,13 +489,13 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="dfbgghdfdfgdf">
+      <div className="dfbgghdfdfgdf pt-0 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4>Featured Products</h4>
+            <h4 className="mb-3">Featured Products</h4>
           </div>
 
-          <div className="fgjhdfgdfgdf py-4">
+          <div className="fgjhdfgdfgdf">
             <Swiper {...swiperConfig}>
               {featuredProducts.map((featuredProduct) => (
                 <SwiperSlide key={featuredProduct.id}>

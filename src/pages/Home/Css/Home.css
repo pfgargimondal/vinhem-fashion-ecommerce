@@ -30,16 +30,16 @@
 }
 
 .dbfggfhfh img{
-  width: 80%;
+  width: 100%;
 }
 
 .fbsdsdf h4 a{
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .jdfhbtn:hover {
   background: transparent;
-  color: white;
+  color: #fff;
 }
 
 .dfbfbhgfdg {
@@ -94,12 +94,11 @@
 
 .fbgvdsdfd6568 {
   width: 100%;
-  padding: 40px 0;
 }
 
 .cfgncfgb h4 {
   color: #000;
-  font-size: 20px !important;
+  font-size: 1rem !important;
   font-weight: 700;
   margin-bottom: 0;
 }
@@ -110,7 +109,6 @@
 
 .dfndfjhdfgdf {
   width: 100%;
-  padding: 40px 0;
 }
 
 .dfhdfgd464 h4 {
@@ -160,14 +158,17 @@
   color: #000;
   font-size: 27px;
   font-weight: 700;
-  padding-bottom: 20px;
+}
+
+.sdvsdfdvgdfg.d-flex{
+  flex-direction: column;
 }
 
 .fhdfgdf {
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .fhdfgdf img {
@@ -182,13 +183,12 @@
   color: #000;
   font-weight: 700;
   font-size: 30px;
-  padding-bottom: 35px;
 }
 
 .xfdjgdfgdfg {
   width: 100%;
   height: 500px;
-  margin-top: 80px;
+  border-radius: 10px;
 }
 
 .gfjhfgjfg {
@@ -204,7 +204,7 @@
 .nhgf65dfgdf {
   width: 100%;
   height: 365px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -220,7 +220,7 @@
   height: 520px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .dfdfdffd img {
@@ -231,14 +231,13 @@
 
 .fvbhgfbfgvf5865 {
   width: 100%;
-  padding: 40px 0;
-  margin-top: 40px;
 }
 
 .sdfsdfsdfsd {
   width: 100%;
   height: 500px;
   background-size: 100% 100%;
+  border-radius: 10px;
 }
 
 .sdf58sdfs {
@@ -247,11 +246,8 @@
 }
 
 .sdf58sdfs h4 {
-  color: black;
   font-size: 27px;
   font-weight: 700;
-  padding-bottom: 45px;
-  padding-top: 20px;
 }
 
 .dfgyhdfgdf {
@@ -261,7 +257,7 @@
   padding: 25px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .dfgyhdfgdf span {
@@ -292,7 +288,6 @@
 
 .kdnfghdfsdf {
   width: 100%;
-  padding: 40px 0;
 }
 
 .fgjhdfgdfgdf .swiper-button-prev,
