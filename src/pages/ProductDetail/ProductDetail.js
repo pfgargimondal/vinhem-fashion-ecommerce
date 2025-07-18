@@ -236,14 +236,14 @@ export const ProductDetail = () => {
                       <hr class="mt-0" />
                     </div>
 
-                    <div className="saoijhdekjwirwer d-flex align-items-center mb-3">
-                      <div className="dowekrwerwer me-3">
+                    <div className="saoijhdekjwirwer row align-items-center mb-3">
+                      <div className="col-lg-4 dowekrwerwer">
                         <input type="radio" name="so" id="unstdf" className="d-none position-absolute" />
 
                         <label htmlFor="unstdf" className="p-3">Unstitched Fabric <br /> <span>+<i class="bi bi-currency-rupee"></i>0.00</span></label>
                       </div>
 
-                      <div className="dowekrwerwer">
+                      <div className="col-lg-4 dowekrwerwer">
                         <input type="radio" name="so" id="cf" className="d-none position-absolute" />
 
                         <label htmlFor="cf" className="p-3" id="cstm-fit-btn">Custom-Fit <br /> <span>+<i class="bi bi-currency-rupee"></i>1000.00</span></label>

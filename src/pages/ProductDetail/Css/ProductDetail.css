@@ -315,7 +315,7 @@
 .small-image-tabs .nav-item {
   width: auto;
   text-align: center;
-  margin: 0 auto 0.2rem auto;
+  margin: 0 0 0.2rem auto;
   min-height: 120px;
   line-height: 100px;
   overflow: hidden;
@@ -512,6 +512,7 @@
 }
 
 .saoijhdekjwirwer .dowekrwerwer label {
+  width: 100%;
   font-weight: 500;
   border: 1px solid var(--text-gray-color);
   border-radius: 10px;
@@ -539,6 +540,8 @@
   font-size: 0.8rem;
 }
 
-/*end  Product   css   */
-/*end  Product   css   */
-/*end  Product   css   *//*# sourceMappingURL=ProductDetail.css.map */
+.coisdefisdhifhsdjifjhosd .swiper-pagination,
+.coisdefisdhifhsdjifjhosd .swiper-button-prev,
+.coisdefisdhifhsdjifjhosd .swiper-button-next{
+  display: none;
+}

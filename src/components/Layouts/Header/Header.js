@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext"; 
+import { useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { DropdownLoggedIn } from "../../Elements/Dropdown/DropdownLoggedIn";
 
 import Logo from "../../../assets/images/logo.png";
 
 import "./Css/Header.css";
 import "./Css/HeaderResponsive.css";
-import  { DropdownLoggedIn } from "../../../components";
+import 'swiper/css';
 
 export const Header = () => {
   const [resMenu, setResMenu] = useState(false);
+  const [userDropdown, setUserDropdown] = useState(false);
 
   const handleResMenuToggle = () => {
     const html = document.querySelector("html");
@@ -17,21 +21,10 @@ export const Header = () => {
     html.classList.toggle("overflow-hidden");
     setResMenu(!resMenu);
   }
-  const [userDropdown, setUserDropdown] = useState(false);
-
-  const { token } = useAuth();
-
-
-  const { pathname } = useLocation();
-
-  useEffect(()=>{
-    setUserDropdown(false);
-  },[pathname]);
-
 
 
   return (
-    <header className="position-relative">
+    <header>
       <div className="advertisement-slider position-relative" style={{background: "url('/images/csadad.jpg') no-repeat", backgroundPosition: "top", backgroundSize: "cover"}}>
         <div className="marquee-container">
           <div className="marquee-track marquee-left">
@@ -70,725 +63,105 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className="header-top">
-        <div className="row align-items-center">
-          <div className="col-lg-5">
-            <div className="doeiwhrkwdeor">
-              <ul className="mb-0 ps-0">
-                <li><NavLink to="/product" end>GENTLEMAN</NavLink></li>
-
-                <li><NavLink to="/product1">Belle Doll</NavLink></li>
-
-                <li><NavLink to="/product2">Amber.</NavLink></li>
-
-                <li><NavLink to="/product3">GLASSY</NavLink></li>   
-              </ul>
+      <div className="header-top py-2">
+        <div className="container-fluid">
+          <div className="row align-items-center">
+            <div className="col-lg-2">
+              <div className="doeiwhrkwdeor">
+                <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
+              </div>
             </div>
-          </div>
 
-          <div className="col-lg-3 ps-0">
-            <div className="search-field position-relative">
-              <input type="text" className="form-control" placeholder="Search here..." />
+            <div className="col-lg-6">
+              <div className="doiwehrwehirnwerwer row align-items-center">
+                <div className="col-lg-2">
+                  <Form.Select aria-label="Default select example">
+                    <option>INR (₹)</option>
 
-              <i class="bi position-absolute bi-search"></i>
+                    <option value="1">Dollar ($)</option>
+                  </Form.Select>
+                </div>
+
+                <div className="col-lg-10">
+                  <div className="search-field position-relative">
+                    <input type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
+
+                    <i class="bi position-absolute bi-search"></i>
+                  </div>
+                </div>               
+              </div>
             </div>
-          </div>
 
-          <div className="col-lg-4 ps-0">
-            <div className="doewhruiwerwer_right">
-              <ul className="mb-0 ps-0 me-4">
-                <li><p className="mb-0">Extra 10% OFF ON FIRST ORDER</p></li>
-                {token ? (
-                  <>
-                    <li className="position-relative">
-                      <Link onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i></Link>
-                      { userDropdown && <DropdownLoggedIn /> }
-                    </li>
-                  </>
-                ) : (
-                  <> 
-                    <li><Link to="/login"><i class="bi bi-person"></i></Link></li>
-                  </>
-                )}
+            <div className="col-lg-4">
+              <div className="doewhruiwerwer_right">
+                <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
+                  <li><i class="bi bi-headset"></i> Help</li>
 
-                
+                  <li className="infrm-menu-divider">|</li>
 
-                <li><i class="bi bi-heart"></i> <span>0</span></li>
+                  <li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li>
 
-                <li><Link to="/cart"><i class="bi bi-handbag"></i> <span>0</span></Link></li>
+                  <li className="infrm-menu-divider">|</li>
 
-                <li><i class="bi bi-whatsapp"></i></li>
+                  <li><i class="bi bi-handbag"></i> Bag <span>0</span></li>
 
-                <li><i class="bi bi-globe"></i></li>                
-              </ul>
+                  <li className="infrm-menu-divider">|</li>
+
+                  <li className="position-relative">
+                    <Link to="/register" onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i> Account</Link>
+
+                    { userDropdown && <DropdownLoggedIn /> }
+                  </li>              
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="header-main bg-white py-3">
-        <div className="container-fluid px-4">
-          <div className="row align-items-center">
-            <div className="col-lg-2">
-              <div className="doiewhirw_left">
-                <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
-
-                <div className="doewhruiwerwer_right kjsdnfkniretertert d-none align-items-center justify-content-between">
-                  <ul className="mb-0 ps-0 me-4">
-                    <li><i class="bi bi-person"></i></li>
-
-                    <li><i class="bi bi-handbag"></i> <span>0</span></li>             
-                  </ul>
-
-                  <i class="bi bi-list" onClick={handleResMenuToggle} id="res-toggle-btn"></i>
-                </div>                
-              </div>
-            </div>
-
-            <div className="col-lg-10">
-              <div className={resMenu ? "doiewhirw_right header-menu-responsive-show" : "doiewhirw_right"} id="header-menu-responsive">
-                <div className="fdgyhurfsdrerer justify-content-between d-none align-items-center">
-                  <Link to="/"><img src="images/logo.png" className="img-fluid res-logo" alt="" /></Link>
-
-                  <i class="bi bi-x" id="res-close-btn" onClick={handleResMenuToggle}></i>
-                </div>
-
-                <ul className="header-menu mb-0 ps-0">
-                  <li>
-                    <NavLink to="">Shop</NavLink>
-
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Product</NavLink>
-                  
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Blog</NavLink>
-                    
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">New In</NavLink>
-                    
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Trend</NavLink>
-                    
-                     <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Collections</NavLink>
-                    
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Buy Ella</NavLink>
-                    
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <img src="images/fashion39.png" className="img-fluid" alt="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <NavLink to="">Pages</NavLink>
-                    
-                    <div className="diewhrkewr_dropdown">
-                      <div className="doewjrlkjweuirhwer p-4 bg-white">
-                        <div className="container">
-                          <div className="row">
-                            <div className="dowiehrwer_left">
-                              <div className="row">
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lorem Ipsum</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Milancelos Lanos</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-
-                                <div className="col-lg-3 mb-4">
-                                  <div className="fdpoewjrwer_inner">
-                                    <p>Lynn Cosmopolis</p>
-
-                                    <ul className="mb-0 ps-0">
-                                      <li><Link to="">Dincidunteros</Link></li>
-
-                                      <li><Link to="">Loremous</Link></li>
-
-                                      <li><Link to="">Comodianos</Link></li>
-
-                                      <li><Link to="">Gravidas</Link></li>
-
-                                      <li><Link to="">Montemous</Link></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>                  
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div className="header-main bg-white pt-4 pb-2">
+        <div className="container px-4">
+          <Swiper
+            slidesPerView="auto"
+            spaceBetween={10}
+            breakpoints={{
+              640: {
+                slidesPerView: "auto",
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: "auto",
+                spaceBetween: 20,
+              },
+              1000: {
+                slidesPerView: "auto",
+                spaceBetween: 20,
+              },
+            }}
+            className="mySwiper"
+          >
+            <SwiperSlide><NavLink to="" end>New In</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Women</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Men</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Kids Wear</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Wedding</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Jewellery</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Ready To Ship</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">On Sale</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Eid Store</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Diwali</NavLink></SwiperSlide>
+
+            <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </header>
