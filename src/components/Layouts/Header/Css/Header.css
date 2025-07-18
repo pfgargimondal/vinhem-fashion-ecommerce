@@ -132,6 +132,10 @@ header .header-top .doewhruiwerwer_right ul li span {
   top: 1rem;
   font-size: 0.8rem;
 }
+header .header-main{
+  max-width: 80%;
+  margin-inline: auto;
+}
 header .header-main .doiewhirw_left img {
   width: auto;
 }

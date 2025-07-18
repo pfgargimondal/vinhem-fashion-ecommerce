@@ -122,7 +122,7 @@ export const Header = () => {
       </div>
 
       <div className="header-main bg-white pt-4 pb-2">
-        <div className="container px-4">
+       
           <Swiper
             slidesPerView="auto"
             spaceBetween={10}
@@ -164,7 +164,7 @@ export const Header = () => {
 
             <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide>
           </Swiper>
-        </div>
+     
       </div>
     </header>
   )
