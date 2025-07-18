@@ -1,3 +1,4 @@
+  // eslint-disable-next-line
 import { useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
@@ -15,6 +16,7 @@ export const Header = () => {
   const [resMenu, setResMenu] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
 
+    // eslint-disable-next-line
   const handleResMenuToggle = () => {
     const html = document.querySelector("html");
 
