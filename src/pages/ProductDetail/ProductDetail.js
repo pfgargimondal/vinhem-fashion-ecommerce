@@ -20,65 +20,65 @@ export const ProductDetail = () => {
   const [featuredProducts, setFeaturedProducts] = useState([
     {
       id: 1000,
-      img1: "/images/golden-polished-temple-choker-necklace-set-v1-jpm6528.webp",
-      img2: "/images/temple-jewelry.webp",
+      img1: "/images/1.jpg",
+      img2: "/images/2.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1001,
-      img1: "/images/1716298202051_1.webp",
-      img2: "/images/1749818038130_1.webp",
+      img1: "/images/3.jpg",
+      img2: "/images/4.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1002,
-      img1: "/images/how-to-find-matching-saree-jewellery-320120_750x.webp",
-      img2: "/images/1723646143986_1.webp",
+      img1: "/images/2.jpg",
+      img2: "/images/4.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1003,
-      img1: "/images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp",
-      img2: "/images/JJ_JIMMY_WHITE_(6)_zoom.jpg",
+      img1: "/images/3.jpg",
+      img2: "/images/4.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1004,
-      img1: "/images/1708949940342_1.webp",
-      img2: "/images/1719656075415_1.webp",
+      img1: "/images/1.jpg",
+      img2: "/images/4.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1005,
-      img1: "/images/61n+KozlFVL._UF1000,1000_QL80_.jpg",
-      img2: "/images/images (2).jpg",
+      img1: "/images/4.jpg",
+      img2: "/images/5.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
     {
       id: 1006,
-      img1: "/images/1656282-0958632001659958447.webp",
-      img2: "/images/Untitled_design_-_2024-08-28T121432.760_480x480.webp",
+      img1: "/images/3.jpg",
+      img2: "/images/2.jpg",
       title: "COLLETTE",
       description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
+        "Sample - Clothing And Accessory Boutiques For Sale",
       price: "48.99",
     },
   ]);
@@ -132,31 +132,31 @@ export const ProductDetail = () => {
                         <Nav variant="pills" className="flex-column">
                           <Nav.Item>
                             <Nav.Link eventKey="first">
-                              <img src="../../images/product-eco (1).jpg" alt="" />
+                              <img src="../../images/1.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
                           
                           <Nav.Item>
                             <Nav.Link eventKey="second">
-                              <img src="../../images/product-eco (2).jpg" alt="" />
+                              <img src="../../images/2.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
 
                           <Nav.Item>
                             <Nav.Link eventKey="third">
-                              <img src="../../images/product-eco (3).jpg" alt="" />
+                              <img src="../../images/3.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
 
                           <Nav.Item>
                             <Nav.Link eventKey="fourth">
-                              <img src="../../images/product-eco (4).jpg" alt="" />
+                              <img src="../../images/4.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
 
                           <Nav.Item>
                             <Nav.Link eventKey="fifth">
-                              <img src="../../images/product-eco (1).jpg" alt="" />
+                              <img src="../../images/5.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
                         </Nav>
@@ -165,23 +165,23 @@ export const ProductDetail = () => {
                       <Col sm={9} className="large-image-tab">
                         <Tab.Content>
                           <Tab.Pane eventKey="first">
-                            <img src="../../images/product-eco (1).jpg" alt="" />
+                            <img src="../../images/1.jpg" alt="" />
                           </Tab.Pane>
                           
                           <Tab.Pane eventKey="second">
-                            <img src="../../images/product-eco (2).jpg" alt="" />
+                            <img src="../../images/2.jpg" alt="" />
                           </Tab.Pane>
 
                           <Tab.Pane eventKey="third">
-                            <img src="../../images/product-eco (3).jpg" alt="" />
+                            <img src="../../images/3.jpg" alt="" />
                           </Tab.Pane>
 
                           <Tab.Pane eventKey="fourth">
-                            <img src="../../images/product-eco (4).jpg" alt="" />
+                            <img src="../../images/4.jpg" alt="" />
                           </Tab.Pane>
 
                           <Tab.Pane eventKey="fifth">
-                            <img src="../../images/product-eco (1).jpg" alt="" />
+                            <img src="../../images/5.jpg" alt="" />
                           </Tab.Pane>
                         </Tab.Content>
                       </Col>
@@ -191,7 +191,7 @@ export const ProductDetail = () => {
               </div>
 
               <div className="col-lg-6">
-                <div className="dfghjdfgdfgf ps-5 pt-2">
+                <div className="dfghjdfgdfgf ps-2 pt-2">
                   <div className="dsfbsdghfjs">
                     <div className="fgnjdfgfd">
                       <h2>
@@ -207,7 +207,7 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="fhdfgh">
-                    <p>SKU Code PMN124-S87LAZO4TH | View 309</p>
+                    <p>Item ID: PMN124-S87LAZO4TH | View 309</p>
                   </div>
 
                   <div className="dfjghdfgdff58 mb-4">
@@ -519,12 +519,6 @@ export const ProductDetail = () => {
                                       Only saree, blouse, and petticoat are
                                       being sold.
                                     </span>
-                                  </p>
-                                </div>
-
-                                <div className="odjjkwehrihwerewr mb-4">
-                                  <p>
-                                    Item ID <br /> <span>650986</span>
                                   </p>
                                 </div>
 

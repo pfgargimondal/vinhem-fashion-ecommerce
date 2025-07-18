@@ -12,7 +12,7 @@ import "./Css/Header.css";
 import "./Css/HeaderResponsive.css";
 import 'swiper/css';
 
-export const Header = () => {
+export const Header = ({ shouldHideHeader }) => {
   const [resMenu, setResMenu] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
 
@@ -65,64 +65,66 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className="header-top py-2">
-        <div className="container-fluid">
-          <div className="row align-items-center">
-            <div className="col-lg-2">
-              <div className="doeiwhrkwdeor">
-                <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
-              </div>
-            </div>
-
-            <div className="col-lg-6">
-              <div className="doiwehrwehirnwerwer row align-items-center">
-                <div className="col-lg-2">
-                  <Form.Select aria-label="Default select example">
-                    <option>INR (₹)</option>
-
-                    <option value="1">Dollar ($)</option>
-                  </Form.Select>
+      { !shouldHideHeader && (
+        <div className="header-top py-2">
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-2">
+                <div className="doeiwhrkwdeor">
+                  <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
                 </div>
-
-                <div className="col-lg-10">
-                  <div className="search-field position-relative">
-                    <input type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
-
-                    <i class="bi position-absolute bi-search"></i>
-                  </div>
-                </div>               
               </div>
-            </div>
 
-            <div className="col-lg-4">
-              <div className="doewhruiwerwer_right">
-                <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
-                  <li><i class="bi bi-headset"></i> Help</li>
+              <div className="col-lg-6">
+                <div className="doiwehrwehirnwerwer row align-items-center">
+                  <div className="col-lg-2">
+                    <Form.Select aria-label="Default select example">
+                      <option>INR (₹)</option>
 
-                  <li className="infrm-menu-divider">|</li>
+                      <option value="1">Dollar ($)</option>
+                    </Form.Select>
+                  </div>
 
-                  <li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li>
+                  <div className="col-lg-10">
+                    <div className="search-field position-relative">
+                      <input type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
 
-                  <li className="infrm-menu-divider">|</li>
+                      <i class="bi position-absolute bi-search"></i>
+                    </div>
+                  </div>               
+                </div>
+              </div>
 
-                  <li><i class="bi bi-handbag"></i> Bag <span>0</span></li>
+              <div className="col-lg-4">
+                <div className="doewhruiwerwer_right">
+                  <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
+                    <li><i class="bi bi-headset"></i> Help</li>
 
-                  <li className="infrm-menu-divider">|</li>
+                    <li className="infrm-menu-divider">|</li>
 
-                  <li className="position-relative">
-                    <Link to="/register" onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i> Account</Link>
+                    <li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li>
 
-                    { userDropdown && <DropdownLoggedIn /> }
-                  </li>              
-                </ul>
+                    <li className="infrm-menu-divider">|</li>
+
+                    <li><i class="bi bi-handbag"></i> Bag <span>0</span></li>
+
+                    <li className="infrm-menu-divider">|</li>
+
+                    <li className="position-relative">
+                      <Link to="/register" onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i> Account</Link>
+
+                      { userDropdown && <DropdownLoggedIn /> }
+                    </li>              
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) }      
 
-      <div className="header-main bg-white pt-4 pb-2">
-       
+      { !shouldHideHeader && (
+        <div className="header-main bg-white pt-4 pb-2">       
           <Swiper
             slidesPerView="auto"
             spaceBetween={10}
@@ -163,9 +165,9 @@ export const Header = () => {
             <SwiperSlide><NavLink to="">Diwali</NavLink></SwiperSlide>
 
             <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide>
-          </Swiper>
-     
-      </div>
+          </Swiper>     
+        </div>
+      ) }      
     </header>
   )
 }

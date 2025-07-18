@@ -1,6 +1,7 @@
-header .advertisement-slider {
-  /* Pause on hover */
+header{
+  border-bottom: 1px solid var(--light-background-color);
 }
+
 header .advertisement-slider:before {
   position: absolute;
   content: "";

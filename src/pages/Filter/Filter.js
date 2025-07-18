@@ -482,31 +482,35 @@ export const Filter = () => {
           <div className="col-lg-9">
             <div className="filtered-products">
 
-              <div className="iduhweihriweurwerwer row align-items-center justify-content-between pb-3">
-                <div className="col-lg-6">
+              <div className="iduhweihriweurwerwer row align-items-center pb-3">
+                <div className="col-lg-9">
                   <div className="d-flex align-items-center">
-                    <h5 className="mb-0 view-list me-3">View As</h5>
-
-                    <span className="divider me-2">|</span>
-
-                    <div className="view-options d-flex me-4 align-items-center">
-                      <div className="grid-view me-2"><i class="bi bi-grid-3x3-gap active"></i></div>
+                    <div className="view-options d-flex me-3 align-items-center">
+                      <div className="grid-view"><i class="bi bi-grid-3x3-gap active"></i></div>
 
                       <div className="list-view"><i class="bi bi-card-list"></i></div>
                     </div>
+
+                    <button className="btn btn-main me-1"><i class="bi me-1 bi-plus-circle-dotted"></i> New</button>
+
+                    <button className="btn btn-main me-1"><i class="bi me-1 bi-lightning-charge"></i> Ready to Ship</button>
+
+                    <button className="btn btn-main me-1"><i class="bi me-1 bi-receipt"></i> On Sale</button>
 
                     <button className="btn btn-main"><i class="bi me-1 bi-vignette"></i> Custom-fit</button>
                   </div>
                 </div>
 
-                <div className="col-lg-4">
+                <div className="col-lg-3">
                   <div className="podwejorjwierwer">
                     <select name="" className="form-select" id="">
                       <option value="" selected disabled>Sort By: Recommended</option>
-
-                      <option value="">Price: Low to High</option>
-
-                      <option value="">Price: High to Low</option>
+                      <option value="">Popularity</option>
+                      <option value="">New Arrivals</option>
+                      <option value="">New Arrivals</option>
+                      <option value="">Price Low to High</option>
+                      <option value="">Price High to Low</option>
+                      <option value="">Discount High to Low</option>
                     </select>
                   </div>
                 </div>

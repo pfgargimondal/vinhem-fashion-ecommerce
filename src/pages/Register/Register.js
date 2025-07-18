@@ -128,7 +128,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="register-login-wrapper container">
+    <div className="register-login-wrapper py-5">
       <div className="card-custom row">
         <div className="col-lg-6 left-panel d-flex flex-column">
           <div>

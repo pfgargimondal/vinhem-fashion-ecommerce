@@ -1,28 +1,34 @@
 footer {
-  background: #F6F7F5;
   border-top: 1px solid var(--light-background-color);
 }
-footer .dbewjbruwerwer_inner .simg {
-  width: 6rem;
-}
 footer .dbewjbruwerwer_inner img {
-  width: 10rem;
+  width: 5.9rem;
 }
 footer .dbewjbruwerwer_inner h5 {
-  font-weight: 500;
-  margin-bottom: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.8rem;
   text-transform: uppercase;
   position: relative;
-  color: var(--grey-border-color) !important;
 }
 footer .dbewjbruwerwer_inner h5:before {
   position: absolute;
   content: "";
-  width: 20%;
-  height: 2px;
-  border-radius: 10px;
-  background: var(--pink-main-color);
+  left: 0;
+  right: 0;
   bottom: -8px;
+  width: 100%;
+  height: 1px;
+  background: var(--text-lighter-gray-color);
+}
+footer .dbewjbruwerwer_inner h5:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  width: 28%;
+  height: 3.5px;
+  background: var(--pink-main-color);
 }
 footer .dbewjbruwerwer_inner p a {
   text-decoration: underline;
@@ -35,29 +41,40 @@ footer .dbewjbruwerwer_inner ul.f-link li {
 footer .dbewjbruwerwer_inner ul.f-link li a {
   color: var(--text-main-color);
 }
+footer .dbewjbruwerwer_inner ul.f-link li a i {
+  font-size: 0.6rem;
+}
 footer .dbewjbruwerwer_inner ul.f-fu-link li {
   list-style: none;
   margin-bottom: 0.5rem;
   display: inline;
-  margin-right: 2.2rem;
+  margin-right: 1rem;
   font-size: 1.4rem;
 }
 footer .dbewjbruwerwer_inner ul.f-fu-link li a {
   text-decoration: none;
   color: var(--text-main-color);
 }
+footer .dbewjbruwerwer_inner input.form-control {
+  border-radius: 5px;
+}
+footer .dbewjbruwerwer_inner .btn-main {
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+}
 footer .idnweihrwerwe {
   background: var(--light-background-color);
 }
-footer .idnweihrwerwe a:hover {
-  text-decoration: underline !important;
-}
-footer .footer-bottom ul.imprtnt-list li {
+footer .footer-bottom ul li {
   list-style: none;
-  margin: 0 0.5rem;
+  margin-right: 1rem;
 }
 footer .footer-bottom .fb-payment-options li {
   list-style: none;
-  margin-inline: 0.3rem;
+  display: inline;
   cursor: pointer;
+}
+footer .footer-bottom .fb-payment-options li img {
+  width: 100%;
 }/*# sourceMappingURL=Footer.css.map */
