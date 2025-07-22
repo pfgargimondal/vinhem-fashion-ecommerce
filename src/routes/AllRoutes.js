@@ -24,7 +24,7 @@ export const AllRoutes = () => {
 
       <Route path="profile" element={ <Profile /> } />
       <Route path="change-password" element={ <ChangePassword /> } />
-      <Route path="cancel-order" element={ <CancelOrder/> } />
+      <Route path="cancelled-order" element={ <CancelOrder/> } />
       <Route path="order-history" element={ <OrderHistory/> } />
       <Route path="wishlist" element={ <Wishlist/> } />
       <Route path="cart" element={ <Cart/> } />
