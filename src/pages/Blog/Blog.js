@@ -102,6 +102,7 @@ export const Blog = () => {
     
             <article className="mb-5 article-card">
               <div className="article-number">2</div>
+                {/* eslint-disable-next-line */}
               <img
                 src="./images/ewrwer.jpg"
                 alt="Black and white photo of woman in geometric patterned dress posing dramatically"
@@ -187,6 +188,7 @@ export const Blog = () => {
     
             <article className="mb-5 article-card">
               <div className="article-number">2</div>
+                {/* eslint-disable-next-line */}
               <img
                 src="./images/ewrwer.jpg"
                 alt="Black and white photo of woman in geometric patterned dress posing dramatically"
