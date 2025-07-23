@@ -94,9 +94,9 @@ export const Blog = () => {
                 This season, expect to see a fusion of classic and contemporary
                 styles, where heritage meets innovation in unexpected ways.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
     
             <article className="mb-5 article-card">
@@ -124,9 +124,9 @@ export const Blog = () => {
                 Join us as we decode the secrets and celebrate the brilliance of
                 true sophistication.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
   
             <article className="mb-5 article-card">
@@ -151,9 +151,9 @@ export const Blog = () => {
                 Discover the most powerful digital platforms reshaping how we dress,
                 shop, and connect.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
     
             <article className="mb-5 article-card">
@@ -179,9 +179,9 @@ export const Blog = () => {
                 This season, expect to see a fusion of classic and contemporary
                 styles, where heritage meets innovation in unexpected ways.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
     
             <article className="mb-5 article-card">
@@ -209,9 +209,9 @@ export const Blog = () => {
                 Join us as we decode the secrets and celebrate the brilliance of
                 true sophistication.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
   
             <article className="mb-5 article-card">
@@ -236,9 +236,9 @@ export const Blog = () => {
                 Discover the most powerful digital platforms reshaping how we dress,
                 shop, and connect.
               </p>
-              <a href="#" className="btn btn-main mt-2">
+              <Link to="/" className="btn btn-main mt-2">
                 Read More
-              </a>
+              </Link>
             </article>
           </div>
 
@@ -254,9 +254,9 @@ export const Blog = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Avant-Garde Hairstyles
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">
                         Exploring bold hair trends.
                       </p>
@@ -269,9 +269,9 @@ export const Blog = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Luxury Leather Bags
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">Timeless craftsmanship.</p>
                     </div>
                   </li>
@@ -282,9 +282,9 @@ export const Blog = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Runway Highlights
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">
                         Best moments from fashion week.
                       </p>
