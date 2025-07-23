@@ -1,10 +1,13 @@
-import styles from "./Css/Profile.module.css";
+import { Link } from "react-router-dom";
 
 import { UserProfileNavMenu } from "../../components";
 
+import styles from "./Css/Profile.module.css";
+
+
 export const Profile = () => {
     return (
-        <div className="container-fluid">
+        <div className="ansjidnkuiweer container-fluid px-0">
             <div className={styles.ffhfdf}>
                 <div className={styles.fbghdfg}>
                     <div className="row">
@@ -14,8 +17,12 @@ export const Profile = () => {
 
                         <div className="col-lg-9">
                             <div className={`${styles.fgcbdfgdf} pt-3 pb-5`}>
-                                <div className={styles.dfjhdsbfsdf}>                                    
-                                    <h4>Profile Information</h4>                                 
+                                <div className={`${styles.dfjhdsbfsdf} mb-4`}>                                    
+                                    <h4 className="mb-0">Profile Information</h4>  
+
+                                    <p className="ndiwhermweoewrr mb-0">
+                                        <Link to="/"><i className="fa-solid me-1 fa-arrow-left"></i> Back To Home <i className="fa-solid ms-1 fa-house"></i></Link>
+                                    </p>
                                 </div>
 
                                 <div className={`${styles.fbhdfs} mb-4`}>
@@ -124,7 +131,7 @@ export const Profile = () => {
 
                                         <div className={`${styles.dienwrhwerwer}`}>
                                             <div className={styles.dnjhsddsfsd}>
-                                                <button>Submit</button>
+                                                <button disabled>Submit</button>
                                             </div>
                                         </div>  
                                     </form>

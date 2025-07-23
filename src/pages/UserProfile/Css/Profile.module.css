@@ -26,6 +26,20 @@
   color: var(--text-main-color);
 }
 
+.dfjhdsbfsdf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dfjhdsbfsdf p{
+  font-weight: 500;
+}
+
+.dfjhdsbfsdf p i:global(.fa-house){
+  color: var(--pink-main-color);
+}
+
 .sdfjhsdfs img {
   width: 70px;
   height: 70px;

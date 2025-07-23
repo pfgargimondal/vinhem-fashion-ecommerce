@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 import { UserProfileNavMenu } from "../../components";
@@ -8,7 +8,7 @@ import styles from "./Css/CancelOrder.module.css";
 export const CancelOrder = () => {
     return (
         <div className={styles.ffhfdf}>
-            <div className="container-fluid">
+            <div className="ansjidnkuiweer container-fluid px-0">
                 <div className={styles.fbghdfg}>
                     <div className="row">
                         <div className="col-lg-3">
@@ -17,8 +17,12 @@ export const CancelOrder = () => {
 
                         <div className="col-lg-9">
                             <div className={`${styles.fgcbdfgdf} pt-3 pb-5`}>
-                                <div className={styles.dfjhdsbfsdf}>
-                                    <h4 className="mb-5">Cancelled Orders</h4>
+                                <div className={`${styles.dfjhdsbfsdf} mb-4`}>
+                                    <h4 className="mb-0">Cancelled Orders</h4>
+
+                                    <p className="ndiwhermweoewrr mb-0">
+                                        <Link to="/"><i className="fa-solid me-1 fa-arrow-left"></i> Back To Home <i className="fa-solid ms-1 fa-house"></i></Link>
+                                    </p>
                                 </div>
 
                                 <div className={styles.dfgndfjhbgdfgdf}>

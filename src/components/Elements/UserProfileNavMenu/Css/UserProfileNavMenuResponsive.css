@@ -6,12 +6,56 @@
 
     .hdkgdfg{
         position: fixed !important;
-        width: 90%;
+        width: 75%;
         height: 100%;
         left: 0;
         background: #fff;
         border-right: 0;
         transition: 0.2s ease-in-out;
+    }
+
+    .ansjidnkuiweer.px-0{
+        padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
+        padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
+    }
+
+    .nmkewjirwerr{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dokejrlwerwer.d-none{
+        display: block !important;
+    }
+
+    .dokejrlwerwer{
+        font-weight: 500;
+    }
+    
+    .dokejrlwerwer i.fa-house{
+        color: var(--pink-main-color);
+    }
+
+    .user-dashboard-nav-backdrop{
+        background: rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 999;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .user-dashboard-nav-backdrop-hide{
+        z-index: -9999999;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .user-dashboard-nav-backdrop.d-none{
+        display: block !important;
     }
 
     .user-dashboard-nav-hide{
@@ -56,5 +100,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;             
+    }
+
+    .ndiwhermweoewrr{
+        display: none;
     }
 }

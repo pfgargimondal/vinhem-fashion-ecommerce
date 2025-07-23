@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Css/UserProfileNavMenu.css";
@@ -7,19 +7,41 @@ import "./Css/UserProfileNavMenuResponsive.css";
 export const UserProfileNavMenu = () => {
     const [resUsernavToggle, setResUsernavToggle] = useState(false);
 
+    useEffect(() => {
+        const html = document.querySelector("html");
+
+        const bodyScrollFixed = () => {
+            if (resUsernavToggle) {
+                html.classList.add("overflow-hidden");
+            } else {
+                html.classList.remove("overflow-hidden");
+            }
+        };
+
+        bodyScrollFixed();
+    }, [resUsernavToggle]);
+
     return (
         <>
-            <div className="user-res-nav-menu-btn d-none my-4" onClick={() => setResUsernavToggle(true)} id="user-prfile-res-btn">
-                <div className="dowerkwerwer d-flex align-items-center">
-                    <div className="sdfjhsdfs">
-                        <img src="./images/pfle.jpg" alt="" />
+            <div className="nmkewjirwerr">
+                <div className="user-res-nav-menu-btn d-none my-4" onClick={() => setResUsernavToggle(true)} id="user-prfile-res-btn">
+                    <div className="dowerkwerwer d-flex align-items-center">
+                        <div className="sdfjhsdfs">
+                            <img src="./images/pfle.jpg" alt="" />
+                        </div>
+
+                        <h4 className="mb-0 ms-2">R. Jadeja</h4>
                     </div>
 
-                    <h4 className="mb-0 ms-2">R. Jadeja</h4>
+                    <i class="fa-solid ms-2 fa-angles-right"></i>
                 </div>
 
-                <i class="fa-solid ms-2 fa-angles-right"></i>
+                <p className="dokejrlwerwer d-none mb-0">
+                    <Link to="/"><i className="fa-solid me-1 fa-arrow-left"></i> Back To Home <i className="fa-solid ms-1 fa-house"></i></Link>
+                </p>
             </div>
+
+            <div onClick={() => setResUsernavToggle(false)} className={resUsernavToggle ? "user-dashboard-nav-backdrop d-none position-fixed w-100 h-100" : "user-dashboard-nav-backdrop d-none user-dashboard-nav-backdrop-hide position-fixed w-100 h-100"}></div>
 
             <div className={resUsernavToggle ? "hdkgdfg sticky-top" : "hdkgdfg user-dashboard-nav-hide sticky-top"} id="user-dashboard-nav">
                 <div className="dfbdf position-relative mb-2 p-3">
@@ -57,7 +79,7 @@ export const UserProfileNavMenu = () => {
                         <button className="btn akdhjkashriwerwer">
                             <i className="fa-solid fa-eye-low-vision"></i> Password Change
                         </button>
-                    </Link>                
+                    </Link>
 
                     <Link to="/profile">
                         <button className="btn akdhjkashriwerwer">
@@ -66,7 +88,7 @@ export const UserProfileNavMenu = () => {
                     </Link>
                 </div>
 
-                <div className="njkcfnuwffsdfsf px-4">
+                <div className="njkcfnuwffsdfsf px-4 pb-4">
                     <Link to="/contact-us"><i class="fa-solid me-1 fa-headphones-simple"></i> Get Help</Link>
                 </div>
             </div>
