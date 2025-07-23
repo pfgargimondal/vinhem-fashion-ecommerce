@@ -28,6 +28,7 @@ export { OrderHistory } from "./UserProfile/OrderHistory";
 export { ChangePassword } from "./UserProfile/ChangePassword";
 export { Wishlist } from "./UserProfile/Wishlist";
 export { Cart } from "./Cart/Cart";
+export { Blog } from "./Blog/Blog";
 
 
 

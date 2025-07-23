@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { AboutUs, ContactUs, Filter, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart} from "../pages";
+import { AboutUs, ContactUs, Filter, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog} from "../pages";
 
 export const AllRoutes = () => {
   return (
@@ -21,6 +21,8 @@ export const AllRoutes = () => {
       <Route path="shipping-policy" element={ <ShippingPolicy /> } />
       <Route path="testimonial" element={ <Testimonial /> } />
       <Route path="career" element={ <Career /> } />
+
+      <Route path="blog" element={ <Blog /> } />
 
       <Route path="profile" element={ <Profile /> } />
       <Route path="change-password" element={ <ChangePassword /> } />
