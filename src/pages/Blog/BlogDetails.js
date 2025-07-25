@@ -54,9 +54,9 @@ export const BlogDetails = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Avant-Garde Hairstyles
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">
                         Exploring bold hair trends.
                       </p>
@@ -69,9 +69,9 @@ export const BlogDetails = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Luxury Leather Bags
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">Timeless craftsmanship.</p>
                     </div>
                   </li>
@@ -82,9 +82,9 @@ export const BlogDetails = () => {
                       className="me-3 rounded"
                     />
                     <div>
-                      <a href="#" className="text-decoration-none fw-semibold">
+                      <Link to="/" className="text-decoration-none fw-semibold">
                         Runway Highlights
-                      </a>
+                      </Link>
                       <p className="mb-0 small text-muted">
                         Best moments from fashion week.
                       </p>
