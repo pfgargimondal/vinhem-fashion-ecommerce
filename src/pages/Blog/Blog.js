@@ -1,7 +1,41 @@
+// eslint-disable-next-line
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import "./Css/Blog.css";
 
+
 export const Blog = () => {
+  // eslint-disable-next-line
+  const [blogs, setBlogs] = useState([{
+    id: 15879,
+    image: "./images/3782.jpg",
+    title: "Taking Over Street Fashion",
+    description: "The street fashion scene never sleeps. Every day, new looks emerge, inspired by the world around us. From bold colors to understated minimalism, the streets have it all. Designers and influencers alike draw inspiration from everyday life, creating a unique blend of culture and style that is impossible to ignore. This season, expect to see a fusion of classic and contemporary styles, where heritage meets innovation in unexpected ways."
+  },
+  {
+    id: 15880,
+    image: "./images/ewrwer.jpg",
+    title: "Knowledge elegantly",
+    description: "The street fashion scene never sleeps. Every day, new looks emerge, inspired by the world around us. From bold colors to understated minimalism, the streets have it all. Designers and influencers alike draw inspiration from everyday life, creating a unique blend of culture and style that is impossible to ignore. This season, expect to see a fusion of classic and contemporary styles, where heritage meets innovation in unexpected ways."
+  },
+  {
+    id: 15881,
+    image: "./images/17550.jpg",
+    title: "Livesaving Apps & Websites",
+    description: "The street fashion scene never sleeps. Every day, new looks emerge, inspired by the world around us. From bold colors to understated minimalism, the streets have it all. Designers and influencers alike draw inspiration from everyday life, creating a unique blend of culture and style that is impossible to ignore. This season, expect to see a fusion of classic and contemporary styles, where heritage meets innovation in unexpected ways."
+  }]);
+
+  // useEffect(() => {
+  //   const fetchBlog = async() => {
+  //     const response = await fetch("http://localhost:8000/blogs");
+  //     const data = await response.json();
+  //     setBlogs(data);
+  //   }
+
+  //   fetchBlog();
+  // }, []);
+
   return (
     <div className="blog-wrapper">
       <section className="dfgvswrfcxcfsrfsddf mb-5">
@@ -72,177 +106,25 @@ export const Blog = () => {
       <div className="diewhrnweirwer">
         <div className="row">       
           <div className="col-lg-8">          
-            <article className="mb-5 article-card">
-              <div className="article-number">1</div>
-              <img
-                src="./images/3782.jpg"
-                alt="Stylish woman with short hair and fashionable accessories posing defiantly in studio with dark background"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">Taking Over Street Fashion</h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                New trends and bold statements
-              </p>
-              <p className="article-text">
-                The street fashion scene never sleeps. Every day, new looks emerge,
-                inspired by the world around us. From bold colors to understated
-                minimalism, the streets have it all. Designers and influencers alike
-                draw inspiration from everyday life, creating a unique blend of
-                culture and style that is impossible to ignore.
-              </p>
-              <p className="article-text">
-                This season, expect to see a fusion of classic and contemporary
-                styles, where heritage meets innovation in unexpected ways.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
-    
-            <article className="mb-5 article-card">
-              <div className="article-number">2</div>
-                {/* eslint-disable-next-line */}
-              <img
-                src="./images/ewrwer.jpg"
-                alt="Black and white photo of woman in geometric patterned dress posing dramatically"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">
-                Knowledge <span className="fst-italic">elegantly</span>
-              </h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                Fashion wisdom that lasts
-              </p>
-              <p className="article-text">
-                Fashion is an endless journey of learning and creativity. Behind
-                every garment lies a rich story — of craftsmanship, culture, and
-                evolving styles. As we delve deeper into the history and meaning of
-                fashion, we uncover the timeless elegance that elevates personal
-                expression to an art form.
-              </p>
-              <p className="article-text">
-                Join us as we decode the secrets and celebrate the brilliance of
-                true sophistication.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
-  
-            <article className="mb-5 article-card">
-              <div className="article-number">3</div>
-              <img
-                src="./images/17550.jpg"
-                alt="Woman lying amid sharp volcanic rocks wearing elegant black dress with sheer fabric"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">Livesaving Apps &amp; Websites</h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                Tech meets fashion for a modern lifestyle
-              </p>
-              <p className="article-text">
-                In a world increasingly driven by technology, fashion and lifestyle
-                have found innovative digital allies. From apps that streamline
-                wardrobe management to websites connecting global designers and
-                trendsetters, these tools transform the industry and daily lives.
-              </p>
-              <p className="article-text">
-                Discover the most powerful digital platforms reshaping how we dress,
-                shop, and connect.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
-    
-            <article className="mb-5 article-card">
-              <div className="article-number">1</div>
-              <img
-                src="./images/3782.jpg"
-                alt="Stylish woman with short hair and fashionable accessories posing defiantly in studio with dark background"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">Taking Over Street Fashion</h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                New trends and bold statements
-              </p>
-              <p className="article-text">
-                The street fashion scene never sleeps. Every day, new looks emerge,
-                inspired by the world around us. From bold colors to understated
-                minimalism, the streets have it all. Designers and influencers alike
-                draw inspiration from everyday life, creating a unique blend of
-                culture and style that is impossible to ignore.
-              </p>
-              <p className="article-text">
-                This season, expect to see a fusion of classic and contemporary
-                styles, where heritage meets innovation in unexpected ways.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
-    
-            <article className="mb-5 article-card">
-              <div className="article-number">2</div>
-                {/* eslint-disable-next-line */}
-              <img
-                src="./images/ewrwer.jpg"
-                alt="Black and white photo of woman in geometric patterned dress posing dramatically"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">
-                Knowledge <span className="fst-italic">elegantly</span>
-              </h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                Fashion wisdom that lasts
-              </p>
-              <p className="article-text">
-                Fashion is an endless journey of learning and creativity. Behind
-                every garment lies a rich story — of craftsmanship, culture, and
-                evolving styles. As we delve deeper into the history and meaning of
-                fashion, we uncover the timeless elegance that elevates personal
-                expression to an art form.
-              </p>
-              <p className="article-text">
-                Join us as we decode the secrets and celebrate the brilliance of
-                true sophistication.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
-  
-            <article className="mb-5 article-card">
-              <div className="article-number">3</div>
-              <img
-                src="./images/17550.jpg"
-                alt="Woman lying amid sharp volcanic rocks wearing elegant black dress with sheer fabric"
-                className="img-fluid rounded mb-3"
-                onerror="this.style.display='none'"
-              />
-              <h2 className="article-title">Livesaving Apps &amp; Websites</h2>
-              <p className="article-subtitle d-none fst-italic text-muted">
-                Tech meets fashion for a modern lifestyle
-              </p>
-              <p className="article-text">
-                In a world increasingly driven by technology, fashion and lifestyle
-                have found innovative digital allies. From apps that streamline
-                wardrobe management to websites connecting global designers and
-                trendsetters, these tools transform the industry and daily lives.
-              </p>
-              <p className="article-text">
-                Discover the most powerful digital platforms reshaping how we dress,
-                shop, and connect.
-              </p>
-              <Link to="/" className="btn btn-main mt-2">
-                Read More
-              </Link>
-            </article>
+            {blogs.map(blog => (
+              <article className="mb-5 article-card" key={blog.id}>
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="img-fluid rounded mb-3"
+                />
+
+                <h2 className="article-title">{blog.title}</h2>
+
+                <p className="article-text">
+                  {blog.description}
+                </p>
+
+                <Link to="/blog/mdlkjea" className="btn btn-main mt-2">
+                  Read More
+                </Link>
+              </article>
+            ))}
           </div>
 
           <aside className="col-lg-4">
@@ -251,6 +133,7 @@ export const Blog = () => {
                 <h5 className="mb-3">Popular Posts</h5>
                 <ul className="csdvfgherdfvsdf list-unstyled">
                   <li className="mb-3 d-flex align-items-center">
+                      {/* eslint-disable-next-line */}
                     <img
                       src="./images/17550.jpg"
                       alt="Thumbnail of woman wearing avant-garde hairstyle"
@@ -266,6 +149,7 @@ export const Blog = () => {
                     </div>
                   </li>
                   <li className="mb-3 d-flex align-items-center">
+                      {/* eslint-disable-next-line */}
                     <img
                       src="./images/17550.jpg"
                       alt="Thumbnail of detailed leather handbag on display"
@@ -279,6 +163,7 @@ export const Blog = () => {
                     </div>
                   </li>
                   <li className="d-flex align-items-center">
+                      {/* eslint-disable-next-line */}
                     <img
                       src="./images/17550.jpg"
                       alt="Thumbnail of runway model in futuristic fashion wear"
