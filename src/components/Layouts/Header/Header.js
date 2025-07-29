@@ -1,5 +1,5 @@
   // eslint-disable-next-line
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,14 +15,17 @@ import 'swiper/css';
 export const Header = ({ shouldHideHeader }) => {
   const [resMenu, setResMenu] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
+  const [searchBarToggle, setSearchBarToggle] = useState(false);
 
-    // eslint-disable-next-line
-  const handleResMenuToggle = () => {
-    const html = document.querySelector("html");
+  useEffect(() => {
+    const body = document.querySelector("html");
 
-    html.classList.toggle("overflow-hidden");
-    setResMenu(!resMenu);
-  }
+    if (resMenu) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+  }, [resMenu]);
 
 
   return (
@@ -72,11 +75,23 @@ export const Header = ({ shouldHideHeader }) => {
               <div className="col-lg-2">
                 <div className="doeiwhrkwdeor">
                   <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
+
+                  <div className="dwerkwenrwer d-none">
+                    <i class="bi me-2 bi-search" onClick={() => setSearchBarToggle(!searchBarToggle)}></i>
+
+                    <Form.Select className="me-2" aria-label="Default select example">
+                      <option>INR (₹)</option>
+
+                      <option value="1">Dollar ($)</option>
+                    </Form.Select>
+
+                    <i class="fa-solid fa-bars" id="res-toggle-btn" onClick={() => setResMenu(true)}></i>
+                  </div>
                 </div>
               </div>
 
               <div className="col-lg-6">
-                <div className="doiwehrwehirnwerwer row align-items-center">
+                <div className="doiwehrwehirnwerwer aosndkjnjhasekwewt row align-items-center">
                   <div className="col-lg-2">
                     <Form.Select aria-label="Default select example">
                       <option>INR (₹)</option>
@@ -86,7 +101,7 @@ export const Header = ({ shouldHideHeader }) => {
                   </div>
 
                   <div className="col-lg-10">
-                    <div className="search-field position-relative">
+                    <div className={`search-field ${searchBarToggle ? "" : "search-field-hide"} position-relative`}>
                       <input type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
 
                       <i class="bi position-absolute bi-search"></i>
@@ -96,7 +111,11 @@ export const Header = ({ shouldHideHeader }) => {
               </div>
 
               <div className="col-lg-4">
-                <div className="doewhruiwerwer_right">
+                {resMenu && (<div className="res-menu-backdrop position-fixed w-100 h-100" onClick={() => setResMenu(false)}></div>)}
+
+                <div className={`doewhruiwerwer_right ${resMenu ? "" : "doewhruiwerwer_right-hide"}`}>
+                  <Link to="/"><img src={Logo} className="img-fluid d-none" alt="" /></Link>
+
                   <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
                     <li><i class="bi bi-headset"></i> Help</li>
 

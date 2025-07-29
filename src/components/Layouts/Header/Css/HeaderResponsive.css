@@ -1,6 +1,53 @@
 @media only screen and (max-width: 991px){
     .header-top .doewhruiwerwer_right{
+        position: fixed;
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        width: 70%;
+        height: 100%;
+        left: 0;
+        z-index: 9;
+        padding: 1rem;
+        transition: 0.3s ease-in-out;
+    }
+
+    .doewhruiwerwer_right-hide{
+        left: -50rem !important;
+        transition: 0.3s ease-in-out;
+    }
+
+    .header-main.pt-4{
+        padding-top: 0 !important;
+    }
+
+    .search-field-hide{
         display: none;
+    }
+
+    .doewhruiwerwer_right img.d-none{
+        display: block !important;
+        width: 10rem;
+        margin-bottom: 2rem;
+    }
+
+    .res-menu-backdrop{
+        background: rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        transition: 0.3s ease-in-out;
+    }
+
+    .infrm-menu-divider{
+        display: none !important;
+    }
+
+    .doewhruiwerwer_right > ul.d-flex{
+        display: block !important;
+        position: relative;
     }
 
     header .header-main .doiewhirw_left img{
@@ -11,13 +58,29 @@
         float: initial;
     }
 
-    .kjsdnfkniretertert.d-none{
+    .doeiwhrkwdeor{
         display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
     }
 
-    .kjsdnfkniretertert #res-toggle-btn{
-        display: block !important;
-        font-size: 2.8rem;
+    .doeiwhrkwdeor .dwerkwenrwer.d-none{
+        display: flex !important;
+        align-items: center;
+        font-size: 1.4rem;
+    }
+
+    .aosndkjnjhasekwewt .form-select{
+        display: none;
+    }
+
+    .doeiwhrkwdeor .dwerkwenrwer.d-none .form-select{
+        padding: 0.2rem 2rem 0.2rem 0.2rem;
+    }
+
+    .doeiwhrkwdeor #res-toggle-btn{
+        font-size: 1.4rem;
     }
 
     #header-menu-responsive{
@@ -171,6 +234,14 @@
     .jamdlkjwekrer{
         text-align: center;
     }
+
+    .doeiwhrkwdeor img{
+        width: 10rem;
+    }
+
+    header .header-main{
+        max-width: 100%;
+    }
 }
 
 
@@ -183,5 +254,9 @@
 
     .dfgh{
         margin: auto;
+    }
+
+    .doeiwhrkwdeor img {
+        width: 8rem;
     }
 }

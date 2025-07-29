@@ -33,6 +33,35 @@
   border: 1px solid var(--text-gray-color) !important;
 }
 
+.doiewjkrniuwewer.col-lg-3{
+  height: 220px;
+}
+
+.fdbdfgdfgdf.col-lg-9 .dbgdfhgv{
+  z-index: initial;
+  position: initial;
+  bottom: initial;
+  left: initial;
+  width: initial;
+  opacity: initial;
+  visibility: initial;
+  transition: 0.2s ease-in-out;
+  transform: initial;
+  margin-top: initial;
+}
+
+.fdbdfgdfgdf.col-lg-9 .doikwenirnwekhrwer{
+  z-index: initial;
+  align-items: initial;
+  visibility: initial;
+  opacity: initial;
+  transition: 0.2s ease-in-out;
+}
+
+.fdbdfgdfgdf.col-lg-9{
+  text-align: left;
+}
+
 .iduhweihriweurwerwer .btn-main:hover{
   background: var(--black-background-color) !important;
   color: #fff !important;
@@ -173,9 +202,24 @@
   cursor: pointer;
   display: flex;
   padding: 0.4rem 0.4rem;
-  border: 1px solid #fff;
-  border-radius: 0.375rem;
+  border: 1px solid #fff;  
 }
-.view-options div i.active {
+
+.view-options .grid-view,
+.view-options .list-view {
+  border-radius: 0.375rem;
+  border: 1px solid #fff;
+}
+
+.view-options .grid-view.active,
+.view-options .list-view.active {
   border: 1px solid var(--text-gray-color);
+}
+
+.filtr-wrppr .fdbdfgdfgdf.col-lg-12 .dlksfskjrewrwere{
+  display: none !important;
+}
+
+.oidenjwihrwer h5 i{
+  color: var(--pink-main-color);
 }

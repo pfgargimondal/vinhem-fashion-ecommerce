@@ -1,60 +1,33 @@
-.dfbgghdfdfgdf {
-  width: 100%;
-  padding: 40px 0;
-}
-
-.images {
+.image{
   border-radius: 10px;
 }
 
-.images img {
-  width: 100%;
-  height: 380px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.doiewjkrniuwewer{
+  height: 350px;  
   border-radius: 10px;
 }
 
-.images .image {
-  position: relative;
-}
-
-.images .first {
+.doiewjkrniuwewer img{
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: z-index 0.5s ease, transform 0.6s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.images .image:hover .first {
-  z-index: 0;
-  background-color: red;
+.doiewjkrniuwewer img:first-child{
+  z-index: 2;
+}
+
+.doiewjkrniuwewer:hover img:first-child{
+  visibility: hidden;
+  opacity: 0;
+  z-index: -9;
+  transition: 0.3s ease-in-out;
 }
 
 .dfgjhbdfg {
   width: 100%;
-}
-
-.dbgdfhgv button {
-  width: 100%;
-  position: absolute;
-  margin-top: -80px !important;
-  height: 50px;
-  border: 2px solid black;
-  opacity: 0;
-  font-weight: 600;
-}
-.dbgdfhgv button:hover {
-  background-color: #000;
-  color: white;
-  font-weight: 600;
-  opacity: 1;
-}
-
-.dfgjhbdfg:hover .dbgdfhgv button {
-  opacity: 1;
-  transition: 0.5s;
 }
 
 .djhdf i {
@@ -62,6 +35,73 @@
   color: #000;
   background-color: #fff;
   border-radius: 50px;
+}
+
+.dbgdfhgv{
+  z-index: -9;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 80%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.dfgjhbdfg .images:hover .dbgdfhgv{
+  z-index: 9;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.2s ease-in-out;
+}
+
+.dbgdfhgv button:hover{
+  background: #fff !important;
+}
+
+.doikwenirnwekhrwer{
+  flex-direction: column;
+  z-index: -9;
+  align-items: end;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.dfgjhbdfg .images:hover .doikwenirnwekhrwer{
+  z-index: 9;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.2s ease-in-out;
+}
+
+.doikwenirnwekhrwer button{
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+  line-height: 2.8;
+  text-align: center;
+  background: var(--black-background-color);
+  color: #fff;
+  border: 1px solid var(--black-background-color);
+}
+
+.doikwenirnwekhrwer button:hover{
+  background: var(--pink-main-color);
+  border: 1px solid var(--pink-main-color);
+  transition: 0.2s ease-in-out;
+}
+
+.doikwenirnwekhrwer button i{
+  font-size: 1.2rem;
+  transition: 0.2s ease-in-out;
+}
+
+.doikwenirnwekhrwer button:hover i{
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
 }
 
 .xbjhdfvds55 {
@@ -144,32 +184,6 @@
 }
 .fdbdfgdfgdf h5 {
   font-weight: 600;
-}
-
-.dsgdfgsdf label img {
-  margin: 3px;
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-}
-.dsgdfgsdf .selection-group input[type=radio] {
-  display: none;
-}
-.dsgdfgsdf .selection-group input[type=radio]:checked + label img {
-  /*   background: orange; */
-  border-radius: 50px;
-  border: 1px solid rgb(59, 65, 67);
-}
-
-.dsgdfgsdf {
-  text-align: center;
-}
-.dsgdfgsdf P {
-  color: gray;
-  font-size: 14px;
-  font-weight: 600;
-  padding-top: 10px;
 }
 
 .yudfdfgdfbgdfgdffgfg {
