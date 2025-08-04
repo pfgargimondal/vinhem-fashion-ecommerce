@@ -760,7 +760,7 @@ export const ProductDetail = () => {
                       <Swiper
                         modules={[Autoplay, Pagination, Navigation, Mousewheel]}
                         direction="vertical"
-                        slidesPerView={2}
+                        slidesPerView={4}
                         spaceBetween={30}
                         loop={true}
                         mousewheel={true}
@@ -774,74 +774,102 @@ export const ProductDetail = () => {
                         style={{ height: "100%" }}
                       >
                         <SwiperSlide>
-                          <div className="dfgjhbdfg p-2 mb-4">
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
                             <div className="images">
-                              <div className="image position-relative">
-                                <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-                                
-                                <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                <div className="image d-flex position-relative">
+                                    <div className="doiewjkrniuwewer position-relative col-lg-4 overflow-hidden">
+                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
 
-                                <div className="fdbdfgdfgdf">
-                                  <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                                  
-                                  <h5>$48.99</h5>
+                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                    </div>
+
+                                    <div className="fdbdfgdfgdf col-lg-8">
+                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                        
+                                        <h5>$48.99</h5>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
+                        </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                            <div className="images">
+                                <div className="image d-flex position-relative">
+                                    <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                    </div>
+
+                                    <div className="fdbdfgdfgdf col-lg-8">
+                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                        
+                                        <h5>$48.99</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                            <div className="images">
+                                <div className="image d-flex position-relative">
+                                    <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                    </div>
+
+                                    <div className="fdbdfgdfgdf col-lg-8">
+                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                        
+                                        <h5>$48.99</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                              <div className="images">
+                                  <div className="image d-flex position-relative">
+                                      <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                          <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                          <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                      </div>
+
+                                      <div className="fdbdfgdfgdf col-lg-8">
+                                          <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                          
+                                          <h5>$48.99</h5>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="dfgjhbdfg p-2 mb-4">
-                            <div className="images">
-                              <div className="image position-relative">
-                                <img src="/images/msl-l4.webp" alt="not found" />
-                                
-                                <img className="first" src="/images/woven-art-silk-scalloped-saree-in-dusty-green-v1-sew14703.webp" alt="not found" />
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                              <div className="images">
+                                  <div className="image d-flex position-relative">
+                                      <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                          <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
 
-                                <div className="fdbdfgdfgdf">
-                                  <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                                  
-                                  <h5>$48.99</h5>
-                                </div>
+                                          <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                      </div>
+
+                                      <div className="fdbdfgdfgdf col-lg-8">
+                                          <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                          
+                                          <h5>$48.99</h5>
+                                      </div>
+                                  </div>
                               </div>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="dfgjhbdfg p-2 mb-4">
-                            <div className="images">
-                              <div className="image position-relative">
-                                <img src="/images/red-net-designer-saree-with-sleeveless-readymade-blouse-sr27800.webp" alt="not found" />
-                                
-                                <img className="first" src="/images/3-sp2017-0140548001642675559.webp" alt="not found" />
-
-                                <div className="fdbdfgdfgdf">
-                                  <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                                  
-                                  <h5>$48.99</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="dfgjhbdfg p-2 mb-4">
-                            <div className="images">
-                              <div className="image position-relative">
-                                <img src="/images/medium-purple-tissue-silk-premium-designer-saree-fabsa22444.jpg" alt="not found" />
-                                
-                                <img className="first" src="/images/IMG_2502.jpeg" alt="not found" />
-
-                                <div className="fdbdfgdfgdf">
-                                  <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                                  
-                                  <h5>$48.99</h5>
-                                </div>
-                              </div>
-                            </div>
                           </div>
                         </SwiperSlide>
                       </Swiper>
