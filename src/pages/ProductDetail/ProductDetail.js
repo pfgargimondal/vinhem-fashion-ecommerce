@@ -301,6 +301,100 @@ export const ProductDetail = () => {
                     </select>
                   </div>
 
+                  <div className="sadfvfghbrsd mt-4">
+                    <div className="col-lg-9">
+                      <div className="kcwenjkkwenkrhwer">
+                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
+                          <div className="doweriwejrwer">
+                            <div class="checkbox-wrapper-33">
+                              <label class="checkbox">
+                                <input class="checkbox__trigger visuallyhidden" type="checkbox" />
+                                
+                                <span class="checkbox__symbol">
+                                  <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 14l8 7L24 7"></path>
+                                  </svg>
+                                </span>
+
+                                <p class="checkbox__textwrapper">Matching Turban</p>
+                              </label>
+                            </div>
+                          </div>
+
+                          <p className="chngd-price mb-0">USD 23.20</p>
+                        </div>
+                        
+                        <select name="" className="form-select" id="">
+                          <option value="" disabled selected>Select Size</option>
+
+                          <option value="">1</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="sadfvfghbrsd mt-4">
+                    <div className="col-lg-9">
+                      <div className="kcwenjkkwenkrhwer">
+                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
+                          <div className="doweriwejrwer">
+                            <div class="checkbox-wrapper-33">
+                              <label class="checkbox">
+                                <input class="checkbox__trigger visuallyhidden" type="checkbox" />
+                                
+                                <span class="checkbox__symbol">
+                                  <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 14l8 7L24 7"></path>
+                                  </svg>
+                                </span>
+
+                                <p class="checkbox__textwrapper">Matching Stole</p>
+                              </label>
+                            </div>
+                          </div>
+
+                          <p className="chngd-price mb-0">USD 6.96</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="sadfvfghbrsd mt-4">
+                    <div className="col-lg-9">
+                      <div className="kcwenjkkwenkrhwer">
+                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
+                          <div className="doweriwejrwer">
+                            <div class="checkbox-wrapper-33">
+                              <label class="checkbox">
+                                <input class="checkbox__trigger visuallyhidden" type="checkbox" />
+                                
+                                <span class="checkbox__symbol">
+                                  <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 14l8 7L24 7"></path>
+                                  </svg>
+                                </span>
+
+                                <p class="checkbox__textwrapper">Matching Mojri</p>
+                              </label>
+                            </div>
+                          </div>
+
+                          <p className="chngd-price mb-0">USD 14.50</p>
+                        </div>
+                        
+                        <select name="" className="form-select" id="">
+                          <option value="" disabled selected>Select shoe size</option>
+
+                          <option value="">1</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="dowejkrnwerwer mt-4">
+                    <h4 className="mb-0">Total Price: <span>161.80</span></h4>
+                  </div>
+
                   <div className="dfgndfjhgdf mt-4">
                     <button className="btn btn-main px-5 me-3">
                       <i class="bi bi-bag me-1"></i> Add To Cart
