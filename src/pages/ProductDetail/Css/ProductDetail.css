@@ -701,3 +701,26 @@
   height: 100%;
   object-fit: cover;
 }
+
+.opjdjwerwer p.chrt-sze{
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.opjdjwerwer p.chrt-sze i{
+  color: var(--pink-main-color);
+}
+
+.opjdjwerwer p.chngd-price{
+  font-weight: 600;
+  color: var(--pink-main-color);
+  user-select: none;
+}
+
+.men-chart-size .modal-dialog{
+  width: 45% !important;  
+  max-width: initial !important;
+}

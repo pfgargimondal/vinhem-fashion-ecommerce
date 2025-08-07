@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Modal from 'react-bootstrap/Modal';
 
 import { FeaturedProducts } from "../../components";
 
@@ -16,6 +17,20 @@ import "swiper/css";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 
 export const ProductDetail = () => {
+  const [show, setShow] = useState(false);
+  const [showMjri, setShowMjri] = useState(false);
+
+  //turbon modal
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //mojri modal
+
+  const handleMClose = () => setShowMjri(false);
+  const handleMShow = () => setShowMjri(true);
+
+
   // eslint-disable-next-line
   const [featuredProducts, setFeaturedProducts] = useState([
     {
@@ -321,6 +336,8 @@ export const ProductDetail = () => {
                             </div>
                           </div>
 
+                          <p className="chrt-sze mb-0" onClick={handleShow}><i class="fa-solid fa-maximize"></i> Chart Size</p>
+
                           <p className="chngd-price mb-0">USD 23.20</p>
                         </div>
                         
@@ -353,6 +370,8 @@ export const ProductDetail = () => {
                             </div>
                           </div>
 
+                          
+
                           <p className="chngd-price mb-0">USD 6.96</p>
                         </div>
                       </div>
@@ -378,6 +397,8 @@ export const ProductDetail = () => {
                               </label>
                             </div>
                           </div>
+
+                          <p className="chrt-sze mb-0" onClick={handleMShow}><i class="fa-solid fa-maximize"></i> Chart Size</p>
 
                           <p className="chngd-price mb-0">USD 14.50</p>
                         </div>
@@ -1067,6 +1088,30 @@ export const ProductDetail = () => {
           <button className="btn btn-main">Add to Cart</button>
         </div>
       </div>)}
+
+      {/* turbon chart size */}
+
+      <Modal show={show} className="men-chart-size" onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Turbon Chart Size</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Body>
+          <img src="/images/turban.jpg" className="img-fluid" alt="" />
+        </Modal.Body>
+      </Modal>
+
+      {/* mojri chart size */}
+
+      <Modal show={showMjri} className="men-chart-size" onHide={handleMClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Turbon Chart Size</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Body>
+          <img src="/images/mojri.jpg" className="img-fluid" alt="" />
+        </Modal.Body>
+      </Modal>
 
       <FooterTopComponent />
       </>
