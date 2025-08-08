@@ -665,6 +665,21 @@
   font-weight: 500;
 }
 
+.slkdnfkmslkmr p.chrt-sze{
+  text-transform: capitalize;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.slkdnfkmslkmr p.chrt-sze i {
+    color: var(--pink-main-color);
+}
+
+.opjdjwerwer p.chrt-sze i{
+  color: var(--pink-main-color);
+}
+
 .opjdjwerwer p.chngd-price{
   font-weight: 600;
   color: var(--pink-main-color);
@@ -675,6 +690,116 @@
   padding: 10px;
   border: 1px solid var(--grey-border-color);
   border-radius: 5px;
+}
+
+.dojweirkwejirwer{
+  text-align: right;
+}
+
+.jidnwenjrwerwer .coupon {
+	 width: 100%;
+	 height: 75px;
+	 border-radius: 10px;
+	 overflow: hidden;
+	 margin: auto;
+	 filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+	 display: flex;
+	 align-items: stretch;
+	 position: relative;
+	 text-transform: uppercase;
+}
+ .jidnwenjrwerwer .coupon::before, .jidnwenjrwerwer .coupon::after {
+	 content: "";
+	 position: absolute;
+	 top: 0;
+	 width: 50%;
+	 height: 100%;
+	 z-index: -1;
+}
+ .jidnwenjrwerwer .coupon::before {
+	 left: 0;
+	 background-image: radial-gradient(circle at 0 50%, transparent 25px, gold 26px);
+}
+ .jidnwenjrwerwer .coupon::after {
+	 right: 0;
+	 background-image: radial-gradient(circle at 100% 50%, transparent 25px, gold 26px);
+}
+ .jidnwenjrwerwer .coupon > div {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+}
+ .jidnwenjrwerwer .left {
+	 width: 20%;
+	 border-right: 2px dashed rgba(0, 0, 0, 0.13);
+}
+ .jidnwenjrwerwer .left div {
+	 transform: rotate(-90deg);
+	 white-space: nowrap;
+	 font-weight: bold;
+   margin-left: 1.4rem;
+   font-size: 0.8rem;
+}
+ .jidnwenjrwerwer .center {
+	 flex-grow: 1;
+	 text-align: center;
+}
+ .jidnwenjrwerwer .right {
+	 width: 80px;
+   padding-right: 1rem;
+	 background-image: radial-gradient(circle at 100% 50%, transparent 25px, #fff 26px);
+}
+
+.skdncfjsdbcfksdnf .btn-main{
+  background: #fff;
+  border: none !important;
+  color: #000;
+}
+
+.skdncfjsdbcfksdnf .btn-main img{
+  width: 1.8rem;
+  transform: rotate(-45deg);
+  transition: 0.3s ease-in-out;
+}
+
+.skdncfjsdbcfksdnf .btn-main:hover img{
+  transform: rotate(360deg);
+  transition: 0.3s ease-in-out;
+}
+
+ .jidnwenjrwerwer .right div {
+	 font-family: "Libre Barcode 128 Text", cursive;
+	 font-size: 1rem;
+	 font-weight: 400;
+	 transform: rotate(-90deg);
+}
+ .jidnwenjrwerwer .center h2 {
+	 background: #000;
+	 color: gold;
+	 padding: 0 10px;
+	 font-size: 1rem;
+	 white-space: nowrap;
+   border-radius: 5px;
+}
+ .jidnwenjrwerwer .center h3 {
+	 font-size: 1rem;
+}
+ .jidnwenjrwerwer .center small {
+	 font-size: 0.625rem;
+	 font-weight: 600;
+	 letter-spacing: 2px;
+}
+ @media screen and (max-width: 500px) {
+	 .jidnwenjrwerwer .coupon {
+		 display: grid;
+		 grid-template-columns: 1fr;
+	}
+	 .jidnwenjrwerwer .left div {
+		 transform: rotate(0deg);
+	}
+	 .jidnwenjrwerwer .right div {
+		 transform: rotate(0deg);
+	}
 }
 
 .dowejkrnwerwer h4{
@@ -700,24 +825,6 @@
 .sdfvdscsddfgdfg .images img{
   height: 100%;
   object-fit: cover;
-}
-
-.opjdjwerwer p.chrt-sze{
-  font-weight: 400;
-  text-transform: capitalize;
-  font-size: 0.9rem;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.opjdjwerwer p.chrt-sze i{
-  color: var(--pink-main-color);
-}
-
-.opjdjwerwer p.chngd-price{
-  font-weight: 600;
-  color: var(--pink-main-color);
-  user-select: none;
 }
 
 .men-chart-size .modal-dialog{

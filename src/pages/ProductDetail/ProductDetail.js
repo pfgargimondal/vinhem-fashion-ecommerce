@@ -30,7 +30,6 @@ export const ProductDetail = () => {
   const handleMClose = () => setShowMjri(false);
   const handleMShow = () => setShowMjri(true);
 
-
   // eslint-disable-next-line
   const [featuredProducts, setFeaturedProducts] = useState([
     {
@@ -297,8 +296,8 @@ export const ProductDetail = () => {
                       </div>
 
                       <div className="col-lg-6">
-                        <div className="dokewhkjrhuiwerwer">
-                          <button className="btn btn-main"><i className="bi me-1 bi-bounding-box"></i> Size Guide</button>
+                        <div className="dokewhkjrhuiwerwer skdncfjsdbcfksdnf">
+                          <button className="btn btn-main"><img src="/images/ruler.png" alt="" /> Size Guide</button>
                         </div>
                       </div>
                     </div>
@@ -334,18 +333,24 @@ export const ProductDetail = () => {
                                 <p class="checkbox__textwrapper">Matching Turban</p>
                               </label>
                             </div>
-                          </div>
-
-                          <p className="chrt-sze mb-0" onClick={handleShow}><i class="fa-solid fa-maximize"></i> Chart Size</p>
+                          </div>       
 
                           <p className="chngd-price mb-0">USD 23.20</p>
                         </div>
                         
-                        <select name="" className="form-select" id="">
-                          <option value="" disabled selected>Select Size</option>
+                        <div className="slkdnfkmslkmr row align-items-center">
+                          <div className="col-lg-8">
+                            <select name="" className="form-select" id="">
+                              <option value="" disabled selected>Select Size</option>
 
-                          <option value="">1</option>
-                        </select>
+                              <option value="">1</option>
+                            </select>
+                          </div>
+
+                          <div className="col-lg-4">
+                            <p className="chrt-sze mb-0" onClick={handleShow}><i class="fa-solid fa-maximize"></i> Size Chart</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -369,8 +374,6 @@ export const ProductDetail = () => {
                               </label>
                             </div>
                           </div>
-
-                          
 
                           <p className="chngd-price mb-0">USD 6.96</p>
                         </div>
@@ -398,32 +401,38 @@ export const ProductDetail = () => {
                             </div>
                           </div>
 
-                          <p className="chrt-sze mb-0" onClick={handleMShow}><i class="fa-solid fa-maximize"></i> Chart Size</p>
-
                           <p className="chngd-price mb-0">USD 14.50</p>
                         </div>
-                        
-                        <select name="" className="form-select" id="">
-                          <option value="" disabled selected>Select shoe size</option>
 
-                          <option value="">1</option>
-                        </select>
+                        <div className="slkdnfkmslkmr row align-items-center">
+                          <div className="col-lg-8">
+                            <select name="" className="form-select" id="">
+                              <option value="" disabled selected>Select shoe size</option>
+
+                              <option value="">1</option>
+                            </select>
+                          </div>
+
+                          <div className="col-lg-4">
+                            <p className="chrt-sze mb-0" onClick={handleMShow}><i class="fa-solid fa-maximize"></i> Size Chart</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="dowejkrnwerwer mt-4">
-                    <h4 className="mb-0">Total Price: <span>161.80</span></h4>
-                  </div>
+                  <div className="dowejkrnwerwer d-flex justify-content-between align-items-center mt-4">
+                    <h4 className="mb-0 me-1">Total Price: <span>161.80</span></h4>
 
-                  <div className="dfgndfjhgdf mt-4">
-                    <button className="btn btn-main px-5 me-3">
-                      <i class="bi bi-bag me-1"></i> Add To Cart
-                    </button>
-
-                    <button className="btn btn-main btn-transparent px-5">
-                      <i class="bi bi-bag me-1"></i> Buy Now
-                    </button>
+                    <div className="dfgndfjhgdf">
+                      <button className="btn btn-main px-4 me-3">
+                        <i class="bi bi-bag me-1"></i> Add To Cart
+                      </button>
+        
+                      <button className="btn btn-main btn-transparent px-4">
+                        <i class="bi bi-bag me-1"></i> Buy Now
+                      </button>
+                    </div>  
                   </div>
 
                   <div className="kjidbwejgrwerwer col-lg-10 position-relative mt-5">

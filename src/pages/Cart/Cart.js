@@ -210,6 +210,12 @@ export const Cart = () => {
                 </div>
               </div>
 
+              <div className="uiwdhiwerwerwer dojweirkwejirwer">
+                <button className="btn px-5 btn-main">
+                  Continue Shopping
+                </button>
+              </div>
+
               <div className="dweihriwerwerw mt-4">
                 <p className="mb-1">
                   *Once your order has been placed no subsequent changes can be
@@ -297,7 +303,29 @@ export const Cart = () => {
               <div className="oiasmdjweijrwerwer mt-4">
                 <h4>Coupon Code</h4>
 
-                <div className="dewuihrwe position-relative">
+                <div className="jidnwenjrwerwer">
+                  <div class="coupon">
+                    <div class="left">
+                      <div>Coupon</div>
+                    </div>
+
+                    <div class="center">
+                      <div>
+                        <h3>Get Extra</h3>
+
+                        <h2 className="mb-0">5% OFF</h2>
+                        
+                        <small>Valid until October, 2025</small>
+                      </div>
+                    </div>
+                    
+                    <div class="right">
+                      <div>EXTRA5</div>
+                    </div>                    
+                  </div>
+                </div>
+
+                <div className="dewuihrwe position-relative mt-4">
                   <input
                     type="text"
                     className="form-control"
@@ -321,10 +349,6 @@ export const Cart = () => {
               <div className="uiwdhiwerwerwer">
                 <button className="btn btn-main w-100 mb-3">
                   Proceed To Checkout
-                </button>
-
-                <button className="btn btn-main w-100">
-                  Continue Shopping
                 </button>
               </div>
             </div>
