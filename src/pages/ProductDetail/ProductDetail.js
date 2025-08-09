@@ -13,6 +13,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FeaturedProducts } from "../../components";
 
 import "./Css/ProductDetail.css";
+import "./Css/ProductDetailResponsive.css";
 import "swiper/css";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 
@@ -142,7 +143,7 @@ export const ProductDetail = () => {
                 <div className="sticky-top">
                   <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                     <Row>
-                      <Col sm={3} className="small-image-tabs">
+                      <Col xs={3} className="small-image-tabs">
                         <Nav variant="pills" className="flex-column">
                           <Nav.Item>
                             <Nav.Link eventKey="first">
@@ -176,7 +177,7 @@ export const ProductDetail = () => {
                         </Nav>
                       </Col>
                       
-                      <Col sm={9} className="large-image-tab">
+                      <Col xs={9} className="large-image-tab">
                         <Tab.Content>
                           <Tab.Pane eventKey="first">
                             <img src="../../images/1.jpg" alt="" />
@@ -251,13 +252,13 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="saoijhdekjwirwer row align-items-center mb-3">
-                      <div className="col-lg-4 dowekrwerwer">
+                      <div className="col-lg-4 col-md-6 col-sm-6 col-6 dowekrwerwer">
                         <input type="radio" name="so" id="unstdf" className="d-none position-absolute" />
 
                         <label htmlFor="unstdf" className="p-3">Unstitched Fabric <br /> <span>+<i class="bi bi-currency-rupee"></i>0.00</span></label>
                       </div>
 
-                      <div className="col-lg-4 dowekrwerwer">
+                      <div className="col-lg-4 col-md-6 col-sm-6 col-6 dowekrwerwer">
                         <input type="radio" name="so" id="cf" className="d-none position-absolute" />
 
                         <label htmlFor="cf" className="p-3" id="cstm-fit-btn">Custom-Fit <br /> <span>+<i class="bi bi-currency-rupee"></i>1000.00</span></label>
@@ -272,8 +273,8 @@ export const ProductDetail = () => {
                     
                     {/* id="custmze-otft-btn"> */}
 
-                    <div className="row">
-                      <div className="col-lg-6">
+                    <div className="row sdfasdctgerrrrwe">
+                      <div className="col-lg-5 col-md-8 col-sm-8 col-8">
                         <div className="dgndfjgdf">
                           <select name="" id="" className="form-select">
                             <option value="">Select Size</option>
@@ -295,7 +296,7 @@ export const ProductDetail = () => {
                         </div>
                       </div>
 
-                      <div className="col-lg-6">
+                      <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                         <div className="dokewhkjrhuiwerwer skdncfjsdbcfksdnf">
                           <button className="btn btn-main"><img src="/images/ruler.png" alt="" /> Size Guide</button>
                         </div>
@@ -316,10 +317,10 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="sadfvfghbrsd mt-4">
-                    <div className="col-lg-9">
+                    <div className="col-lg-12">
                       <div className="kcwenjkkwenkrhwer">
-                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
-                          <div className="doweriwejrwer">
+                        <div className="opjdjwerwer mb-3 col-lg-9 row align-items-center justify-content-between">
+                          <div className="doweriwejrwer col-lg-6 col-md-8 col-sm-8 col-8">
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
@@ -335,11 +336,11 @@ export const ProductDetail = () => {
                             </div>
                           </div>       
 
-                          <p className="chngd-price mb-0">USD 23.20</p>
+                          <p className="chngd-price mb-0 col-lg-4 col-md-4 col-sm-4 col-4">USD 23.20</p>
                         </div>
                         
                         <div className="slkdnfkmslkmr row align-items-center">
-                          <div className="col-lg-8">
+                          <div className="col-lg-8 col-md-8 col-sm-8 col-8">
                             <select name="" className="form-select" id="">
                               <option value="" disabled selected>Select Size</option>
 
@@ -347,7 +348,7 @@ export const ProductDetail = () => {
                             </select>
                           </div>
 
-                          <div className="col-lg-4">
+                          <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                             <p className="chrt-sze mb-0" onClick={handleShow}><i class="fa-solid fa-maximize"></i> Size Chart</p>
                           </div>
                         </div>
@@ -356,10 +357,10 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="sadfvfghbrsd mt-4">
-                    <div className="col-lg-9">
+                    <div className="col-lg-12">
                       <div className="kcwenjkkwenkrhwer">
-                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
-                          <div className="doweriwejrwer">
+                        <div className="opjdjwerwer mb-3 row col-lg-9 align-items-center justify-content-between">
+                          <div className="doweriwejrwer col-lg-6 col-md-8 col-sm-8 col-8">
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
@@ -375,17 +376,17 @@ export const ProductDetail = () => {
                             </div>
                           </div>
 
-                          <p className="chngd-price mb-0">USD 6.96</p>
+                          <p className="chngd-price mb-0 col-lg-4 col-md-4 col-sm-4 col-4">USD 6.96</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <div className="sadfvfghbrsd mt-4">
-                    <div className="col-lg-9">
+                    <div className="col-lg-12">
                       <div className="kcwenjkkwenkrhwer">
-                        <div className="opjdjwerwer mb-3 d-flex align-items-center justify-content-between">
-                          <div className="doweriwejrwer">
+                        <div className="opjdjwerwer mb-3 row col-lg-9 align-items-center justify-content-between">
+                          <div className="doweriwejrwer col-lg-8 col-md-8 col-sm-8 col-8">
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
@@ -401,19 +402,19 @@ export const ProductDetail = () => {
                             </div>
                           </div>
 
-                          <p className="chngd-price mb-0">USD 14.50</p>
+                          <p className="chngd-price mb-0 col-lg-4 col-md-4 col-sm-4 col-4">USD 14.50</p>
                         </div>
 
                         <div className="slkdnfkmslkmr row align-items-center">
-                          <div className="col-lg-8">
+                          <div className="col-lg-8 col-md-8 col-sm-8 col-8">
                             <select name="" className="form-select" id="">
-                              <option value="" disabled selected>Select shoe size</option>
+                              <option value="" disabled selected>Select Size</option>
 
                               <option value="">1</option>
                             </select>
                           </div>
 
-                          <div className="col-lg-4">
+                          <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                             <p className="chrt-sze mb-0" onClick={handleMShow}><i class="fa-solid fa-maximize"></i> Size Chart</p>
                           </div>
                         </div>
@@ -421,8 +422,8 @@ export const ProductDetail = () => {
                     </div>
                   </div>
 
-                  <div className="dowejkrnwerwer d-flex justify-content-between align-items-center mt-4">
-                    <h4 className="mb-0 me-1">Total Price: <span>161.80</span></h4>
+                  <div className="dowejkrnwerwer d-flex align-items-center mt-4">
+                    <h4 className="mb-0 me-2">You Pay: <span><i class="fa-solid fa-indian-rupee-sign"></i> 1230,322</span></h4>
 
                     <div className="dfgndfjhgdf">
                       <button className="btn btn-main px-4 me-3">
