@@ -1,3 +1,12 @@
+@media only screen and (max-width: 991px){
+
+    .dopwejoirjhwer .btn{
+        margin-bottom: 1rem;
+    }
+
+}
+
+
 @media screen and (max-width: 767px) and (min-width: 575px){
     .dowejkrnwerwer{
         flex-wrap: wrap;
@@ -7,6 +16,7 @@
         margin-bottom: 1rem !important;
     }
 }
+
 
 
 
