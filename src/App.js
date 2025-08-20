@@ -9,12 +9,14 @@ import './App.css';
 function App() {
   const {pathname} = useLocation();
   const hideHeaderRoutes = ["/login", "/register", "/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist"];
+  const hideFullHeaderFooterRoutes = ["/Invoice"];
 
   const shouldHideHeader = hideHeaderRoutes.includes(pathname);
+  const shouldHideFullHeaderFooterRoutes = hideFullHeaderFooterRoutes.includes(pathname);
 
   return (
     <div className="App">
-      <Header shouldHideHeader={shouldHideHeader} />      
+      <Header shouldHideHeader={shouldHideHeader} shouldHideFullHeaderFooterRoutes={shouldHideFullHeaderFooterRoutes} />
 
       <main className={["/profile", "/change-password", "/cancelled-order", "/order-history", "/wishlist"].includes(pathname) 
         ? "" 
@@ -22,7 +24,7 @@ function App() {
         <AllRoutes />
       </main>
 
-      <Footer /> 
+      <Footer shouldHideFullHeaderFooterRoutes={shouldHideFullHeaderFooterRoutes} /> 
     </div>
   );
 }

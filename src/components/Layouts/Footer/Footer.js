@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-export const Footer = () => {
+export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
   return (
-    <footer>
+    <>
+      { !shouldHideFullHeaderFooterRoutes && (
+        <footer>
       <div className="container pt-5">
         <div className="row">
           <div className="col-lg-10">
@@ -142,6 +144,8 @@ export const Footer = () => {
           </ul>
         </div>        
       </div>    
-    </footer>
+        </footer>
+      ) }
+    </>
   )
 }

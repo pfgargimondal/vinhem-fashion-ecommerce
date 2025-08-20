@@ -32,7 +32,7 @@ export { Blog } from "./Blog/Blog";
 export { BlogDetails } from "./Blog/BlogDetails";
 
 
-
+export { Invoice } from "./Invoice/Invoice";
 
 export { PageNotFound } from "./PageNotFound/PageNotFound";
 
