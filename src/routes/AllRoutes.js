@@ -32,7 +32,7 @@ export const AllRoutes = () => {
       <Route path="wishlist" element={ <Wishlist/> } />
       <Route path="cart" element={ <Cart/> } />
 
-      <Route path="Invoice" element={ <Invoice /> } />
+      <Route path="invoice" element={ <Invoice /> } />
 
 
        

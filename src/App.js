@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   const {pathname} = useLocation();
   const hideHeaderRoutes = ["/login", "/register", "/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist"];
-  const hideFullHeaderFooterRoutes = ["/Invoice"];
+  const hideFullHeaderFooterRoutes = ["/invoice"];
 
   const shouldHideHeader = hideHeaderRoutes.includes(pathname);
   const shouldHideFullHeaderFooterRoutes = hideFullHeaderFooterRoutes.includes(pathname);
