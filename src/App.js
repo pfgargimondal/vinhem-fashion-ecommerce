@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const {pathname} = useLocation();
-  const hideHeaderRoutes = ["/login", "/register", "/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist"];
+  const hideHeaderRoutes = ["/login", "/register", "/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist", "/chat"];
   const hideFullHeaderFooterRoutes = ["/invoice"];
 
   const shouldHideHeader = hideHeaderRoutes.includes(pathname);
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Header shouldHideHeader={shouldHideHeader} shouldHideFullHeaderFooterRoutes={shouldHideFullHeaderFooterRoutes} />
 
-      <main className={["/profile", "/change-password", "/cancelled-order", "/order-history", "/wishlist"].includes(pathname) 
+      <main className={["/profile", "/change-password", "/cancelled-order", "/order-history", "/wishlist", "/chat"].includes(pathname)
         ? "" 
         : "container"}>
         <AllRoutes />

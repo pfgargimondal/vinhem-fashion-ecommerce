@@ -81,6 +81,12 @@ export const UserProfileNavMenu = () => {
                         </button>
                     </Link>
 
+                    <Link to="/chat">
+                        <button className="btn akdhjkashriwerwer">
+                            <i class="fa-regular fa-comments"></i> Chat
+                        </button>
+                    </Link>
+
                     <Link to="/profile">
                         <button className="btn akdhjkashriwerwer">
                             <i className="fa-solid fa-right-from-bracket"></i> Logout

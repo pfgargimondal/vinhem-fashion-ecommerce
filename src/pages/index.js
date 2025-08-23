@@ -27,7 +27,9 @@ export { CancelOrder } from "./UserProfile/CancelOrder";
 export { OrderHistory } from "./UserProfile/OrderHistory";
 export { ChangePassword } from "./UserProfile/ChangePassword";
 export { Wishlist } from "./UserProfile/Wishlist";
+export { Chat } from "./UserProfile/Chat";
 export { Cart } from "./Cart/Cart";
+export { Checkout } from "./Checkout/Checkout";
 export { Blog } from "./Blog/Blog";
 export { BlogDetails } from "./Blog/BlogDetails";
 
