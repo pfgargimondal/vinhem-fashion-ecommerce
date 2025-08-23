@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 import { FeaturedProducts } from "../../components";
 
@@ -992,7 +993,85 @@ export const ProductDetail = () => {
         </div>
 
         <div className="dhwekrwerwer px-4 py-4">
-          <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p>
+          {/* <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p> */}
+
+          <div className="idnjuigkjiwerwer">
+            <div className="ojaskmduihiwerwer mb-4 pb-2">
+              <div className="ihjnugherewr">
+                <img src="/images/1.jpg" alt="" />
+              </div>
+
+              <p>Orange Organza Printed N Sequins Work Saree - SASKA36581102</p>
+
+              <div className="mojdowemewr d-flex align-items-center">
+                <div className="vfeerwrwer me-2">
+                  <label className="form-label mb-0">Measurement Name*</label>  
+                </div> 
+
+                <div className="qwererwerrr flex-grow-1">
+                  <input type="text" className="form-control" />
+                </div>
+              </div>
+            </div>
+
+            <div className="dihwemoirjwerwer mb-5">
+              <h5 className="text-center mb-3">Select Measurement Fit</h5>  
+
+              <div className="dowehrinwejikhriwer">
+                <div className="row align-items-center">
+                  <div className="col-lg-5 doiwejrwer text-center">
+                    <div className="radio-wrapper-5 justify-content-center">
+                      <label htmlFor="example-5" className="forCircle">
+                        <input id="example-5" type="radio" name="radio-examples" />
+                        
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-3.5 w-3.5"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                          >
+                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
+                          </svg>
+                        </span>
+                      </label>
+
+                      <label htmlFor="example-5" className="sdvwedeertweerr">Body Fit</label>
+                    </div>
+
+                    <p className="mb-0">Garments will be tailored with 1-2 inch loosening</p>
+                  </div>
+
+                  <div className="col-lg-2">
+                    <span className="djknakknewrr mx-auto d-block position-relative bg-white">OR</span>
+                  </div>                  
+
+                  <div className="col-lg-5 doiwejrwer text-center">
+                    <div className="radio-wrapper-5 justify-content-center">
+                      <label htmlFor="example-5" className="forCircle">
+                        <input id="example-234" type="radio" name="radio-examples" />
+                        
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-3.5 w-3.5"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                          >
+                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
+                          </svg>
+                        </span>
+                      </label>
+
+                      <label htmlFor="example-234" className="sdvwedeertweerr">Garment Fit</label>
+                    </div>
+
+                    <p className="mb-0">Garments will be tailored exactly as per provided measurements</p>
+                  </div>
+                </div>
+              </div>
+            </div>         
+          </div>
 
           <p className="mb-3">Choose a size to be customized:</p>
 
@@ -1052,7 +1131,7 @@ export const ProductDetail = () => {
             </div>
           </div>
 
-          <p>Customized orders can take minimum 7 extra working days along with customization charges (if applicable). Our team may contact you to assist with your order.</p>
+          <p>Customized orders can take minimum 7 extra working days</p>
 
           <div className="idjnejwhrewrwerwer mt-4">
             <h5 className="d-flex align-items-center justify-content-between">
@@ -1071,30 +1150,223 @@ export const ProductDetail = () => {
 
             {showTabs && (
               <div className="doiewnjkrhwerwerwer mt-3">
-                <Tabs
-                  defaultActiveKey="customizesize"
-                  id="uncontrolled-tab-example"
-                  className="mb-3"
-                >
-                  <Tab eventKey="customizesize" title="Customize Size">
-                    Customize Size
-                  </Tab>
-                  <Tab eventKey="changecolor" title="Change Color">
-                    Change Color
-                  </Tab>
-                </Tabs>
+                <div className="dkewnjkhriwer">
+                  <div className="d-flex align-items-center justify-content-between">
+                    <h5 className="mb-0 px-3 py-2">Measurement Form</h5>
+
+                    <div className="dlwenoijwelkjrwer">
+                      <div className="radio-wrapper-7">
+                        <label className="radio-wrapper-7" htmlFor="example-7">
+                          <input id="example-7" type="radio" name="radio-examplessda" defaultChecked />
+                          
+                          <span>Inches</span>
+                        </label>
+
+                        <label className="radio-wrapper-7" htmlFor="example-fde">
+                          <input id="example-fde" type="radio" name="radio-examplessda" />
+                          
+                          <span>Cm</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="asdasdaswwee mt-2">
+                  <h5 className="text-center text-white py-2 mb-3">Kurta Measurement</h5>
+
+                  <div className="ihkjnjdewrwer">
+                    <form className="row">
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Bust</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Shoulder</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>32</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Arm</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Front Neck Depth</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Back Neck Depth</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Sleeve Length</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Sleeve Style</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Above Waist</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Hip</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Kurta Length</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Kurta Closing Side</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Kurta Closing With</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div className="asdasdaswwee mt-2">
+                  <h5 className="text-center text-white py-2 mb-3">Bottom Measurement</h5>
+
+                  <div className="ihkjnjdewrwer">
+                    <form className="row">
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Waist</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Thigh</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>32</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Knee</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Around Calf</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Bottom Length</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Bottom Style</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Bottom Closing Side</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+
+                      <div className="col-lg-6 mb-3">
+                        <label className="form-label">Bottom Closing With</label>
+
+                        <Form.Select aria-label="Default select example">
+                          <option>--Select Here--</option>
+                        </Form.Select>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div className="col-lg-12 mb-3">
+                  <label className="form-label">Additional customization requests here.</label>  
+
+                  <textarea name="" className="form-control" placeholder="Please specify any additional customization requests here." style={{height: "150px"}}></textarea>
+                </div>   
+
+                <button className="btn btn-main w-100">Review & Submit</button>         
               </div>
             )}
-
-            <div className="doeiwhrewrwer mt-4">
-              <p className="mb-0">Note: Additional delivery time & customization chanrges may apply post confirmation with the designer.</p>
-            </div>
           </div>
         </div>
 
-        <div className="doewrjhwerwerwer d-flex align-items-center justify-content-between p-4">
-          <p className="mb-0">0 Customizations selected</p>
-
+        <div className="doewrjhwerwerwer d-flex align-items-center justify-content-end p-4">
           <button className="btn btn-main">Add to Cart</button>
         </div>
       </div>)}
