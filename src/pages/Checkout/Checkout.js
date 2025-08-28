@@ -103,6 +103,8 @@ export const Checkout = () => {
     return (
         <div>
             <div className="cart-wrapper py-4">
+                <h2 className="chkout-heading text-center mb-3">ONE STEP CHECKOUT</h2>
+
                 <div className="row justify-content-between">
                     <div className="col-lg-7">
                         <div className="diwebjrwert_left">
@@ -236,6 +238,99 @@ export const Checkout = () => {
                                 </div>
                             </div>
 
+                            <div className="omweojuirhwerrr pt-4">
+                                <h4 className="mb-3">SELECT PAYMENT METHOD</h4>
+
+                                <div className="doiweuijrwerwer">
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-26sda">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-26sda" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">UPI (Gpay, PhonePe, Paytm etc)</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-26sweda">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-26sweda" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Credit Card</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-sdsd">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-sdsd" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Debit Card</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-sddsw">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-sddsw" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Netbanking</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-sader">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-sader" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Razor Pay</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-rerr">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-rerr" type="radio" name="radio-examples" />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Pay Pal</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div className="dfiwehrwerwe mb-5">
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            defaultValue=""
+                                            id="flexCheckDefasadsult"
+                                        />
+
+                                        <label className="form-check-label" htmlFor="flexCheckDefasadsult">
+                                            I agree to the terms and conditions (read T&C)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="uiwdhiwerwerwer d-flex align-items-center justify-content-between aksbdjbererre dojweirkwejirwer">
                                 <button className="btn px-3 me-2 btn-main">
                                     <i class="fa-solid me-1 fa-arrow-left"></i> Back To Cart
@@ -284,53 +379,7 @@ export const Checkout = () => {
 
                     <div className="col-lg-5">
                         <div className="diwebjrwert_right sticky-top">
-                            <h4 className="mb-4">Your Product Details</h4>
-
-                            <div className="doejwojrwerwe">
-                                <Table responsive>
-                                    <tbody>
-                                        <tr>
-                                            <th>Item</th>
-
-                                            <th>Quantity</th>
-
-                                            <th>Item Cost(<i class="bi bi-currency-rupee"></i>)</th>
-
-                                            <th>Sub Total(<i class="bi bi-currency-rupee"></i>)</th>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <span className="idheiwnrwer d-block">Designer Banarasi Silk Green Color A Line Lehenga</span>
-                                            </td>
-
-                                            <td>
-                                                1
-                                            </td>
-
-                                            <td>
-                                                29,995
-                                            </td>
-
-                                            <td>
-                                                29,995
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div>
-
-                            <div className="dweoihrwerwer aiksndjhugwerwerw d-flex align-items-center justify-content-between p-2">
-                                <div className="doewjirwerwer">
-                                    <input type="checkbox" id="gft" className="m-1" />
-
-                                    <label htmlFor="gft">This is a gift item</label>
-                                </div>
-
-                                <span>(Know More)</span>
-                            </div>
-
-                            <div className="oiasmdjweijrwerwer mt-4">
+                            <div className="oiasmdjweijrwerwer">
                                 <h4>Coupon Code</h4>
 
                                 <div className="jidnwenjrwerwer">
@@ -368,22 +417,94 @@ export const Checkout = () => {
                                 </div>
                             </div>
 
-                            <div className="dweoihrwerwer p-2 my-4">
+                            <div className="d-flex justify-content-between mt-4 mb-3 align-items-center">
+                                <h4 className="mb-0">Order Details - <span>1 Item(s)</span></h4>
+
+                                <i class="fa-solid fa-angle-up"></i>
+                            </div>
+
+                            {/* <div className="doejwojrwerwe">
                                 <Table responsive>
                                     <tbody>
                                         <tr>
-                                            <td>Sub Total</td>
+                                            <th>Item</th>
 
-                                            <td>
-                                                <i class="bi bi-currency-rupee"></i>29,995
-                                            </td>
+                                            <th>Quantity</th>
+
+                                            <th>Item Cost(<i class="bi bi-currency-rupee"></i>)</th>
+
+                                            <th>Sub Total(<i class="bi bi-currency-rupee"></i>)</th>
                                         </tr>
 
                                         <tr>
-                                            <td>Total Discount</td>
+                                            <td>
+                                                <span className="idheiwnrwer d-block">Designer Banarasi Silk Green Color A Line Lehenga</span>
+                                            </td>
 
                                             <td>
-                                                (-) <i class="bi bi-currency-rupee"></i>5,999
+                                                1
+                                            </td>
+
+                                            <td>
+                                                29,995
+                                            </td>
+
+                                            <td>
+                                                29,995
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div> */}
+
+                            <div className="doiwehirhweker p-2">
+                                <div className="row">
+                                    <div className="col-lg-3">
+                                        <div className="idjkewerr_left">
+                                            <img src="/images/product1 (1).webp" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-9">
+                                        <div className="idjkewerr_right">
+                                            <div className="d-flex align-items-center justify-content-between mb-2">
+                                                <h4 className="mb-0">Megha Pitti</h4>
+
+                                                <div className="asojerdmjer">
+                                                    <i class="fa-regular me-3 fa-heart"></i>
+
+                                                    <i class="fa-regular me-3 fa-trash-can"></i>
+                                                </div>
+                                            </div>
+
+                                            <p className="mb-1">Forest Print Long Kurta Set</p>
+
+                                            <div className="d-flex align-items-center">
+                                                <p className="mb-1">Color: <span>Pink</span></p>
+
+                                                <p className="mb-1">Size: <span>S</span></p>
+
+                                                <p className="mb-1">Customize: <span><a href="">Add Details</a></span></p>
+                                            </div>
+
+                                            <p className="mb-1">Price: <span><i class="fa-solid fa-indian-rupee-sign"></i>22,000</span></p>
+
+                                            <p><i class="bi me-1 bi-truck"></i> 3 days return/exchange available</p>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="dweoihrwerwer sdverewerrr p-2 my-4">
+                                <h4 className="mb-2 pb-2">Price Details</h4>
+
+                                <Table responsive>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bag Total</td>
+
+                                            <td>
+                                                <i class="bi bi-currency-rupee"></i>29,995
                                             </td>
                                         </tr>
 
@@ -396,49 +517,33 @@ export const Checkout = () => {
                                         </tr>
                                     </tbody>
                                 </Table>
-                            </div>
 
-                            <div className="oiasmdjweijrwerwer pb-2 mb-3 d-flex align-items-center justify-content-between zsdvfdesdeadfrer mt-4">
-                                <h4>Total Payable</h4>
+                                <div className="deoiwjirwer p-2 mt-2 text-center">
+                                    <p className="mb-0"><i class="fa-solid me-1 fa-truck"></i> Add items worth <i class="fa-solid fa-indian-rupee-sign"></i>12502 to get free shipping.</p>
+                                </div>
 
-                                <h4>
-                                    <i class="bi bi-currency-rupee"></i>35994
-                                </h4>
-                            </div>
+                                <div className="sfdvsrfewewerer">
+                                    <div className="oiasmdjweijrwerwer pt-2 cvsdfeerrr mb-2 d-flex align-items-center justify-content-between zsdvfdesdeadfrer mt-4">
+                                        <h4 className="mb-0">TOTAL PAYABLE</h4>
 
-                            <div className="diewrwerhytrt mb-4 pb-2">
-                                <h4>Payment Mode</h4>
-
-                                <div className="diuhweoiejrwrer d-flex align-items-center justify-content-between">
-                                    <div class="radio-wrapper-7">
-                                        <label class="radio-wrapper-7" for="payment-optionsa">
-                                            <input id="payment-optionsa" type="radio" name="payment-options" />
-                                            
-                                            <span>COD</span>
-                                        </label>
+                                        <h4 className="mb-0">
+                                            <i class="bi bi-currency-rupee"></i>35994
+                                        </h4>
                                     </div>
 
-                                    <div class="radio-wrapper-7">
-                                        <label class="radio-wrapper-7" for="payment-optionsb">
-                                            <input id="payment-optionsb" type="radio" name="payment-options" />
-                                            
-                                            <span>RazorPay</span>
-                                        </label>
-                                    </div>
+                                    <div className="oiasmdjweijrwerwer fsdgwederetert pt-2 fdgreerewwr mb-2 d-flex align-items-center justify-content-between zsdvfdesdeadfrer">
+                                        <h4 className="mb-0">YOUR TOTAL SAVINGS</h4>
 
-                                    <div class="radio-wrapper-7">
-                                        <label class="radio-wrapper-7" for="payment-optionsc">
-                                            <input id="payment-optionsc" type="radio" name="payment-options" disabled />
-                                            
-                                            <span>Paypal</span>
-                                        </label>
+                                        <h4 className="mb-0">
+                                            <i class="bi bi-currency-rupee"></i>0
+                                        </h4>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
 
-                            <div className="uiwdhiwerwerwer">
+                            <div className="fregrwrget">
                                 <button className="btn btn-main w-100 mb-3">
-                                    Make Payment
+                                    Place Order
                                 </button>
                             </div>
                         </div>

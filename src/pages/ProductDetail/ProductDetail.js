@@ -10,6 +10,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
 
 import { FeaturedProducts } from "../../components";
 
@@ -21,6 +22,8 @@ import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 export const ProductDetail = () => {
   const [show, setShow] = useState(false);
   const [showMjri, setShowMjri] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [mesremntGuideImgShow, setMesremntGuideImgShow] = useState(false);
 
   //turbon modal
 
@@ -103,6 +106,14 @@ export const ProductDetail = () => {
   const [showTabs, setShowTabs] = useState(false);
   const [showSizeModal, setShowSizeModal] = useState(false);
 
+  const handleSizeModalClose = () => {
+    setShowSizeModal(false);
+
+    showTabs && setShowTabs(false);
+    
+    mesremntGuideImgShow && setMesremntGuideImgShow(false);
+  }
+
   //featured products
 
   const swiperConfig = {
@@ -151,7 +162,7 @@ export const ProductDetail = () => {
                               <img src="../../images/1.jpg" alt="" />
                             </Nav.Link>
                           </Nav.Item>
-                          
+
                           <Nav.Item>
                             <Nav.Link eventKey="second">
                               <img src="../../images/2.jpg" alt="" />
@@ -177,13 +188,13 @@ export const ProductDetail = () => {
                           </Nav.Item>
                         </Nav>
                       </Col>
-                      
+
                       <Col xs={9} className="large-image-tab">
                         <Tab.Content>
                           <Tab.Pane eventKey="first">
                             <img src="../../images/1.jpg" alt="" />
                           </Tab.Pane>
-                          
+
                           <Tab.Pane eventKey="second">
                             <img src="../../images/2.jpg" alt="" />
                           </Tab.Pane>
@@ -245,7 +256,7 @@ export const ProductDetail = () => {
                   </div>
 
                   <div className="jdfbdfgdf">
-                    
+
                     <div class="diwenjrbwebrwehgrwer mt-5">
                       <h4 class="pb-2">Stitching Options</h4>
 
@@ -271,7 +282,7 @@ export const ProductDetail = () => {
 
                       <p className="mb-0">+3 days, for your chosen stitching options.</p>
                     </div>
-                    
+
                     {/* id="custmze-otft-btn"> */}
 
                     <div className="row sdfasdctgerrrrwe">
@@ -299,7 +310,7 @@ export const ProductDetail = () => {
 
                       <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                         <div className="dokewhkjrhuiwerwer skdncfjsdbcfksdnf">
-                          <button className="btn btn-main"><img src="/images/ruler.png" alt="" /> Size Guide</button>
+                          <button className="btn btn-main" onClick={() => setShowSizeGuide(!showSizeGuide)}><img src="/images/ruler.png" alt="" /> Size Guide</button>
                         </div>
                       </div>
                     </div>
@@ -325,7 +336,7 @@ export const ProductDetail = () => {
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
-                                
+
                                 <span class="checkbox__symbol">
                                   <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4 14l8 7L24 7"></path>
@@ -335,11 +346,11 @@ export const ProductDetail = () => {
                                 <p class="checkbox__textwrapper">Matching Turban</p>
                               </label>
                             </div>
-                          </div>       
+                          </div>
 
                           <p className="chngd-price mb-0 col-lg-4 col-md-4 col-sm-4 col-4">USD 23.20</p>
                         </div>
-                        
+
                         <div className="slkdnfkmslkmr row align-items-center">
                           <div className="col-lg-8 col-md-8 col-sm-8 col-8">
                             <select name="" className="form-select" id="">
@@ -365,7 +376,7 @@ export const ProductDetail = () => {
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
-                                
+
                                 <span class="checkbox__symbol">
                                   <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4 14l8 7L24 7"></path>
@@ -391,7 +402,7 @@ export const ProductDetail = () => {
                             <div class="checkbox-wrapper-33">
                               <label class="checkbox">
                                 <input class="checkbox__trigger visuallyhidden" type="checkbox" />
-                                
+
                                 <span class="checkbox__symbol">
                                   <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4 14l8 7L24 7"></path>
@@ -430,11 +441,11 @@ export const ProductDetail = () => {
                       <button className="btn btn-main px-4 me-3">
                         <i class="bi bi-bag me-1"></i> Add To Cart
                       </button>
-        
+
                       <button className="btn btn-main btn-transparent px-4">
                         <i class="bi bi-bag me-1"></i> Buy Now
                       </button>
-                    </div>  
+                    </div>
                   </div>
 
                   <div className="kjidbwejgrwerwer col-lg-10 position-relative mt-5">
@@ -505,7 +516,7 @@ export const ProductDetail = () => {
                   <div className="diwenjrbwebrwehgrwer mt-5">
                     <div className="d-flex align-items-center mb-2">
                       <h4 className="pb-2 me-2 mb-0">Speak To Us</h4>
-                      
+
                       <div className="doiejnwkhrwer">
                         <p className="mb-0">
                           <i class="bi me-1 bi-whatsapp"></i> Need it by a
@@ -808,100 +819,100 @@ export const ProductDetail = () => {
                         <SwiperSlide>
                           <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
                             <div className="images">
-                                <div className="image d-flex position-relative">
-                                    <div className="doiewjkrniuwewer position-relative col-lg-4 overflow-hidden">
-                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+                              <div className="image d-flex position-relative">
+                                <div className="doiewjkrniuwewer position-relative col-lg-4 overflow-hidden">
+                                  <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
 
-                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                    </div>
-
-                                    <div className="fdbdfgdfgdf col-lg-8">
-                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
-                                        
-                                        <h5>$48.99</h5>
-                                    </div>
+                                  <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
                                 </div>
-                            </div>
-                        </div>
-                        </SwiperSlide>
 
-                        <SwiperSlide>
-                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                            <div className="images">
-                                <div className="image d-flex position-relative">
-                                    <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+                                <div className="fdbdfgdfgdf col-lg-8">
+                                  <h4>Clothing And Accessory Boutiques For Sale</h4>
 
-                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                    </div>
-
-                                    <div className="fdbdfgdfgdf col-lg-8">
-                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
-                                        
-                                        <h5>$48.99</h5>
-                                    </div>
+                                  <h5>$48.99</h5>
                                 </div>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                            <div className="images">
-                                <div className="image d-flex position-relative">
-                                    <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                        <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                        <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                    </div>
-
-                                    <div className="fdbdfgdfgdf col-lg-8">
-                                        <h4>Clothing And Accessory Boutiques For Sale</h4>
-                                        
-                                        <h5>$48.99</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                  <div className="image d-flex position-relative">
-                                      <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                          <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                          <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                      </div>
-
-                                      <div className="fdbdfgdfgdf col-lg-8">
-                                          <h4>Clothing And Accessory Boutiques For Sale</h4>
-                                          
-                                          <h5>$48.99</h5>
-                                      </div>
-                                  </div>
                               </div>
+                            </div>
                           </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
                           <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                  <div className="image d-flex position-relative">
-                                      <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                          <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+                            <div className="images">
+                              <div className="image d-flex position-relative">
+                                <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                  <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
 
-                                          <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                      </div>
+                                  <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                </div>
 
-                                      <div className="fdbdfgdfgdf col-lg-8">
-                                          <h4>Clothing And Accessory Boutiques For Sale</h4>
-                                          
-                                          <h5>$48.99</h5>
-                                      </div>
-                                  </div>
+                                <div className="fdbdfgdfgdf col-lg-8">
+                                  <h4>Clothing And Accessory Boutiques For Sale</h4>
+
+                                  <h5>$48.99</h5>
+                                </div>
                               </div>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                            <div className="images">
+                              <div className="image d-flex position-relative">
+                                <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                  <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                  <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                </div>
+
+                                <div className="fdbdfgdfgdf col-lg-8">
+                                  <h4>Clothing And Accessory Boutiques For Sale</h4>
+
+                                  <h5>$48.99</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                            <div className="images">
+                              <div className="image d-flex position-relative">
+                                <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                  <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                  <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                </div>
+
+                                <div className="fdbdfgdfgdf col-lg-8">
+                                  <h4>Clothing And Accessory Boutiques For Sale</h4>
+
+                                  <h5>$48.99</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                            <div className="images">
+                              <div className="image d-flex position-relative">
+                                <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
+                                  <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+
+                                  <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
+                                </div>
+
+                                <div className="fdbdfgdfgdf col-lg-8">
+                                  <h4>Clothing And Accessory Boutiques For Sale</h4>
+
+                                  <h5>$48.99</h5>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </SwiperSlide>
                       </Swiper>
@@ -982,388 +993,408 @@ export const ProductDetail = () => {
 
       <hr />
 
-      
+
       {showSizeModal && (<div className="customize-modal-backdrop position-fixed w-100 h-100"></div>)}
 
-      {showSizeModal && (<div className="customize-modal overflow-hidden position-fixed bg-white">
+      {showSizeModal && (<div className={mesremntGuideImgShow ? "customize-modal customize-modal-msrmnt-img-expand overflow-hidden position-fixed bg-white" : "customize-modal overflow-hidden position-fixed bg-white"}>
         <div className="okdjeiwirwejrwerwer bg-white px-4 pt-4 mb-3">
           <h4>Customize Options</h4>
 
-          <i className="bi position-absolute bi-x" id="co-close-btn" onClick={() => setShowSizeModal(false)}></i>
+          <i className="bi position-absolute bi-x" id="co-close-btn" onClick={handleSizeModalClose}></i>
         </div>
 
-        <div className="dhwekrwerwer px-4 py-4">
-          {/* <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p> */}
+        <div className="row gx-0">
+          <div className={mesremntGuideImgShow ? "col-lg-6" : "col-lg-12"}>
+            <div className="dhwekrwerwer px-4 py-4">
+              {/* <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p> */}
 
-          <div className="idnjuigkjiwerwer">
-            <div className="ojaskmduihiwerwer mb-4 pb-2">
-              <div className="ihjnugherewr">
-                <img src="/images/1.jpg" alt="" />
-              </div>
-
-              <p>Orange Organza Printed N Sequins Work Saree - SASKA36581102</p>
-
-              <div className="mojdowemewr d-flex align-items-center">
-                <div className="vfeerwrwer me-2">
-                  <label className="form-label mb-0">Measurement Name*</label>  
-                </div> 
-
-                <div className="qwererwerrr flex-grow-1">
-                  <input type="text" className="form-control" />
-                </div>
-              </div>
-            </div>
-
-            <div className="dihwemoirjwerwer mb-5">
-              <h5 className="text-center mb-3">Select Measurement Fit</h5>  
-
-              <div className="dowehrinwejikhriwer">
-                <div className="row align-items-center">
-                  <div className="col-lg-5 doiwejrwer text-center">
-                    <div className="radio-wrapper-5 justify-content-center">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5" className="sdvwedeertweerr">Body Fit</label>
-                    </div>
-
-                    <p className="mb-0">Garments will be tailored with 1-2 inch loosening</p>
+              <div className="idnjuigkjiwerwer">
+                <div className="ojaskmduihiwerwer mb-4 pb-2">
+                  <div className="ihjnugherewr">
+                    <img src="/images/1.jpg" alt="" />
                   </div>
 
-                  <div className="col-lg-2">
-                    <span className="djknakknewrr mx-auto d-block position-relative bg-white">OR</span>
-                  </div>                  
+                  <p>Orange Organza Printed N Sequins Work Saree - SASKA36581102</p>
 
-                  <div className="col-lg-5 doiwejrwer text-center">
-                    <div className="radio-wrapper-5 justify-content-center">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-234" type="radio" name="radio-examples" />
-                        
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-234" className="sdvwedeertweerr">Garment Fit</label>
+                  <div className="mojdowemewr d-flex align-items-center">
+                    <div className="vfeerwrwer me-2">
+                      <label className="form-label mb-0">Measurement Name*</label>
                     </div>
 
-                    <p className="mb-0">Garments will be tailored exactly as per provided measurements</p>
-                  </div>
-                </div>
-              </div>
-            </div>         
-          </div>
-
-          <p className="mb-3">Choose a size to be customized:</p>
-
-          <div className="okemlkwnjrirwer mb-3 d-flex align-items-center">
-            <div className="doeiwjrkweirwe">
-              <input id="s1" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s1" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XS</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s2" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s2" className="text-center p-2"><span className="mb-1">31,500</span> <br /> S</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s3" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s3" className="text-center p-2"><span className="mb-1">31,500</span> <br /> L</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s4" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s4" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XL</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s5" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s5" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XXL</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s6" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s6" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 3XL</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s7" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s7" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 4XL</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s8" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s8" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 5XL</label>
-            </div>
-
-            <div className="doeiwjrkweirwe">
-              <input id="s9" name="s-optns" type="radio" className="d-none position-absolute" />
-
-              <label htmlFor="s9" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 6XL</label>
-            </div>
-          </div>
-
-          <p>Customized orders can take minimum 7 extra working days</p>
-
-          <div className="idjnejwhrewrwerwer mt-4">
-            <h5 className="d-flex align-items-center justify-content-between">
-              <span><i className="bi me-1 bi-arrows-expand-vertical"></i> Do you want to enter your measurements?</span>
-            
-              <div className="checkbox-wrapper-5 d-flex align-items-center">
-                <span>Yes</span>
-
-                <div className="check ms-2">
-                  <input id="check-5" type="checkbox" onChange={(e) => setShowTabs(e.target.checked)} />
-                  
-                  <label for="check-5"></label>
-                </div>
-              </div>
-            </h5>
-
-            {showTabs && (
-              <div className="doiewnjkrhwerwerwer mt-3">
-                <div className="dkewnjkhriwer">
-                  <div className="d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0 px-3 py-2">Measurement Form</h5>
-
-                    <div className="dlwenoijwelkjrwer">
-                      <div className="radio-wrapper-7">
-                        <label className="radio-wrapper-7" htmlFor="example-7">
-                          <input id="example-7" type="radio" name="radio-examplessda" defaultChecked />
-                          
-                          <span>Inches</span>
-                        </label>
-
-                        <label className="radio-wrapper-7" htmlFor="example-fde">
-                          <input id="example-fde" type="radio" name="radio-examplessda" />
-                          
-                          <span>Cm</span>
-                        </label>
-                      </div>
+                    <div className="qwererwerrr flex-grow-1">
+                      <input type="text" className="form-control" />
                     </div>
                   </div>
                 </div>
 
-                <div className="asdasdaswwee mt-2">
-                  <h5 className="text-center text-white py-2 mb-3">Kurta Measurement</h5>
+                <div className="dihwemoirjwerwer mb-5">
+                  <h5 className="text-center mb-3">Select Measurement Fit</h5>
 
-                  <div className="ihkjnjdewrwer">
-                    <form className="row">
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Bust</label>
+                  <div className="dowehrinwejikhriwer">
+                    <div className="row align-items-center">
+                      <div className="col-lg-5 doiwejrwer text-center">
+                        <div className="radio-wrapper-5 justify-content-center">
+                          <label htmlFor="example-5" className="forCircle">
+                            <input id="example-5" type="radio" name="radio-examples" />
 
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </Form.Select>
+                            <span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-3.5 w-3.5"
+                                viewBox="0 0 16 16"
+                                fill="currentColor"
+                              >
+                                <circle data-name="ellipse" cx={8} cy={8} r={8} />
+                              </svg>
+                            </span>
+                          </label>
+
+                          <label htmlFor="example-5" className="sdvwedeertweerr">Body Fit</label>
+                        </div>
+
+                        <p className="mb-0">Garments will be tailored with 1-2 inch loosening</p>
                       </div>
 
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Shoulder</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>32</option>
-                        </Form.Select>
+                      <div className="col-lg-2">
+                        <span className="djknakknewrr mx-auto d-block position-relative bg-white">OR</span>
                       </div>
 
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Arm</label>
+                      <div className="col-lg-5 doiwejrwer text-center">
+                        <div className="radio-wrapper-5 justify-content-center">
+                          <label htmlFor="example-5" className="forCircle">
+                            <input id="example-234" type="radio" name="radio-examples" />
 
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
+                            <span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-3.5 w-3.5"
+                                viewBox="0 0 16 16"
+                                fill="currentColor"
+                              >
+                                <circle data-name="ellipse" cx={8} cy={8} r={8} />
+                              </svg>
+                            </span>
+                          </label>
+
+                          <label htmlFor="example-234" className="sdvwedeertweerr">Garment Fit</label>
+                        </div>
+
+                        <p className="mb-0">Garments will be tailored exactly as per provided measurements</p>
                       </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Front Neck Depth</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Back Neck Depth</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Sleeve Length</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Sleeve Style</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Above Waist</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Hip</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Kurta Length</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Kurta Closing Side</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Kurta Closing With</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-                    </form>
+                    </div>
                   </div>
                 </div>
-
-                <div className="asdasdaswwee mt-2">
-                  <h5 className="text-center text-white py-2 mb-3">Bottom Measurement</h5>
-
-                  <div className="ihkjnjdewrwer">
-                    <form className="row">
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Waist</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Thigh</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>32</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Knee</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Around Calf</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Bottom Length</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Bottom Style</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Bottom Closing Side</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-
-                      <div className="col-lg-6 mb-3">
-                        <label className="form-label">Bottom Closing With</label>
-
-                        <Form.Select aria-label="Default select example">
-                          <option>--Select Here--</option>
-                        </Form.Select>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-
-                <div className="col-lg-12 mb-3">
-                  <label className="form-label">Additional customization requests here.</label>  
-
-                  <textarea name="" className="form-control" placeholder="Please specify any additional customization requests here." style={{height: "150px"}}></textarea>
-                </div>   
-
-                <button className="btn btn-main w-100">Review & Submit</button>         
               </div>
-            )}
+
+              <p className="mb-3">Choose a size to be customized:</p>
+
+              <div className="okemlkwnjrirwer mb-3 d-flex align-items-center">
+                <div className="doeiwjrkweirwe">
+                  <input id="s1" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s1" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XS</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s2" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s2" className="text-center p-2"><span className="mb-1">31,500</span> <br /> S</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s3" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s3" className="text-center p-2"><span className="mb-1">31,500</span> <br /> L</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s4" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s4" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XL</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s5" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s5" className="text-center p-2"><span className="mb-1">31,500</span> <br /> XXL</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s6" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s6" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 3XL</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s7" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s7" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 4XL</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s8" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s8" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 5XL</label>
+                </div>
+
+                <div className="doeiwjrkweirwe">
+                  <input id="s9" name="s-optns" type="radio" className="d-none position-absolute" />
+
+                  <label htmlFor="s9" className="text-center p-2"><span className="mb-1">36,225</span> <br /> 6XL</label>
+                </div>
+              </div>
+
+              <p>Customized orders can take minimum 7 extra working days</p>
+
+              <div className="idjnejwhrewrwerwer mt-4">
+                <h5 className="d-flex align-items-center justify-content-between">
+                  <span><i className="bi me-1 bi-arrows-expand-vertical"></i> Do you want to enter your measurements?</span>
+
+                  <div className="checkbox-wrapper-5 d-flex align-items-center">
+                    <span>Yes</span>
+
+                    <div className="check ms-2">
+                      <input id="check-5" type="checkbox" onChange={(e) => setShowTabs(e.target.checked)} />
+
+                      <label for="check-5"></label>
+                    </div>
+                  </div>
+                </h5>
+
+                {showTabs && (
+                  <div className="doiewnjkrhwerwerwer mt-3">
+                    <div className="dkewnjkhriwer">
+                      <div className="d-flex align-items-center justify-content-between">
+                        <h5 className="mb-0 px-3 py-2">Measurement Form</h5>
+
+                        <div className="dlwenoijwelkjrwer">
+                          <div className="radio-wrapper-7">
+                            <label className="radio-wrapper-7" htmlFor="example-7">
+                              <input id="example-7" type="radio" name="radio-examplessda" defaultChecked />
+
+                              <span>Inches</span>
+                            </label>
+
+                            <label className="radio-wrapper-7" htmlFor="example-fde">
+                              <input id="example-fde" type="radio" name="radio-examplessda" />
+
+                              <span>Cm</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="asdasdaswwee mt-2">
+                      <h5 className="text-center text-white py-2 mb-3">Kurta Measurement</h5>
+
+                      <div className="ihkjnjdewrwer">
+                        <form className="row">
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Bust <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Shoulder <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>32</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Arm <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Front Neck Depth <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Back Neck Depth <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Sleeve Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Sleeve Style <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Above Waist <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Hip <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Kurta Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Kurta Closing Side <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Kurta Closing With <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div className="asdasdaswwee mt-2">
+                      <h5 className="text-center text-white py-2 mb-3">Bottom Measurement</h5>
+
+                      <div className="ihkjnjdewrwer">
+                        <form className="row">
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Waist <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Thigh <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>32</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Knee <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Around Calf <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Bottom Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Bottom Style <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Bottom Closing Side <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+
+                          <div className="col-lg-6 mb-3">
+                            <label className="form-label">Bottom Closing With <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
+
+                            <Form.Select aria-label="Default select example">
+                              <option>--Select Here--</option>
+                            </Form.Select>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12 mb-3">
+                      <label className="form-label">Additional customization requests here.</label>
+
+                      <textarea name="" className="form-control" placeholder="Please specify any additional customization requests here." style={{ height: "150px" }}></textarea>
+                    </div>
+
+                    <button className="btn btn-main w-100">Review & Submit</button>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
+
+          {mesremntGuideImgShow && (
+            <div className="col-lg-6">
+              <div className="doienkwjrewewr p-5 pt-2">
+                <span className="bck-form" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i class="fa-solid me-1 fa-arrow-left-long"></i> Back To The Form</span>
+
+                <div className="dewnrkhwerwe">
+                  <div className="text-center">
+                    <img src="/images/around-bust.jpg" className="img-fluid mb-3" alt="" />
+                  </div>
+
+                  <p className="mb-0">Take this measurement over the fullest part of the bust and across the widest part of the back. The measuring tape should go horizontally all around your body</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="doewrjhwerwerwer d-flex align-items-center justify-content-end p-4">
@@ -1371,13 +1402,188 @@ export const ProductDetail = () => {
         </div>
       </div>)}
 
+
+      {/* size guide size */}
+
+      <div className={`${showSizeGuide ? "size-guide-modal-backdrop" : "size-guide-modal-backdrop size-guide-modal-backdrop-hide"} w-100 h-100 position-fixed`}></div>
+
+      <div className={`${showSizeGuide ? "size-guide-modal" : "size-guide-modal size-guide-modal-hide"} position-fixed bg-white`}>
+        <div className="size-guide-modal-header d-flex align-items-center justify-content-between px-4 py-3">
+          <h4 className="mb-1">Size Chart for Men</h4>
+
+          <i class="fa-solid fa-xmark" onClick={() => setShowSizeGuide(false)}></i>
+        </div>
+
+        <div className="dkewhrwerwer px-4 py-3">
+          <div className="dkjjenwjknkweh">
+            <div className="row align-items-center">
+              <div className="col-lg-3 mb-3">
+                <div className="diewnrjhwerwer">
+                  <img src="/images/1.jpg" alt="" />
+                </div>
+              </div>
+
+              <div className="col-lg-9">
+                <div className="dlowenjkrnwkeh">
+                  <ul>
+                    <li className="mb-3">If your bare chest size measurement is 40 inches, you should select size 40 only from the product page. The "Top
+                      Chest" attribute in the size chart refers to the garment's chest size. It is inclusive of the required 3 to 4 inches
+                      loosening, to ensure the right fit.</li>
+
+                    <li>If your bare chest measurement falls between 2 sizes i.e. 37 inches, you should select size 38.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="doenwkhrkwenjkrwer">
+            <Tabs
+              defaultActiveKey="home"
+              id="uncontrolled-tab-example"
+              className="mb-3 justify-content-center"
+            >
+              <Tab eventKey="home" title="SIZE GUIDE">
+                <div className="diekhjwerwer">
+                  <div className="djnweuihrwer">
+                    <div className="opmkojwojoiwere d-flex justify-content-between">
+                      <div className="dkewhknewhirwer">
+                        <h5>Size Chart for Men</h5>
+
+                        <h6 className="mb-0">BODY MEASUREMENTS [ 3-4 INCHES LOOSENING REQUIRED]</h6>
+                      </div>
+
+                      <div className="oidahijeoijer d-flex align-items-center">
+                        <p className="mb-0">in</p>
+
+                        <div className="checkbox-wrapper-2 mx-1">
+                          <input type="checkbox" className="sc-gJwTLC ikxBAC" />
+                        </div>
+
+                        <p className="mb-0">cms</p>
+                      </div>
+                    </div>
+
+                    <div className="jnmkjhihewirwer mt-3">
+                      <Table responsive="xl">
+                        <thead>
+                          <tr>
+                            <th>(in inches)</th>
+                            <th>Chest</th>
+                            <th>Waist</th>
+                            <th>Neck</th>
+                            <th>Hip</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td>XS</td>
+                            <td>36</td>
+                            <td>28-30</td>
+                            <td>14</td>
+                            <td>36.5 - 38.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>S</td>
+                            <td>38</td>
+                            <td>30-32</td>
+                            <td>15</td>
+                            <td>38.5 - 40.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>M</td>
+                            <td>40</td>
+                            <td>32-34</td>
+                            <td>16</td>
+                            <td>40.5 - 41.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>L</td>
+                            <td>42</td>
+                            <td>34-36</td>
+                            <td>17</td>
+                            <td>41.5 - 42.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>XL</td>
+                            <td>44</td>
+                            <td>36-38</td>
+                            <td>18</td>
+                            <td>42.5 - 43.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>XXL</td>
+                            <td>46</td>
+                            <td>38-40</td>
+                            <td>19</td>
+                            <td>43.5 - 44.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>3XL</td>
+                            <td>48</td>
+                            <td>40-42</td>
+                            <td>20</td>
+                            <td>44.5 - 46.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>4XL</td>
+                            <td>50</td>
+                            <td>42-44</td>
+                            <td>21</td>
+                            <td>46.5 - 48.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>5XL</td>
+                            <td>52</td>
+                            <td>44-46</td>
+                            <td>22</td>
+                            <td>48.5 - 50.5</td>
+                          </tr>
+
+                          <tr>
+                            <td>6XL</td>
+                            <td>54</td>
+                            <td>46-48</td>
+                            <td>23</td>
+                            <td>50.5 - 52.5</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </div>
+                  </div>
+
+                  <div className="oijdkejwjewr p-4">
+                    <h6><i class="fa-brands me-1 fa-whatsapp"></i> Whatsapp Us at <span>+91 84880 70070</span> if you are unsure of your size.</h6>
+
+                    <p className="mb-0">This is a standard size guide for the basic measurements. Length will vary according to style. There may also be variations in some brands commonly with Indian clothing, so please refer to the product measurements displayed on the product page. Alternatively, you may contact our customer care for specific queries at vinhemfashion.com</p>
+                  </div>
+                </div>
+              </Tab>
+
+              <Tab eventKey="profile" title="MEASURING GUIDE">
+                <img src="/images/sawewe.jpg" className="img-fluid" alt="" />
+              </Tab>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+
       {/* turbon chart size */}
 
       <Modal show={show} className="men-chart-size" onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Turbon Chart Size</Modal.Title>
         </Modal.Header>
-        
+
         <Modal.Body>
           <img src="/images/turban.jpg" className="img-fluid" alt="" />
         </Modal.Body>
@@ -1389,13 +1595,13 @@ export const ProductDetail = () => {
         <Modal.Header closeButton>
           <Modal.Title>Turbon Chart Size</Modal.Title>
         </Modal.Header>
-        
+
         <Modal.Body>
           <img src="/images/mojri.jpg" className="img-fluid" alt="" />
         </Modal.Body>
       </Modal>
 
       <FooterTopComponent />
-      </>
+    </>
   );
 };
