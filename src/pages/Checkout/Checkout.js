@@ -484,7 +484,7 @@ export const Checkout = () => {
 
                                                 <p className="mb-1">Size: <span>S</span></p>
 
-                                                <p className="mb-1">Customize: <span><a href="">Add Details</a></span></p>
+                                                <p className="mb-1">Customize: <span><a href="/">Add Details</a></span></p>
                                             </div>
 
                                             <p className="mb-1">Price: <span><i class="fa-solid fa-indian-rupee-sign"></i>22,000</span></p>
