@@ -9,11 +9,11 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Modal from 'react-bootstrap/Modal';
+// eslint-disable-next-line
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 
 import { FeaturedProducts } from "../../components";
-
 import "./Css/ProductDetail.css";
 import "./Css/ProductDetailResponsive.css";
 import "swiper/css";
