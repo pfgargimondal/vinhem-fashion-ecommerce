@@ -84,7 +84,7 @@ export const TrackOrder = () => {
 
                 <div className="col-lg-5">
                     <div className="right-box d-none mb-4">
-                        <p className="mb-0">Specific details are hidden for privacy reasons, <a href="#" className="log-in-link">Log in</a> to view complete details</p>
+                        <p className="mb-0">Specific details are hidden for privacy reasons, <a href="/" className="log-in-link">Log in</a> to view complete details</p>
                     </div>
 
                     <div className="dkiejwrnjiowejrwer">
@@ -92,6 +92,7 @@ export const TrackOrder = () => {
 
                         <div className="pkdoewkpoerrr">
                             <Table responsive="lg">
+                                
                                 <thead>
                                     <tr>
                                         <th>Item</th>
