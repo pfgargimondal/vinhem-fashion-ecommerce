@@ -54,7 +54,7 @@ export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
                   <ul className="f-link mb-0 ps-0">
                     <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Payment Option</Link></li>
 
-                    <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Testimonial</Link></li>
+                    {/* <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Testimonial</Link></li> */}
 
                     <li><Link to="/career"><i class="bi me-2 bi-caret-right-fill"></i> Career</Link></li>
 
