@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
@@ -23,7 +23,116 @@ export const ProductDetail = () => {
   const [show, setShow] = useState(false);
   const [showMjri, setShowMjri] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
-  const [mesremntGuideImgShow, setMesremntGuideImgShow] = useState(false);
+  // const [mesremntGuideImgShow, setMesremntGuideImgShow] = useState(false);
+  const [activeGuide, setActiveGuide] = useState(null);
+
+  const guides = {
+    aroundBust: {
+      label: "Around Bust",
+      img: "/images/around-bust.jpg",
+      text: "Take this measurement over the fullest part of the bust and across the widest part of the back. The measuring tape should go horizontally all around your body",
+    },
+    shoulder: {
+      label: "Shoulder",
+      img: "/images/around-bust.jpg",
+      text: "Measure from one shoulder point to the other across the back.",
+    },
+    aroundArm: {
+      label: "Around Arm",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around the fullest part of your upper arm.",
+    },
+    frontNeckDepth: {
+      label: "Front Neck Depth",
+      img: "/images/around-bust.jpg",
+      text: "Measure the depth from the shoulder down to the desired neckline point.",
+    },
+    backNeckDepth: {
+      label: "Back Neck Depth",
+      img: "/images/around-bust.jpg",
+      text: "Measure the depth from the shoulder down the back neckline point.",
+    },
+    sleeveLength: {
+      label: "Sleeve Length",
+      img: "/images/around-bust.jpg",
+      text: "Measure from shoulder tip to the desired sleeve end.",
+    },
+    sleeveStyle: {
+      label: "Sleeve Style",
+      img: "/images/around-bust.jpg",
+      text: "Choose the sleeve style (full, half, puff, etc.).",
+    },
+    aroundAboveWaist: {
+      label: "Around Above Waist",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around just above your waist.",
+    },
+    aroundHip: {
+      label: "Around Hip",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around the fullest part of your hip.",
+    },
+    kurtaLength: {
+      label: "Kurta Length",
+      img: "/images/around-bust.jpg",
+      text: "Measure from the shoulder to the desired length of the kurta.",
+    },
+    kurtaClosingSide: {
+      label: "Kurta Closing Side",
+      img: "/images/around-bust.jpg",
+      text: "Specify the closing side for your kurta (left or right).",
+    },
+    kurtaClosingWith: {
+      label: "Kurta Closing With",
+      img: "/images/around-bust.jpg",
+      text: "Specify what type of closing (zipper, hooks, buttons, etc.).",
+    },
+    aroundWaist: {
+      label: "Around Waist",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around the narrowest part of your waist.",
+    },
+    aroundThigh: {
+      label: "Around Thigh",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around the fullest part of your thigh.",
+    },
+    aroundKnee: {
+      label: "Around Knee",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around your knee.",
+    },
+    aroundCalf: {
+      label: "Around Calf",
+      img: "/images/around-bust.jpg",
+      text: "Wrap the tape measure around the fullest part of your calf.",
+    },
+    bottomLength: {
+      label: "Bottom Length",
+      img: "/images/around-bust.jpg",
+      text: "Measure from the waist to the desired length of the bottom wear.",
+    },
+    bottomStyle: {
+      label: "Bottom Style",
+      img: "/images/around-bust.jpg",
+      text: "Specify the style of the bottom wear (straight, flared, churidar, etc.).",
+    },
+    bottomClosingSide: {
+      label: "Bottom Closing Side",
+      img: "/images/around-bust.jpg",
+      text: "Specify the closing side of your bottom wear.",
+    },
+    bottomClosingWith: {
+      label: "Bottom Closing With",
+      img: "/images/around-bust.jpg",
+      text: "Specify what type of closing (zipper, hooks, drawstring, etc.).",
+    },
+  };
+
+
+  const handleGuideClick = (item) => {
+    setActiveGuide(activeGuide === item ? null : item);
+  }
 
   //turbon modal
 
@@ -106,12 +215,12 @@ export const ProductDetail = () => {
   const [showTabs, setShowTabs] = useState(false);
   const [showSizeModal, setShowSizeModal] = useState(false);
 
-  const handleSizeModalClose = () => {
-    setShowSizeModal(false);
-
+  const handleSizeModalClose = () => {   
     showTabs && setShowTabs(false);
-    
-    mesremntGuideImgShow && setMesremntGuideImgShow(false);
+
+    activeGuide && setActiveGuide(null);       
+
+    setShowSizeModal(false);    
   }
 
   //featured products
@@ -130,9 +239,24 @@ export const ProductDetail = () => {
   };
 
   const handleShowModal = (e) => {
-    e.preventDefault(); // ✅ fixed spelling
-    setShowSizeModal(!showSizeModal);    // ✅ your modal function
+    e.preventDefault();
+
+    setShowSizeModal(!showSizeModal);
   };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+
+    if (showSizeModal) {
+      html.classList.add("overflow-hidden"); 
+    } else {
+      html.classList.remove("overflow-hidden"); 
+    }
+
+    return () => {
+      html.classList.remove("overflow-hidden"); 
+    }
+  }, [showSizeModal]);
 
   // useEffect(() => {
   //   const fetchFeaturedProducts = async () => {
@@ -996,7 +1120,7 @@ export const ProductDetail = () => {
 
       {showSizeModal && (<div className="customize-modal-backdrop position-fixed w-100 h-100"></div>)}
 
-      {showSizeModal && (<div className={mesremntGuideImgShow ? "customize-modal customize-modal-msrmnt-img-expand overflow-hidden position-fixed bg-white" : "customize-modal overflow-hidden position-fixed bg-white"}>
+      {showSizeModal && (<div className={activeGuide ? "customize-modal customize-modal-msrmnt-img-expand overflow-hidden position-fixed bg-white" : "customize-modal overflow-hidden position-fixed bg-white"}>
         <div className="okdjeiwirwejrwerwer bg-white px-4 pt-4 mb-3">
           <h4>Customize Options</h4>
 
@@ -1004,7 +1128,7 @@ export const ProductDetail = () => {
         </div>
 
         <div className="row gx-0">
-          <div className={mesremntGuideImgShow ? "col-lg-6" : "col-lg-12"}>
+          <div className={activeGuide ? "col-lg-6" : "col-lg-12"}>
             <div className="dhwekrwerwer px-4 py-4">
               {/* <p className="mb-3">For further assistance, Chat with us <button className="btn btn-main"><i className="bi me-1 bi-whatsapp"></i> Chat With Us</button></p> */}
 
@@ -1186,110 +1310,168 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="asdasdaswwee mt-2">
-                      <h5 className="text-center text-white py-2 mb-3">Kurta Measurement</h5>
+                      <h5 className="text-center text-white py-2 mb-3">Measurement</h5>
 
                       <div className="ihkjnjdewrwer">
                         <form className="row">
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Bust <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Bust
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundBust")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Shoulder <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>32</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Shoulder
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("shoulder")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Arm <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Arm
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundArm")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Front Neck Depth <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Front Neck Depth
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("frontNeckDepth")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Back Neck Depth <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Back Neck Depth
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("backNeckDepth")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Sleeve Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Sleeve Length
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("sleeveLength")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Sleeve Style <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Sleeve Style
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("sleeveStyle")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Above Waist <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Above Waist
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundAboveWaist")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Hip <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Hip
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundHip")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Kurta Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Kurta Length
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("kurtaLength")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Kurta Closing Side <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Kurta Closing Side
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("kurtaClosingSide")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Kurta Closing With <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Kurta Closing With
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("kurtaClosingWith")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
                         </form>
                       </div>
+
                     </div>
 
                     <div className="asdasdaswwee mt-2">
@@ -1298,70 +1480,107 @@ export const ProductDetail = () => {
                       <div className="ihkjnjdewrwer">
                         <form className="row">
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Waist <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Waist
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundWaist")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Thigh <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>32</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Thigh
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundThigh")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Knee <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Knee
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundKnee")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Around Calf <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Around Calf
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("aroundCalf")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Bottom Length <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Bottom Length
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("bottomLength")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Bottom Style <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Bottom Style
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("bottomStyle")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Bottom Closing Side <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Bottom Closing Side
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("bottomClosingSide")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
 
                           <div className="col-lg-6 mb-3">
-                            <label className="form-label">Bottom Closing With <span className="enqury-guide" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i className="fa-solid fa-info"></i></span></label>
-
-                            <Form.Select aria-label="Default select example">
-                              <option>--Select Here--</option>
-                            </Form.Select>
+                            <label className="form-label">
+                              Bottom Closing With
+                              <span
+                                className="enqury-guide"
+                                onClick={() => handleGuideClick("bottomClosingWith")}
+                              >
+                                <i className="fa-solid fa-info"></i>
+                              </span>
+                            </label>
+                            <input type="text" className="form-control" placeholder="Enter value" />
                           </div>
                         </form>
                       </div>
@@ -1380,17 +1599,17 @@ export const ProductDetail = () => {
             </div>
           </div>
 
-          {mesremntGuideImgShow && (
+          {activeGuide && (
             <div className="col-lg-6">
               <div className="doienkwjrewewr p-5 pt-2">
-                <span className="bck-form" onClick={() => setMesremntGuideImgShow(!mesremntGuideImgShow)}><i class="fa-solid me-1 fa-arrow-left-long"></i> Back To The Form</span>
+                <span className="bck-form" onClick={() => setActiveGuide(null)}><i class="fa-solid me-1 fa-arrow-left-long"></i> Back To The Form</span>
 
                 <div className="dewnrkhwerwe">
                   <div className="text-center">
-                    <img src="/images/around-bust.jpg" className="img-fluid mb-3" alt="" />
+                    <img src={guides[activeGuide]?.img} className="img-fluid mb-3" alt={activeGuide} />
                   </div>
 
-                  <p className="mb-0">Take this measurement over the fullest part of the bust and across the widest part of the back. The measuring tape should go horizontally all around your body</p>
+                  <p className="mb-0">{guides[activeGuide]?.text || ""}</p>
                 </div>
               </div>
             </div>

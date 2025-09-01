@@ -32,6 +32,7 @@ export { Cart } from "./Cart/Cart";
 export { Checkout } from "./Checkout/Checkout";
 export { Blog } from "./Blog/Blog";
 export { BlogDetails } from "./Blog/BlogDetails";
+export { TrackOrder } from "./TrackOrder/TrackOrder";
 
 
 export { Invoice } from "./Invoice/Invoice";
