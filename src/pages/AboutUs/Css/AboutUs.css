@@ -1,11 +1,14 @@
-/*# sourceMappingURL=AboutUs.css.map */
-
-/*start about us   css   */
-/*start about us   css   */
-/*start about us   css   */
 .aboutusbannr {
   width: 100%;
   height: 500px;
+}
+
+.fgsdfsdf656565d
+{
+  width: 100%;
+  padding: 40px 0;
+  color: black;
+  font-weight: 500;
 }
 
 .dfbhdf h2 {
@@ -106,7 +109,7 @@
 
 .dfgbdfdf {
   width: 100%;
-  height: 270px;
+  height: 210px;
 }
 .dfgbdfdf img {
   width: 100%;
@@ -118,6 +121,110 @@
   margin-top: 50px;
 }
 
-/*end about us    css   */
-/*end about us    css   */
-/*end about us    css   *//*# sourceMappingURL=style.css.map */
+.dfbgghdfgdfg h2 {
+  color: black;
+  font-weight: 600;
+}
+.dfbgghdfgdfg i {
+  color: #e00000;
+}
+
+.dfhgdfbgdfbhjh65 {
+  width: 100%;
+  height: 650px;
+  margin-top: 150px;
+  background-size: 100% 100%;
+  position: absolute;
+}
+
+.dfgndfgdfg {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin-top: -126px !important;
+  position: relative;
+}
+
+.fbfdf {
+  text-align: center;
+}
+
+.fbfdf h2 {
+  color: #000;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.fbfdf p {
+  font-size: 17px !important;
+}
+
+.jhgdfg57 label {
+  color: #000;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.jhgdfg57 .form-control {
+  padding: 10px;
+  background-color: #fff !important;
+}
+
+.jhgdfg57 {
+  margin-bottom: 15px;
+}
+
+.dfgjhfg
+{
+  width: 100%;
+  height: 210px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: rgb(245, 221, 221);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.dfgjhfg h4 
+{
+  color: black;
+}
+
+.dfgjhfg p
+{
+  margin-bottom: 0;
+}
+
+
+.dfgjhfg2
+{
+  width: 100%;
+  height: 210px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: rgb(225, 243, 243);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.dfgjhfg2 h4 
+{
+   color: black;
+
+}
+
+.dfgjhfg2 p
+{
+  margin-bottom: 0;
+}
+.vgjlksdfj {
+  padding: 15px 0;
+  text-align: center;
+  color: #3C3A3C;
+}
+.vgjlksdfj h2{
+  padding-bottom: 15px;
+  font-size: 30px;
+  color: #3C3A3C;
+;
+
+}
