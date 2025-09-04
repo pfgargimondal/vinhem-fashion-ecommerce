@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         .then(res => res.json())
         .then(data => setUser(data.user));
     }
-  }, [token]);
+  }, [user, token]);
 
 
   return (
