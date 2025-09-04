@@ -9,6 +9,10 @@ export { ProductDetail } from "./ProductDetail/ProductDetail";
 export { Filter } from "./Filter/Filter";
 export { Wedding } from "./Wedding/Wedding";
 
+export { NewIn } from "./Filter/NewIn";
+export { ReadyToShip } from "./Filter/ReadyToShip";
+export { FestiveShop } from "./FestiveShop/FestiveShop"
+
 export { Register } from "./Register/Register";
 export { Login } from "./Login/Login";
 

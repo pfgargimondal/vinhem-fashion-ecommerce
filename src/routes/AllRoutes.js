@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { AboutUs, ContactUs, Filter, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ} from "../pages";
+import { AboutUs, ContactUs, Filter, NewIn, ReadyToShip, FestiveShop, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ} from "../pages";
+import ProtectedRoute from "../components/ProtectedRoute ";
 export const AllRoutes = () => {
   return (
     <Routes>
@@ -10,6 +11,10 @@ export const AllRoutes = () => {
       <Route path="on-sale" element={ <OnSale /> } />
       <Route path="wedding" element={ <Wedding /> } />
       <Route path="products" element={ <Filter /> } />
+      <Route path="new-in" element={ <NewIn /> } />
+      <Route path="ready-to-ship" element={ <ReadyToShip /> } />
+      <Route path="festive-shop" element={ <FestiveShop /> } />
+
       <Route path="products/:id" element={ <ProductDetail /> } />
       <Route path="register" element={ <Register /> } />
       <Route path="login" element={ <Login /> } />
@@ -26,21 +31,20 @@ export const AllRoutes = () => {
       <Route path="blog" element={ <Blog /> } />
       <Route path="blog/:blogid" element={ <BlogDetails /> } />
 
-      <Route path="profile" element={ <Profile /> } />
-      <Route path="change-password" element={ <ChangePassword /> } />
-      <Route path="cancelled-order" element={ <CancelOrder/> } />
-      <Route path="order-history" element={ <OrderHistory/> } />
-      <Route path="wishlist" element={ <Wishlist/> } />
-      <Route path="cart" element={ <Cart/> } />
-      <Route path="checkout" element={ <Checkout/> } />
-      <Route path="chat" element={ <Chat/> } />
+      <Route element={<ProtectedRoute />}>
+          <Route path="profile" element={ <Profile /> } />
+          <Route path="change-password" element={ <ChangePassword /> } />
+          <Route path="cancelled-order" element={ <CancelOrder/> } />
+          <Route path="order-history" element={ <OrderHistory/> } />
+          <Route path="wishlist" element={ <Wishlist/> } />
+          <Route path="cart" element={ <Cart/> } />
+          <Route path="checkout" element={ <Checkout/> } />
+          <Route path="chat" element={ <Chat/> } />
 
-      <Route path="invoice" element={ <Invoice /> } />
-      <Route path="track-order" element={ <TrackOrder /> } />
-
-
-       
-
+          <Route path="invoice" element={ <Invoice /> } />
+          <Route path="track-order" element={ <TrackOrder /> } />
+      </Route>
+      
       <Route path="*" element={ <PageNotFound /> } />
     </Routes>
   )

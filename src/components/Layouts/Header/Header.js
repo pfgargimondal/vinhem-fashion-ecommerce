@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { useAuth } from "../../../context/AuthContext";
 import { DropdownLoggedIn } from "../../Elements/Dropdown/DropdownLoggedIn";
 
 import Logo from "../../../assets/images/logo.png";
@@ -27,6 +27,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
     }
   }, [resMenu]);
 
+  const { user } = useAuth();
 
   return (
     <>
@@ -131,11 +132,18 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
 
                       <li className="infrm-menu-divider">|</li>
 
-                      <li className="position-relative">
-                        <Link to="/register" onClick={() => setUserDropdown(!userDropdown)}><i class="bi bi-person"></i> Account</Link>
-
-                        { userDropdown && <DropdownLoggedIn /> }
-                      </li>              
+                        <li className="position-relative">
+                        {user ? (
+                          <>
+                            <i className="bi bi-person" onClick={() => setUserDropdown(!userDropdown)}></i> {user.name}
+                            {userDropdown && <DropdownLoggedIn />}
+                          </>
+                        ) : (
+                          <Link to="/register">
+                            <i className="bi bi-person"></i> Account
+                          </Link>
+                        )}
+                      </li>     
                     </ul>
                   </div>
                 </div>

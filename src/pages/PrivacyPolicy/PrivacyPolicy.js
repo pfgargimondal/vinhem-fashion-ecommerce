@@ -17,7 +17,7 @@ export const PrivacyPolicy = () => {
             } catch (error) {
                 console.error("Error fetching users:", error);
             } finally{
-                // setLoading(false);
+                // setLoading(false);--------------------------------
             }
         };
 
@@ -28,7 +28,7 @@ export const PrivacyPolicy = () => {
     <div>
         {/* {loading && <Loader />}      */}
         <PolicyComponent PolicyDetails={PrivacyPolicyDetails}/>
-      <hr />
+        <hr />
 
       <FooterTopComponent />
     </div>

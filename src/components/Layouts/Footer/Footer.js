@@ -42,7 +42,7 @@ export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
 
                     <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Track Order</Link></li>
 
-                    <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> F.A.Q</Link></li>
+                    <li><Link to="/faq"><i class="bi me-2 bi-caret-right-fill"></i> F.A.Q</Link></li>
                   </ul>
                 </div>
               </div>

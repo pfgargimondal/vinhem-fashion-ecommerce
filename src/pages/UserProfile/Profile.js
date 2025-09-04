@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-
 import { UserProfileNavMenu } from "../../components";
-
 import styles from "./Css/Profile.module.css";
-
+import { useAuth } from "../../context/AuthContext";
 
 export const Profile = () => {
+
+    const { user } = useAuth();
+
+
     return (
         <div className="ansjidnkuiweer container-fluid px-0">
             <div className={styles.ffhfdf}>
@@ -32,7 +34,7 @@ export const Profile = () => {
                                         </div>
 
                                         <div className={styles.dfbghdfg}>
-                                            <h5 className="mb-0">Ravindra Jadeja</h5>                                        
+                                            <h5 className="mb-0">{user.name}</h5>                                        
                                         </div>
                                     </div>
 
@@ -51,7 +53,7 @@ export const Profile = () => {
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Full Name</label>
                                                         
-                                                        <input type="text" className="form-control" placeholder="Ravindra Jadeja" disabled />
+                                                        <input type="text" className="form-control" placeholder="Ravindra Jadeja" value={user.name} disabled />
                                                     </div>
                                                 </div>
 
@@ -59,42 +61,42 @@ export const Profile = () => {
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Email Address</label>
                                                         
-                                                        <input type="text" className="form-control" placeholder="jaddu@gmail.com" disabled />
+                                                        <input type="text" className="form-control" placeholder="jaddu@gmail.com" value={user.email} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4 mb-3">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Phone Number</label>
-                                                        <input type="text" className="form-control" placeholder="7854952585" disabled />
+                                                        <input type="text" className="form-control" placeholder="7854952585" value={user.phone_no} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4 mb-3">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Gender</label>
-                                                        <input type="text" className="form-control" placeholder="Male" disabled />
+                                                        <input type="text" className="form-control" placeholder="Male" value={user.gender} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4 mb-3">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Bio</label>
-                                                        <input type="text" className="form-control" placeholder="Customer Service Manager" disabled />
+                                                        <input type="text" className="form-control" placeholder="Customer Service Manager" value={user.bio} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4 mb-3">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Date Of Birth</label>
-                                                        <input type="text" className="form-control" placeholder="10 june 2004" disabled />
+                                                        <input type="text" className="form-control" placeholder="10 june 2004" value={user.date_of_birth} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4 mb-3">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>National ID</label>
-                                                        <input type="text" className="form-control" placeholder="658-8568-8586" disabled />
+                                                        <input type="text" className="form-control" placeholder="658-8568-8586" value={user.national_id} disabled />
                                                     </div>
                                                 </div>
                                             </div>                                        
@@ -109,21 +111,21 @@ export const Profile = () => {
                                                 <div className="col-lg-4">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Country</label>
-                                                        <input type="text" className="form-control" placeholder="India" disabled />
+                                                        <input type="text" className="form-control" placeholder="India" value={user.country} disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>City</label>
-                                                        <input type="text" className="form-control" placeholder="Jamnagar" disabled />
+                                                        <input type="text" className="form-control" value={user.city} placeholder="Jamnagar" disabled />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-lg-4">
                                                     <div className={styles.dhfsdfd}>
                                                         <label>Pin Code</label>
-                                                        <input type="text" className="form-control" placeholder="742121 " disabled />
+                                                        <input type="text" className="form-control" value={user.pin} placeholder="742121 " disabled />
                                                     </div>
                                                 </div>
                                             </div>

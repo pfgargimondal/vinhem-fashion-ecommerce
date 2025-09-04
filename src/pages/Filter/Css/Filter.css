@@ -223,3 +223,8 @@
 .oidenjwihrwer h5 i{
   color: var(--pink-main-color);
 }
+
+.doewnkrhwer input:checked + label{
+  background: var(--black-background-color) !important;
+  color: #fff !important;
+}

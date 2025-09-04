@@ -1,53 +1,46 @@
-import { useState } from "react";
 import "./Css/FAQ.css";
+import http from "../../http";
+import { useEffect, useState } from "react";
+import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 
 export const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+
+  const [FAQDetails, setFAQDetails] = useState({});
+  const [FAQContentDetails, setFAQContentDetails] = useState([]);
+  const [FAQBannerDetails, setFAQBannerDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchFAQData = async () => {
+      try {
+        const getresponse = await http.get("/faq");
+        const all_response = getresponse.data;
+
+        setFAQDetails(all_response);                          // whole response
+        setFAQContentDetails(all_response.data.faq_content);  // array of FAQs
+        setFAQBannerDetails(all_response.data.faq_banners[0]); // first banner object
+
+      } catch (error) {
+        console.error("Error fetching FAQ:", error);
+      }
+    };
+
+    fetchFAQData();
+  }, []);
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const faqData = [
-    {
-      question: "How do I verify my email?",
-      answer: `Click the link in the verification email from verify@codepen.io
-        (be sure to check your spam folder or other email tabs if it's not in your inbox). 
-        Or, send an email with the subject "Verify" to verify@codepen.io 
-        from the email address you use for your CodePen account.`,
-    },
-    {
-      question: "My Pen loads infinitely or crashes the browser.",
-      answer: `It's likely an infinite loop in JavaScript that we could not catch. 
-        To fix, add ?turn_off_js=true to the end of the URL (on any page, like the Pen or Project editor, 
-        your Profile page, or the Dashboard) to temporarily turn off JavaScript. 
-        When you're ready to run the JavaScript again, remove ?turn_off_js=true and refresh the page.`,
-    },
-    {
-      question: "How do I contact the creator of a Pen?",
-      answer: `You can leave a comment on any public Pen. 
-        Click the "Comments" link in the Pen editor view, or visit the Details page.`,
-    },
-    {
-      question: "What version of [library] does CodePen use?",
-      answer: `We have our current list of library versions.`,
-    },
-    {
-      question: "What are forks?",
-      answer: `A fork is a complete copy of a Pen or Project that you can save 
-        to your own account and modify. Your forked copy comes with everything the original author wrote, 
-        including all of the code and any dependencies.`,
-    },
-  ];
-
   return (
     <div>
+      {/* Banner Section */}
       <div className="fgyfgfd5215g">
         <div className="container">
           <div
             className="aboutusbannr55"
             style={{
-              backgroundImage: "url('./images/Fre.png')",
+              backgroundImage: `url(${FAQDetails?.image_url}/${FAQBannerDetails?.banner_image})`,
               backgroundSize: "100% 100%",
               height: "450px",
             }}
@@ -66,8 +59,8 @@ export const FAQ = () => {
       <div className="fjgnfg55d">
         <div className="wrapper">
           <div className="container">
-            {faqData.map((faq, index) => (
-              <div key={index} className="faq-item">
+            {FAQContentDetails?.map((faq, index) => (
+              <div key={faq.id} className="faq-item">
                 <div
                   className={`question ${activeIndex === index ? "active" : ""}`}
                   onClick={() => toggleFAQ(index)}
@@ -76,7 +69,13 @@ export const FAQ = () => {
                 </div>
                 {activeIndex === index && (
                   <div className="answercont" style={{ maxHeight: "92px" }}>
-                    <div className="answer">{faq.answer}</div>
+                    <div className="answer">
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: faq?.answer || "",
+                        }}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
@@ -84,6 +83,9 @@ export const FAQ = () => {
           </div>
         </div>
       </div>
+
+      <hr />
+      <FooterTopComponent />
     </div>
   );
 };
