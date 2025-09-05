@@ -16,7 +16,6 @@ export const FAQ = () => {
         const all_response = getresponse.data;
 
         setFAQDetails(all_response);                          // whole response
-        setFAQContentDetails(all_response.data.faq_content);  // array of FAQs
         setFAQBannerDetails(all_response.data.faq_banners[0]); // first banner object
 
       } catch (error) {
