@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 
 export const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
 
   const [FAQDetails, setFAQDetails] = useState({});
-  const [FAQContentDetails, setFAQContentDetails] = useState([]);
+  // const [FAQContentDetails, setFAQContentDetails] = useState([]);
   const [FAQBannerDetails, setFAQBannerDetails] = useState(null);
 
   useEffect(() => {
@@ -28,9 +27,6 @@ export const FAQ = () => {
     fetchFAQData();
   }, []);
 
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   return (
     <div>
