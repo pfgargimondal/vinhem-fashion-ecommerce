@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { AboutUs, ContactUs, Filter, NewIn, ReadyToShip, FestiveShop, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ} from "../pages";
+import { AboutUs, ContactUs, Filter, NewIn, ReadyToShip, FestiveShop, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ, ThankYou} from "../pages";
 import ProtectedRoute from "../components/ProtectedRoute ";
 export const AllRoutes = () => {
   return (
@@ -26,6 +26,7 @@ export const AllRoutes = () => {
       <Route path="testimonial" element={ <Testimonial /> } />
       <Route path="career" element={ <Career /> } />
       <Route path="faq" element={ <FAQ /> } />
+      <Route path="thank-you" element={ <ThankYou /> } />
 
 
       <Route path="blog" element={ <Blog /> } />

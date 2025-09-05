@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ContactUs.module.css";
 import http from "../../http";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,107 +22,132 @@ export const ContactUs = () => {
     fetchContactUsData();
   }, []);
 
-  const [inputs, setInputs] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    address: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState({});
+  const fileInputRef = useRef(null);
 
-  // 🔹 Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
-  };
-
-  // 🔹 Validation logic
-  const validateInputs = (inputs) => {
-    const newErrors = {};
-
-    if (!inputs.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (!/^[a-zA-Z\s]+$/.test(inputs.name)) {
-      newErrors.name = "Name can only contain letters and spaces";
-    }
-
-    if (!inputs.mobile.trim()) {
-      newErrors.mobile = "Phone number is required";
-    } else if (!/^\d{10}$/.test(inputs.mobile)) {
-      newErrors.mobile = "Enter a valid 10-digit phone number";
-    }
-
-    if (!inputs.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
-      newErrors.email = "Enter a valid email address";
-    }
-
-    if (!inputs.address) {
-      newErrors.address = "Address is required";
-    }
-
-    if (!inputs.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-
-    return newErrors;
-  };
-
-  // 🔹 Form submission
-  const submitForm = async (e) => {
-    e.preventDefault();
-
-    const validationErrors = validateInputs(inputs);
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setErrors({});
-    // loading(true);
-
-    try {
-      const response = await http.post("/store-enquiry", inputs);
-
-      if (response.data.success) {
-        toast.success(response.data.message, {
-          style: {
-            background: "#2ecc71",
-            color: "#fff",
-          },
-        });
-
-        setInputs({
-          name: "",
-          mobile: "",
+    const [inputs, setInputs] = useState({
           email: "",
-          address: "",
-          message: "",
-        });
-      } else {
-        toast.error(response.data.message, {
-          style: {
-            background: "#e74c3c", // red for error
-            color: "#fff",
-          },
-        });
-        setInputs({
-          name: "",
-          mobile: "",
-          email: "",
-          address: "",
-          message: "",
-        });
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong.");
-    } finally {
-      // loading(false);
-    }
-  };
+          like_toKnow: "",
+          need_help: "",
+          more_details: "",
+          attached_file: null,
+
+    });
+    const [errors, setErrors] = useState({});
+    
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+
+        if (name === "attached_file") {
+        setInputs({ ...inputs, [name]: files[0] });
+        } else {
+        setInputs({ ...inputs, [name]: value });
+        }
+    };
+
+
+
+    const validateInputs = (inputs) => {
+        const newErrors = {};
+
+        if (!inputs.email.trim()) {
+          newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
+          newErrors.email = "Enter a valid email address";
+        }
+    
+        if (!inputs.like_toKnow) {
+          newErrors.like_toKnow = "Like To Know Feild is required";
+        }
+    
+        if (!inputs.need_help) {
+          newErrors.need_help = "Need Help Feild is required";
+        }
+        if (!inputs.more_details.trim()) {
+          newErrors.more_details = "More Details Feild is required";
+        }
+
+        // if (!inputs.attached_file) {
+        //     newErrors.attached_file = "Choose File Feild is required";
+        // }  
+        
+        if (!inputs.attached_file.type.startsWith("image/")) {
+            newErrors.attached_file = "Only image files allowed";
+        } else if (inputs.attached_file.size > 2 * 1024 * 1024) {
+            newErrors.attached_file = "File size must be under 2MB";
+        }
+    
+        return newErrors;
+    };
+
+    // Form submission
+    const submitForm = async (e) => {
+        e.preventDefault();
+        
+          const validationErrors = validateInputs(inputs);
+    
+          if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+          }
+    
+          setErrors({});
+        //   loading(true);
+    
+        try {
+            const formData = new FormData();
+            Object.entries(inputs).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            const response = await http.post("/store-enquiry", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+    
+            if (response.data.success) {
+
+                toast.success(response.data.message, {
+                  style: {
+                    background: "#2ecc71",
+                    color: "#fff",
+                  },
+                });
+    
+                setInputs({
+                    email: "",
+                    like_toKnow: "",
+                    need_help: "",
+                    more_details: "",
+                    attached_file: null,
+                });
+            }else{
+              toast.error(response.data.message, {
+                  style: {
+                    background: "#e74c3c", // red for error
+                    color: "#fff",
+                  },
+                });
+                setInputs({
+                    email: "",
+                    like_toKnow: "",
+                    need_help: "",
+                    more_details: "",
+                    attached_file: null,
+                });
+            }
+
+            if (fileInputRef.current) {
+                fileInputRef.current.value = null;
+            }
+          } catch (error) {
+            toast.error(error.response?.data?.message || "Something went wrong.");
+          } finally {
+            // loading(false);
+          }
+        };
+
 
   return (
     <div className={styles.jvjhubjkjoij}>
@@ -195,77 +220,120 @@ export const ContactUs = () => {
           {ContactUsDetails.data?.form_title &&
             ContactUsDetails.data.form_title}
         </p>
-        <div className="row">
-          <div className="col-lg-6">
-            {/* eslint-disable-next-line */}
-            {ContactUsDetails.data?.map_link && (
-              <iframe
-                src={`${ContactUsDetails.data.map_link}`}
-                allowfullscreen
-                title="Google Map"
-              ></iframe>
-            )}
-          </div>
-          <form className="col-lg-6" noValidate onSubmit={submitForm}>
-            <input
-              className="forn-control"
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={inputs.name}
-              onChange={handleChange}
-            />
-            <p style={{ color: "red" }}>{errors.name}</p>
-            <input
-              className="forn-control"
-              type="text"
-              name="mobile"
-              maxLength={10}
-              oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
-              placeholder="Contact No"
-              value={inputs.mobile}
-              onChange={handleChange}
-            />
-            <p style={{ color: "red" }}>{errors.mobile}</p>
-            <input
-              className="forn-control"
-              type="email"
-              name="email"
-              placeholder="E-Mail Address"
-              value={inputs.email}
-              onChange={handleChange}
-            />
-            <p style={{ color: "red" }}>{errors.email}</p>
-            <input
-              className="forn-control"
-              type="text"
-              name="address"
-              placeholder="Postal Address"
-              value={inputs.address}
-              onChange={handleChange}
-            />
-            <p style={{ color: "red" }}>{errors.address}</p>
-            <textarea
-              className="forn-control"
-              placeholder="Enquiry"
-              name="message"
-              value={inputs.message}
-              onChange={handleChange}
-            ></textarea>
-            <p style={{ color: "red" }}>{errors.message}</p>
-            <div className="">
-              <button className="btn btn-main">
-                SUBMIT
-              </button>
-              {/* <button
-                type="reset"
-                className="btn btn-tranparent"
-                style={{ textDecoration: "underline" }}
-              >
-                RESET
-              </button> */}
+        <div className={styles.xfhgjhusfgsd}>
+            <div className="container">
+                <div className={styles.bfghfds}>
+                  <form noValidate onSubmit={submitForm} encType="multipart/form-data">
+                    <div className="row">
+                        <div className="col-lg-9">
+                            <div className={styles.fgsdhfsdf66546}>
+                                <div className={styles.sdbfsdhf}>
+                                    <div className="row">
+                                        <div className="col-lg-3">
+                                            <div className={styles.dsbfsdjhf}>
+                                                <label for="">My Email Id <span>*</span></label>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-9">
+                                            <div className={styles.dfdfg55}>
+                                                 <input type="email"
+                                                    name="email"
+                                                    placeholder="E-Mail Address"
+                                                    value={inputs.email}
+                                                    onChange={handleChange} 
+                                                    className="form-control" />
+                                              <p style={{ color: "red" }}>{errors.email}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={styles.sdbfsdhf}>
+                                    <div className="row">
+                                        <div className="col-lg-3">
+                                            <div className={styles.dsbfsdjhf}>
+                                                <label for="">I'd like to know about <span>*</span></label>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-9">
+                                           <div className={styles.dfdfg55}>
+                                                 <input type="text" name="like_toKnow" value={inputs.like_toKnow}
+                                                    onChange={handleChange} className="form-control" placeholder="" />
+
+                                                <p style={{ color: "red" }}>{errors.like_toKnow}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                  <div className={styles.sdbfsdhf}>
+                                    <div className="row">
+                                        <div className="col-lg-3">
+                                            <div className={styles.dsbfsdjhf}>
+                                                <label for="">I Need help at <span>*</span></label>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-9">
+                                           <div className={styles.dfdfg5www5}>
+                                                <select name="need_help" id="" value={inputs.need_help} className="form-select" onChange={handleChange}>
+                                                    <option value="">Choose One..</option>
+                                                    <option value="Check the status of order">Check the status of order</option>
+                                                    <option value="Question about our producct">Question about our producct</option>
+                                                    <option value="Technical assistance">Technical assistance</option>
+                                                    <option value="Shiping information">Shiping information</option>
+                                                </select>
+                                                <p style={{ color: "red" }}>{errors.need_help}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                  <div className={styles.sdbfsdhf}>
+                                    <div className="row">
+                                        <div className="col-lg-3">
+                                            <div className={styles.dsbfsdjhf}>
+                                                <label for="">More Details  <span>*</span></label>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-9">
+                                            <div className={styles.fbdf454}>
+                                                <textarea name="more_details" id="" placeholder="Text Me..." value={inputs.more_details} 
+                                                  onChange={handleChange} rows="4" cols="4" className="form-control"></textarea>
+
+                                                <p style={{ color: "red" }}>{errors.more_details}</p>
+
+                                                <input type="file" className={styles.inputFile} id="file" 
+                                                    name="attached_file"
+                                                    accept="image/*"
+                                                    onChange={handleChange}
+                                                    ref={fileInputRef}
+                                                    // multiple data-multiple-caption="{count} files selected" 
+                                                    />
+
+                                                <label for="file" className={`btn ${styles.btnUpload}`}>
+                                                  <i className="fa-solid fa-plus"></i> Choose File
+                                                </label>
+                                                <p style={{ color: "red" }}>{errors.attached_file}</p>
+                                            </div>
+
+                                            <div className={styles.dfbdfhsd}>
+                                                <button className={styles.btn55}>Submit</button>
+                                                <button className={styles.btn55aa}>Cancel</button>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3"></div>
+                    </div>
+                    </form>
+                </div>
             </div>
-          </form>
         </div>
 
         <ToastContainer

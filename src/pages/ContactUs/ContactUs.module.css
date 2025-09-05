@@ -69,6 +69,11 @@
 	 .jvjhubjkjoij form, .jvjhubjkjoij .map {
 		 width: 100%;
 	}
+
+	.dsbfsdjhf label  
+	{
+	margin-bottom:10px
+	}
 }
  .jvjhubjkjoij .p1 {
 	 font-family: 'Source Sans Pro', sans-serif;
@@ -77,4 +82,118 @@
  .jvjhubjkjoij .jhsdrgbzxcfbv {
 	 color: #b501b5;
 }
+
+
+.xfhgjhusfgsd
+{
+  width: 100%;
+  padding: 40px 0;
+}
+
+.dfdfg5www5 select
+{
+  width: 200px;
+  height: 40px;
+  border: none;
+  border: 1px solid #ced4da;
+}
+
+.dsbfsdjhf label 
+{
+  font-weight: 600;
+  font-size: 15px;
+}
+.dsbfsdjhf label span 
+{
+  color: red;
+}
+
+.sdbfsdhf 
+{
+  margin-bottom: 15px;
+}
+
+.btn55
+{
+  padding: 6px 22px;
+  border: none;
+  background-color: #e38800;
+  color: white;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+
+.btn55aa
+{
+  padding: 6px 22px;
+  border: none;
+  background-color: #93370b;
+  color: white;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+
+.dfbdfhsd
+{
+  margin-top: 40px;
+}
+
+  .inputFile {
+  width: 0.1px;
+  height: 0.1px;
+  z-index: -1;
+  position: relative;
+  overflow: hidden;
+  opacity: hidden;
+  }
+
+.inputFile + label {
+  font-size: 15px;
+  font-weight: 700;
+  color:#0019db;
+  background-color:rgb(0, 56, 210);
+  display:block ;
+}
+
+.inputFile:focus + label,
+.inputFile + label:hover {
+  background:rgb(255, 255, 255);
+}
+
+.inputFile + label {
+  cursor:pointer;
+}
+.inputFile:focus + label {
+  cursor:pointer;
+  outline : 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputFile + label + * {
+  pointer-events:none;
+}
+
+.btnUpload {
+  background-color: #ffffff!important;
+  max-width: 130px;
+  /* margin: 10px; */
+  /* box-shadow: 1px 1px 5px 1px rgba(105, 105, 105, 0.3); */
+  color:#0035e3;
+  margin-top: -45px;
+
+}
+
+/* .btnUpload &:hover {
+    color: #0019db!important;
+  }
+
+.inputFile:focus + label, .inputFile + label:hover {
+    background: red;
+    color: #0019db;
+} */
+
+
  

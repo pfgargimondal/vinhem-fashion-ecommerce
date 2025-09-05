@@ -59,27 +59,14 @@ export const FAQ = () => {
       <div className="fjgnfg55d">
         <div className="wrapper">
           <div className="container">
-            {FAQContentDetails?.map((faq, index) => (
-              <div key={faq.id} className="faq-item">
-                <div
-                  className={`question ${activeIndex === index ? "active" : ""}`}
-                  onClick={() => toggleFAQ(index)}
-                >
-                  {faq.question}
-                </div>
-                {activeIndex === index && (
-                  <div className="answercont" style={{ maxHeight: "92px" }}>
-                    <div className="answer">
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: faq?.answer || "",
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+            <h1 className="mb-4">
+              {FAQBannerDetails?.banner_title}
+            </h1>
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  FAQBannerDetails?.banner_description }}
+            />
           </div>
         </div>
       </div>

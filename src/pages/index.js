@@ -21,6 +21,7 @@ export { PrivacyPolicy } from "./PrivacyPolicy/PrivacyPolicy";
 export { ReturnPolicy } from "./ReturnPolicy/ReturnPolicy";
 export { OrderPolicy } from "./OrderPolicy/OrderPolicy";
 export { ShippingPolicy } from "./ShippingPolicy/ShippingPolicy";
+export { ThankYou } from "./ThankYou/ThankYou";
 
 
 export { Testimonial } from "./Testimonial/Testimonial";
