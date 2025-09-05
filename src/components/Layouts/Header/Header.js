@@ -173,7 +173,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
               }}
               className="mySwiper"
             >
-              <SwiperSlide><NavLink to="" end>New In</NavLink></SwiperSlide>
+              <SwiperSlide><NavLink to="/new-in" end>New In</NavLink></SwiperSlide>
 
               <SwiperSlide><NavLink to="">Women</NavLink></SwiperSlide>
 
@@ -187,7 +187,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
 
               <SwiperSlide><NavLink to="">Ready To Ship</NavLink></SwiperSlide>
 
-              <SwiperSlide><NavLink to="">On Sale</NavLink></SwiperSlide>
+              <SwiperSlide><NavLink to="/on-sale">On Sale</NavLink></SwiperSlide>
 
               <SwiperSlide><NavLink to="">Eid Store</NavLink></SwiperSlide>
 
