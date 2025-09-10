@@ -135,7 +135,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                         <li className="position-relative">
                         {user ? (
                           <>
-                            <i className="bi bi-person" onClick={() => setUserDropdown(!userDropdown)}></i> {user.name}
+                            <i className="bi bi-person" onClick={() => setUserDropdown(!userDropdown)}></i> <div className="mjeimojwjikrrr">{user.name}</div>
                             {userDropdown && <DropdownLoggedIn />}
                           </>
                         ) : (

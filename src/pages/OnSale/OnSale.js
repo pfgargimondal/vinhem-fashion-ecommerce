@@ -1,4 +1,5 @@
 import http from "../../http";
+import { Link } from "react-router-dom";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ export const OnSale = () => {
             // setLoading(true);
             try {
                 const getresponse = await http.get("/fetch-onsale-page");
-                console.log("API response:", getresponse.data);
+                // console.log("API response:", getresponse.data);
                 setOnSaleDetails(getresponse.data);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -44,11 +45,24 @@ export const OnSale = () => {
           autoplay={{ delay: 3000 }}
           loop={true}
         >
-          <SwiperSlide><img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 1" /></SwiperSlide>
+          <SwiperSlide>
+            <Link to={OnSaleDetails?.data?.url}>
+            <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 1" />
+            </Link>
+          </SwiperSlide>
 
-          <SwiperSlide><img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 2" /></SwiperSlide>
+          <SwiperSlide>
+            <Link to={OnSaleDetails?.data?.url}>
+            <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 2" />
+            </Link>
+          </SwiperSlide>
 
-          <SwiperSlide><img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 3" /></SwiperSlide>
+          <SwiperSlide>
+            <Link to={OnSaleDetails?.data?.url}>
+            <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.banner_image}`} className="img-fluid" alt="Slide 2" />
+            </Link>
+          </SwiperSlide>
+
         </Swiper>
       </div>
 
@@ -61,6 +75,7 @@ export const OnSale = () => {
             <div class="row">
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url1}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -74,9 +89,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url2}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -90,9 +107,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url3}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -106,9 +125,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url4}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -122,9 +143,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url5}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -138,9 +161,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url6}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -154,9 +179,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url7}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -170,9 +197,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url8}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -186,9 +215,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url9}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -202,9 +233,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url10}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -218,9 +251,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url11}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -234,9 +269,11 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-3">
+                 <Link to={OnSaleDetails?.data?.section2_url12}>
                 <div
                   class="fhgdfg"
                   style={{
@@ -250,6 +287,7 @@ export const OnSale = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
  
             </div>
@@ -267,6 +305,7 @@ export const OnSale = () => {
 
               
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url1}></Link>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -283,6 +322,7 @@ export const OnSale = () => {
               </div>
 
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url2}>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -296,9 +336,11 @@ export const OnSale = () => {
                     </h5>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url3}>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -312,9 +354,11 @@ export const OnSale = () => {
                     </h5>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url4}>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -328,9 +372,11 @@ export const OnSale = () => {
                     </h5>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url5}>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -344,9 +390,11 @@ export const OnSale = () => {
                     </h5>
                   </div>
                 </div>
+                </Link>
               </div>
 
               <div class="col-lg-4 mb-4">
+                <Link to={OnSaleDetails?.data?.section3_url6}>
                 <div
                   class="dfgfdg7853"
                   style={{
@@ -360,6 +408,7 @@ export const OnSale = () => {
                     </h5>
                   </div>
                 </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -371,10 +420,11 @@ export const OnSale = () => {
           <div class="dfjvdgd">
             <h2>{OnSaleDetails?.data?.section4_title}</h2>
           </div>
-
+            <Link to={OnSaleDetails?.data?.section4_url}>
           <div class="dfngjhfdgdf">
             <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.section4_image}`}  alt="onsale"/>
           </div>
+          </Link>   
         </div>
       </div>
 
@@ -398,7 +448,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text1}</h5>
+                  <Link to={OnSaleDetails?.data?.section5_url1}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -415,7 +467,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text2}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url2}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -432,7 +486,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text3}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url3}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -449,7 +505,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text4}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url4}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -466,7 +524,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text5}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url5}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -483,7 +543,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text6}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url6}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -500,7 +562,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text7}</h5>
+                  <Link to={OnSaleDetails?.data?.section5_url7}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -517,7 +581,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text8}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url8}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -534,7 +600,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text9}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url9}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -551,7 +619,9 @@ export const OnSale = () => {
                 </div>
                 <div class="bsdfhsdfsdf">
                   <h5>{OnSaleDetails?.data?.section5_text10}</h5>
+                   <Link to={OnSaleDetails?.data?.section5_url10}>
                   <button>SHOP NOW</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -569,21 +639,27 @@ export const OnSale = () => {
           <div class="dfngjhfdgdf sdcvewfaasd overflow-hidden">
             <div className="row">
               <div className="col-lg-4 pe-0">
+                <Link to={OnSaleDetails?.data?.section6_url1}>
                 <div className="donhweirwer_inner">
                   <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.section6_image1}`} className="img-fluid" alt="onsale" />
                 </div>
+                </Link>
               </div>
 
               <div className="col-lg-4 px-0">
+                <Link to={OnSaleDetails?.data?.section6_url2}>
                 <div className="donhweirwer_inner">
                   <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.section6_image2}`} className="img-fluid" alt="onsale" />
                 </div>
+                </Link>
               </div>
 
               <div className="col-lg-4 ps-0">
+                <Link to={OnSaleDetails?.data?.section6_url3}>
                 <div className="donhweirwer_inner">
                   <img src={`${OnSaleDetails?.image_url}/${OnSaleDetails?.data?.section6_image3}`} className="img-fluid" alt="onsale" />
                 </div>
+                </Link>
               </div>
             </div>
           </div>

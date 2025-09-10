@@ -5,11 +5,18 @@ import { useAuth } from "../../../context/AuthContext";
 export const DropdownLoggedIn = () => {
 
   const navigate = useNavigate();
-  const { logout, user } = useAuth(); // ✅ Access logout and user from context
+  const { logout, user, dispatch } = useAuth(); // ✅ Access logout and user from context
 
   const handleLogout = () => {
-    logout();           // Clears token & user
-    navigate("/login"); // Redirect to login page
+
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("user");
+
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+    
+    // logout();           
+    // navigate("/login"); 
   };
 
   return (

@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Css/Login.css";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginAPI } from "../../api/auth";
 import { useAuth } from "../../context/AuthContext"; 
@@ -9,19 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export const Login = () => {
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [inputs, setInputs] = useState({ email: "", password: "" });
   const [captchaToken, setCaptchaToken] = useState("");
-
-  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const { login } = useAuth();
+  const { dispatch } = useAuth(); // ✅ use reducer dispatch
 
-  // 🔹 Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -29,25 +22,20 @@ export const Login = () => {
 
   const validateInputs = (inputs) => {
     const newErrors = {};
-
     if (!inputs.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
       newErrors.email = "Enter a valid email address";
     }
-
     if (!inputs.password) {
       newErrors.password = "Password is required";
     } else if (inputs.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
     }
-
     return newErrors;
   };
 
-  const handleCaptcha = (token) => {
-    setCaptchaToken(token);
-  };
+  const handleCaptcha = (token) => setCaptchaToken(token);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -59,41 +47,35 @@ export const Login = () => {
     }
 
     if (!captchaToken) {
-      alert("Please verify reCAPTCHA");
+      toast.error("Please verify reCAPTCHA");
       return;
     }
 
     setErrors({});
-
     try {
       const response = await loginAPI({
         ...inputs,
         recaptcha_token: captchaToken,
-      }); // Renamed to avoid conflict
+      });
 
       if (response.data.success) {
-        toast.success(response.data.message, {
-          style: {
-            background: "#2ecc71",
-            color: "#fff",
+        toast.success(response.data.message);
+
+        // ✅ reducer login dispatch
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            token: response.data.data.jwtToken,
+            user: response.data.data,
           },
         });
-
-        // 👇 Use the login() from AuthContext
-        login(response.data.data.jwtToken, response.data.data); // save token & user
-
         navigate("/");
         setInputs({ email: "", password: "" });
       } else {
-        toast.error(response.data.message, {
-          style: {
-            background: "#e74c3c",
-            color: "#fff",
-          },
-        });
+        toast.error(response.data.message);
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -148,7 +130,6 @@ export const Login = () => {
             </div>
 
             <Link className="forgot-link my-3" to="/">
-              {" "}
               Forgot password?
             </Link>
             {/* ✅ reCAPTCHA Widget */}

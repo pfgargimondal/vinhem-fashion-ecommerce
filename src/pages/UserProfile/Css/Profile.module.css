@@ -49,6 +49,31 @@
   border: 2px solid var(--pink-main-color);
 }
 
+.indiwerwer{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--pink-main-color);
+  top: -0.2rem;
+  right: -1.2rem;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.indiwerwer:hover{
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+}
+
+.indiwerwer i{
+  font-size: 1.2rem;
+  color: var(--pink-main-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .dfghdfgdf {
   display: flex;
   align-items: center;  

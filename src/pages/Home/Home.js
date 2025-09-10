@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
-
+import http from "../../http";
 import { FeaturedProducts } from "../../components";
 
 import "swiper/css";
@@ -11,6 +11,23 @@ import "./Css/HomeResponsive.css";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 
 export const Home = () => {
+
+   const [homepage, Sethomepage] = useState({});
+
+    useEffect(() => {
+        const fetchOnSale = async () => {
+            try {
+                const getresponse = await http.get("/fetch-home-page");
+                // console.log("API response:", getresponse.data);
+                Sethomepage(getresponse.data); 
+            } catch (error) {
+                console.error("Error fetching homepage data:", error);
+            }
+        };
+
+        fetchOnSale();
+    }, []);
+
 
   // eslint-disable-next-line
   const [featuredProducts, setFeaturedProducts] = useState([
@@ -113,33 +130,6 @@ export const Home = () => {
     },
   };
 
-  // useEffect(() => {
-  //   const fetchFeaturedProducts = async () => {
-  //     const URL = "http://localhost:8000/featured_products";
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     setFeaturedProducts(data);
-  //   }
-
-  //   fetchFeaturedProducts();
-  // }, []);
-
-
-  // //top categories
-
-  // useEffect(() => {
-  //   const fetchTopCategories = async () => {
-  //     const URL = "http://localhost:8000/top_categories";
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     setTopCategories(data);
-  //     console.log(data)
-  //   }
-
-  //   fetchTopCategories();
-  // }, []);
-
-
 
   return (
     <>
@@ -149,7 +139,7 @@ export const Home = () => {
             <div className="row">
               <div className="col-lg-4 pe-0">
                 <div className="gdfgdf215">
-                  <img src="./images/fashion (3).jpg" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`} alt="" />
                 </div>
               </div>
               <div className="col-lg-4 px-0">
@@ -161,12 +151,10 @@ export const Home = () => {
                   }}
                 >
                   <div className="jhsbfsdf">
-                    <h6>Set Your Style</h6>
+                    <h6>{homepage?.data?.title}</h6>
                     <h2>INSTILEY</h2>
                     <p>
-                      Neque porro quisquam est qui dolorem ipsum quia dolor sit amet
-                      consectetur adipisci velit sed quia non numquam eius modi
-                      tempora incidunto.
+                      {homepage?.data?.description}
                     </p>
                   </div>
                   <div className="dfbfbhgfdg">
@@ -183,7 +171,7 @@ export const Home = () => {
               </div>
               <div className="col-lg-4 ps-0">
                 <div className="gdfgdf215">
-                  <img src="./images/fashion (2).jpg" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.banner_image3}`} alt="" />
                 </div>
               </div>
             </div>
@@ -197,14 +185,14 @@ export const Home = () => {
             <div className="row">
               <div className="col-6">
                 <div className="dfkhgdfgdf">
-                  <h2>FREE SHIPPING OVER $99*</h2>
-                  <p>Plus, two-day delivery on thousands of items.</p>
+                  <h2>{homepage?.data?.title1}</h2>
+                  <p>{homepage?.data?.description1}</p>
                 </div>
               </div>
               <div className="col-6">
                 <div className="dfkhgdfgdf">
-                  <h2>AMAZING VALUE EVERY DAY</h2>
-                  <p>Items you love at prices that fit your budget.</p>
+                  <h2>{homepage?.data?.title2}</h2>
+                  <p>{homepage?.data?.description2}</p>
                 </div>
               </div>
             </div>
@@ -221,12 +209,12 @@ export const Home = () => {
                   <div className="row align-items-center">
                     <div className="col-2">
                       <div className="sdhgdfg">
-                        <img src="./images/fagift (1).png" alt="" />
+                        <img src={`${homepage?.image_url}/${homepage?.data?.last_image1}`} alt="" />
                       </div>
                     </div>
                     <div className="col-10">
                       <div className="cfgncfgb">
-                        <h4>FREE GIFT WRAPPING</h4>
+                        <h4>{homepage?.data?.last_title1}</h4>
                       </div>
                     </div>
                   </div>
@@ -237,12 +225,12 @@ export const Home = () => {
                   <div className="row align-items-center">
                     <div className="col-2">
                       <div className="sdhgdfg">
-                        <img src="./images/fagift (2).png" alt="" />
+                        <img src={`${homepage?.image_url}/${homepage?.data?.last_image2}`} alt="" />
                       </div>
                     </div>
                     <div className="col-10">
                       <div className="cfgncfgb">
-                        <h4>FREE GIFT WRAPPING</h4>
+                        <h4>{homepage?.data?.last_title2}</h4>
                       </div>
                     </div>
                   </div>
@@ -253,12 +241,12 @@ export const Home = () => {
                   <div className="row align-items-center">
                     <div className="col-2">
                       <div className="sdhgdfg">
-                        <img src="./images/fagift (3).png" alt="" />
+                        <img src={`${homepage?.image_url}/${homepage?.data?.last_image3}`} alt="" />
                       </div>
                     </div>
                     <div className="col-10">
                       <div className="cfgncfgb">
-                        <h4>STUDENT DISCOUNT</h4>
+                        <h4>{homepage?.data?.last_title3}</h4>
                       </div>
                     </div>
                   </div>
@@ -269,12 +257,12 @@ export const Home = () => {
                   <div className="row align-items-center">
                     <div className="col-2">
                       <div className="sdhgdfg">
-                        <img src="./images/fagift (4).png" alt="" />
+                        <img src={`${homepage?.image_url}/${homepage?.data?.last_image3}`} alt="" />
                       </div>
                     </div>
                     <div className="col-10">
                       <div className="cfgncfgb">
-                        <h4>100% SECURE SHOPPING</h4>
+                        <h4>{homepage?.data?.last_title4}</h4>
                       </div>
                     </div>
                   </div>
@@ -318,18 +306,18 @@ export const Home = () => {
       <div className="sdfnjhdfbgdfg pb-5 mb-4">
         <div className="container-fluid">
           <div className="fgnhfgh">
-            <h2 className="mb-3">#MUST Have</h2>
+            <h2 className="mb-3">{homepage?.data?.section1_title1}</h2>
           </div>
           <div className="dfhgudfg">
             <div className="row">
               <div className="col-lg-6">
                 <div className="fhdfgdf">
-                  <img src="./images/poster (1).png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section1_image1}`} alt="" />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="fhdfgdf">
-                  <img src="./images/poster (2).png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section1_image2}`} alt="" />
                 </div>
               </div>
             </div>
@@ -339,7 +327,7 @@ export const Home = () => {
       
       <div className="xfdjgdfgdfg mb-5"
         style={{
-          background: "url('./images/downbanner (3).png')",
+          backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section2_image})`,
           backgroundSize: "100% 100%"
         }}
       >
@@ -377,17 +365,17 @@ export const Home = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src="./images/fashiondwn3 (1).png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image1}`} alt="" />
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src="./images/fashiondwn3 (2).png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image2}`} alt="" />
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src="./images/fashiondwn3 (3).png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image3}`} alt="" />
                 </div>
               </div>
             </div>
@@ -401,12 +389,12 @@ export const Home = () => {
             <div className="row">
               <div className="col-lg-3">
                 <div className="dfdfdffd">
-                  <img src="./images/fashion40.png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image4}`} alt="" />
                 </div>
               </div>
               <div className="col-lg-9">
                 <div className="dfdfdffd">
-                  <img src="./images/fashion39.png" alt="" />
+                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image5}`} alt="" />
                 </div>
               </div>
             </div>
@@ -417,11 +405,11 @@ export const Home = () => {
       <div className="fcknjhfvgdf pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4 className="mb-3">New Arrivals</h4>
+            <h4 className="mb-3">{homepage?.data?.section4_title}</h4>
           </div>
           <div
             className="sdfsdfsdfsd"
-            style={{ backgroundImage: "url('./images/new-arrivle.png')" }}
+            style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section4_image})`, }}
           ></div>
         </div>
       </div>
@@ -429,14 +417,14 @@ export const Home = () => {
       <div className="kdnfghdfsdf pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4 className="mb-3">#Trend Now</h4>
+            <h4 className="mb-3">{homepage?.data?.section5_title1}</h4>
           </div>
           <div className="dfdfhgdf65">
             <div className="row">
               <div className="col-lg-4">
                 <div
                   className="dfgyhdfgdf"
-                  style={{ backgroundImage: "url('./images/new-product.png')" }}
+                  style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image1})`, }}
                 >
                   <div className="dfdfsdf">
                     <h4>
@@ -453,7 +441,7 @@ export const Home = () => {
               <div className="col-lg-4">
                 <div
                   className="dfgyhdfgdf"
-                  style={{ backgroundImage: "url('./images/new-product (2).png')" }}
+                  style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image2})`, }}
                 >
                   <div className="dfdfsdf">
                     <h4>
@@ -470,7 +458,7 @@ export const Home = () => {
               <div className="col-lg-4">
                 <div
                   className="dfgyhdfgdf"
-                  style={{ backgroundImage: "url('./images/new-product (3).png')" }}
+                  style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image3})`, }}
                 >
                   <div className="dfdfsdf">
                     <h4>

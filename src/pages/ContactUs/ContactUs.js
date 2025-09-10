@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./ContactUs.module.css";
 import http from "../../http";
 import { ToastContainer, toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const ContactUs = () => {
   const [ContactUsDetails, setContactUsDetails] = useState({});
+  const [captchaToken, setCaptchaToken] = useState("");
+
 
   useEffect(() => {
     const fetchContactUsData = async () => {
@@ -43,7 +46,7 @@ export const ContactUs = () => {
         } else {
         setInputs({ ...inputs, [name]: value });
         }
-    };
+    }; 
 
 
 
@@ -80,6 +83,8 @@ export const ContactUs = () => {
         return newErrors;
     };
 
+      const handleCaptcha = (token) => setCaptchaToken(token);
+
     // Form submission
     const submitForm = async (e) => {
         e.preventDefault();
@@ -90,6 +95,11 @@ export const ContactUs = () => {
             setErrors(validationErrors);
             return;
           }
+
+            if (!captchaToken) {
+              toast.error("Please verify reCAPTCHA");
+              return;
+            }
     
           setErrors({});
         //   loading(true);
@@ -99,6 +109,7 @@ export const ContactUs = () => {
             Object.entries(inputs).forEach(([key, value]) => {
                 formData.append(key, value);
             });
+            formData.append("recaptcha_token", captchaToken);
 
             const response = await http.post("/store-enquiry", formData, {
                 headers: {
@@ -320,8 +331,18 @@ export const ContactUs = () => {
                                                 <p style={{ color: "red" }}>{errors.attached_file}</p>
                                             </div>
 
+
+                                            <ReCAPTCHA
+                                                sitekey="6Lfg6HwrAAAAAIFNXRViSAvHT3R3edYCk8Hg_pHA" // 🔁 Replace this
+                                                onChange={handleCaptcha}
+                                                className="mb-3"
+                                              />
+                                              {!captchaToken && (
+                                                <p style={{ color: "red" }}>Please verify reCAPTCHA</p>
+                                              )}
+
                                             <div className={styles.dfbdfhsd}>
-                                                <button className={styles.btn55}>Submit</button>
+                                                <button type="submit" className={styles.btn55}>Submit</button>
                                                 <button className={styles.btn55aa}>Cancel</button>  
                                             </div>
                                         </div>
