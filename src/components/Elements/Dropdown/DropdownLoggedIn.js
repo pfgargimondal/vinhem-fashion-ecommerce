@@ -5,7 +5,7 @@ import { useAuth } from "../../../context/AuthContext";
 export const DropdownLoggedIn = () => {
 
   const navigate = useNavigate();
-  const { logout, user, dispatch } = useAuth(); // ✅ Access logout and user from context
+  const { user, dispatch } = useAuth(); // ✅ Access logout and user from context
 
   const handleLogout = () => {
 
