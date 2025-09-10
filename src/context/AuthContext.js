@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
           navigate("/login");
         });
     }
-  }, [state.token]);
+  }, [state.token, state.user, dispatch, navigate]);
 
   // ✅ Custom dispatch with side effects
   const customDispatch = (action) => {
