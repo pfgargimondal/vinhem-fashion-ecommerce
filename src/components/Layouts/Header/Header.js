@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAuth } from "../../../context/AuthContext";
 import { DropdownLoggedIn } from "../../Elements/Dropdown/DropdownLoggedIn";
-
+import http from "../../../http";
 import Logo from "../../../assets/images/logo.png";
 
 import "./Css/Header.css";
@@ -28,6 +28,36 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
   }, [resMenu]);
 
   const { user } = useAuth();
+
+  const [mainCategory, SetmainCategory] = useState({});
+  const [currency, Setcurrency] = useState([]);
+
+  useEffect(() => {
+      const fetchMainCategory = async () => {
+          try {
+              const getresponse = await http.get("/product-category");
+              const allresponse = getresponse.data;
+              SetmainCategory(allresponse.data); 
+          } catch (error) {
+              console.error("Error fetching main category:", error);
+          }
+      };
+
+      fetchMainCategory();
+  }, []);
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+        try {
+            const getresponse = await http.get("/get-currency-content");
+            const allresponse = getresponse.data;
+            Setcurrency(allresponse.data || []); 
+        } catch (error) {
+            console.error("Error fetching currency:", error);
+        }
+    };
+    fetchCurrency();
+  }, []);
 
   return (
     <>
@@ -83,9 +113,15 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                       <i class="bi me-2 bi-search" onClick={() => setSearchBarToggle(!searchBarToggle)}></i>
 
                       <Form.Select className="me-2" aria-label="Default select example">
-                        <option>INR (₹)</option>
-
-                        <option value="1">Dollar ($)</option>
+                        {currency.map(allCurrency => (
+                          <option
+                            key={allCurrency.id}
+                            value={allCurrency.id}
+                            selected={allCurrency.choice === 1}
+                          >
+                            {allCurrency.currency_type} ({allCurrency.currency_code})
+                          </option>
+                        ))}
                       </Form.Select>
 
                       <i class="fa-solid fa-bars" id="res-toggle-btn" onClick={() => setResMenu(true)}></i>
@@ -97,9 +133,15 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                   <div className="doiwehrwehirnwerwer aosndkjnjhasekwewt row align-items-center">
                     <div className="col-lg-2">
                       <Form.Select aria-label="Default select example">
-                        <option>INR (₹)</option>
-
-                        <option value="1">Dollar ($)</option>
+                        {currency.map(allCurrency => (
+                          <option
+                            key={allCurrency.id}
+                            value={allCurrency.id}
+                            selected={allCurrency.choice === 1}
+                          >
+                            {allCurrency.currency_type} ({allCurrency.currency_code})
+                          </option>
+                        ))}
                       </Form.Select>
                     </div>
 
@@ -173,27 +215,25 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
               }}
               className="mySwiper"
             >
-              <SwiperSlide><NavLink to="/new-in" end>New In</NavLink></SwiperSlide>
 
+              {mainCategory?.main_categories?.map((category) => (
+                <SwiperSlide key={category.id}>
+                  <NavLink to={`/${category.slug}`} end>
+                    {category.category}
+                  </NavLink>
+                </SwiperSlide>
+              ))}
+              {/* <SwiperSlide><NavLink to="/new-in" end>New In</NavLink></SwiperSlide>
               <SwiperSlide><NavLink to="">Women</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Men</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Kids Wear</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Wedding</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Jewellery</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Ready To Ship</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="/on-sale">On Sale</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Eid Store</NavLink></SwiperSlide>
-
               <SwiperSlide><NavLink to="">Diwali</NavLink></SwiperSlide>
-
-              <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide>
+              <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide> */}
             </Swiper>     
           </div>
           ) }

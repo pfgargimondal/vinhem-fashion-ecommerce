@@ -137,49 +137,19 @@ export const Home = () => {
         <div className="rehbgdfgnjh">
           <div className="sdfsdfd">
             <div className="row">
-              <div className="col-lg-4 pe-0">
+              <Link to={homepage?.data?.url}>
+              <div className="col-lg-12">
                 <div className="gdfgdf215">
                   <img src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`} alt="" />
                 </div>
               </div>
-              <div className="col-lg-4 px-0">
-                <div
-                  className="lvjhfbvdf558"
-                  style={{
-                    backgroundImage: "url('./images/bgc.jpg')",
-                    backgroundSize: "100% 100%"
-                  }}
-                >
-                  <div className="jhsbfsdf">
-                    <h6>{homepage?.data?.title}</h6>
-                    <h2>INSTILEY</h2>
-                    <p>
-                      {homepage?.data?.description}
-                    </p>
-                  </div>
-                  <div className="dfbfbhgfdg">
-                    <div className="row">
-                      <div className="col-lg-6">
-                        <button className="jdfhbtn">SHOP WOMEN</button>
-                      </div>
-                      <div className="col-lg-6">
-                        <button className="jdfhbtn">SHOP MEN</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 ps-0">
-                <div className="gdfgdf215">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.banner_image3}`} alt="" />
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="jdfgdfg65dfdf">
+      {/* <div className="jdfgdfg65dfdf">
         <div className="sadasdc">
           <div className="dfghdfg548">
             <div className="row">
@@ -198,7 +168,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="fbgvdsdfd6568 pt-3 pb-5 mb-4">
         <div className="container-fluid">

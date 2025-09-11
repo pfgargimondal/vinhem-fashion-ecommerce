@@ -161,7 +161,7 @@ export const ContactUs = () => {
 
 
   return (
-    <div className={styles.jvjhubjkjoij}>
+    <div className={` ${styles.jvjhubjkjoij} mt-5`}>
       <div className="container">
         <h1> {ContactUsDetails.data?.title && ContactUsDetails.data.title} </h1>
         <div
@@ -172,61 +172,48 @@ export const ContactUs = () => {
               ContactUsDetails.data.description,
           }} 
         />
+
+        <br/>
+
         <div className={styles.addressSection}>
-          <h3 className={styles.sjkdefnvb}>Regd. Office Address: </h3>
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                ContactUsDetails.data?.regd_address &&
-                ContactUsDetails.data.regd_address,
-            }}
-          />
-          <h3> Branch Office Address: (Operation Center) </h3>
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                ContactUsDetails.data?.branch_office_address &&
-                ContactUsDetails.data.branch_office_address,
-            }}
-          />
-          <h3> Warehouse Address: (Operation Center) </h3>
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                ContactUsDetails.data?.wholeale_address &&
-                ContactUsDetails.data.wholeale_address,
-            }}
-          />
-          <br />
-          <p>
-            <span className={styles.highlight}> MOB : </span> +91{" "}
-            {ContactUsDetails.data?.mobile && ContactUsDetails.data.mobile}{" "}
-            (Timings: IST 10 to 7){" "}
-          </p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                ContactUsDetails.data?.timing && ContactUsDetails.data.timing,
-            }}
-          />
-          <br />
-          <p>
-            <strong className={styles.jhsdrgbzxcfbv}> Email Support: </strong>{" "}
-            For Product Queries, Order & Shipping, Payments Made, Please find
-            details below:
-          </p>
-          <p>
-            <strong className={styles.jhsdrgbzxcfbv}> By Mail : </strong>
-            <a href={`mailto:${ContactUsDetails.data?.support_email}`}>
-              {ContactUsDetails.data?.support_email}
-            </a>
-            <br />
-            <strong className={styles.jhsdrgbzxcfbv}> For Wholesale : </strong>
-            <a href={`mailto:${ContactUsDetails.data?.wholesale_mail}`}>
-              {ContactUsDetails.data?.wholesale_mail}
-            </a>
-          </p>
-        </div>
+            {ContactUsDetails.data?.office_status === 'warehouse_office' && (
+              <>
+                <h3>Warehouse Address: (Operation Center)</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: ContactUsDetails.data?.wholeale_address || "",
+                  }}
+                />
+              </>
+            )}
+
+            {ContactUsDetails.data?.office_status === 'regd_office' && (
+              <>
+                <h3 className={styles.sjkdefnvb}>Regd. Office Address: </h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      ContactUsDetails.data?.regd_address &&
+                      ContactUsDetails.data.regd_address,
+                  }}
+                />
+              </>
+            )}
+
+            {ContactUsDetails.data?.office_status === 'branch_office' && (
+              <>
+                <h3> Branch Office Address: (Operation Center) </h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      ContactUsDetails.data?.branch_office_address &&
+                      ContactUsDetails.data.branch_office_address,
+                  }}
+                />
+              </>
+            )}
+        
+        <br />
         <p>
           {ContactUsDetails.data?.form_title &&
             ContactUsDetails.data.form_title}
@@ -362,6 +349,7 @@ export const ContactUs = () => {
             autoClose={3000}
             style={{ zIndex: 9999999999 }}
         />
+      </div>
       </div>
     </div>
   );

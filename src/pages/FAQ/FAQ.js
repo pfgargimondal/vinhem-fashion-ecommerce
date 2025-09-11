@@ -6,8 +6,6 @@ import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
 export const FAQ = () => {
 
   const [FAQDetails, setFAQDetails] = useState({});
-  // const [FAQContentDetails, setFAQContentDetails] = useState([]);
-  const [FAQBannerDetails, setFAQBannerDetails] = useState(null);
 
   useEffect(() => {
     const fetchFAQData = async () => {
@@ -15,8 +13,7 @@ export const FAQ = () => {
         const getresponse = await http.get("/faq");
         const all_response = getresponse.data;
 
-        setFAQDetails(all_response);                          // whole response
-        setFAQBannerDetails(all_response.data.faq_banners[0]); // first banner object
+        setFAQDetails(all_response);                  
 
       } catch (error) {
         console.error("Error fetching FAQ:", error);
@@ -35,7 +32,9 @@ export const FAQ = () => {
           <div
             className="aboutusbannr55"
             style={{
-              backgroundImage: `url(${FAQDetails?.image_url}/${FAQBannerDetails?.banner_image})`,
+              backgroundImage: FAQDetails.data?.banner_image
+                ? `url(${FAQDetails.image_url}/${FAQDetails.data.banner_image})`
+                : "none",
               backgroundSize: "100% 100%",
               height: "450px",
             }}
@@ -55,13 +54,17 @@ export const FAQ = () => {
         <div className="wrapper">
           <div className="container">
             <h1 className="mb-4">
-              {FAQBannerDetails?.banner_title}
+              {FAQDetails.data?.title &&
+                FAQDetails.data.title}
             </h1>
+
             <div
               dangerouslySetInnerHTML={{
                 __html:
-                  FAQBannerDetails?.banner_description }}
-            />
+                  FAQDetails.data?.description &&
+                  FAQDetails.data.description,
+              }}
+          />
           </div>
         </div>
       </div>
