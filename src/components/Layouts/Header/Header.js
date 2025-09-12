@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
 import { useAuth } from "../../../context/AuthContext";
 import { DropdownLoggedIn } from "../../Elements/Dropdown/DropdownLoggedIn";
 import http from "../../../http";
