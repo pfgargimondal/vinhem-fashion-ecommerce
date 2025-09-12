@@ -19,7 +19,7 @@ export const Filter = () => {
     resFltrMenu ? body.classList.add("overflow-hidden") : body.classList.remove("overflow-hidden");
   }, [resFltrMenu]);
 
-  const [allProduct, SetallProduct] = useState({});
+  const [allProduct, SetallProduct] = useState([]);
   
   useEffect(() => {
       const fetchAllProduct = async () => {
@@ -633,7 +633,11 @@ export const Filter = () => {
 
                                 <h4>{product.product_name}</h4>
 
-                                <h5>$48.99</h5>
+                                <h5>{new Intl.NumberFormat('en-IN', {
+                                      style: 'currency',
+                                      currency: 'INR',
+                                      maximumFractionDigits: 0
+                                    }).format(product.selling_price)}</h5>
 
                                 <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
                                   <div className="doikwenirnwekhrwer position-relative">
