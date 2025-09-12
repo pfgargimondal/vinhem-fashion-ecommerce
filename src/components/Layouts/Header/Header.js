@@ -347,7 +347,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                     <div className="dkewbjnrkwejrwer mt-2">
                                       <h5>Vishwa By Pinki Sinha</h5>
 
-                                      <a href="">SHOW NOW</a>
+                                      <a href="/">SHOW NOW</a>
                                     </div>
                                   </div>
                                 </div>
@@ -359,7 +359,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                     <div className="dkewbjnrkwejrwer mt-2">
                                       <h5>Vishwa By Pinki Sinha</h5>
 
-                                      <a href="">SHOW NOW</a>
+                                      <a href="/">SHOW NOW</a>
                                     </div>
                                   </div>
                                 </div>
