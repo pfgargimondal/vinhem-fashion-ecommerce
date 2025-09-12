@@ -666,6 +666,12 @@ export const OnSale = () => {
         </div>
       </div>
 
+      <div className="lknaknjdoijweewpr py-4 mb-5">
+        <div className="container-fluid">
+          <img src="./images/On-Sale-Last-Row.jpg" className="img-fluid" alt="" />
+        </div>
+      </div>
+
       <hr />
       <FooterTopComponent />
     </div>

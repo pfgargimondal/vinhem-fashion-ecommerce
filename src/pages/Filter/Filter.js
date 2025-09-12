@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Css/Filter.css";
 import "./Css/FilterResponsive.css";
+import http from "../../http";
 
 export const Filter = () => {
   const [selectedTheme, setSelectedTheme] = useState('dark');
@@ -11,15 +12,29 @@ export const Filter = () => {
   useEffect(() => {
     console.log('Selected Theme:', selectedTheme);
   }, [selectedTheme]);
-
-
   //Res Filter Page No-scroll
-
   useEffect(() => {
     const body = document.querySelector("html");
 
     resFltrMenu ? body.classList.add("overflow-hidden") : body.classList.remove("overflow-hidden");
   }, [resFltrMenu]);
+
+  const [allProduct, SetallProduct] = useState({});
+  
+  useEffect(() => {
+      const fetchAllProduct = async () => {
+          try {
+              const getresponse = await http.get("/fetch-product");
+              const allresponse = getresponse.data;
+              SetallProduct(allresponse.data); 
+          } catch (error) {
+              console.error("Error fetching main category:", error);
+          }
+      };
+
+      fetchAllProduct();
+  }, []);
+
 
   return (
     <div className="filter-wrapper pt-2">
@@ -536,7 +551,7 @@ export const Filter = () => {
 
               <div className="products-wrapper filtr-wrppr mt-5">
                 <div className="row">
-                  <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-3" : "col-lg-12"} mb-4`}>
+                  {/* <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-3" : "col-lg-12"} mb-4`}>
                     <div className="dfgjhbdfg">
                         <div className="images">                          
                           <div className="image row mx-0 position-relative">
@@ -586,7 +601,61 @@ export const Filter = () => {
                           </div>
                         </div>
                       </div>
-                  </div>
+                  </div> */}
+                  {allProduct?.map((product) => (
+
+                    <div className={`smdflcsdlpfkselkrpr col-lg-3 mb-4`}>
+                      <div className="dfgjhbdfg">
+                          <div className="images">                          
+                            <div className="image row mx-0 position-relative">
+                              <div className={`doiewjkrniuwewer position-relative overflow-hidden col-lg-3}`}>
+                                <img src="/images/product1 (1).webp" alt="not found" />
+
+                                <img className="first" src="/images/product1 (2).webp" alt="not found" />
+
+                                <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
+                                  <button className="btn-cart mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
+
+                                  <button className="btn-wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+
+                                    <i class="fa-solid d-none fa-heart"></i>
+                                  </button>
+                                </div>
+
+                                <div className="dbgdfhgv">
+                                  <button className="btn btn-main w-100">QUICK ADD</button>
+                                </div>
+                              </div>
+
+                              <div className={`fdbdfgdfgdf ${!viewType ? "col-lg-12" : "col-lg-9"}`}>
+                                {/* <h6>COLLETTE</h6> */}
+
+                                <h4>{product.product_name}</h4>
+
+                                <h5>$48.99</h5>
+
+                                <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
+                                  <div className="doikwenirnwekhrwer position-relative">
+                                    <button className="btn-cart me-1 mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
+
+                                    <button className="btn-wishlist">
+                                      <i class="fa-regular fa-heart"></i>
+
+                                      <i class="fa-solid d-none fa-heart"></i>
+                                    </button>
+                                  </div>
+
+                                  <div className="dbgdfhgv">
+                                      <button className="btn btn-main w-100">QUICK ADD</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  ))}
 
                   {/* <div className="col-lg-3 mb-4">
                     <div className="dfgjhbdfg">

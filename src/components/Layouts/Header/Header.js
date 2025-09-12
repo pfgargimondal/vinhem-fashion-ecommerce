@@ -195,46 +195,184 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
           ) }      
 
           { !shouldHideHeader && (
-          <div className="header-main bg-white pt-4 pb-2">       
-            <Swiper
-              slidesPerView="auto"
-              spaceBetween={10}
-              breakpoints={{
-                640: {
-                  slidesPerView: "auto",
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: "auto",
-                  spaceBetween: 20,
-                },
-                1000: {
-                  slidesPerView: "auto",
-                  spaceBetween: 20,
-                },
-              }}
-              className="mySwiper"
-            >
-
-              {mainCategory?.main_categories?.map((category) => (
+          <div className="header-main bg-white pt-4 pb-2 position-relative">       
+            <div className="header-main-wrapper">
+                {mainCategory?.main_categories?.map((category) => (
                 <SwiperSlide key={category.id}>
-                  <NavLink to={`/${category.slug}`} end>
+                  <NavLink to={`/products/${category.slug}`} end>
                     {category.category}
                   </NavLink>
+
+                  <div className="header-mega-menu position-absolute w-100">
+                    <div className="h-m-m-inner bg-white py-2 mt-3">
+                      <div className="container">
+                        <div className="row">
+                          <div className="col-lg-8">
+                            <div className="ojkmiweee_left py-3">
+                              <div className="row">
+                                <div className="col-lg-3">
+                                  <div className="oieniuiewr_inner">
+                                    <h5>Categories</h5>
+
+                                    <ul className="mb-0 ps-0">
+                                      <li>
+                                        <Link>Kurta Sets</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Lahengas</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Sarees</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Dresses</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Kaftans</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Pant Sets</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Gowns</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Tunics & Kurtis</Link>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+
+                                <div className="col-lg-3">
+                                  <div className="oieniuiewr_inner">
+                                    <h5>Designers</h5>
+
+                                    <ul className="mb-0 ps-0">
+                                      <li>
+                                        <Link>Vishwa By Pinki Sinha</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Ekaya Banaras</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Rishi and Vibhuti</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Anamika Khanna</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Preeti S Kapoor</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Chandrima</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Gulabo Jaipur</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>DiyaRajv vi</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Ajiesh Oberoi</Link>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+
+                                <div className="col-lg-3">
+                                  <div className="oieniuiewr_inner">
+                                    <h5>Trending</h5>
+
+                                    <ul className="mb-0 ps-0">
+                                      <li>
+                                        <Link>Buzworthy Styles</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Resort Ready</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>The Bridesmaid Edit</Link>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+
+                                <div className="col-lg-3">
+                                  <div className="oieniuiewr_inner">
+                                    <h5>Trending</h5>
+
+                                    <ul className="mb-0 ps-0">
+                                      <li>
+                                        <Link>Buzworthy Styles</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>Resort Ready</Link>
+                                      </li>
+
+                                      <li>
+                                        <Link>The Bridesmaid Edit</Link>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="col-lg-4">
+                            <div className="ojkmiweee_right">
+                              <div className="row">
+                                <div className="col-lg-6">
+                                  <div className="pkopkerrwer text-center">
+                                    <img src="./images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp" className="w-100" alt="" />
+
+                                    <div className="dkewbjnrkwejrwer mt-2">
+                                      <h5>Vishwa By Pinki Sinha</h5>
+
+                                      <a href="">SHOW NOW</a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="col-lg-6">
+                                  <div className="pkopkerrwer text-center">
+                                    <img src="./images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp" className="w-100" alt="" />
+
+                                    <div className="dkewbjnrkwejrwer mt-2">
+                                      <h5>Vishwa By Pinki Sinha</h5>
+
+                                      <a href="">SHOW NOW</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </SwiperSlide>
-              ))}
-              {/* <SwiperSlide><NavLink to="/new-in" end>New In</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Women</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Men</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Kids Wear</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Wedding</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Jewellery</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Ready To Ship</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="/on-sale">On Sale</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Eid Store</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Diwali</NavLink></SwiperSlide>
-              <SwiperSlide><NavLink to="">Holi</NavLink></SwiperSlide> */}
-            </Swiper>     
+              ))}  
+            </div>    
           </div>
           ) }
         </header>

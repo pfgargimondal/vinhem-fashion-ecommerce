@@ -11,6 +11,7 @@ export const AllRoutes = () => {
       <Route path="on-sale" element={ <OnSale /> } />
       <Route path="wedding" element={ <Wedding /> } />
       <Route path="products" element={ <Filter /> } />
+      <Route path="products/:category" element={ <Filter /> } />
       <Route path="new-in" element={ <NewIn /> } />
       <Route path="ready-to-ship" element={ <ReadyToShip /> } />
       <Route path="festive-shop" element={ <FestiveShop /> } />

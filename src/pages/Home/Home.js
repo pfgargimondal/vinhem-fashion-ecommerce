@@ -149,28 +149,23 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* <div className="jdfgdfg65dfdf">
+      <div className="jdfgdfg65dfdf">
         <div className="sadasdc">
           <div className="dfghdfg548">
-            <div className="row">
-              <div className="col-6">
-                <div className="dfkhgdfgdf">
-                  <h2>{homepage?.data?.title1}</h2>
-                  <p>{homepage?.data?.description1}</p>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="dfkhgdfgdf">
-                  <h2>{homepage?.data?.title2}</h2>
-                  <p>{homepage?.data?.description2}</p>
-                </div>
-              </div>
-            </div>
+            <img src={`${homepage?.image_url}/${homepage?.data?.banner_image2}`} className="w-100" alt="" />
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="fbgvdsdfd6568 pt-3 pb-5 mb-4">
+        <div className="container-fluid">
+          <div className="ghbgfgdf">
+           <img src={`${homepage?.image_url}/${homepage?.data?.banner_image3}`} className="w-100" alt="" />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="fbgvdsdfd6568 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="ghbgfgdf">
             <div className="row align-items-center">
@@ -241,7 +236,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       
       <div className="dfndfjhdfgdf pb-5 mb-4">
         <div className="container-fluid">
@@ -444,6 +439,12 @@ export const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="lknaknjdoijweewpr py-4 mb-5">
+        <div className="container-fluid">
+          <img src="./images/Home-page-Edit.jpg" className="img-fluid" alt="" />
         </div>
       </div>
 
