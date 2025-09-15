@@ -29,7 +29,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
 
   const { user } = useAuth();
 
-  const [mainCategory, SetmainCategory] = useState({});
+  const [mainCategory, SetmainCategory] = useState([]);
   const [currency, Setcurrency] = useState([]);
 
   useEffect(() => {
@@ -58,6 +58,8 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
     };
     fetchCurrency();
   }, []);
+
+  console.log('mainCategory', mainCategory);
 
   return (
     <>
@@ -165,12 +167,19 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                       <li><i class="bi bi-headset"></i> Help</li>
 
                       <li className="infrm-menu-divider">|</li>
-
-                      <li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li>
-
-                      <li className="infrm-menu-divider">|</li>
-
-                      <li><i class="bi bi-handbag"></i> Bag <span>0</span></li>
+                      {user ? (
+                        <>
+                          <Link to={`/wishlist`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
+                          <li className="infrm-menu-divider">|</li>
+                          <Link to={`/cart`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
+                        </>
+                      ):(
+                        <>
+                          <Link to={`/login`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
+                          <li className="infrm-menu-divider">|</li>
+                          <Link to={`/login`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
+                        </>
+                      )}
 
                       <li className="infrm-menu-divider">|</li>
 
@@ -197,10 +206,10 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
           { !shouldHideHeader && (
           <div className="header-main bg-white pt-4 pb-2 position-relative">       
             <div className="header-main-wrapper">
-                {mainCategory?.main_categories?.map((category) => (
+                {mainCategory?.map((category) => (
                 <SwiperSlide key={category.id}>
-                  <NavLink to={`/products/${category.slug}`} end>
-                    {category.category}
+                  <NavLink to={`/products/${category.mainCategory_slug}`} end>
+                    {category.mainCategory_name}
                   </NavLink>
 
                   <div className="header-mega-menu position-absolute w-100">
@@ -210,47 +219,23 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                           <div className="col-lg-8">
                             <div className="ojkmiweee_left py-3">
                               <div className="row">
-                                <div className="col-lg-3">
-                                  <div className="oieniuiewr_inner">
-                                    <h5>Categories</h5>
 
-                                    <ul className="mb-0 ps-0">
-                                      <li>
-                                        <Link>Kurta Sets</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Lahengas</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Sarees</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Dresses</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Kaftans</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Pant Sets</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Gowns</Link>
-                                      </li>
-
-                                      <li>
-                                        <Link>Tunics & Kurtis</Link>
-                                      </li>
-                                    </ul>
+                                {category.head_categories?.map((headCat) => (
+                                  <div className="col-lg-3" key={headCat.id}>
+                                    <div className="oieniuiewr_inner">
+                                      <h5>{headCat.headCategories_name}</h5>
+                                      <ul className="mb-0 ps-0">
+                                        {headCat.sub_categories?.map((subCat) => (
+                                          <li key={subCat.id}>
+                                            <Link to={`/products/${subCat.subCategories_slug}`}>{subCat.subCategories_name}</Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
                                   </div>
-                                </div>
+                                ))}
 
-                                <div className="col-lg-3">
+                                {/* <div className="col-lg-3">
                                   <div className="oieniuiewr_inner">
                                     <h5>Designers</h5>
 
@@ -332,7 +317,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </div>
@@ -340,7 +325,19 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                           <div className="col-lg-4">
                             <div className="ojkmiweee_right">
                               <div className="row">
-                                <div className="col-lg-6">
+                                {category.mainCategory_banner?.map((CategoryBanner) => (
+                                  <div className="col-lg-6" key={CategoryBanner.id}>
+                                    <div className="pkopkerrwer text-center">
+                                      <img src={`${CategoryBanner.category_bannerImage_url}/${CategoryBanner.category_bannerImage}`} className="w-100" alt="" />
+                                      <div className="dkewbjnrkwejrwer mt-2">
+                                        <h5>{CategoryBanner.category_bannerTitle}</h5>
+                                        <a href={`${CategoryBanner.category_bannerURL}`}>SHOW NOW</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+
+                                {/* <div className="col-lg-6">
                                   <div className="pkopkerrwer text-center">
                                     <img src="./images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp" className="w-100" alt="" />
 
@@ -350,19 +347,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                       <a href="/">SHOW NOW</a>
                                     </div>
                                   </div>
-                                </div>
-
-                                <div className="col-lg-6">
-                                  <div className="pkopkerrwer text-center">
-                                    <img src="./images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp" className="w-100" alt="" />
-
-                                    <div className="dkewbjnrkwejrwer mt-2">
-                                      <h5>Vishwa By Pinki Sinha</h5>
-
-                                      <a href="/">SHOW NOW</a>
-                                    </div>
-                                  </div>
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </div>
