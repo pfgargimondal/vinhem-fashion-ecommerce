@@ -1,5 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import http from "../http";
+// eslint-disable-next-line
 import { toast } from "react-toastify";
 
 export default function useWishlist() {

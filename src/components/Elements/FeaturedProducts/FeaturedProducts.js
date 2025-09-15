@@ -3,6 +3,7 @@ import "./FeaturedProducts.css";
 import { useAuth } from "../../../context/AuthContext";
 // import useCart from "../../../hooks/useCart";
 import useWishlist from "../../../hooks/useWishlist";
+// eslint-disable-next-line
 import { ToastContainer, toast } from "react-toastify";
 
 export const FeaturedProducts = ({ featuredProduct }) => {
