@@ -12,7 +12,7 @@ export default function useWishlist() {
     }
 
     try {
-      const response = await http.post("/user/add-to-wishlist",
+      const response = await http.post("/user/user-add-wishlist",
         { product_id: productId },
         {
           headers: {

@@ -3,38 +3,41 @@ import "./FeaturedProducts.css";
 import { useAuth } from "../../../context/AuthContext";
 // import useCart from "../../../hooks/useCart";
 import useWishlist from "../../../hooks/useWishlist";
+import { ToastContainer, toast } from "react-toastify";
 
 export const FeaturedProducts = ({ featuredProduct }) => {
 
     const { user } = useAuth();
     // const { addToCart } = useCart();
-    const { addWishlist } = useWishlist();
+    const { addToWishlist  } = useWishlist();
 
 
     return (
         <div className="dfgjhbdfg">
             <div className="images">                          
                 <div className="image position-relative">
-                    <Link to={`product-details/${featuredProduct.slug}`}>
+                    
                         <div className="doiewjkrniuwewer position-relative overflow-hidden">
-                            <img src={featuredProduct.encoded_image_url_1} alt="not found" />
+                            <Link to={`product-details/${featuredProduct.slug}`}>
+                                <img src={featuredProduct.encoded_image_url_1} alt="not found" />
 
-                            <img className="first" src={featuredProduct.encoded_image_url_2} alt="not found" />
+                                <img className="first" src={featuredProduct.encoded_image_url_2} alt="not found" />
+                            </Link>
 
                             <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
                                 {user ? (
                                     <>
-                                    <button className="btn-cart mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
-                                    <button className="btn-wishlist" onClick={() => addWishlist(featuredProduct.id)}>
+                                    <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                    <button className="btn-wishlist" type="button" onClick={() => addToWishlist (featuredProduct.id)}>
                                         <i class="fa-regular fa-heart"></i>
                                         <i class="fa-solid d-none fa-heart"></i>
                                     </button>
                                     </>
                                 ) : (
                                     <>
-                                    <Link to="/login"><button className="btn-cart mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
+                                    <Link to="/login"><button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
                                     <Link to="/login">
-                                        <button className="btn-wishlist">
+                                        <button className="btn-wishlist" type="button">
                                             <i class="fa-regular fa-heart"></i>
                                             <i class="fa-solid d-none fa-heart"></i>
                                         </button>
@@ -61,9 +64,15 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                             }).format(featuredProduct.selling_price)}
                             </h5>
                         </div>
-                    </Link>
+                    
                 </div>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                style={{ zIndex: 9999999999 }}
+            />
         </div>
     )
 }

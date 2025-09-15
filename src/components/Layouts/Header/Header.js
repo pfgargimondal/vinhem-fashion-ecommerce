@@ -59,8 +59,6 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
     fetchCurrency();
   }, []);
 
-  console.log('mainCategory', mainCategory);
-
   return (
     <>
       { !shouldHideFullHeaderFooterRoutes && (
