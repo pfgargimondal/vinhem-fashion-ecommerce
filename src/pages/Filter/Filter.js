@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Css/Filter.css";
 import "./Css/FilterResponsive.css";
 import http from "../../http";
+import useWishlist from "../../hooks/useWishlist";
+import { useAuth } from "../../context/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 export const Filter = () => {
+
+  const { user } = useAuth();
+  const location = useLocation();
+  
   const [selectedTheme, setSelectedTheme] = useState('dark');
   const [viewType, setViewType] = useState(false);
   const [resFltrMenu, setResFltrMenu] = useState(false);
+  const [allProduct, SetallProduct] = useState([]);
 
   useEffect(() => {
     console.log('Selected Theme:', selectedTheme);
@@ -19,21 +27,49 @@ export const Filter = () => {
     resFltrMenu ? body.classList.add("overflow-hidden") : body.classList.remove("overflow-hidden");
   }, [resFltrMenu]);
 
-  const [allProduct, SetallProduct] = useState([]);
-  
-  useEffect(() => {
+    
+    
+    useEffect(() => {
       const fetchAllProduct = async () => {
-          try {
-              const getresponse = await http.get("/fetch-product");
-              const allresponse = getresponse.data;
-              SetallProduct(allresponse.data); 
-          } catch (error) {
-              console.error("Error fetching main category:", error);
+        try {
+          const segments = location.pathname.split("/").filter(Boolean);
+
+          // Decide category and subcategory
+          let category = null;
+          let subcategory = null;
+
+          if (segments.length === 1) {
+            category = segments[0];
+          } else if (segments.length >= 2) {
+            category = segments[0];
+            subcategory = segments[1];
           }
+
+          // Send to API
+          const response = await http.post("/fetch-product", {
+            category,
+            subcategory,
+          });
+
+          SetallProduct(response.data.data);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
       };
 
       fetchAllProduct();
-  }, []);
+    }, [location.pathname]);
+
+    const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+
+
+    const toggleWishlist = (productId) => {
+      if (wishlistIds.includes(productId)) {
+        removeFromWishlist(productId);
+      } else {
+        addToWishlist(productId);
+      }
+    };
 
 
   return (
@@ -604,23 +640,38 @@ export const Filter = () => {
                   </div> */}
                   {allProduct?.map((product) => (
 
-                    <div className={`smdflcsdlpfkselkrpr col-lg-3 mb-4`}>
+                    <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-3" : "col-lg-12"} mb-4`}>
                       <div className="dfgjhbdfg">
                           <div className="images">                          
                             <div className="image row mx-0 position-relative">
-                              <div className={`doiewjkrniuwewer position-relative overflow-hidden col-lg-3}`}>
-                                <img src="/images/product1 (1).webp" alt="not found" />
+                              <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
 
-                                <img className="first" src="/images/product1 (2).webp" alt="not found" />
+                                <Link to={`products/${product.slug}`}>
+                                    <img src={product.encoded_image_url_1} alt={product.product_name} />
+
+                                    <img className="first" src={product.encoded_image_url_2} alt={product.product_name} />
+                                </Link>
 
                                 <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
-                                  <button className="btn-cart mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                  {user ? (
+                                    <>
+                                      <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                      <button onClick={() => toggleWishlist(product.id)}>
+                                        <i className={wishlistIds.includes(product.id) ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                                      </button>
 
-                                  <button className="btn-wishlist">
-                                    <i class="fa-regular fa-heart"></i>
-
-                                    <i class="fa-solid d-none fa-heart"></i>
-                                  </button>
+                                      </>
+                                  ) : (
+                                      <>
+                                      <Link to="/login"><button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
+                                      <Link to="/login">
+                                          <button className="btn-wishlist" type="button">
+                                              <i class="fa-regular fa-heart"></i>
+                                              <i class="fa-solid d-none fa-heart"></i>
+                                          </button>
+                                      </Link>
+                                      </>
+                                  )}
                                 </div>
 
                                 <div className="dbgdfhgv">
@@ -629,7 +680,7 @@ export const Filter = () => {
                               </div>
 
                               <div className={`fdbdfgdfgdf ${!viewType ? "col-lg-12" : "col-lg-9"}`}>
-                                {/* <h6>COLLETTE</h6> */}
+                                <h6>{product.designer}</h6>
 
                                 <h4>{product.product_name}</h4>
 
@@ -641,13 +692,25 @@ export const Filter = () => {
 
                                 <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
                                   <div className="doikwenirnwekhrwer position-relative">
-                                    <button className="btn-cart me-1 mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                    {user ? (
+                                      <>
+                                        <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                        <button onClick={() => toggleWishlist(product.id)}>
+                                          <i className={wishlistIds.includes(product.id) ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                                        </button>
 
-                                    <button className="btn-wishlist">
-                                      <i class="fa-regular fa-heart"></i>
-
-                                      <i class="fa-solid d-none fa-heart"></i>
-                                    </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                        <Link to="/login"><button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
+                                        <Link to="/login">
+                                            <button className="btn-wishlist" type="button">
+                                                <i class="fa-regular fa-heart"></i>
+                                                <i class="fa-solid d-none fa-heart"></i>
+                                            </button>
+                                        </Link>
+                                        </>
+                                    )}
                                   </div>
 
                                   <div className="dbgdfhgv">
@@ -660,252 +723,6 @@ export const Filter = () => {
                         </div>
                     </div>
                   ))}
-
-                  {/* <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 mb-4">
-                    <div className="dfgjhbdfg">
-                      <div className="images">
-                        <div className="image position-relative">
-                          <img src="/images/product1 (1).webp" alt="not found" />
-
-                          <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                          <div className="dbgdfhgv">
-                            <button>QUICK ADD</button>
-                          </div>
-
-                          <div className="fdbdfgdfgdf">
-                            <h6>COLLETTE</h6>
-                            <h4>(Product 35) Sample - Clothing And Accessory Boutiques For Sale</h4>
-                            <h5>$48.99</h5>
-                          </div>
-                          <div className="dsgdfgsdf">
-                            <div className="selection-group">
-                              <input id="a" type="radio" name="rate" defaultValue="a" />
-                              <label htmlFor="a">
-                                <img src="/images/color1 (1).jpg" alt="" />
-                              </label>
-
-                              <input id="b" type="radio" name="rate" defaultValue="b" />
-                              <label htmlFor="b">
-                                <img src="/images/color1 (1).png" alt="" />
-                              </label>
-
-                              <input id="c" type="radio" name="rate" defaultValue="c" defaultChecked="" />
-                              <label htmlFor="c">
-                                <img src="/images/color1 (2).png" alt="" />
-                              </label>
-                            </div>
-                            <p>MORE SIZE AVAILABLE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -919,6 +736,11 @@ export const Filter = () => {
 
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum officiis placeat tenetur reiciendis est, sint sapiente magni soluta blanditiis eligendi quis ipsam? Deleniti odit, cumque architecto sint porro eligendi provident, magnam voluptate assumenda temporibus ullam possimus facilis veritatis ab cupiditate delectus facere beatae quo perspiciatis dolore dignissimos soluta corrupti deserunt. Minus officiis, ea, fugit possimus, reiciendis aspernatur itaque alias facere provident molestiae voluptatibus. Amet obcaecati molestiae quaerat dolor voluptates nam dolorem, maiores qui fuga eos itaque, nisi excepturi sequi cum libero aperiam vel! Omnis eum iste voluptatem dignissimos laudantium ducimus ipsa, libero perferendis enim doloremque dolores dolor quidem voluptate adipisci veritatis consectetur saepe aliquam odit fugit illum at. Quo assumenda eveniet voluptatum blanditiis modi nisi molestias.</p>
         </div>
+        <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            style={{ zIndex: 9999999999 }}
+        />
       </div>
     </div>
   )

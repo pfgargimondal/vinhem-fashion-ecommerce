@@ -206,7 +206,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
             <div className="header-main-wrapper">
                 {mainCategory?.map((category) => (
                 <SwiperSlide key={category.id}>
-                  <NavLink to={`/products/${category.mainCategory_slug}`} end>
+                  <NavLink to={`/${category.mainCategory_slug}`} end>
                     {category.mainCategory_name}
                   </NavLink>
 
@@ -225,7 +225,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                       <ul className="mb-0 ps-0">
                                         {headCat.sub_categories?.map((subCat) => (
                                           <li key={subCat.id}>
-                                            <Link to={`/products/${subCat.subCategories_slug}`}>{subCat.subCategories_name}</Link>
+                                            <Link to={`/${category.mainCategory_slug}/${subCat.subCategories_slug}`}>{subCat.subCategories_name}</Link>
                                           </li>
                                         ))}
                                       </ul>

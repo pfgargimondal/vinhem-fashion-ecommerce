@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { AboutUs, ContactUs, Filter, NewIn, ReadyToShip, FestiveShop, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ, ThankYou} from "../pages";
+import { AboutUs, ContactUs, Filter, ReadyToShip, FestiveShop, Home, Login, OnSale, PageNotFound, ProductDetail, Register, Wedding, TermsCondition, PrivacyPolicy, ReturnPolicy, OrderPolicy, ShippingPolicy, Testimonial, Career, Profile, CancelOrder, OrderHistory, ChangePassword, Wishlist, Cart, Blog, BlogDetails, Invoice, Checkout, Chat, TrackOrder, FAQ, ThankYou} from "../pages";
 import ProtectedRoute from "../components/ProtectedRoute ";
 export const AllRoutes = () => {
   return (
@@ -10,13 +10,15 @@ export const AllRoutes = () => {
       <Route path="contact-us" element={ <ContactUs /> } />
       <Route path="on-sale" element={ <OnSale /> } />
       <Route path="wedding" element={ <Wedding /> } />
-      <Route path="products" element={ <Filter /> } />
-      <Route path="products/:category" element={ <Filter /> } />
-      <Route path="new-in" element={ <NewIn /> } />
+      <Route path="all-products" element={ <Filter /> } />
+      <Route path="/:category" element={ <Filter /> } />
+      <Route path="/:category/:subcategory" element={ <Filter /> } />
+
+      {/* <Route path="new-in" element={ <NewIn /> } /> */}
       <Route path="ready-to-ship" element={ <ReadyToShip /> } />
       <Route path="festive-shop" element={ <FestiveShop /> } />
 
-      <Route path="product-details/:slug" element={ <ProductDetail /> } />
+      <Route path="products/:slug" element={ <ProductDetail /> } />
       <Route path="register" element={ <Register /> } />
       <Route path="login" element={ <Login /> } />
       <Route path="terms-&-condition" element={ <TermsCondition /> } />

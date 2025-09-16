@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 import http from "../../http";
 import { FeaturedProducts } from "../../components";
-
+import { ToastContainer } from "react-toastify";
 import "swiper/css";
 import "./Css/Home.css";
 import "./Css/HomeResponsive.css";
@@ -444,7 +444,9 @@ export const Home = () => {
 
       <div className="lknaknjdoijweewpr py-4 mb-5">
         <div className="container-fluid">
-          <img src="./images/Home-page-Edit.jpg" className="img-fluid" alt="" />
+          <Link to={homepage?.data?.hp9_url1}>
+            <img src={`${homepage?.image_url}/${homepage?.data?.hp9_image1}`} className="img-fluid" alt="" />
+          </Link>
         </div>
       </div>
 
@@ -465,6 +467,12 @@ export const Home = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          style={{ zIndex: 9999999999 }}
+      />
       <hr />
       <FooterTopComponent />
 
