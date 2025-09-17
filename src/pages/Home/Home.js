@@ -152,7 +152,9 @@ export const Home = () => {
       <div className="jdfgdfg65dfdf">
         <div className="sadasdc">
           <div className="dfghdfg548">
-            <img src={`${homepage?.image_url}/${homepage?.data?.banner_image2}`} className="w-100" alt="" />
+            <Link to={homepage?.data?.url2}>
+              <img src={`${homepage?.image_url}/${homepage?.data?.banner_image2}`} className="w-100" alt="" />
+            </Link>
           </div>
         </div>
       </div>
@@ -160,7 +162,9 @@ export const Home = () => {
       <div className="fbgvdsdfd6568 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="ghbgfgdf">
-           <img src={`${homepage?.image_url}/${homepage?.data?.banner_image3}`} className="w-100" alt="" />
+            <Link to={homepage?.data?.url3}>
+              <img src={`${homepage?.image_url}/${homepage?.data?.banner_image3}`} className="w-100" alt="" />
+            </Link>
           </div>
         </div>
       </div>
@@ -277,29 +281,34 @@ export const Home = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="fhdfgdf">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section1_image1}`} alt="" />
+                  <Link to={homepage?.data?.section1_url1}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section1_image1}`} alt="" />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="fhdfgdf">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section1_image2}`} alt="" />
+                  <Link to={homepage?.data?.section1_url2}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section1_image2}`} alt="" />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      <div className="xfdjgdfgdfg mb-5"
-        style={{
-          backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section2_image})`,
-          backgroundSize: "100% 100%"
-        }}
-      >
-        <div className="container-fluid">
-          <div className="dfbghd5488"></div>
+      <Link to={homepage?.data?.section2_url}>
+        <div className="xfdjgdfgdfg mb-5"
+          style={{
+            backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section2_image})`,
+            backgroundSize: "100% 100%"
+          }}
+        >
+          <div className="container-fluid">
+            <div className="dfbghd5488"></div>
+          </div>
         </div>
-      </div>
+      </Link>
 
       <div className="xfbxdfgsdf d-none">
         <div className="container-fluid">
@@ -324,23 +333,29 @@ export const Home = () => {
       <div className="fbnghksdfsdfsf mt-5 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4 className="mb-3">Brand We Love</h4>
+            <h4 className="mb-3">{homepage?.data?.section3_title1}</h4>
           </div>
           <div className="dfgnhdfgdf">
             <div className="row">
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image1}`} alt="" />
+                  <Link to={homepage?.data?.section3_url1}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section3_image1}`} alt="" />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image2}`} alt="" />
+                  <Link to={homepage?.data?.section3_url2}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section3_image2}`} alt="" />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="nhgf65dfgdf">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image3}`} alt="" />
+                  <Link to={homepage?.data?.section3_url3}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section3_image3}`} alt="" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -354,12 +369,16 @@ export const Home = () => {
             <div className="row">
               <div className="col-lg-3">
                 <div className="dfdfdffd">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image4}`} alt="" />
+                  <Link to={homepage?.data?.section3_url4}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section3_image4}`} alt="" />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-9">
                 <div className="dfdfdffd">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.section3_image5}`} alt="" />
+                  <Link to={homepage?.data?.section3_url5}>
+                    <img src={`${homepage?.image_url}/${homepage?.data?.section3_image5}`} alt="" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -372,10 +391,12 @@ export const Home = () => {
           <div className="sdf58sdfs">
             <h4 className="mb-3">{homepage?.data?.section4_title}</h4>
           </div>
-          <div
-            className="sdfsdfsdfsd"
-            style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section4_image})`, }}
-          ></div>
+          <Link to={homepage?.data?.section4_url}>
+            <div
+              className="sdfsdfsdfsd"
+              style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section4_image})`, }}
+            ></div>
+          </Link>
         </div>
       </div>
 
@@ -387,11 +408,12 @@ export const Home = () => {
           <div className="dfdfhgdf65">
             <div className="row">
               <div className="col-lg-4">
+                <Link to={homepage?.data?.section5_url1}>
                 <div
                   className="dfgyhdfgdf"
                   style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image1})`, }}
                 >
-                  <div className="dfdfsdf">
+                  {/* <div className="dfdfsdf">
                     <h4>
                       <span>NEW IN</span>{" "}
                     </h4>
@@ -400,15 +422,17 @@ export const Home = () => {
                         SHOES &amp; <br /> BOOTS
                       </span>{" "}
                     </h2>
-                  </div>
+                  </div> */}
                 </div>
+                </Link>
               </div>
               <div className="col-lg-4">
+                <Link to={homepage?.data?.section5_url2}>
                 <div
                   className="dfgyhdfgdf"
                   style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image2})`, }}
                 >
-                  <div className="dfdfsdf">
+                  {/* <div className="dfdfsdf">
                     <h4>
                       <span>MUST HAVE</span>
                     </h4>
@@ -417,15 +441,17 @@ export const Home = () => {
                         EDITOR'S <br /> PICKS
                       </span>{" "}
                     </h2>
-                  </div>
+                  </div> */}
                 </div>
+                </Link>
               </div>
               <div className="col-lg-4">
+                <Link to={homepage?.data?.section5_url3}>
                 <div
                   className="dfgyhdfgdf"
                   style={{ backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section5_image3})`, }}
                 >
-                  <div className="dfdfsdf">
+                  {/* <div className="dfdfsdf">
                     <h4>
                       <span>NEW IN</span>{" "}
                     </h4>
@@ -434,8 +460,9 @@ export const Home = () => {
                         SHOES &amp; <br /> BOOTS
                       </span>{" "}
                     </h2>
-                  </div>
+                  </div> */}
                 </div>
+                </Link>
               </div>
             </div>
           </div>

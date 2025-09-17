@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate , useLocation } from "react-router-dom";
 import "./Css/Filter.css";
 import "./Css/FilterResponsive.css";
 import http from "../../http";
@@ -8,68 +8,97 @@ import { useAuth } from "../../context/AuthContext";
 import { ToastContainer } from "react-toastify";
 
 export const Filter = () => {
-
   const { user } = useAuth();
   const location = useLocation();
-  
-  const [selectedTheme, setSelectedTheme] = useState('dark');
+  const navigate = useNavigate();
+  // eslint-disable-next-line
+  const [selectedTheme, setSelectedTheme] = useState("dark");
   const [viewType, setViewType] = useState(false);
   const [resFltrMenu, setResFltrMenu] = useState(false);
-  const [allProduct, SetallProduct] = useState([]);
+  const [allProductdata, SetallProduct] = useState([]);
+  const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
+
+  const toTitleCase = (s = "") =>
+  s
+    .toString()
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
 
   useEffect(() => {
-    console.log('Selected Theme:', selectedTheme);
+    console.log("Selected Theme:", selectedTheme);
   }, [selectedTheme]);
   //Res Filter Page No-scroll
   useEffect(() => {
     const body = document.querySelector("html");
 
-    resFltrMenu ? body.classList.add("overflow-hidden") : body.classList.remove("overflow-hidden");
+    resFltrMenu
+      ? body.classList.add("overflow-hidden")
+      : body.classList.remove("overflow-hidden");
   }, [resFltrMenu]);
 
-    
-    
-    useEffect(() => {
-      const fetchAllProduct = async () => {
-        try {
-          const segments = location.pathname.split("/").filter(Boolean);
-
-          // Decide category and subcategory
-          let category = null;
-          let subcategory = null;
-
-          if (segments.length === 1) {
-            category = segments[0];
-          } else if (segments.length >= 2) {
-            category = segments[0];
-            subcategory = segments[1];
-          }
-
-          // Send to API
-          const response = await http.post("/fetch-product", {
-            category,
-            subcategory,
-          });
-
-          SetallProduct(response.data.data);
-        } catch (error) {
-          console.error("Error fetching products:", error);
-        }
-      };
-
-      fetchAllProduct();
-    }, [location.pathname]);
-
-    const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+  const handleFilterChange = (value) => {
+    navigate(`/${value}`);
+  };
 
 
-    const toggleWishlist = (productId) => {
-      if (wishlistIds.includes(productId)) {
-        removeFromWishlist(productId);
-      } else {
-        addToWishlist(productId);
+    const segments = location.pathname.split("/").filter(Boolean);
+    let category = null;
+    let subcategory = null;
+
+    if (segments.length === 1) {
+      category = segments[0];
+    } else if (segments.length >= 2) {
+      category = segments[0];
+      subcategory = segments[1];
+    }
+
+
+  useEffect(() => {
+    const fetchAllProduct = async () => {
+      try {
+        // Send to API
+        const response = await http.post("/fetch-product", {
+          category,
+          subcategory,
+        });
+
+        SetallProduct(response.data.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
       }
     };
+
+    fetchAllProduct();
+  }, [location.pathname, category, subcategory]);
+
+  const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+
+  const toggleWishlist = (productId) => {
+    if (wishlistIds.includes(productId)) {
+      removeFromWishlist(productId);
+    } else {
+      addToWishlist(productId);
+    }
+  };
+
+  useEffect(() => {
+    const fetchFilterMapping = async () => {
+      try {
+        // Send to API
+        const response = await http.post("/fetch-filter-details", {
+          category,
+          subcategory,
+        });
+
+        SetallFilterMappingdata(response.data.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchFilterMapping();
+  }, [location.pathname, category, subcategory]);
 
 
   return (
@@ -77,158 +106,125 @@ export const Filter = () => {
       <div className="container-fluid">
         <div className="breadcrumb">
           <ul className="ps-0">
-            <li><Link>Home</Link></li>
-
-            <li><Link>/</Link></li>
-
-            <li><Link>Women</Link></li>
-
-            <li><Link>/</Link></li>
-
-            <li>Designer Kurta Sets For Women</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            {category && (
+              <>
+                <li className="mx-2">/</li>
+                <li>
+                  <Link to={`/${category}`}>{category}</Link>
+                </li>
+              </>
+            )}
+            {subcategory && (
+              <>
+                <li className="mx-2">/</li>
+                <li>
+                  <Link to={`/${category}/${subcategory}`}>{subcategory}</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
 
         <div className="alosjdjkhrjfse">
-          <h4 className="mb-0">Designer Kurta Sets For Women <span>- Showing 66,154 Results</span></h4>
+          <h4 className="mb-0">
+            {category === "all-produtcs"
+            ? "All Products"
+            : subcategory
+              ? `${toTitleCase(subcategory)} For ${toTitleCase(category)}`
+              : `All Products For ${toTitleCase(category)}`}
+          <span> - Showing {allProductdata?.all_product?.length ?? 0} Results</span>
+          </h4>
         </div>
 
-        <div className="advtsmnt-bnnr my-4 overflow-hidden" style={{borderRadius: "1rem"}}>
-          <img src="images/fltrdbnnr.png" className="img-fluid" alt="" />
+        <div
+          className="advtsmnt-bnnr my-4 overflow-hidden"
+          style={{ borderRadius: "1rem" }}
+        >
+          {allProductdata?.filter_banner
+            ? (
+                <img
+                  src={`${allProductdata?.banner_image_url}/${allProductdata?.filter_banner?.image ?? ""}`}
+                  className="img-fluid"
+                  alt=""
+                />
+              )
+            : (
+                <img
+                  src="images/fltrdbnnr.png"
+                  className="img-fluid"
+                  alt=""
+                />
+              )}
+          {/* <img src="images/fltrdbnnr.png" className="img-fluid" alt="" /> */}
         </div>
 
         {resFltrMenu && (
-          <div className="res-fltr-bckdrp position-fixed w-100 h-100" onClick={() => setResFltrMenu(false)}></div>
-        )}  
+          <div
+            className="res-fltr-bckdrp position-fixed w-100 h-100"
+            onClick={() => setResFltrMenu(false)}
+          ></div>
+        )}
 
         <div className="row mt-5">
           <div className="col-lg-3">
             <div className="filter-options">
               <div className="oidenjwihrwer mb-4 d-flex align-items-center justify-content-between">
-                <h5 className="mb-0" id="res-filtr-btn" onClick={() => setResFltrMenu(true)}><i class="fa-solid me-1 fa-filter"></i> Filter</h5>
+                <h5
+                  className="mb-0"
+                  id="res-filtr-btn"
+                  onClick={() => setResFltrMenu(true)}
+                >
+                  <i class="fa-solid me-1 fa-filter"></i> Filter
+                </h5>
 
                 <i class="bi bi-chevron-bar-left"></i>
               </div>
-              
-              <div className={`saojdkjierwerwer ${resFltrMenu ? "" : "res-filtr-nav-hide"}`} id="res-filtr-nav">
+
+              <div
+                className={`saojdkjierwerwer ${
+                  resFltrMenu ? "" : "res-filtr-nav-hide"
+                }`}
+                id="res-filtr-nav"
+              >
+              {allFilterMappingdata?.map((FilterMappingdata) => (
                 <div className="dkewjriwehrnjhweijrwer mb-4">
                   <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0">Categories</h5>
+                    <h5 className="mb-0">{toTitleCase(FilterMappingdata.filter_option)}</h5>
 
                     <i class="bi bi-chevron-down"></i>
                   </div>
 
                   <div className="doewjkrnhweiurwer">
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Anarkali Sets(10)</label>
+                    {FilterMappingdata.filter_values.split(",").map((item, index) => (
+                      <div key={index} class="radio-wrapper-5">
+                        <label htmlFor="example-5" className="forCircle">
+                          <input
+                            id="example-5"
+                            type="radio"
+                            name="radio-examples"
+                          />
+                          <span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-3.5 w-3.5"
+                              viewBox="0 0 16 16"
+                              fill="currentColor"
+                            >
+                              <circle data-name="ellipse" cx={8} cy={8} r={8} />
+                            </svg>
+                          </span>
+                        </label>
+                        <label htmlFor="example-5">{item.trim()}</label>
                     </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Cosmopolis(8)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Izabella(1)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Printed Kurta Sets(9)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Fusion Style Sets(3)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Palazzo Sets(7)</label>
-                    </div>
+                    ))}
+                    
                   </div>
                 </div>
-
+              ))}
+{/* 
                 <div className="dkewjriwehrnjhweijrwer mb-4">
                   <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
                     <h5 className="mb-0">Manufacturer</h5>
@@ -239,7 +235,11 @@ export const Filter = () => {
                   <div className="doewjkrnhweiurwer">
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -257,7 +257,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +279,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +301,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -311,7 +323,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -345,11 +361,13 @@ export const Filter = () => {
                           id="dark"
                           className="colored-radio"
                           data-color="#1C1C1C"
-                          checked={selectedTheme === 'dark'}
-                          onChange={() => setSelectedTheme('dark')}
+                          checked={selectedTheme === "dark"}
+                          onChange={() => setSelectedTheme("dark")}
                           style={{
                             backgroundColor:
-                              selectedTheme === 'dark' ? '#1C1C1C' : 'transparent',
+                              selectedTheme === "dark"
+                                ? "#1C1C1C"
+                                : "transparent",
                           }}
                         />
                         Dark
@@ -362,11 +380,13 @@ export const Filter = () => {
                           id="green"
                           className="colored-radio"
                           data-color="#2EFE64"
-                          checked={selectedTheme === 'green'}
-                          onChange={() => setSelectedTheme('green')}
+                          checked={selectedTheme === "green"}
+                          onChange={() => setSelectedTheme("green")}
                           style={{
                             backgroundColor:
-                              selectedTheme === 'green' ? '#2EFE64' : 'transparent',
+                              selectedTheme === "green"
+                                ? "#2EFE64"
+                                : "transparent",
                           }}
                         />
                         Green
@@ -379,11 +399,13 @@ export const Filter = () => {
                           id="rose"
                           className="colored-radio"
                           data-color="#F781BE"
-                          checked={selectedTheme === 'rose'}
-                          onChange={() => setSelectedTheme('rose')}
+                          checked={selectedTheme === "rose"}
+                          onChange={() => setSelectedTheme("rose")}
                           style={{
                             backgroundColor:
-                              selectedTheme === 'rose' ? '#F781BE' : 'transparent',
+                              selectedTheme === "rose"
+                                ? "#F781BE"
+                                : "transparent",
                           }}
                         />
                         Rose
@@ -396,11 +418,13 @@ export const Filter = () => {
                           id="blue"
                           className="colored-radio"
                           data-color="#2E9AFE"
-                          checked={selectedTheme === 'blue'}
-                          onChange={() => setSelectedTheme('blue')}
+                          checked={selectedTheme === "blue"}
+                          onChange={() => setSelectedTheme("blue")}
                           style={{
                             backgroundColor:
-                              selectedTheme === 'blue' ? '#2E9AFE' : 'transparent',
+                              selectedTheme === "blue"
+                                ? "#2E9AFE"
+                                : "transparent",
                           }}
                         />
                         Blue
@@ -419,7 +443,11 @@ export const Filter = () => {
                   <div className="doewjkrnhweiurwer">
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +465,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -455,7 +487,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -473,7 +509,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -491,7 +531,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -509,7 +553,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -527,7 +575,11 @@ export const Filter = () => {
 
                     <div class="radio-wrapper-5">
                       <label htmlFor="example-5" className="forCircle">
-                        <input id="example-5" type="radio" name="radio-examples" />
+                        <input
+                          id="example-5"
+                          type="radio"
+                          name="radio-examples"
+                        />
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -543,37 +595,79 @@ export const Filter = () => {
                       <label htmlFor="example-5">L</label>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
           <div className="col-lg-9">
             <div className="filtered-products">
-
               <div className="iduhweihriweurwerwer row align-items-center pb-3">
                 <div className="col-lg-9">
                   <div className="idasijhdmsiejr d-flex align-items-center">
                     <div className="view-options d-flex me-3 align-items-center">
-                      <div className={`grid-view me-1 ${!viewType ? "active": ""}`} onClick={() => setViewType(!viewType)}><i class="bi bi-grid-3x3-gap"></i></div>
+                      <div
+                        className={`grid-view me-1 ${
+                          !viewType ? "active" : ""
+                        }`}
+                        onClick={() => setViewType(!viewType)}
+                      >
+                        <i class="bi bi-grid-3x3-gap"></i>
+                      </div>
 
-                      <div className={`list-view ${viewType ? "active": ""}`} onClick={() => setViewType(!viewType)}><i class="bi bi-card-list"></i></div>
+                      <div
+                        className={`list-view ${viewType ? "active" : ""}`}
+                        onClick={() => setViewType(!viewType)}
+                      >
+                        <i class="bi bi-card-list"></i>
+                      </div>
+                    </div>
+                    <div className="doewnkrhwer">
+                      <input
+                        type="checkbox"
+                        className="d-none"
+                        id="huidweujr"
+                        checked={category === "new-in"}
+                        onChange={() => handleFilterChange("new-in")}
+                      />
+                      <label htmlFor="huidweujr" className="btn btn-main me-1">
+                        <i className="bi me-1 bi-plus-circle-dotted"></i> New
+                      </label>
                     </div>
 
-                    <button className="btn btn-main me-1"><i class="bi me-1 bi-plus-circle-dotted"></i> New</button>
-
-                    <button className="btn btn-main me-1"><i class="bi me-1 bi-lightning-charge"></i> Ready to Ship</button>
-
-                    <button className="btn btn-main me-1"><i class="bi me-1 bi-receipt"></i> On Sale</button>
-
-                    <button className="btn btn-main"><i class="bi me-1 bi-vignette"></i> Custom-fit</button>
+                    <div className="doewnkrhwer">
+                      <input
+                        type="checkbox"
+                        className="d-none"
+                        id="huidweujrjuhjkh"
+                        checked={category === "ready-to-ship"}
+                        onChange={() => handleFilterChange("ready-to-ship")}
+                      />
+                      <label
+                        htmlFor="huidweujrjuhjkh"
+                        className="btn btn-main me-1"
+                      >
+                        <i className="bi me-1 bi-lightning-charge"></i> Ready to
+                        Ship
+                      </label>
+                    </div>
+                    <Link to={'/on-sale'}>
+                      <div className="btn btn-main">
+                          <i class="bi me-1 bi-receipt"></i> On Sale
+                      </div>
+                    </Link>
+                    <button className="btn btn-main">
+                      <i class="bi me-1 bi-vignette"></i> Custom-fit
+                    </button>
                   </div>
                 </div>
 
                 <div className="col-lg-3">
                   <div className="podwejorjwierwer">
                     <select name="" className="form-select" id="">
-                      <option value="" selected disabled>Sort By: Recommended</option>
+                      <option value="" selected disabled>
+                        Sort By: Recommended
+                      </option>
                       <option value="">Popularity</option>
                       <option value="">New Arrivals</option>
                       <option value="">New Arrivals</option>
@@ -638,89 +732,157 @@ export const Filter = () => {
                         </div>
                       </div>
                   </div> */}
-                  {allProduct?.map((product) => (
-
-                    <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-3" : "col-lg-12"} mb-4`}>
+                  {allProductdata?.all_product?.map((product) => (
+                    <div
+                      className={`smdflcsdlpfkselkrpr ${
+                        !viewType ? "col-lg-3" : "col-lg-12"
+                      } mb-4`}
+                    >
                       <div className="dfgjhbdfg">
-                          <div className="images">                          
-                            <div className="image row mx-0 position-relative">
-                              <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
+                        <div className="images">
+                          <div className="image row mx-0 position-relative">
+                            <div
+                              className={`doiewjkrniuwewer position-relative overflow-hidden ${
+                                !viewType ? "col-lg-12" : "col-lg-3"
+                              }`}
+                            >
+                              <Link to={`/products/${product.slug}`}>
+                                <img
+                                  src={product.encoded_image_url_1}
+                                  alt={product.product_name}
+                                />
 
-                                <Link to={`products/${product.slug}`}>
-                                    <img src={product.encoded_image_url_1} alt={product.product_name} />
+                                <img
+                                  className="first"
+                                  src={product.encoded_image_url_2}
+                                  alt={product.product_name}
+                                />
+                              </Link>
 
-                                    <img className="first" src={product.encoded_image_url_2} alt={product.product_name} />
-                                </Link>
+                              <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
+                                {user ? (
+                                  <>
+                                    <button
+                                      className="btn-cart mb-1"
+                                      type="button"
+                                    >
+                                      <i class="fa-solid fa-cart-arrow-down"></i>
+                                    </button>
+                                    <button
+                                      onClick={() => toggleWishlist(product.id)}
+                                    >
+                                      <i
+                                        className={
+                                          wishlistIds.includes(product.id)
+                                            ? "fa-solid fa-heart"
+                                            : "fa-regular fa-heart"
+                                        }
+                                      ></i>
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Link to="/login">
+                                      <button
+                                        className="btn-cart mb-1"
+                                        type="button"
+                                      >
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                      </button>
+                                    </Link>
+                                    <Link to="/login">
+                                      <button
+                                        className="btn-wishlist"
+                                        type="button"
+                                      >
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-solid d-none fa-heart"></i>
+                                      </button>
+                                    </Link>
+                                  </>
+                                )}
+                              </div>
 
-                                <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
+                              <div className="dbgdfhgv">
+                                <button className="btn btn-main w-100">
+                                  QUICK ADD
+                                </button>
+                              </div>
+                            </div>
+                            <div
+                              className={`fdbdfgdfgdf ${
+                                !viewType ? "col-lg-12" : "col-lg-9"
+                              }`}
+                            >
+                              <h6>{product.designer}</h6>
+
+                              <h4>{product.product_name}</h4>
+
+                              <h5>
+                                {new Intl.NumberFormat("en-IN", {
+                                  style: "currency",
+                                  currency: "INR",
+                                  maximumFractionDigits: 0,
+                                }).format(product.selling_price)}
+                              </h5>
+
+                              <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
+                                <div className="doikwenirnwekhrwer position-relative">
                                   {user ? (
                                     <>
-                                      <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
-                                      <button onClick={() => toggleWishlist(product.id)}>
-                                        <i className={wishlistIds.includes(product.id) ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                                      <button
+                                        className="btn-cart mb-1"
+                                        type="button"
+                                      >
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
                                       </button>
-
-                                      </>
+                                      <button
+                                        onClick={() =>
+                                          toggleWishlist(product.id)
+                                        }
+                                      >
+                                        <i
+                                          className={
+                                            wishlistIds.includes(product.id)
+                                              ? "fa-solid fa-heart"
+                                              : "fa-regular fa-heart"
+                                          }
+                                        ></i>
+                                      </button>
+                                    </>
                                   ) : (
-                                      <>
-                                      <Link to="/login"><button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
+                                    <>
                                       <Link to="/login">
-                                          <button className="btn-wishlist" type="button">
-                                              <i class="fa-regular fa-heart"></i>
-                                              <i class="fa-solid d-none fa-heart"></i>
-                                          </button>
+                                        <button
+                                          className="btn-cart mb-1"
+                                          type="button"
+                                        >
+                                          <i class="fa-solid fa-cart-arrow-down"></i>
+                                        </button>
                                       </Link>
-                                      </>
+                                      <Link to="/login">
+                                        <button
+                                          className="btn-wishlist"
+                                          type="button"
+                                        >
+                                          <i class="fa-regular fa-heart"></i>
+                                          <i class="fa-solid d-none fa-heart"></i>
+                                        </button>
+                                      </Link>
+                                    </>
                                   )}
                                 </div>
 
                                 <div className="dbgdfhgv">
-                                  <button className="btn btn-main w-100">QUICK ADD</button>
-                                </div>
-                              </div>
-
-                              <div className={`fdbdfgdfgdf ${!viewType ? "col-lg-12" : "col-lg-9"}`}>
-                                <h6>{product.designer}</h6>
-
-                                <h4>{product.product_name}</h4>
-
-                                <h5>{new Intl.NumberFormat('en-IN', {
-                                      style: 'currency',
-                                      currency: 'INR',
-                                      maximumFractionDigits: 0
-                                    }).format(product.selling_price)}</h5>
-
-                                <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
-                                  <div className="doikwenirnwekhrwer position-relative">
-                                    {user ? (
-                                      <>
-                                        <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
-                                        <button onClick={() => toggleWishlist(product.id)}>
-                                          <i className={wishlistIds.includes(product.id) ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
-                                        </button>
-
-                                        </>
-                                    ) : (
-                                        <>
-                                        <Link to="/login"><button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button></Link>
-                                        <Link to="/login">
-                                            <button className="btn-wishlist" type="button">
-                                                <i class="fa-regular fa-heart"></i>
-                                                <i class="fa-solid d-none fa-heart"></i>
-                                            </button>
-                                        </Link>
-                                        </>
-                                    )}
-                                  </div>
-
-                                  <div className="dbgdfhgv">
-                                      <button className="btn btn-main w-100">QUICK ADD</button>
-                                  </div>
+                                  <button className="btn btn-main w-100">
+                                    QUICK ADD
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -730,18 +892,19 @@ export const Filter = () => {
         </div>
 
         <div className="idwejrhewres pb-5 mt-5">
-          <h4>Lorem ipsum dolor, sit amet consectetur adipisicing.</h4>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum officiis placeat tenetur reiciendis est, sint sapiente magni soluta blanditiis eligendi quis ipsam? Deleniti odit, cumque architecto sint porro eligendi provident, magnam voluptate assumenda temporibus ullam possimus facilis veritatis ab cupiditate delectus facere beatae quo perspiciatis dolore dignissimos soluta corrupti deserunt. Minus officiis, ea, fugit possimus, reiciendis aspernatur itaque alias facere provident molestiae voluptatibus. Amet obcaecati molestiae quaerat dolor voluptates nam dolorem, maiores qui fuga eos itaque, nisi excepturi sequi cum libero aperiam vel! Omnis eum iste voluptatem dignissimos laudantium ducimus ipsa, libero perferendis enim doloremque dolores dolor quidem voluptate adipisci veritatis consectetur saepe aliquam odit fugit illum at. Quo assumenda eveniet voluptatum blanditiis modi nisi molestias temporibus praesentium explicabo nihil?</p>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum officiis placeat tenetur reiciendis est, sint sapiente magni soluta blanditiis eligendi quis ipsam? Deleniti odit, cumque architecto sint porro eligendi provident, magnam voluptate assumenda temporibus ullam possimus facilis veritatis ab cupiditate delectus facere beatae quo perspiciatis dolore dignissimos soluta corrupti deserunt. Minus officiis, ea, fugit possimus, reiciendis aspernatur itaque alias facere provident molestiae voluptatibus. Amet obcaecati molestiae quaerat dolor voluptates nam dolorem, maiores qui fuga eos itaque, nisi excepturi sequi cum libero aperiam vel! Omnis eum iste voluptatem dignissimos laudantium ducimus ipsa, libero perferendis enim doloremque dolores dolor quidem voluptate adipisci veritatis consectetur saepe aliquam odit fugit illum at. Quo assumenda eveniet voluptatum blanditiis modi nisi molestias.</p>
+          <div
+            className="pt-4"
+            dangerouslySetInnerHTML={{
+              __html: allProductdata?.filter_content?.description && (allProductdata?.filter_content.description),
+            }}
+          />
         </div>
         <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            style={{ zIndex: 9999999999 }}
+          position="top-right"
+          autoClose={3000}
+          style={{ zIndex: 9999999999 }}
         />
       </div>
     </div>
-  )
-}
+  );
+};

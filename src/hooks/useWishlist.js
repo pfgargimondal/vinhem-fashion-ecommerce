@@ -15,7 +15,6 @@ export default function useWishlist() {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          console.log(res.data);
           const ids = res.data.data.map((item) => item.product_id);
           setWishlistIds(ids);
         })

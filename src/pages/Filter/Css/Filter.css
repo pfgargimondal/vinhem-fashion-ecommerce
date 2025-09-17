@@ -228,3 +228,8 @@
   background: var(--black-background-color) !important;
   color: #fff !important;
 }
+
+.doewnkrhwersdvzdfb input:checked + label{
+  background: var(--black-background-color) !important;
+  color: #fff !important;
+}
