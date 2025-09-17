@@ -27,7 +27,7 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                 <div className="image position-relative">
                     
                     <div className="doiewjkrniuwewer position-relative overflow-hidden">
-                        <Link to={`products/${featuredProduct.slug}`}>
+                        <Link to={`/products/${featuredProduct.slug}`}>
                             <img src={featuredProduct.encoded_image_url_1} alt="not found" />
 
                             <img className="first" src={featuredProduct.encoded_image_url_2} alt="not found" />
