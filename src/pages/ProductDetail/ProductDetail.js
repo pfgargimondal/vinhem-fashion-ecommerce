@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 
@@ -25,6 +25,22 @@ export const ProductDetail = () => {
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   // const [mesremntGuideImgShow, setMesremntGuideImgShow] = useState(false);
   const [activeGuide, setActiveGuide] = useState(null);
+  const { slug } = useParams();
+
+  useEffect(() => {
+    if (slug) {
+      const existing = JSON.parse(localStorage.getItem("recentlyViewedSlugs")) || [];
+
+      // Remove if already exists to avoid duplicates
+      const filtered = existing.filter((item) => item !== slug);
+
+      // Add new slug at the front
+      const updated = [slug, ...filtered].slice(0, 10); // keep max 10 items
+
+      localStorage.setItem("recentlyViewedSlugs", JSON.stringify(updated));
+    }
+  }, [slug]);
+
 
   const guides = {
     aroundBust: {

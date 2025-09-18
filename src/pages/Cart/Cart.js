@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,7 +7,8 @@ import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 import "./Css/Cart.css";
 import "swiper/css";
 import { FeaturedProducts } from "../../components";
-import { useState } from "react";
+import RecentlyViewed from "../../hooks/RecentlyViewed";
+import { ToastContainer } from "react-toastify";
 
 export const Cart = () => {
   // eslint-disable-next-line
@@ -378,23 +380,14 @@ export const Cart = () => {
 
       <div className="col-lg-12">
         <div className="diweurbhwer_inner mt-4">
-          <div className="dfbgghdfdfgdf">
-            <div className="sdf58sdfs">
-              <h4 className="pb-2">Recently Viewed Products</h4>
-            </div>
-
-            <div className="fgjhdfgdfgdf py-4">
-              <Swiper {...swiperConfig}>
-                {featuredProducts.map((featuredProduct) => (
-                  <SwiperSlide key={featuredProduct.id}>
-                    <FeaturedProducts featuredProduct={featuredProduct} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
+          <RecentlyViewed/>
         </div>
       </div>
+      <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          style={{ zIndex: 9999999999 }}
+      />
     </div>
   );
 };

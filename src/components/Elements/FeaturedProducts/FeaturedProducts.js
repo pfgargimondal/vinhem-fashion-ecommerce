@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 import "./FeaturedProducts.css";
 import { useAuth } from "../../../context/AuthContext";
-// import useCart from "../../../hooks/useCart";
-import useWishlist from "../../../hooks/useWishlist";
+import { useCart } from "../../../context/CartContext";
+import { useWishlist } from "../../../context/WishlistContext";
 
 export const FeaturedProducts = ({ featuredProduct }) => {
 
     const { user } = useAuth();
-    // const { addToCart } = useCart();
-    const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+    const { addToCart } = useCart();
 
+    const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
     const isWishlisted = wishlistIds.includes(featuredProduct.id);
 
     const toggleWishlist = () => {
         if (isWishlisted) {
-            removeFromWishlist(featuredProduct.id);
+        removeFromWishlist(featuredProduct.id);
         } else {
-            addToWishlist(featuredProduct.id);
+        addToWishlist(featuredProduct.id);
         }
     };
 
@@ -36,7 +36,7 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                         <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
                             {user ? (
                                 <>
-                                <button className="btn-cart mb-1" type="button"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                                <button className="btn-cart mb-1" type="button" onClick={() => addToCart(featuredProduct.id)}><i class="fa-solid fa-cart-arrow-down"></i></button>
                                 {/* <button className="btn-wishlist" type="button" onClick={() => addToWishlist (featuredProduct.id)}>
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid d-none fa-heart"></i>

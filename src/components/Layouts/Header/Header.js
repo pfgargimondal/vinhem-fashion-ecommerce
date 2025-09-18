@@ -11,11 +11,15 @@ import Logo from "../../../assets/images/logo.png";
 import "./Css/Header.css";
 import "./Css/HeaderResponsive.css";
 import 'swiper/css';
+import { useCart } from "../../../context/CartContext";
+import { useWishlist } from "../../../context/WishlistContext";
 
 export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) => {
   const [resMenu, setResMenu] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [searchBarToggle, setSearchBarToggle] = useState(false);
+  const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   useEffect(() => {
     const body = document.querySelector("html");
@@ -165,19 +169,19 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                       <li><i class="bi bi-headset"></i> Help</li>
 
                       <li className="infrm-menu-divider">|</li>
-                      {user ? (
-                        <>
-                          <Link to={`/wishlist`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
+                      {/* {user ? (
+                        <> */}
+                          <Link to={`/wishlist`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>{wishlistCount}</span></li></Link>
                           <li className="infrm-menu-divider">|</li>
-                          <Link to={`/cart`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
-                        </>
+                          <Link to={`/cart`}><li><i class="bi bi-handbag"></i> Bag <span>{cartCount}</span></li></Link>
+                        {/* </>
                       ):(
                         <>
                           <Link to={`/login`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
                           <li className="infrm-menu-divider">|</li>
                           <Link to={`/login`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
                         </>
-                      )}
+                      )} */}
 
                       <li className="infrm-menu-divider">|</li>
 

@@ -3,17 +3,20 @@ import { Link, useNavigate , useLocation } from "react-router-dom";
 import "./Css/Filter.css";
 import "./Css/FilterResponsive.css";
 import http from "../../http";
-import useWishlist from "../../hooks/useWishlist";
 import { useAuth } from "../../context/AuthContext";
 import { ToastContainer } from "react-toastify";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+import FilterSection from "./FilterSection";
 
 export const Filter = () => {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  // eslint-disable-next-line
-  const [selectedTheme, setSelectedTheme] = useState("dark");
+  const { addToCart } = useCart();
+  
   const [viewType, setViewType] = useState(false);
+
   const [resFltrMenu, setResFltrMenu] = useState(false);
   const [allProductdata, SetallProduct] = useState([]);
   const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
@@ -25,9 +28,6 @@ export const Filter = () => {
     .replace(/\b\w/g, (c) => c.toUpperCase())
     .trim();
 
-  useEffect(() => {
-    console.log("Selected Theme:", selectedTheme);
-  }, [selectedTheme]);
   //Res Filter Page No-scroll
   useEffect(() => {
     const body = document.querySelector("html");
@@ -72,14 +72,15 @@ export const Filter = () => {
     fetchAllProduct();
   }, [location.pathname, category, subcategory]);
 
-  const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+
+  const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
 
   const toggleWishlist = (productId) => {
-    if (wishlistIds.includes(productId)) {
+      if (wishlistIds.includes(productId)) {
       removeFromWishlist(productId);
-    } else {
+      } else {
       addToWishlist(productId);
-    }
+      }
   };
 
   useEffect(() => {
@@ -189,413 +190,7 @@ export const Filter = () => {
                 }`}
                 id="res-filtr-nav"
               >
-              {allFilterMappingdata?.map((FilterMappingdata) => (
-                <div className="dkewjriwehrnjhweijrwer mb-4">
-                  <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0">{toTitleCase(FilterMappingdata.filter_option)}</h5>
-
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-
-                  <div className="doewjkrnhweiurwer">
-                    {FilterMappingdata.filter_values.split(",").map((item, index) => (
-                      <div key={index} class="radio-wrapper-5">
-                        <label htmlFor="example-5" className="forCircle">
-                          <input
-                            id="example-5"
-                            type="radio"
-                            name="radio-examples"
-                          />
-                          <span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-3.5 w-3.5"
-                              viewBox="0 0 16 16"
-                              fill="currentColor"
-                            >
-                              <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                            </svg>
-                          </span>
-                        </label>
-                        <label htmlFor="example-5">{item.trim()}</label>
-                    </div>
-                    ))}
-                    
-                  </div>
-                </div>
-              ))}
-{/* 
-                <div className="dkewjriwehrnjhweijrwer mb-4">
-                  <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0">Manufacturer</h5>
-
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-
-                  <div className="doewjkrnhweiurwer">
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Adidas(4)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Amber(26)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Puma(4)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Reebok(7)</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Nike(9)</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="dkewjriwehrnjhweijrwer mb-4">
-                  <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0">Color</h5>
-
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-
-                  <div className="doewjkrnhweiurwer osdmcfosjrserr">
-                    <div id="content">
-                      <label htmlFor="dark">
-                        <input
-                          type="radio"
-                          name="theme"
-                          id="dark"
-                          className="colored-radio"
-                          data-color="#1C1C1C"
-                          checked={selectedTheme === "dark"}
-                          onChange={() => setSelectedTheme("dark")}
-                          style={{
-                            backgroundColor:
-                              selectedTheme === "dark"
-                                ? "#1C1C1C"
-                                : "transparent",
-                          }}
-                        />
-                        Dark
-                      </label>
-
-                      <label htmlFor="green">
-                        <input
-                          type="radio"
-                          name="theme"
-                          id="green"
-                          className="colored-radio"
-                          data-color="#2EFE64"
-                          checked={selectedTheme === "green"}
-                          onChange={() => setSelectedTheme("green")}
-                          style={{
-                            backgroundColor:
-                              selectedTheme === "green"
-                                ? "#2EFE64"
-                                : "transparent",
-                          }}
-                        />
-                        Green
-                      </label>
-
-                      <label htmlFor="rose">
-                        <input
-                          type="radio"
-                          name="theme"
-                          id="rose"
-                          className="colored-radio"
-                          data-color="#F781BE"
-                          checked={selectedTheme === "rose"}
-                          onChange={() => setSelectedTheme("rose")}
-                          style={{
-                            backgroundColor:
-                              selectedTheme === "rose"
-                                ? "#F781BE"
-                                : "transparent",
-                          }}
-                        />
-                        Rose
-                      </label>
-
-                      <label htmlFor="blue">
-                        <input
-                          type="radio"
-                          name="theme"
-                          id="blue"
-                          className="colored-radio"
-                          data-color="#2E9AFE"
-                          checked={selectedTheme === "blue"}
-                          onChange={() => setSelectedTheme("blue")}
-                          style={{
-                            backgroundColor:
-                              selectedTheme === "blue"
-                                ? "#2E9AFE"
-                                : "transparent",
-                          }}
-                        />
-                        Blue
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="dkewjriwehrnjhweijrwer mb-4">
-                  <div className="disenihrenjr mb-3 py-4 d-flex align-items-center justify-content-between">
-                    <h5 className="mb-0">Size</h5>
-
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-
-                  <div className="doewjkrnhweiurwer">
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">XS</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">XSmall</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">S</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Small</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">M</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">Medium</label>
-                    </div>
-
-                    <div class="radio-wrapper-5">
-                      <label htmlFor="example-5" className="forCircle">
-                        <input
-                          id="example-5"
-                          type="radio"
-                          name="radio-examples"
-                        />
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx={8} cy={8} r={8} />
-                          </svg>
-                        </span>
-                      </label>
-
-                      <label htmlFor="example-5">L</label>
-                    </div>
-                  </div>
-                </div> */}
+              <FilterSection allFilterMappingdata={allFilterMappingdata} />
               </div>
             </div>
           </div>
@@ -681,57 +276,6 @@ export const Filter = () => {
 
               <div className="products-wrapper filtr-wrppr mt-5">
                 <div className="row">
-                  {/* <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-3" : "col-lg-12"} mb-4`}>
-                    <div className="dfgjhbdfg">
-                        <div className="images">                          
-                          <div className="image row mx-0 position-relative">
-                            <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
-                              <img src="/images/product1 (1).webp" alt="not found" />
-
-                              <img className="first" src="/images/product1 (2).webp" alt="not found" />
-
-                              <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
-                                <button className="btn-cart mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
-
-                                <button className="btn-wishlist">
-                                  <i class="fa-regular fa-heart"></i>
-
-                                  <i class="fa-solid d-none fa-heart"></i>
-                                </button>
-                              </div>
-
-                              <div className="dbgdfhgv">
-                                <button className="btn btn-main w-100">QUICK ADD</button>
-                              </div>
-                            </div>
-
-                            <div className={`fdbdfgdfgdf ${!viewType ? "col-lg-12" : "col-lg-9"}`}>
-                              <h6>COLLETTE</h6>
-
-                              <h4>Clothing And Accessory Boutiques For Sale</h4>
-
-                              <h5>$48.99</h5>
-
-                              <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
-                                <div className="doikwenirnwekhrwer position-relative">
-                                  <button className="btn-cart me-1 mb-1"><i class="fa-solid fa-cart-arrow-down"></i></button>
-
-                                  <button className="btn-wishlist">
-                                    <i class="fa-regular fa-heart"></i>
-
-                                    <i class="fa-solid d-none fa-heart"></i>
-                                  </button>
-                                </div>
-
-                                <div className="dbgdfhgv">
-                                    <button className="btn btn-main w-100">QUICK ADD</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div> */}
                   {allProductdata?.all_product?.map((product) => (
                     <div
                       className={`smdflcsdlpfkselkrpr ${
@@ -765,6 +309,7 @@ export const Filter = () => {
                                     <button
                                       className="btn-cart mb-1"
                                       type="button"
+                                      onClick={() => addToCart(product.id)}
                                     >
                                       <i class="fa-solid fa-cart-arrow-down"></i>
                                     </button>
@@ -831,8 +376,9 @@ export const Filter = () => {
                                   {user ? (
                                     <>
                                       <button
-                                        className="btn-cart mb-1"
+                                        className="btn-cart mb-1 me-1"
                                         type="button"
+                                        onClick={() => addToCart(product.id)}
                                       >
                                         <i class="fa-solid fa-cart-arrow-down"></i>
                                       </button>
