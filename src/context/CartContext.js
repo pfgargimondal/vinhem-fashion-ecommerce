@@ -31,7 +31,7 @@ export function CartProvider({ children }) {
     fetchCartCount();
   }, [fetchCartCount]); // ✅ added fetchCartCount
 
-  // ✅ Add product to cart via API
+
   const addToCart = async (productId) => {
     if (!token) {
       toast.error("Please login to add to cart");

@@ -29,7 +29,6 @@ export const Wishlist = () => {
     fetchWishlist();
   }, [token]);
 
-  console.log(wishlistItems.data);
   
 
     return (

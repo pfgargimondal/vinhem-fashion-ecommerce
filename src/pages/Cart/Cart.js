@@ -1,94 +1,96 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import { Swiper, SwiperSlide } from "swiper/react";
-  // eslint-disable-next-line
-import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 import "./Css/Cart.css";
 import "swiper/css";
-import { FeaturedProducts } from "../../components";
 import RecentlyViewed from "../../hooks/RecentlyViewed";
 import { ToastContainer } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
+import http from "../../http";
+import { useWishlist } from "../../context/WishlistContext";
+import TrandingProduct from "../../hooks/TrandingProduct";
 
 export const Cart = () => {
-  // eslint-disable-next-line
-  const [featuredProducts, setFeaturedProducts] = useState([
-    {
-      id: 1000,
-      img1: "/images/golden-polished-temple-choker-necklace-set-v1-jpm6528.webp",
-      img2: "/images/temple-jewelry.webp",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1001,
-      img1: "/images/1716298202051_1.webp",
-      img2: "/images/1749818038130_1.webp",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1002,
-      img1: "/images/how-to-find-matching-saree-jewellery-320120_750x.webp",
-      img2: "/images/1723646143986_1.webp",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1003,
-      img1: "/images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp",
-      img2: "/images/JJ_JIMMY_WHITE_(6)_zoom.jpg",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1004,
-      img1: "/images/1708949940342_1.webp",
-      img2: "/images/1719656075415_1.webp",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1005,
-      img1: "/images/61n+KozlFVL._UF1000,1000_QL80_.jpg",
-      img2: "/images/images (2).jpg",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1006,
-      img1: "/images/1656282-0958632001659958447.webp",
-      img2: "/images/Untitled_design_-_2024-08-28T121432.760_480x480.webp",
-      title: "COLLETTE",
-      description:
-        "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-  ]);
 
-    const swiperConfig = {
-    spaceBetween: 20,
-    slidesPerView: 5,
-    navigation: true,
-    pagination: { clickable: true },
-    breakpoints: {
-      320: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 4 },
-      1200: { slidesPerView: 5 },
-    },
+  const { token } = useAuth();
+  const [cartItems, setcartItems] = useState([]);
+  const [totalPrice, settotalPrice] = useState({});
+
+  useEffect(() => {
+    if (!token) return;
+
+    const fetchCartlist = async () => {
+      try {
+        const res = await http.get("/user/get-cart-user", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setcartItems(res.data.data || []);
+        settotalPrice(res.data.total_cart_price || '');
+      } catch (error) {
+        console.error("Failed to fetch cart list", error);
+      }
+    };
+
+    fetchCartlist();
+  }, [token]);
+
+  const getEstimatedShippingDate = (shipping_time) => {
+    const days = parseInt(shipping_time);
+    if (isNaN(days)) return "";
+
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "long" });
+    // const year = date.getFullYear();
+
+    return `${day}${getDaySuffix(day)} of ${month}`;
+  };
+
+  const getDaySuffix = (day) => {
+    if (day >= 11 && day <= 13) return "th";
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
+  const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
+
+  const toggleWishlist = (productId) => {
+    if (wishlistIds.includes(productId)) {
+      removeFromWishlist(productId);
+    } else {
+      addToWishlist(productId);
+    }
+  };
+
+  const handleRemoveItem = async (cartItemId) => {
+    if (!token) return;
+
+    try {
+      await http.post(
+        "/user/remove-product-from-cart",
+        { cart_item_id: cartItemId },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      // Remove locally from state
+      setcartItems((prev) =>
+        prev.filter((item) => item.id !== cartItemId)
+      );
+    } catch (error) {
+      console.error("Failed to remove item", error);
+    }
   };
 
 
@@ -111,111 +113,142 @@ export const Cart = () => {
               </div>
 
               <div className="dowejroihwrt_wrapper mt-4">
-                <div className="dfgjhbdfg position-relative p-3 mb-4">
-                  <div className="row">
-                    <div className="col-lg-2">
-                      <div className="donweihrwewer">
-                        <img src="/images/product1 (1).webp" alt="not found" />
+                {cartItems?.length === 0 && <p>No items in cart</p>}
+                {cartItems?.map((cartItemsVal) => (
+                  <div className="dfgjhbdfg position-relative p-3 mb-4">
+                    <div className="row">
+                      <div className="col-lg-2">
+                        <div className="donweihrwewer">
+                          <img
+                            src={cartItemsVal.encoded_image_url_1}
+                            alt={cartItemsVal.product_name}
+                          />
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-lg-10">
-                      <div className="dowehriwerwer">
-                        <div className="dknwekhwe py-2">
-                          <div className="d-flex flex-wrap align-items-center justify-content-between">
-                            <h4 className="mb-0">
-                              Sample - Clothing And Accessory Boutiques For...
-                            </h4>
+                      <div className="col-lg-10">
+                        <div className="dowehriwerwer">
+                          <div className="dknwekhwe py-2">
+                            <div className="d-flex flex-wrap align-items-center justify-content-between">
+                              <h4 className="mb-0">
+                                {cartItemsVal.product_name}
+                              </h4>
 
-                            <h5 className="mb-0">
-                              <span className="old-price">
-                                <i class="bi bi-currency-rupee"></i>29,995
-                              </span>{" "}
-                              <span>
-                                <i class="bi bi-currency-rupee"></i>23,996
-                              </span>
-                            </h5>
+                              <h5 className="mb-0">
+                                <span className="old-price">
+                                  <i class="bi bi-currency-rupee"></i>
+                                  {cartItemsVal.mrp_price}
+                                </span>
+                                <span>
+                                  <i class="bi bi-currency-rupee"></i>
+                                  {cartItemsVal.selling_price}
+                                </span>
+                              </h5>
+                            </div>
+
+                            <span className="dscnt-offr text-white position-absolute py-1 px-2">
+                              {cartItemsVal.discount}% OFF
+                            </span>
                           </div>
 
-                          <span className="dscnt-offr text-white position-absolute py-1 px-2">
-                            20% OFF
-                          </span>
-                        </div>
+                          <div className="dnweghbjewrwer">
+                            <p className="mb-1">{cartItemsVal.designer}</p>
 
-                        <div className="dnweghbjewrwer">
-                          <p className="mb-1">
-                            Purple Splendid Silk Mirror Work
-                          </p>
+                            <span className="copn-cde">
+                              CODE: {cartItemsVal.vendor_sku}
+                            </span>
 
-                          <span className="copn-cde">CODE: D344TGG56544</span>
+                            <div className="doewrwerwer">
+                              <div className="row">
+                                <div className="col-lg-3 mt-2 mb-3">
+                                  <div className="deiwnriwehrwer">
+                                    <label
+                                      htmlFor=""
+                                      className="form-label mb-1"
+                                    >
+                                      Choose Size:
+                                    </label>
 
-                          <div className="doewrwerwer">
-                            <div className="row">
-                              <div className="col-lg-3 mt-2 mb-3">
-                                <div className="deiwnriwehrwer">
-                                  <label htmlFor="" className="form-label mb-1">
-                                    Choose Size:
-                                  </label>
-
-                                  <select
-                                    name=""
-                                    className="form-select py-1"
-                                    id=""
-                                  >
-                                    <option value="">XS</option>
-
-                                    <option value="">S</option>
-
-                                    <option value="">M</option>
-                                  </select>
+                                    <select
+                                      name=""
+                                      className="form-select py-1"
+                                      id=""
+                                    >
+                                      {cartItemsVal.size_chart?.map(
+                                        (sizeChartVal) => (
+                                          <option
+                                            value={sizeChartVal.size_name}
+                                          >
+                                            {sizeChartVal.size_name}
+                                          </option>
+                                        )
+                                      )}
+                                    </select>
+                                  </div>
                                 </div>
-                              </div>
 
-                              <div className="col-lg-3 mt-2 mb-3">
-                                <div className="deiwnriwehrwer">
-                                  <label htmlFor="" className="form-label mb-1">
-                                    Choose Qty:
-                                  </label>
+                                <div className="col-lg-3 mt-2 mb-3">
+                                  <div className="deiwnriwehrwer">
+                                    <label
+                                      htmlFor=""
+                                      className="form-label mb-1"
+                                    >
+                                      Choose Qty:
+                                    </label>
 
-                                  <select
-                                    name=""
-                                    className="form-select py-1"
-                                    id=""
-                                  >
-                                    <option value="">1</option>
+                                    <select
+                                      name=""
+                                      className="form-select py-1"
+                                      id=""
+                                    >
+                                      <option value="">1</option>
 
-                                    <option value="">2</option>
+                                      <option value="">2</option>
 
-                                    <option value="">3</option>
-                                  </select>
+                                      <option value="">3</option>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div className="djkwehrwerwer d-flex align-items-center justify-content-between">
-                            <h6 className="mb-0">
-                              <i class="bi me-1 bi-calendar-week"></i> Estimated
-                              Shipping Date: <span>20th of August</span>
-                            </h6>
+                            <div className="djkwehrwerwer d-flex align-items-center justify-content-between">
+                              <h6 className="mb-0">
+                                <i class="bi me-1 bi-calendar-week"></i>
+                                Estimated Shipping Date:
+                                <span>
+                                  {getEstimatedShippingDate(
+                                    cartItemsVal.shipping_time
+                                  )}
+                                </span>
+                              </h6>
 
-                            <div className="dewhrowerwer">
-                              <i class="bi me-2 bi-heart"></i>
+                              <div className="dewhrowerwer">
+                                <i
+                                  onClick={() => toggleWishlist(cartItemsVal.products_table_id)}
+                                  className={
+                                    wishlistIds.includes(cartItemsVal.products_table_id)
+                                      ? "fa-solid fa-heart"
+                                      : "fa-regular fa-heart"
+                                  }
+                                  style={{ cursor: "pointer" }}
+                                ></i>
 
-                              <i class="bi bi-x-lg"></i>
+                                <i class="bi bi-x-lg" onClick={() => handleRemoveItem(cartItemsVal.id)}></i>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
 
               <div className="uiwdhiwerwerwer dojweirkwejirwer">
-                <button className="btn px-5 btn-main">
-                  Continue Shopping
-                </button>
+                <Link to={"/all-produtcs"}>
+                  <button className="btn px-5 btn-main">Continue Shopping</button>
+                </Link>
               </div>
 
               <div className="dweihriwerwerw mt-4">
@@ -239,7 +272,7 @@ export const Cart = () => {
 
                 <ul className="mb-0 ps-0">
                   <li>
-                    <Link to="/">Shipping Policy</Link>
+                    <Link to="/shipping-policy">Shipping Policy</Link>
                   </li>
 
                   <li>
@@ -247,7 +280,7 @@ export const Cart = () => {
                   </li>
 
                   <li>
-                    <Link to="/">Contact Us</Link>
+                    <Link to="/contact-us">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -265,7 +298,7 @@ export const Cart = () => {
                       <td>Cart Total</td>
 
                       <td>
-                        <i class="bi bi-currency-rupee"></i>29,995
+                        <i class="bi bi-currency-rupee"></i>{totalPrice}
                       </td>
                     </tr>
 
@@ -316,14 +349,14 @@ export const Cart = () => {
                         <h3>Get Extra</h3>
 
                         <h2 className="mb-0">5% OFF</h2>
-                        
+
                         <small>Valid until October, 2025</small>
                       </div>
                     </div>
-                    
+
                     <div class="right">
                       <div>EXTRA5</div>
-                    </div>                    
+                    </div>
                   </div>
                 </div>
 
@@ -360,33 +393,19 @@ export const Cart = () => {
 
       <div className="col-lg-12">
         <div className="diweurbhwer_inner mt-4">
-          <div className="dfbgghdfdfgdf">
-            <div className="sdf58sdfs">
-              <h4 className="pb-2">Tranding Products</h4>
-            </div>
-
-            <div className="fgjhdfgdfgdf py-4">
-              <Swiper {...swiperConfig}>
-                {featuredProducts.map((featuredProduct) => (
-                  <SwiperSlide key={featuredProduct.id}>
-                    <FeaturedProducts featuredProduct={featuredProduct} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
+          <TrandingProduct />
         </div>
       </div>
 
       <div className="col-lg-12">
         <div className="diweurbhwer_inner mt-4">
-          <RecentlyViewed/>
+          <RecentlyViewed />
         </div>
       </div>
       <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          style={{ zIndex: 9999999999 }}
+        position="top-right"
+        autoClose={3000}
+        style={{ zIndex: 9999999999 }}
       />
     </div>
   );
