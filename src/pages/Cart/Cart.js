@@ -9,29 +9,55 @@ import { useAuth } from "../../context/AuthContext";
 import http from "../../http";
 import { useWishlist } from "../../context/WishlistContext";
 import TrandingProduct from "../../hooks/TrandingProduct";
+import { useCurrency } from "../../context/CurrencyContext";
 
 export const Cart = () => {
-
   const { token } = useAuth();
   const [cartItems, setcartItems] = useState([]);
-  const [totalPrice, settotalPrice] = useState({});
+  const [totalPrice, settotalPrice] = useState([]);
+  const [couponItems, setcouponItems] = useState([]);
+
+  const { selectedCurrency } = useCurrency();
 
   useEffect(() => {
-    if (!token) return;
+     if (!token || !selectedCurrency) return;
 
     const fetchCartlist = async () => {
       try {
-        const res = await http.get("/user/get-cart-user", {
+        const res = await http.post(
+        "/user/get-cart-user",
+        {
+          country: selectedCurrency.country_name, // ✅ safe now
+        },
+        {
           headers: { Authorization: `Bearer ${token}` },
-        });
+        }
+      );
         setcartItems(res.data.data || []);
-        settotalPrice(res.data.total_cart_price || '');
+        settotalPrice(res.data.total_cart_price || "");
       } catch (error) {
         console.error("Failed to fetch cart list", error);
       }
     };
 
     fetchCartlist();
+  }, [token, selectedCurrency]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    const fetchCoupon = async () => {
+      try {
+        const res = await http.get("/user/get-all-coupon", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setcouponItems(res.data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch cart list", error);
+      }
+    };
+
+    fetchCoupon();
   }, [token]);
 
   const getEstimatedShippingDate = (shipping_time) => {
@@ -62,6 +88,15 @@ export const Cart = () => {
     }
   };
 
+
+  const ValidityDate = (expiryDate) => {
+      const date = new Date(expiryDate);
+
+      const options = { month: "long", year: "numeric" };
+      const formattedDate = date.toLocaleDateString("en-US", options);
+
+      return `${formattedDate}`;
+  }
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
 
   const toggleWishlist = (productId) => {
@@ -85,14 +120,11 @@ export const Cart = () => {
       );
 
       // Remove locally from state
-      setcartItems((prev) =>
-        prev.filter((item) => item.id !== cartItemId)
-      );
+      setcartItems((prev) => prev.filter((item) => item.id !== cartItemId));
     } catch (error) {
       console.error("Failed to remove item", error);
     }
   };
-
 
   return (
     <div>
@@ -225,16 +257,27 @@ export const Cart = () => {
 
                               <div className="dewhrowerwer">
                                 <i
-                                  onClick={() => toggleWishlist(cartItemsVal.products_table_id)}
+                                  onClick={() =>
+                                    toggleWishlist(
+                                      cartItemsVal.products_table_id
+                                    )
+                                  }
                                   className={
-                                    wishlistIds.includes(cartItemsVal.products_table_id)
+                                    wishlistIds.includes(
+                                      cartItemsVal.products_table_id
+                                    )
                                       ? "fa-solid fa-heart"
                                       : "fa-regular fa-heart"
                                   }
                                   style={{ cursor: "pointer" }}
                                 ></i>
 
-                                <i class="bi bi-x-lg" onClick={() => handleRemoveItem(cartItemsVal.id)}></i>
+                                <i
+                                  class="bi bi-x-lg"
+                                  onClick={() =>
+                                    handleRemoveItem(cartItemsVal.id)
+                                  }
+                                ></i>
                               </div>
                             </div>
                           </div>
@@ -247,7 +290,9 @@ export const Cart = () => {
 
               <div className="uiwdhiwerwerwer dojweirkwejirwer">
                 <Link to={"/all-produtcs"}>
-                  <button className="btn px-5 btn-main">Continue Shopping</button>
+                  <button className="btn px-5 btn-main">
+                    Continue Shopping
+                  </button>
                 </Link>
               </div>
 
@@ -298,7 +343,8 @@ export const Cart = () => {
                       <td>Cart Total</td>
 
                       <td>
-                        <i class="bi bi-currency-rupee"></i>{totalPrice}
+                        <i class="bi bi-currency-rupee"></i>
+                        {totalPrice.total_selling_price}
                       </td>
                     </tr>
 
@@ -306,7 +352,7 @@ export const Cart = () => {
                       <td>Total Discount</td>
 
                       <td>
-                        (-) <i class="bi bi-currency-rupee"></i>5,999
+                        (-) <i class="bi bi-currency-rupee"></i>{totalPrice.total_discount_price}
                       </td>
                     </tr>
 
@@ -338,27 +384,32 @@ export const Cart = () => {
               <div className="oiasmdjweijrwerwer mt-4">
                 <h4>Coupon Code</h4>
 
-                <div className="jidnwenjrwerwer">
-                  <div class="coupon">
-                    <div class="left">
-                      <div>Coupon</div>
-                    </div>
+                {couponItems?.map((couponItemsVal) => (
+                  <div className="jidnwenjrwerwer mb-2">
+                    <div class="coupon">
+                      <div class="left">
+                        <div>Coupon</div>
+                      </div>
 
-                    <div class="center">
-                      <div>
-                        <h3>Get Extra</h3>
+                      <div class="center">
+                        <div>
+                          <h3>Get Extra</h3>
 
-                        <h2 className="mb-0">5% OFF</h2>
+                          <h2 className="mb-0"><i class="bi bi-currency-rupee"></i>{parseInt(couponItemsVal.value)} OFF</h2>
 
-                        <small>Valid until October, 2025</small>
+                          <small>Valid until {ValidityDate(
+                                    couponItemsVal.expiry_date
+                                  )}
+                          </small>
+                        </div>
+                      </div>
+
+                      <div class="right">
+                        <div>{couponItemsVal.code}</div>
                       </div>
                     </div>
-
-                    <div class="right">
-                      <div>EXTRA5</div>
-                    </div>
                   </div>
-                </div>
+                ))}
 
                 <div className="dewuihrwe position-relative mt-4">
                   <input
@@ -377,7 +428,7 @@ export const Cart = () => {
                 <h4>Total Payable</h4>
 
                 <h4>
-                  <i class="bi bi-currency-rupee"></i>23,996
+                  <i class="bi bi-currency-rupee"></i>{totalPrice.total_selling_price}
                 </h4>
               </div>
 

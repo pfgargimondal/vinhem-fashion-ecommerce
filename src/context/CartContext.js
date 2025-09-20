@@ -2,12 +2,13 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import http from "../http";
 import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
-
+import { useCurrency } from "./CurrencyContext";
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const { token } = useAuth();
   const [cartCount, setCartCount] = useState(0);
+  const { selectedCurrency } = useCurrency();
 
   // ✅ Fetch cart count from API
   const fetchCartCount = useCallback(async () => {
@@ -17,15 +18,21 @@ export function CartProvider({ children }) {
     }
 
     try {
-      const res = await http.get("/user/get-cart-user", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await http.post(
+        "/user/get-cart-user",
+        {
+          country: selectedCurrency.country_name, // ✅ safe now
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setCartCount(res.data.data.length || 0);
     } catch (err) {
       console.error("Error fetching cart count", err);
       setCartCount(0);
     }
-  }, [token]); // ✅ added token as dependency
+  }, [token, selectedCurrency]); // ✅ added token as dependency
 
   useEffect(() => {
     fetchCartCount();

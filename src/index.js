@@ -6,20 +6,22 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
-
+import { CurrencyProvider } from './context/CurrencyContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <App />
-          </WishlistProvider>
-        </CartProvider>
-      </AuthProvider>
+      <CurrencyProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <App />
+            </WishlistProvider>
+          </CartProvider>
+        </AuthProvider>
+      </CurrencyProvider>
     </Router>
   </React.StrictMode>
 );

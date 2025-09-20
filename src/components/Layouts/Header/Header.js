@@ -13,6 +13,7 @@ import "./Css/HeaderResponsive.css";
 import 'swiper/css';
 import { useCart } from "../../../context/CartContext";
 import { useWishlist } from "../../../context/WishlistContext";
+import { useCurrency } from "../../../context/CurrencyContext";
 
 export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) => {
   const [resMenu, setResMenu] = useState(false);
@@ -20,6 +21,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
   const [searchBarToggle, setSearchBarToggle] = useState(false);
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
+  const { selectedCurrency, setSelectedCurrency } = useCurrency();
 
   useEffect(() => {
     const body = document.querySelector("html");
@@ -56,12 +58,18 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
             const getresponse = await http.get("/get-currency-content");
             const allresponse = getresponse.data;
             Setcurrency(allresponse.data || []); 
+
+            const defaultCurrency = allresponse.data?.find(c => c.choice === 1);
+            if (defaultCurrency) {
+              setSelectedCurrency(defaultCurrency);
+            }
+
         } catch (error) {
             console.error("Error fetching currency:", error);
         }
     };
     fetchCurrency();
-  }, []);
+  }, [setSelectedCurrency]);
 
   return (
     <>
@@ -136,8 +144,16 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                 <div className="col-lg-6">
                   <div className="doiwehrwehirnwerwer aosndkjnjhasekwewt row align-items-center">
                     <div className="col-lg-2">
-                      <Form.Select aria-label="Default select example">
-                        {currency.map(allCurrency => (
+                      <Form.Select
+                        className="me-2"
+                        aria-label="Select currency"
+                        value={selectedCurrency?.id || currency.find(c => c.choice === 1)?.id || ""}
+                        onChange={(e) => {
+                          const selectedObj = currency.find(c => c.id === parseInt(e.target.value));
+                          setSelectedCurrency(selectedObj);
+                        }}
+                      >
+                        {currency.map((allCurrency) => (
                           <option
                             key={allCurrency.id}
                             value={allCurrency.id}
