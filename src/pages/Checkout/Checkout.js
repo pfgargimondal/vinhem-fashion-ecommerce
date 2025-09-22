@@ -1,103 +1,72 @@
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import { Swiper, SwiperSlide } from "swiper/react";
-// eslint-disable-next-line
-import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 import "./Css/Checkout.css";
 import "swiper/css";
-import { FeaturedProducts } from "../../components";
-import { useState } from "react";
+import RecentlyViewed from "../../hooks/RecentlyViewed";
+import TrandingProduct from "../../hooks/TrandingProduct";
+import { useCallback, useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
+import http from "../../http";
+import { useCurrency } from "../../context/CurrencyContext";
 
 export const Checkout = () => {
-    // eslint-disable-next-line
-    const [featuredProducts, setFeaturedProducts] = useState([
-        {
-            id: 1000,
-            img1: "/images/golden-polished-temple-choker-necklace-set-v1-jpm6528.webp",
-            img2: "/images/temple-jewelry.webp",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1001,
-            img1: "/images/1716298202051_1.webp",
-            img2: "/images/1749818038130_1.webp",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1002,
-            img1: "/images/how-to-find-matching-saree-jewellery-320120_750x.webp",
-            img2: "/images/1723646143986_1.webp",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1003,
-            img1: "/images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp",
-            img2: "/images/JJ_JIMMY_WHITE_(6)_zoom.jpg",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1004,
-            img1: "/images/1708949940342_1.webp",
-            img2: "/images/1719656075415_1.webp",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1005,
-            img1: "/images/61n+KozlFVL._UF1000,1000_QL80_.jpg",
-            img2: "/images/images (2).jpg",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-        {
-            id: 1006,
-            img1: "/images/1656282-0958632001659958447.webp",
-            img2: "/images/Untitled_design_-_2024-08-28T121432.760_480x480.webp",
-            title: "COLLETTE",
-            description:
-                "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-            price: "48.99",
-        },
-    ]);
 
+    const { token } = useAuth();
     const [biToggle, setBiToggle] = useState(true);
-
     const [onChecked, setOnChecked] = useState(false);
+    const { selectedCurrency } = useCurrency();
+    const [couponItems, setcouponItems] = useState([]);
+    const [cartItems, setcartItems] = useState([]);
+    const [totalPrice, settotalPrice] = useState([]);
+    
+    useEffect(() => {
+        if (!token) return;
 
+        const fetchCoupon = async () => {
+        try {
+            const res = await http.get("/user/get-all-coupon", {
+            headers: { Authorization: `Bearer ${token}` },
+            });
+            setcouponItems(res.data.data || []);
+        } catch (error) {
+            console.error("Failed to fetch cart list", error);
+        }
+        };
+
+        fetchCoupon();
+    }, [token]);
+
+    const ValidityDate = (expiryDate) => {
+        const date = new Date(expiryDate);
+        const options = { month: "long", year: "numeric" };
+        const formattedDate = date.toLocaleDateString("en-US", options);
+        return `${formattedDate}`;
+    }
+
+    const fetchCartProduct = useCallback(async () => {
+        if (!token || !selectedCurrency) return;
+
+        try {
+        const res = await http.post(
+            "/user/get-cart-allProduct",
+            { country: selectedCurrency.country_name },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setcartItems(res.data.data || []);
+        settotalPrice(res.data.total_cart_price || "");
+        } catch (error) {
+        console.error("Failed to fetch cart list", error);
+        }
+    }, [token, selectedCurrency]);
+
+    useEffect(() => {
+        fetchCartProduct();
+    }, [fetchCartProduct]);
 
     const handleChecked = (e) => {
         setOnChecked(e.target.checked);
     };
-
-    const swiperConfig = {
-        spaceBetween: 20,
-        slidesPerView: 5,
-        navigation: true,
-        pagination: { clickable: true },
-        breakpoints: {
-            320: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 },
-            1200: { slidesPerView: 5 },
-        },
-    };
-
 
 
     return (
@@ -332,13 +301,16 @@ export const Checkout = () => {
                             </div>
 
                             <div className="uiwdhiwerwerwer d-flex align-items-center justify-content-between aksbdjbererre dojweirkwejirwer">
-                                <button className="btn px-3 me-2 btn-main">
-                                    <i class="fa-solid me-1 fa-arrow-left"></i> Back To Cart
-                                </button>
-
-                                <button className="btn px-3 btn-main">
-                                    Continue Shopping
-                                </button>
+                                <Link to={'/cart'}>
+                                    <button className="btn px-3 me-2 btn-main">
+                                        <i class="fa-solid me-1 fa-arrow-left"></i> Back To Cart
+                                    </button>
+                                </Link>
+                                <Link to={'/all-products'}>
+                                    <button className="btn px-3 btn-main">
+                                        Continue Shopping
+                                    </button>
+                                </Link>
                             </div>
 
                             <div className="dweihriwerwerw mt-4">
@@ -362,7 +334,7 @@ export const Checkout = () => {
 
                                 <ul className="mb-0 ps-0">
                                     <li>
-                                        <Link to="/">Shipping Policy</Link>
+                                        <Link to="/shipping-policy">Shipping Policy</Link>
                                     </li>
 
                                     <li>
@@ -370,7 +342,7 @@ export const Checkout = () => {
                                     </li>
 
                                     <li>
-                                        <Link to="/">Contact Us</Link>
+                                        <Link to="/contact-us">Contact Us</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -382,27 +354,32 @@ export const Checkout = () => {
                             <div className="oiasmdjweijrwerwer">
                                 <h4>Coupon Code</h4>
 
-                                <div className="jidnwenjrwerwer">
+                                {couponItems?.map((couponItemsVal) => (
+                                <div className="jidnwenjrwerwer mb-2">
                                     <div class="coupon">
-                                        <div class="left">
-                                            <div>Coupon</div>
-                                        </div>
+                                    <div class="left">
+                                        <div>Coupon</div>
+                                    </div>
 
-                                        <div class="center">
-                                            <div>
-                                                <h3>Get Extra</h3>
+                                    <div class="center">
+                                        <div>
+                                        <h3>Get Extra</h3>
 
-                                                <h2 className="mb-0">5% OFF</h2>
+                                        <h2 className="mb-0"><i class="bi bi-currency-rupee"></i>{parseInt(couponItemsVal.value)} OFF</h2>
 
-                                                <small>Valid until October, 2025</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="right">
-                                            <div>EXTRA5</div>
+                                        <small>Valid until {ValidityDate(
+                                                    couponItemsVal.expiry_date
+                                                )}
+                                        </small>
                                         </div>
                                     </div>
+
+                                    <div class="right">
+                                        <div>{couponItemsVal.code}</div>
+                                    </div>
+                                    </div>
                                 </div>
+                                ))}
 
                                 <div className="dewuihrwe position-relative mt-4">
                                     <input
@@ -553,43 +530,21 @@ export const Checkout = () => {
 
             <div className="col-lg-12">
                 <div className="diweurbhwer_inner mt-4">
-                    <div className="dfbgghdfdfgdf">
-                        <div className="sdf58sdfs">
-                            <h4 className="pb-2">Tranding Products</h4>
-                        </div>
-
-                        <div className="fgjhdfgdfgdf py-4">
-                            <Swiper {...swiperConfig}>
-                                {featuredProducts.map((featuredProduct) => (
-                                    <SwiperSlide key={featuredProduct.id}>
-                                        <FeaturedProducts featuredProduct={featuredProduct} />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-                    </div>
+                     <TrandingProduct />
                 </div>
             </div>
 
             <div className="col-lg-12">
                 <div className="diweurbhwer_inner mt-4">
-                    <div className="dfbgghdfdfgdf">
-                        <div className="sdf58sdfs">
-                            <h4 className="pb-2">Recently Viewed Products</h4>
-                        </div>
-
-                        <div className="fgjhdfgdfgdf py-4">
-                            <Swiper {...swiperConfig}>
-                                {featuredProducts.map((featuredProduct) => (
-                                    <SwiperSlide key={featuredProduct.id}>
-                                        <FeaturedProducts featuredProduct={featuredProduct} />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-                    </div>
+                    <RecentlyViewed />
                 </div>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                style={{ zIndex: 9999999999 }}
+            />
         </div>
     )
 }

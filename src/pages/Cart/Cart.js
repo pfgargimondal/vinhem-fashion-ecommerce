@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import "./Css/Cart.css";
 import "swiper/css";
 import RecentlyViewed from "../../hooks/RecentlyViewed";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import http from "../../http";
 import { useWishlist } from "../../context/WishlistContext";
@@ -12,6 +12,7 @@ import TrandingProduct from "../../hooks/TrandingProduct";
 import { useCurrency } from "../../context/CurrencyContext";
 
 export const Cart = () => {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const [cartItems, setcartItems] = useState([]);
   const [totalPrice, settotalPrice] = useState([]);
@@ -19,29 +20,25 @@ export const Cart = () => {
 
   const { selectedCurrency } = useCurrency();
 
-  useEffect(() => {
-     if (!token || !selectedCurrency) return;
+  const fetchCartlist = useCallback(async () => {
+    if (!token || !selectedCurrency) return;
 
-    const fetchCartlist = async () => {
-      try {
-        const res = await http.post(
+    try {
+      const res = await http.post(
         "/user/get-cart-user",
-        {
-          country: selectedCurrency.country_name, // ✅ safe now
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { country: selectedCurrency.country_name },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-        setcartItems(res.data.data || []);
-        settotalPrice(res.data.total_cart_price || "");
-      } catch (error) {
-        console.error("Failed to fetch cart list", error);
-      }
-    };
-
-    fetchCartlist();
+      setcartItems(res.data.data || []);
+      settotalPrice(res.data.total_cart_price || "");
+    } catch (error) {
+      console.error("Failed to fetch cart list", error);
+    }
   }, [token, selectedCurrency]);
+
+  useEffect(() => {
+    fetchCartlist();
+  }, [fetchCartlist]);
 
   useEffect(() => {
     if (!token) return;
@@ -121,9 +118,68 @@ export const Cart = () => {
 
       // Remove locally from state
       setcartItems((prev) => prev.filter((item) => item.id !== cartItemId));
+      fetchCartlist();
     } catch (error) {
       console.error("Failed to remove item", error);
     }
+  };
+
+  const handleSizeChange = (cartItemId, newSize) => {
+    setcartItems(prevItems =>
+        prevItems.map(item =>
+            item.id === cartItemId ? { ...item, product_size: newSize } : item
+          )
+        );
+
+      http.post("/user/update-cart-product-size", {
+        cart_id: cartItemId,
+        product_size: newSize,
+      }).then(res => {
+        if (res.data.success) {
+          toast.success(res.data.message || "Product Size Updated successfully");
+        } else {
+          toast.error(res.data.message || "Failed to Update product size");
+        }
+        fetchCartlist();
+      }).catch(err => {
+        console.error("Error updating size", err);
+      });
+  };
+
+  const handleQuantityChange = (cartItemId, newQuantity) => {
+     setcartItems(prevItems =>
+        prevItems.map(item =>
+            item.id === cartItemId ? { ...item, quantity: newQuantity } : item
+          )
+        );
+
+      http.post("/user/update-cart-quantity", {
+        cart_id: cartItemId,
+        quantity: newQuantity,
+      }).then(res => {
+        if (res.data.success) {
+          toast.success(res.data.message || "Quantity Updated successfully");
+        } else {
+          toast.error(res.data.message || "Failed to Update quantity");
+        }
+        fetchCartlist();
+      }).catch(err => {
+        console.error("Error updating quantity", err);
+      });
+  }
+
+  const handleCheckout = () => {
+    const missingSize = cartItems.find(item => !item.product_size);
+
+    if (missingSize) {
+      toast.error(`Please select size for "${missingSize.product_name}" before checkout.`);
+      return; // ❌ Stop checkout
+    }
+
+    // ✅ All sizes selected → redirect to checkout page
+    // For example:
+    navigate("/checkout");
+    console.log("Proceeding to checkout...");
   };
 
   return (
@@ -202,10 +258,13 @@ export const Cart = () => {
                                     </label>
 
                                     <select
-                                      name=""
+                                      name="product_size"
                                       className="form-select py-1"
-                                      id=""
+                                      id={`product_size_${cartItemsVal.id}`}
+                                      value={cartItemsVal.product_size || ""}
+                                      onChange={(e) => handleSizeChange(cartItemsVal.id, e.target.value)}
                                     >
+                                      <option value={''}>Choose Size</option>
                                       {cartItemsVal.size_chart?.map(
                                         (sizeChartVal) => (
                                           <option
@@ -229,15 +288,17 @@ export const Cart = () => {
                                     </label>
 
                                     <select
-                                      name=""
+                                      name="quantity"
                                       className="form-select py-1"
-                                      id=""
+                                      id={`quantity_${cartItemsVal.id}`}
+                                      value={cartItemsVal.quantity || ""}
+                                      onChange={(e) => handleQuantityChange(cartItemsVal.id, e.target.value)}
                                     >
-                                      <option value="">1</option>
-
-                                      <option value="">2</option>
-
-                                      <option value="">3</option>
+                                       {Array.from({ length: Number(cartItemsVal.rts_quantity) }, (_, i) => (
+                                          <option key={i + 1} value={i + 1}>
+                                            {i + 1}
+                                          </option>
+                                        ))}
                                     </select>
                                   </div>
                                 </div>
@@ -360,7 +421,7 @@ export const Cart = () => {
                       <td>Shipping</td>
 
                       <td>
-                        <i class="bi bi-currency-rupee"></i>0
+                        <i class="bi bi-currency-rupee"></i>{totalPrice.shipping_charges}
                       </td>
                     </tr>
                   </tbody>
@@ -428,12 +489,12 @@ export const Cart = () => {
                 <h4>Total Payable</h4>
 
                 <h4>
-                  <i class="bi bi-currency-rupee"></i>{totalPrice.total_selling_price}
+                  <i class="bi bi-currency-rupee"></i>{Number(totalPrice.total_selling_price) + Number(totalPrice.shipping_charges)}
                 </h4>
               </div>
 
               <div className="uiwdhiwerwerwer">
-                <button className="btn btn-main w-100 mb-3">
+                <button className="btn btn-main w-100 mb-3" onClick={handleCheckout}>
                   Proceed To Checkout
                 </button>
               </div>
