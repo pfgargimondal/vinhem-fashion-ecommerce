@@ -17,7 +17,9 @@ export const Checkout = () => {
     const [onChecked, setOnChecked] = useState(false);
     const { selectedCurrency } = useCurrency();
     const [couponItems, setcouponItems] = useState([]);
+    // eslint-disable-next-line
     const [cartItems, setcartItems] = useState([]);
+    // eslint-disable-next-line
     const [totalPrice, settotalPrice] = useState([]);
     
     useEffect(() => {
