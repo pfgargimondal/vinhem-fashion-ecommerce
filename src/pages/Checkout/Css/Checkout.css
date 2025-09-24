@@ -367,6 +367,25 @@
   font-size: 1.2rem;
 }
 
+.copn-checked-icon{
+  color: var(--pink-main-color);
+  font-size: 1.5rem;
+  top: 50%;
+  left: -1%;
+  transform: translateY(-50%);
+  visibility: hidden;
+  opacity: 0;
+  z-index: -99999;
+  transition: 0.2s ease-in-out;
+}
+
+.jidnwenjrwerwer input:checked + label .copn-checked-icon{
+  visibility: visible;
+  opacity: 1;
+  z-index: initial;
+  transition: 0.2s ease-in-out;
+}
+
 
 
 @media only screen and (max-width: 991px){

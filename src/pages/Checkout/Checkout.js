@@ -1,25 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import "./Css/Checkout.css";
 import "swiper/css";
 import RecentlyViewed from "../../hooks/RecentlyViewed";
 import TrandingProduct from "../../hooks/TrandingProduct";
 import { useCallback, useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import http from "../../http";
 import { useCurrency } from "../../context/CurrencyContext";
+import { useWishlist } from "../../context/WishlistContext";
 
 export const Checkout = () => {
 
     const { token } = useAuth();
+    const navigate = useNavigate();
     const [biToggle, setBiToggle] = useState(true);
     const [onChecked, setOnChecked] = useState(false);
     const { selectedCurrency } = useCurrency();
     const [couponItems, setcouponItems] = useState([]);
-    // eslint-disable-next-line
     const [cartItems, setcartItems] = useState([]);
-    // eslint-disable-next-line
     const [totalPrice, settotalPrice] = useState([]);
     
     useEffect(() => {
@@ -50,15 +50,15 @@ export const Checkout = () => {
         if (!token || !selectedCurrency) return;
 
         try {
-        const res = await http.post(
-            "/user/get-cart-allProduct",
-            { country: selectedCurrency.country_name },
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
-        setcartItems(res.data.data || []);
-        settotalPrice(res.data.total_cart_price || "");
+            const res = await http.post(
+                "/user/get-cart-allProduct",
+                { country: selectedCurrency.country_name },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setcartItems(res.data.data || []);
+            settotalPrice(res.data.total_cart_price || "");
         } catch (error) {
-        console.error("Failed to fetch cart list", error);
+            console.error("Failed to fetch cart list", error);
         }
     }, [token, selectedCurrency]);
 
@@ -68,6 +68,158 @@ export const Checkout = () => {
 
     const handleChecked = (e) => {
         setOnChecked(e.target.checked);
+    };
+
+    const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+
+    const toggleWishlist = (productId) => {
+        if (wishlistIds.includes(productId)) {
+            removeFromWishlist(productId);
+        } else {
+            addToWishlist(productId);
+        }
+    };
+
+    const handleRemoveItem = async (cartItemId) => {
+        if (!token) return;
+
+        try {
+            await http.post(
+                "/user/remove-product-from-cart",
+                { cart_item_id: cartItemId },
+                {
+                headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+
+            // Remove locally from state
+            setcartItems((prev) => prev.filter((item) => item.id !== cartItemId));
+            fetchCartProduct();
+        } catch (error) {
+            console.error("Failed to remove item", error);
+        }
+    };
+
+    const [paymentMethod, setPaymentMethod] = useState("");
+    const [errors, setErrors] = useState({});
+    const [billing, setBilling] = useState({
+        billingName: "",
+        billingEmail: "",
+        billingNumber: "",
+        billingPinCode: "",
+        billingCity: "",
+        billingState: "",
+        billingCountry: "",
+        billingFullAddress: ""
+    });
+
+    const [shipping, setShipping] = useState({
+        shippingName: "",
+        shippingEmail: "",
+        shippingNumber: "",
+        shippingPinCode: "",
+        shippingCity: "",
+        shippingState: "",
+        shippingCountry: "",
+        shippingFullAddress: ""
+    });
+
+    const handleBillingChange = (e) => {
+        const { name, value } = e.target;
+        setBilling((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleShippingChange = (e) => {
+        const { name, value } = e.target;
+        setShipping((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const validateForm = () => {
+    const newErrors = {};
+
+    // Billing validation
+    if (!billing.billingName.trim()) newErrors.billingName = "Full name is required";
+    if (!billing.billingEmail.trim()) {
+      newErrors.billingEmail = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(billing.billingEmail)) {
+      newErrors.billingEmail = "Email is invalid";
+    }
+    if (!billing.billingNumber.trim()) {
+      newErrors.billingNumber = "Phone number is required";
+    } else if (!/^\d{10}$/.test(billing.billingNumber)) {
+      newErrors.billingNumber = "Phone number must be 10 digits";
+    }
+    if (!billing.billingPinCode.trim()) newErrors.billingPinCode = "Pincode is required";
+    if (!billing.billingCity.trim()) newErrors.billingCity = "City is required";
+    if (!billing.billingState.trim()) newErrors.billingState = "State is required";
+    if (!billing.billingCountry.trim()) newErrors.billingCountry = "Country is required";
+    if (!billing.billingFullAddress.trim()) newErrors.billingFullAddress = "Address is required";
+
+    // Shipping validation if checked
+    if (onChecked) {
+      if (!shipping.shippingName.trim()) newErrors.shippingName = "Full name is required";
+      if (!shipping.shippingEmail.trim()) {
+        newErrors.shippingEmail = "Email is required";
+      } else if (!/\S+@\S+\.\S+/.test(shipping.shippingEmail)) {
+        newErrors.shippingEmail = "Email is invalid";
+      }
+      if (!shipping.shippingNumber.trim()) {
+        newErrors.shippingNumber = "Phone number is required";
+      } else if (!/^\d{10}$/.test(shipping.shippingNumber)) {
+        newErrors.shippingNumber = "Phone number must be 10 digits";
+      }
+      if (!shipping.shippingPinCode.trim()) newErrors.shippingPinCode = "Pincode is required";
+      if (!shipping.shippingCity.trim()) newErrors.shippingCity = "City is required";
+      if (!shipping.shippingState.trim()) newErrors.shippingState = "State is required";
+      if (!shipping.shippingCountry.trim()) newErrors.shippingCountry = "Country is required";
+      if (!shipping.shippingFullAddress.trim()) newErrors.shippingFullAddress = "Address is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+
+    const handlePlaceOrder = async () => {
+        if (!token) {
+            toast.error("Please login to continue");
+            return;
+        }
+
+        if (!validateForm()) {
+            toast.error("Please fix all the errors");
+            return;
+        }
+
+        if (!paymentMethod) {
+            toast.error("Please select a payment method");
+            return;
+        }
+
+        try {
+            const res = await http.post(
+            "/user/placed-order",
+            {
+                billing,
+                shipping: onChecked ? shipping : '',
+                payment_method: paymentMethod,
+                country: selectedCurrency.country_name
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            if (res.data.success) {
+                toast.success("Order placed successfully!");
+                setcartItems([]); // clear cart
+                navigate("/thank-you");
+            } else {
+                toast.error(res.data.message || "Failed to place order");
+            }
+        } catch (error) {
+            console.error("Order failed", error);
+            toast.error("Something went wrong while placing order");
+        }
     };
 
 
@@ -93,49 +245,93 @@ export const Checkout = () => {
                                                 <div className="mb-3">
                                                     <label className="form-label">Recipients Name</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Full Name" />
+                                                    <input type="text" name="billingName"
+                                                    value={billing.billingName}
+                                                    onChange={handleBillingChange} placeholder="Enter Full Name" 
+                                                    className={`form-control ${errors.billingName ? "is-invalid" : ""}`}
+                                                    />
+                                                    {errors.billingName && <div className="invalid-feedback">{errors.billingName}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Email</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Email" />
+                                                    <input type="email" name="billingEmail"
+                                                        value={billing.billingEmail}
+                                                        onChange={handleBillingChange}
+                                                        placeholder="Enter Email" 
+                                                        className={`form-control ${errors.billingEmail ? "is-invalid" : ""}`}
+                                                    />
+                                                    {errors.billingEmail && <div className="invalid-feedback">{errors.billingEmail}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Phone Number</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Phone Number" />
+                                                    <input type="text" className={`form-control ${errors.billingNumber ? "is-invalid" : ""}`}
+                                                        name="billingNumber"
+                                                        value={billing.billingNumber}
+                                                        onChange={handleBillingChange}
+                                                        maxLength={10}
+                                                        placeholder="Enter Phone Number" />
+                                                    {errors.billingNumber && <div className="invalid-feedback">{errors.billingNumber}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Pincode</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Pin Code" />
+                                                    <input type="text" className={`form-control ${errors.billingPinCode ? "is-invalid" : ""}`}
+                                                        name="billingPinCode"
+                                                        value={billing.billingPinCode}
+                                                        onChange={handleBillingChange}
+                                                        maxLength={6}
+                                                        placeholder="Enter Pin Code" 
+                                                    />
+                                                    {errors.billingPinCode && <div className="invalid-feedback">{errors.billingPinCode}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">City</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter City" />
+                                                    <input type="text" className={`form-control ${errors.billingCity ? "is-invalid" : ""}`}
+                                                        name="billingCity"
+                                                        value={billing.billingCity}
+                                                        onChange={handleBillingChange}
+                                                        placeholder="Enter City" />
+                                                    {errors.billingCity && <div className="invalid-feedback">{errors.billingCity}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">State</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter State" />
+                                                    <input type="text" className={`form-control ${errors.billingState ? "is-invalid" : ""}`}
+                                                        name="billingState"
+                                                        value={billing.billingState}
+                                                        onChange={handleBillingChange}
+                                                        placeholder="Enter State" />
+                                                    {errors.billingState && <div className="invalid-feedback">{errors.billingState}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Country</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Country" />
+                                                    <input type="text" className={`form-control ${errors.billingCountry ? "is-invalid" : ""}`}
+                                                        name="billingCountry"
+                                                        value={billing.billingCountry}
+                                                        onChange={handleBillingChange}
+                                                        placeholder="Enter Country" />
+                                                    {errors.billingCountry && <div className="invalid-feedback">{errors.billingCountry}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Full Address</label>
 
-                                                    <textarea name="" id="" className="form-control" placeholder="Enter Address"></textarea>
+                                                    <textarea className={`form-control ${errors.billingFullAddress ? "is-invalid" : ""}`}
+                                                        name="billingFullAddress"
+                                                        value={billing.billingFullAddress}
+                                                        onChange={handleBillingChange}
+                                                        placeholder="Enter Address"></textarea>
+                                                    {errors.billingFullAddress && <div className="invalid-feedback">{errors.billingFullAddress}</div>}
                                                 </div>
                                             </form>
                                         </div>
@@ -159,49 +355,91 @@ export const Checkout = () => {
                                                 <div className="mb-3">
                                                     <label className="form-label">Recipients Name</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Full Name" />
+                                                    <input type="text" className={`form-control ${errors.shippingName ? "is-invalid" : ""}`} 
+                                                        name="shippingName"
+                                                        value={shipping.shippingName}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter Full Name" />
+                                                    {errors.shippingName && <div className="invalid-feedback">{errors.shippingName}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Email</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Email" />
+                                                    <input type="email" className={`form-control ${errors.shippingEmail ? "is-invalid" : ""}`} 
+                                                        name="shippingEmail"
+                                                        value={shipping.shippingEmail}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter Email" />
+                                                    {errors.shippingEmail && <div className="invalid-feedback">{errors.shippingEmail}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Phone Number</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Phone Number" />
+                                                    <input type="text" className={`form-control ${errors.shippingNumber ? "is-invalid" : ""}`} 
+                                                        name="shippingNumber"
+                                                        value={shipping.shippingNumber}
+                                                        onChange={handleShippingChange}
+                                                        maxLength={10}
+                                                        placeholder="Enter Phone Number" />
+                                                    {errors.shippingNumber && <div className="invalid-feedback">{errors.shippingNumber}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Pincode</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Pin Code" />
+                                                    <input type="text" className={`form-control ${errors.shippingPinCode ? "is-invalid" : ""}`}
+                                                        name="shippingPinCode"
+                                                        value={shipping.shippingPinCode}
+                                                        onChange={handleShippingChange}
+                                                        maxLength={6}
+                                                        placeholder="Enter Pin Code" />
+                                                    {errors.shippingPinCode && <div className="invalid-feedback">{errors.shippingPinCode}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">City</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter City" />
+                                                    <input type="text" className={`form-control ${errors.shippingCity ? "is-invalid" : ""}`}
+                                                        name="shippingCity"
+                                                        value={shipping.shippingCity}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter City" />
+                                                    {errors.shippingCity && <div className="invalid-feedback">{errors.shippingCity}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">State</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter State" />
+                                                    <input type="text" className={`form-control ${errors.shippingState ? "is-invalid" : ""}`}
+                                                        name="shippingState"
+                                                        value={shipping.shippingState}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter State" />
+                                                    {errors.shippingState && <div className="invalid-feedback">{errors.shippingState}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Country</label>
 
-                                                    <input type="text" className="form-control" placeholder="Enter Country" />
+                                                    <input type="text" className={`form-control ${errors.shippingCountry ? "is-invalid" : ""}`}
+                                                        name="shippingCountry"
+                                                        value={shipping.shippingCountry}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter Country" />
+                                                    {errors.shippingCountry && <div className="invalid-feedback">{errors.shippingCountry}</div>}
                                                 </div>
 
                                                 <div className="mb-3">
                                                     <label className="form-label">Full Address</label>
 
-                                                    <textarea name="" id="" className="form-control" placeholder="Enter Address"></textarea>
+                                                    <textarea className={`form-control ${errors.shippingFullAddress ? "is-invalid" : ""}`}
+                                                        name="shippingFullAddress"
+                                                        value={shipping.shippingFullAddress}
+                                                        onChange={handleShippingChange}
+                                                        placeholder="Enter Address"></textarea>
+                                                    {errors.shippingFullAddress && <div className="invalid-feedback">{errors.shippingFullAddress}</div>}
                                                 </div>
                                             </form>
                                         </div>
@@ -216,8 +454,12 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-26sda">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-26sda" type="radio" name="radio-examples" />
-                                                
+                                                <input id="example-26sda" type="radio"
+                                                    name="payment_method"
+                                                    value="upi"
+                                                    checked={paymentMethod === "upi"}
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
                                                 <div className="ms-2">
                                                     <span className="title">UPI (Gpay, PhonePe, Paytm etc)</span>
                                                 </div>
@@ -228,7 +470,12 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-26sweda">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-26sweda" type="radio" name="radio-examples" />
+                                                <input id="example-26sweda" type="radio" 
+                                                    name="payment_method"
+                                                    value="credit_card"
+                                                    checked={paymentMethod === "credit_card"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
                                                 
                                                 <div className="ms-2">
                                                     <span className="title">Credit Card</span>
@@ -240,7 +487,12 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-sdsd">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-sdsd" type="radio" name="radio-examples" />
+                                                <input id="example-sdsd" type="radio" 
+                                                    name="payment_method"
+                                                    value="debit_card"
+                                                    checked={paymentMethod === "debit_card"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
                                                 
                                                 <div className="ms-2">
                                                     <span className="title">Debit Card</span>
@@ -252,7 +504,12 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-sddsw">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-sddsw" type="radio" name="radio-examples" />
+                                                <input id="example-sddsw" type="radio" 
+                                                    name="payment_method"
+                                                    value="net_banking"
+                                                    checked={paymentMethod === "net_banking"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)} 
+                                                />
                                                 
                                                 <div className="ms-2">
                                                     <span className="title">Netbanking</span>
@@ -264,7 +521,12 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-sader">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-sader" type="radio" name="radio-examples" />
+                                                <input id="example-sader" type="radio" 
+                                                    name="payment_method"
+                                                    value="net_banking"
+                                                    checked={paymentMethod === "net_banking"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)} 
+                                                />
                                                 
                                                 <div className="ms-2">
                                                     <span className="title">Razor Pay</span>
@@ -276,10 +538,31 @@ export const Checkout = () => {
                                     <div className="radio-wrapper-26 mb-3">
                                         <label htmlFor="example-rerr">
                                             <div className="inputAndLeftText d-flex">
-                                                <input id="example-rerr" type="radio" name="radio-examples" />
+                                                <input id="example-rerr" type="radio" 
+                                                    name="payment_method"
+                                                    value="pay_pal"
+                                                    checked={paymentMethod === "pay_pal"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
                                                 
                                                 <div className="ms-2">
                                                     <span className="title">Pay Pal</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div className="radio-wrapper-26 mb-3">
+                                        <label htmlFor="example-rerrfdbv">
+                                            <div className="inputAndLeftText d-flex">
+                                                <input id="example-rerrfdbv" type="radio" 
+                                                    name="payment_method"
+                                                    value="cash_on_delivery"
+                                                    checked={paymentMethod === "cash_on_delivery"} 
+                                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                                />
+                                                
+                                                <div className="ms-2">
+                                                    <span className="title">Cash On Delivery</span>
                                                 </div>
                                             </div>
                                         </label>
@@ -357,29 +640,35 @@ export const Checkout = () => {
                                 <h4>Coupon Code</h4>
 
                                 {couponItems?.map((couponItemsVal) => (
-                                <div className="jidnwenjrwerwer mb-2">
-                                    <div class="coupon">
-                                    <div class="left">
-                                        <div>Coupon</div>
-                                    </div>
+                                <div className="jidnwenjrwerwer mb-3">
+                                    <input id={couponItemsVal.code} name="copn" type="radio" className="d-none position-absolute" />
 
-                                    <div class="center">
-                                        <div>
-                                        <h3>Get Extra</h3>
+                                    <label htmlFor={couponItemsVal.code} className="w-100 position-relative">
+                                        <div class="coupon">
+                                            <div class="left">
+                                                <div>Coupon</div>
+                                            </div>
 
-                                        <h2 className="mb-0"><i class="bi bi-currency-rupee"></i>{parseInt(couponItemsVal.value)} OFF</h2>
+                                            <div class="center">
+                                                <div>
+                                                <h3>Get Extra</h3>
 
-                                        <small>Valid until {ValidityDate(
-                                                    couponItemsVal.expiry_date
-                                                )}
-                                        </small>
-                                        </div>
-                                    </div>
+                                                <h2 className="mb-0"><i class="bi bi-currency-rupee"></i>{parseInt(couponItemsVal.value)} OFF</h2>
 
-                                    <div class="right">
-                                        <div>{couponItemsVal.code}</div>
-                                    </div>
-                                    </div>
+                                                <small>Valid until {ValidityDate(
+                                                            couponItemsVal.expiry_date
+                                                        )}
+                                                </small>
+                                                </div>
+                                            </div>
+
+                                            <div class="right">
+                                                <div>{couponItemsVal.code}</div>
+                                            </div>
+                                            </div>
+
+                                        <i class="bi copn-checked-icon position-absolute bi-check-circle-fill"></i>
+                                    </label>                                    
                                 </div>
                                 ))}
 
@@ -397,82 +686,72 @@ export const Checkout = () => {
                             </div>
 
                             <div className="d-flex justify-content-between mt-4 mb-3 align-items-center">
-                                <h4 className="mb-0">Order Details - <span>1 Item(s)</span></h4>
+                                <h4 className="mb-0">Order Details - <span>{cartItems?.length} Item(s)</span></h4>
 
                                 <i class="fa-solid fa-angle-up"></i>
                             </div>
-
-                            {/* <div className="doejwojrwerwe">
-                                <Table responsive>
-                                    <tbody>
-                                        <tr>
-                                            <th>Item</th>
-
-                                            <th>Quantity</th>
-
-                                            <th>Item Cost(<i class="bi bi-currency-rupee"></i>)</th>
-
-                                            <th>Sub Total(<i class="bi bi-currency-rupee"></i>)</th>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <span className="idheiwnrwer d-block">Designer Banarasi Silk Green Color A Line Lehenga</span>
-                                            </td>
-
-                                            <td>
-                                                1
-                                            </td>
-
-                                            <td>
-                                                29,995
-                                            </td>
-
-                                            <td>
-                                                29,995
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div> */}
-
-                            <div className="doiwehirhweker p-2">
-                                <div className="row">
-                                    <div className="col-lg-3">
-                                        <div className="idjkewerr_left">
-                                            <img src="/images/product1 (1).webp" alt="" />
+                            {cartItems?.map((cartItemsVal) => (
+                                <div className="doiwehirhweker p-2">
+                                    <div className="row">
+                                        <div className="col-lg-3">
+                                            <div className="idjkewerr_left">
+                                                <img src={cartItemsVal.encoded_image_url_1} alt="" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="col-lg-9">
-                                        <div className="idjkewerr_right">
-                                            <div className="d-flex align-items-center justify-content-between mb-2">
-                                                <h4 className="mb-0">Megha Pitti</h4>
+                                        <div className="col-lg-9">
+                                            <div className="idjkewerr_right">
+                                                <div className="d-flex align-items-center justify-content-between mb-2">
+                                                    <h4 className="mb-0">{cartItemsVal.designer}</h4>
 
-                                                <div className="asojerdmjer">
-                                                    <i class="fa-regular me-3 fa-heart"></i>
+                                                    <div className="asojerdmjer">
+                                                        <i
+                                                            onClick={() =>
+                                                                toggleWishlist(
+                                                                cartItemsVal.products_table_id
+                                                                )
+                                                            }
+                                                            className={
+                                                                wishlistIds.includes(
+                                                                cartItemsVal.products_table_id
+                                                                )
+                                                                ? "fa-solid me-3 fa-heart"
+                                                                : "fa-regular me-3 fa-heart"
+                                                            }
+                                                            style={{ cursor: "pointer" }}
+                                                            ></i>
+                                                        {/* <i class="fa-regular me-3 fa-heart"></i> */}
 
-                                                    <i class="fa-regular me-3 fa-trash-can"></i>
+                                                        <i class="fa-regular me-3 fa-trash-can" 
+                                                        onClick={() => handleRemoveItem(cartItemsVal.id)}></i>
+                                                    </div>
                                                 </div>
+
+                                                <p className="mb-1">{cartItemsVal.product_name}</p>
+
+                                                <div className="d-flex align-items-center">
+                                                    <p className="mb-1">Color: <span>{cartItemsVal.color}</span></p>
+
+                                                    <p className="mb-1">Size: <span>{cartItemsVal.product_size}</span></p>
+
+                                                    {/* <p className="mb-1">Customize: <span><a href="/">Add Details</a></span></p> */}
+                                                </div>
+
+                                                <p className="mb-1">Price: <span><i class="fa-solid fa-indian-rupee-sign"></i> {cartItemsVal.actual_price}</span></p>
+
+                                                <p>
+                                                    <i class="bi me-1 bi-truck"></i>{cartItemsVal?.non_returnable
+                                                    ? cartItemsVal.non_returnable === 'No'
+                                                        ? 'No return/exchange available'
+                                                        : 'Return/exchange available'
+                                                    : null}
+                                                </p>                                            
                                             </div>
-
-                                            <p className="mb-1">Forest Print Long Kurta Set</p>
-
-                                            <div className="d-flex align-items-center">
-                                                <p className="mb-1">Color: <span>Pink</span></p>
-
-                                                <p className="mb-1">Size: <span>S</span></p>
-
-                                                <p className="mb-1">Customize: <span><a href="/">Add Details</a></span></p>
-                                            </div>
-
-                                            <p className="mb-1">Price: <span><i class="fa-solid fa-indian-rupee-sign"></i>22,000</span></p>
-
-                                            <p><i class="bi me-1 bi-truck"></i> 3 days return/exchange available</p>                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
+                            
 
                             <div className="dweoihrwerwer sdverewerrr p-2 my-4">
                                 <h4 className="mb-2 pb-2">Price Details</h4>
@@ -483,7 +762,7 @@ export const Checkout = () => {
                                             <td>Bag Total</td>
 
                                             <td>
-                                                <i class="bi bi-currency-rupee"></i>29,995
+                                                <i class="bi bi-currency-rupee"></i>{totalPrice.total_selling_price}
                                             </td>
                                         </tr>
 
@@ -491,22 +770,22 @@ export const Checkout = () => {
                                             <td>Shipping Charges</td>
 
                                             <td>
-                                                <i class="bi bi-currency-rupee"></i>0
+                                                <i class="bi bi-currency-rupee"></i>{totalPrice.shipping_charges}
                                             </td>
                                         </tr>
                                     </tbody>
                                 </Table>
 
-                                <div className="deoiwjirwer p-2 mt-2 text-center">
+                                {/* <div className="deoiwjirwer p-2 mt-2 text-center">
                                     <p className="mb-0"><i class="fa-solid me-1 fa-truck"></i> Add items worth <i class="fa-solid fa-indian-rupee-sign"></i>12502 to get free shipping.</p>
-                                </div>
+                                </div> */}
 
                                 <div className="sfdvsrfewewerer">
                                     <div className="oiasmdjweijrwerwer pt-2 cvsdfeerrr mb-2 d-flex align-items-center justify-content-between zsdvfdesdeadfrer mt-4">
                                         <h4 className="mb-0">TOTAL PAYABLE</h4>
 
                                         <h4 className="mb-0">
-                                            <i class="bi bi-currency-rupee"></i>35994
+                                            <i class="bi bi-currency-rupee"></i>{Number(totalPrice.total_selling_price) + Number(totalPrice.shipping_charges)}
                                         </h4>
                                     </div>
 
@@ -514,16 +793,18 @@ export const Checkout = () => {
                                         <h4 className="mb-0">YOUR TOTAL SAVINGS</h4>
 
                                         <h4 className="mb-0">
-                                            <i class="bi bi-currency-rupee"></i>0
+                                            <i class="bi bi-currency-rupee"></i>{totalPrice.total_discount_price}
                                         </h4>
                                     </div>
                                 </div>
                             </div>                            
 
                             <div className="fregrwrget">
-                                <button className="btn btn-main w-100 mb-3">
-                                    Place Order
-                                </button>
+                                {cartItems?.length > 0 && (
+                                    <button className="btn btn-main w-100 mb-3" onClick={handlePlaceOrder}>
+                                        Place Order
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>

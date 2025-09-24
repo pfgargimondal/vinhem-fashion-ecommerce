@@ -179,7 +179,6 @@ export const Cart = () => {
     // ✅ All sizes selected → redirect to checkout page
     // For example:
     navigate("/checkout");
-    console.log("Proceeding to checkout...");
   };
 
   return (

@@ -29,7 +29,7 @@ export const AllRoutes = () => {
       <Route path="testimonial" element={ <Testimonial /> } />
       <Route path="career" element={ <Career /> } />
       <Route path="faq" element={ <FAQ /> } />
-      <Route path="thank-you" element={ <ThankYou /> } />
+      
 
 
       <Route path="blog" element={ <Blog /> } />
@@ -43,6 +43,7 @@ export const AllRoutes = () => {
           <Route path="wishlist" element={ <Wishlist/> } />
           <Route path="cart" element={ <Cart/> } />
           <Route path="checkout" element={ <Checkout/> } />
+          <Route path="thank-you" element={ <ThankYou /> } />
           <Route path="chat" element={ <Chat/> } />
 
           <Route path="invoice" element={ <Invoice /> } />
