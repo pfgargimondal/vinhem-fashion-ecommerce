@@ -194,7 +194,7 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                       <Link to="/"><img src={Logo} className="img-fluid d-none" alt="" /></Link>
 
                       <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
-                        <li><i class="bi bi-headset"></i> Help</li>
+                        <Link to={`/contact-us`}><li><i class="bi bi-headset"></i> Help</li></Link>
 
                         <li className="infrm-menu-divider">|</li>
                         {/* {user ? (
@@ -255,11 +255,23 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                       <div className="oieniuiewr_inner">
                                         <h5>{headCat.headCategories_name}</h5>
                                         <ul className="mb-0 ps-0">
-                                          {headCat.sub_categories?.map((subCat) => (
+                                          {headCat.sub_categories?.slice(0, 6).map((subCat) => (
                                             <li key={subCat.id}>
-                                              <Link to={`/${category.mainCategory_slug}/${subCat.subCategories_slug}`}>{subCat.subCategories_name}</Link>
-                                            </li>
+                                              <Link to={`/${category.mainCategory_slug}/${subCat.subCategories_slug}`}>
+                                                {subCat.subCategories_name.replace(/\s*\(Boys\)|\s*\(Girls\)/gi, "")}
+                                              </Link>
+                                            </li> 
+                                            
                                           ))}
+
+                                          {/* Show "View All" if more than 6 */}
+                                          {headCat.sub_categories?.length > 6 && (
+                                            <li>
+                                              <Link to={`/${category.mainCategory_slug}`}>
+                                                View All →
+                                              </Link>
+                                            </li>
+                                          )}
                                         </ul>
                                       </div>
                                     </div>
@@ -366,18 +378,6 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                                       </div>
                                     </div>
                                   ))}
-
-                                  {/* <div className="col-lg-6">
-                                    <div className="pkopkerrwer text-center">
-                                      <img src="./images/black-potli-bag-model_97de0a76-00e0-4ce6-b705-b9666518483c.webp" className="w-100" alt="" />
-
-                                      <div className="dkewbjnrkwejrwer mt-2">
-                                        <h5>Vishwa By Pinki Sinha</h5>
-
-                                        <a href="/">SHOW NOW</a>
-                                      </div>
-                                    </div>
-                                  </div> */}
                                 </div>
                               </div>
                             </div>
