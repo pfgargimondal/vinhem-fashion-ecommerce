@@ -1,10 +1,39 @@
 import { useState } from "react";
+import { useFilter } from "../../context/FilterContext";
 
 export default function FilterSection({ allFilterMappingdata }) {
+  const { setColor, setFabric, setDesigner, setSize, setOccasion } = useFilter();
   const [selectedTheme, setSelectedTheme] = useState("");
 
   const toTitleCase = (str) =>
     str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+
+  const handleSelect = (filterType, value) => {
+    switch (filterType.toLowerCase()) {
+      case "color":
+        setColor(value);
+        break;
+      
+      case "fabric":
+        setFabric(value);
+        break;
+
+      case "designer":
+        setDesigner(value);
+        break;
+
+      case "size":
+        setSize(value);
+        break;
+
+      case "occasion":
+        setOccasion(value);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   return (
     <>
@@ -25,25 +54,29 @@ export default function FilterSection({ allFilterMappingdata }) {
                 <div className="doewjkrnhweiurwer osdmcfosjrserr">
                     <div id="content">
                         <label key={index} htmlFor={colorValue} className="me-3">
-                        <input
-                            type="radio"
-                            name="theme"
-                            id={colorValue}
-                            className="colored-radio"
-                            data-color={colorValue}
-                            checked={selectedTheme === colorCode}
-                            onChange={() => setSelectedTheme(colorCode)}
-                            style={{
-                                backgroundColor:
-                                    selectedTheme === colorCode ? colorCode : "transparent",
-                                border: `1px solid #b0bec5;`,
-                                width: "30px",
-                                height: "30px",
-                                borderRadius: "50%",
-                                cursor: "pointer",
-                            }}
-                        />
-                        <span className="mt-1">{colorValue}</span>
+                          <input
+                              type="radio"
+                              name={FilterMappingdata.filter_option}
+                              id={colorValue}
+                              className="colored-radio"
+                              data-color={colorValue}
+                              checked={selectedTheme === colorCode}
+                              onChange={() => {
+                                setSelectedTheme(colorCode);
+                                handleSelect("color", colorValue);
+                              }}
+                              style={{
+                                  backgroundColor:
+                                      selectedTheme === colorCode ? colorCode : "transparent",
+                                  border: `1px solid #b0bec5;`,
+                                  width: "30px",
+                                  height: "30px",
+                                  borderRadius: "50%",
+                                  cursor: "pointer",
+                              }}
+                          />
+
+                          <span className="mt-1">{colorValue}</span>
                         </label>
                     </div>
                 </div>
@@ -56,7 +89,8 @@ export default function FilterSection({ allFilterMappingdata }) {
                         <input
                         id={`${dvbfbxdfbg}-${indexdsvd}`}
                         type="radio"
-                        name="radio-examples"
+                        name={FilterMappingdata.filter_option}
+                        onChange={() => handleSelect(FilterMappingdata.filter_option, item.trim())}
                         />
                         <span>
                         <svg

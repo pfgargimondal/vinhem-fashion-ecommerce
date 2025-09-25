@@ -19,7 +19,7 @@ header .advertisement-slider .marquee-container {
   gap: 40px;
   overflow: hidden;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.2rem 0;
 }
 header .advertisement-slider .marquee-track {
   display: flex;
@@ -41,7 +41,7 @@ header .advertisement-slider .scroll-card {
 }
 header .advertisement-slider .scroll-card p a {
   color: #fff;
-  font-weight: 600;
+  font-size: 13px;
 }
 header .advertisement-slider .scroll-card p a:hover {
   text-decoration: underline !important;
@@ -68,7 +68,13 @@ header .advertisement-slider .marquee-container:hover .marquee-right {
 }
 header .header-top {
   background: #fff;
+  border-bottom: 1px solid var(--light-background-color);
 }
+
+header .header-top .doeiwhrkwdeor img {
+  width: 70%;
+}
+
 header .header-top .doeiwhrkwdeor ul li {
   display: inline-flex;
   position: relative;
@@ -223,7 +229,7 @@ header .header-main .swiper-slide a {
 }
 
 .header-mega-menu{
-  top: 75%;
+  top: 67%;
   left: 0;
   right: 0;
   z-index: -999;
@@ -232,9 +238,10 @@ header .header-main .swiper-slide a {
 }
 
 header .header-main .swiper-slide:hover .header-mega-menu{
-  z-index: 999;
+  z-index: 9999999;
   visibility: visible;
   transition: 0.1s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 .h-m-m-inner{

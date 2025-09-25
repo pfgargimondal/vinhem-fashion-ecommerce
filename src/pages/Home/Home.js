@@ -18,7 +18,6 @@ export const Home = () => {
         const fetchOnSale = async () => {
             try {
                 const getresponse = await http.get("/fetch-home-page");
-                // console.log("API response:", getresponse.data);
                 Sethomepage(getresponse.data); 
             } catch (error) {
                 console.error("Error fetching homepage data:", error);
@@ -28,87 +27,6 @@ export const Home = () => {
         fetchOnSale();
     }, []);
 
-
-  // eslint-disable-next-line
-  // const [featuredProducts, setFeaturedProducts] = useState([
-  //   {
-  //     id: 1000,
-  //     img1: "/images/product1 (1).webp",
-  //     img2: "/images/product1 (2).webp",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1001,
-  //     img1: "/images/product3 (1).webp",
-  //     img2: "/images/product3 (2).webp",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1002,
-  //     img1: "/images/product2 (1).webp",
-  //     img2: "/images/product2 (2).webp",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1003,
-  //     img1: "/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
-  //     img2: "/images/h-co-cp-VMJ-mdKs-unsplash.jpg",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1004,
-  //     img1: "/images/r-n-tyfqOL1FAQc-unsplash.jpg",
-  //     img2: "/images/oleg-ivanov-sg_gRhbYXhc-unsplash.jpg",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1005,
-  //     img1: "/images/product1 (1).webp",
-  //     img2: "/images/product1 (2).webp",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   },
-  //   {
-  //     id: 1006,
-  //     img1: "/images/product2 (1).webp",
-  //     img2: "/images/product2 (2).webp",
-  //     title: "COLLETTE",
-  //     description: "(Product 35) Sample - Clothing And Accessory Boutiques For Sale",
-  //     price: "48.99"
-  //   }
-
-  // ]);
-  // eslint-disable-next-line
-  // const [topCategories, setTopCategories] = useState([
-  //   { id: "t1", img: "./images/fapo (1).jpg", ctgy: "Activewear" },
-  //   { id: "t2", img: "./images/fapo (1).webp", ctgy: "Activewear" },
-  //   { id: "t3", img: "./images/fapo (1).webp", ctgy: "Activewear" },
-  //   { id: "t4", img: "./images/fapo (2).webp", ctgy: "Co-ords" },
-  //   { id: "t5", img: "./images/fapo (3).webp", ctgy: "Activewear" },
-  //   { id: "t6", img: "./images/fapo (4).webp", ctgy: "Activewear" },
-  //   { id: "t7", img: "./images/fapo (5).webp", ctgy: "Jeans" },
-  //   { id: "t8", img: "./images/fapo (6).webp", ctgy: "Activewear" },
-  //   { id: "t9", img: "./images/fapo (7).webp", ctgy: "Lingeries" },
-  //   { id: "t10", img: "./images/fapo (8).webp", ctgy: "Activewear" },
-  //   { id: "t11", img: "./images/fapo (8).webp", ctgy: "Skirts & Tops" },
-  //   { id: "t12", img: "./images/fapo (1).webp", ctgy: "Activewear" },
-  //   { id: "t13", img: "./images/fapo (3).webp", ctgy: "Activewear" },
-  //   { id: "t14", img: "./images/fapo (6).webp", ctgy: "Activewear" },
-  //   { id: "t15", img: "./images/fapo (2).webp", ctgy: "Activewear" },
-  // ]);
-
-  //featured products
 
   const swiperConfig = {
     spaceBetween: 20,
@@ -134,19 +52,60 @@ export const Home = () => {
   return (
     <>
       <div className="dfgdfvsdfsdfsdf">
-        <div className="rehbgdfgnjh">
-          <div className="sdfsdfd">
-            <div className="row">
-              <Link to={homepage?.data?.url}>
-              <div className="col-lg-12">
-                <div className="gdfgdf215">
-                  <img src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`} alt="" />
-                </div>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={10}
+          slidesPerView={1}
+          navigation
+          autoplay={{ delay: 3000 }}
+          loop={true}
+        >
+          {/* Slide 1 */}
+          <SwiperSlide>
+            <div className="rehbgdfgnjh">
+              <div className="sdfsdfd">
+                <Link to={homepage?.data?.url}>
+                  <div className="gdfgdf215">
+                    <img
+                      src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`}
+                      alt=""
+                    />
+                  </div>
+                </Link>
               </div>
-              </Link>
             </div>
-          </div>
-        </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className="rehbgdfgnjh">
+              <div className="sdfsdfd">
+                <Link to={homepage?.data?.url2}>
+                  <div className="gdfgdf215">
+                    <img
+                      src={`${homepage?.image_url}/${homepage?.data?.side_banner_image2}`}
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className="rehbgdfgnjh">
+              <div className="sdfsdfd">
+                <Link to={homepage?.data?.url3}>
+                  <div className="gdfgdf215">
+                    <img
+                      src={`${homepage?.image_url}/${homepage?.data?.side_banner_image3}`}
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <div className="jdfgdfg65dfdf">
@@ -297,18 +256,21 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <Link to={homepage?.data?.section2_url}>
-        <div className="xfdjgdfgdfg mb-5"
-          style={{
-            backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section2_image})`,
-            backgroundSize: "100% 100%"
-          }}
-        >
-          <div className="container-fluid">
-            <div className="dfbghd5488"></div>
+      
+      <div className="container-fluid">
+        <Link to={homepage?.data?.section2_url}>
+          <div className="xfdjgdfgdfg mb-5"
+            style={{
+              backgroundImage: `url(${homepage?.image_url}/${homepage?.data?.section2_image})`,
+              backgroundSize: "100% 100%"
+            }}
+          >
+            <div className="container-fluid">
+              <div className="dfbghd5488"></div>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
 
       <div className="xfbxdfgsdf d-none">
         <div className="container-fluid">

@@ -4,10 +4,11 @@ import { filterReducer } from "../reducers/filterReducers";
 
 const filterInitialState = {
     productList: [],
-    category: null,
-    manufacturer: null,
     color: null,
+    fabric: null,
+    designer: null,    
     size: null,
+    occasion: null,
     sortBy: null
 }
 
@@ -29,38 +30,6 @@ export const FilterProvider = ({children}) => {
     }
 
 
-    //category
-
-    function setCategory(category) {
-        dispatch({
-            type: "CATEGORIES",
-            payload: {
-                category: category
-            }
-        })
-    }
-
-    function filterCategory(products) {
-        return state.category ? products.filter(product => product.category === state.category) : products;
-    }
-
-
-    //manufacturer
-
-    function setManufacturer(manufacturer) {
-        dispatch({
-            type: "MANUFACTURER",
-            payload: {
-                manufacturer: manufacturer
-            }
-        })
-    }
-
-    function filterManufacturer(products) {
-        return state.manufacturer ? products.filter(product => product.manufacturer === state.manufacturer) : products;
-    }
-
-
     //color
 
     function setColor(color) {
@@ -74,7 +43,39 @@ export const FilterProvider = ({children}) => {
 
     function filterColor(products) {
         return state.color ? products.filter(product => product.color === state.color) : products;
+    }    
+
+
+    //fabric
+
+    function setFabric(fabric) {
+        dispatch({
+            type: "FABRIC",
+            payload: {
+                fabric: fabric
+            }
+        })
     }
+
+    function filterFabric(products) {
+        return state.fabric ? products.filter(product => product.fabric === state.fabric) : products;
+    }
+
+
+    //designer
+
+    function setDesigner(designer) {
+        dispatch({
+            type: "DESIGNER",
+            payload: {
+                designer: designer
+            }
+        })
+    }
+
+    function filterDesigner(products) {
+        return state.designer ? products.filter(product => product.designer === state.designer) : products;
+    }    
 
 
     //size
@@ -92,17 +93,61 @@ export const FilterProvider = ({children}) => {
         return state.size ? products.filter(product => product.size === state.size) : products;
     }
 
-    const filteredProducts = filterSize(filterColor(filterManufacturer(filterCategory(state.productList))));
+
+    //occasion
+
+    function setOccasion(occasion) {
+        dispatch({
+            type: "OCCASION",
+            payload: {
+                occasion: occasion
+            }
+        })
+    }
+
+    function filterOccasion(products) {
+        return state.occasion ? products.filter(product => product.occasion === state.occasion) : products;
+    }
+    
+
+    //sortby
+
+    function setSortBy(sortBy) {
+        dispatch({
+            type: "SORT_BY",
+            payload: {
+                sortBy: sortBy
+            }
+        })
+    }
+
+    function filterSortBy(products) {
+        if (state.sortBy === "LOW_TO_HIGH") {
+            return products.sort((a, b) => a.selling_price - b.selling_price);
+        } else if (state.sortBy === "HIGH_TO_LOW") {
+            return products.sort((a, b) => b.selling_price - a.selling_price);
+        } else if (state.sortBy === "NEW_ARRIVALS") {
+            return products.filter(product => product.new_arrival === "Yes");
+        } else {
+            return products;
+        }
+    }
+
+
+
+    const filteredProducts = filterSortBy(filterOccasion(filterSize(filterDesigner(filterFabric(filterColor(state.productList))))));
 
 
 
     const value = {
         products: filteredProducts,
         initialProductList,
-        setCategory,
-        setManufacturer,
         setColor,
-        setSize
+        setFabric,
+        setDesigner,
+        setSize,
+        setOccasion,
+        setSortBy
     }
 
     return (

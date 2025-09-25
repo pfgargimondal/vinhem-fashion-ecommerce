@@ -2,6 +2,27 @@
   width: 100%;
 }
 
+.dfgdfvsdfsdfsdf .swiper-button-prev,
+.dfgdfvsdfsdfsdf .swiper-button-next{
+  color: var(--pink-main-color);
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.dfgdfvsdfsdfsdf .swiper-button-prev:after,
+.dfgdfvsdfsdfsdf .swiper-button-next:after{
+  font-size: 1.2rem;
+}
+
+.dfgdfvsdfsdfsdf .swiper-button-prev{
+  left: 0;
+}
+
+.dfgdfvsdfsdfsdf .swiper-button-next{
+  right: 0;
+}
+
 .gdfgdf215 {
   width: 100%;
   height: 600px;
@@ -189,6 +210,7 @@
   width: 100%;
   height: 500px;
   border-radius: 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .gfjhfgjfg {
@@ -238,6 +260,7 @@
   height: 500px;
   background-size: 100% 100%;
   border-radius: 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .sdf58sdfs {
@@ -292,7 +315,7 @@
 
 .fgjhdfgdfgdf .swiper-button-prev,
 .fgjhdfgdfgdf .swiper-button-next{
-  background: var(--pink-main-color);
+  background: #fff;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -301,8 +324,8 @@
 
 .fgjhdfgdfgdf .swiper-button-prev:after,
 .fgjhdfgdfgdf .swiper-button-next:after{
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1.4rem;
+  color: var(--pink-main-color);
 }
 
 .fgjhdfgdfgdf .swiper-button-prev:hover,

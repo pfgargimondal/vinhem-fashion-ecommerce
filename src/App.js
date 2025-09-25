@@ -20,7 +20,7 @@ function App() {
 
       <main className={["/profile", "/change-password", "/cancelled-order", "/order-history", "/wishlist", "/chat"].includes(pathname)
         ? "" 
-        : "container"}>
+        : ""}>
         <AllRoutes />
       </main>
 

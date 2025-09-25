@@ -76,7 +76,7 @@ export function CartProvider({ children }) {
   }, [token, fetchCartCount]); // ✅ added fetchCartCount also
 
   return (
-    <CartContext.Provider value={{ cartCount, addToCart, fetchCartCount }}>
+    <CartContext.Provider value={{ cartCount, addToCart, fetchCartCount, setCartCount }}>
       {children}
     </CartContext.Provider>
   );

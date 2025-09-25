@@ -8,16 +8,19 @@ import { ToastContainer } from "react-toastify";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
 import FilterSection from "./FilterSection";
+import { useFilter } from "../../context/FilterContext";
 
 export const Filter = () => {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { products, initialProductList, setSortBy } = useFilter();
   
   const [viewType, setViewType] = useState(false);
 
   const [resFltrMenu, setResFltrMenu] = useState(false);
+  // eslint-disable-next-line
   const [allProductdata, SetallProduct] = useState([]);
   const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
 
@@ -57,20 +60,14 @@ export const Filter = () => {
   useEffect(() => {
     const fetchAllProduct = async () => {
       try {
-        // Send to API
-        const response = await http.post("/fetch-product", {
-          category,
-          subcategory,
-        });
-
-        SetallProduct(response.data.data);
+        const response = await http.post("/fetch-product", { category, subcategory });
+        initialProductList(response.data.data.all_product);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-
     fetchAllProduct();
-  }, [location.pathname, category, subcategory]);
+  }, [location.pathname, category, subcategory, initialProductList]);
 
 
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
@@ -136,7 +133,7 @@ export const Filter = () => {
             : subcategory
               ? `${toTitleCase(subcategory)} For ${toTitleCase(category)}`
               : `All Products For ${toTitleCase(category)}`}
-          <span> - Showing {allProductdata?.all_product?.length ?? 0} Results</span>
+          <span> - Showing {products?.length ?? 0} Results</span>
           </h4>
         </div>
 
@@ -259,15 +256,14 @@ export const Filter = () => {
 
                 <div className="col-lg-3">
                   <div className="podwejorjwierwer">
-                    <select name="" className="form-select" id="">
+                    <select name="" className="form-select" id="" onChange={(e) => setSortBy(e.target.value)}>
                       <option value="" selected disabled>
                         Sort By: Recommended
                       </option>
                       <option value="">Popularity</option>
-                      <option value="">New Arrivals</option>
-                      <option value="">New Arrivals</option>
-                      <option value="">Price Low to High</option>
-                      <option value="">Price High to Low</option>
+                      <option value="NEW_ARRIVALS">New Arrivals</option>
+                      <option value="LOW_TO_HIGH">Price Low to High</option>
+                      <option value="HIGH_TO_LOW">Price High to Low</option>
                       <option value="">Discount High to Low</option>
                     </select>
                   </div>
@@ -276,7 +272,7 @@ export const Filter = () => {
 
               <div className="products-wrapper filtr-wrppr mt-5">
                 <div className="row">
-                  {allProductdata?.all_product?.map((product) => (
+                  {products?.map((product) => (
                     <div
                       className={`smdflcsdlpfkselkrpr ${
                         !viewType ? "col-lg-3" : "col-lg-12"

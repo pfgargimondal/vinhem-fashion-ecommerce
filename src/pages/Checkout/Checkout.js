@@ -10,6 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 import http from "../../http";
 import { useCurrency } from "../../context/CurrencyContext";
 import { useWishlist } from "../../context/WishlistContext";
+import { useCart } from "../../context/CartContext";
 
 export const Checkout = () => {
 
@@ -21,6 +22,13 @@ export const Checkout = () => {
     const [couponItems, setcouponItems] = useState([]);
     const [cartItems, setcartItems] = useState([]);
     const [totalPrice, settotalPrice] = useState([]);
+    const { setCartCount } = useCart();
+    const [selectedCoupon, setSelectedCoupon] = useState("");
+    // eslint-disable-next-line
+    const [selectedDiscount, setSelectedDiscount] = useState(0);
+    const [appliedDiscount, setAppliedDiscount] = useState(0);
+    const [couponApplied, setCouponApplied] = useState(false);
+
     
     useEffect(() => {
         if (!token) return;
@@ -199,20 +207,31 @@ export const Checkout = () => {
 
         try {
             const res = await http.post(
-            "/user/placed-order",
-            {
-                billing,
-                shipping: onChecked ? shipping : '',
-                payment_method: paymentMethod,
-                country: selectedCurrency.country_name
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+                "/user/placed-order",
+                {
+                    billing,
+                    shipping: onChecked ? shipping : '',
+                    payment_method: paymentMethod,
+                    country: selectedCurrency.country_name,
+                    coupon_code: couponApplied ? selectedCoupon : null,
+                    coupon_discount: couponApplied ? appliedDiscount : 0,
+                },
+                { headers: { Authorization: `Bearer ${token}` } }
             );
 
             if (res.data.success) {
                 toast.success("Order placed successfully!");
-                setcartItems([]); // clear cart
+
+                setcartItems([]);
+                setCartCount(0);
+
+                setSelectedCoupon("");
+                setSelectedDiscount(0);
+                setAppliedDiscount(0);
+                setCouponApplied(false);
+
                 navigate("/thank-you");
+
             } else {
                 toast.error(res.data.message || "Failed to place order");
             }
@@ -225,7 +244,7 @@ export const Checkout = () => {
 
     return (
         <div>
-            <div className="cart-wrapper py-4">
+            <div className="cart-wrapper container-fluid py-4">
                 <h2 className="chkout-heading text-center mb-3">ONE STEP CHECKOUT</h2>
 
                 <div className="row justify-content-between">
@@ -641,7 +660,15 @@ export const Checkout = () => {
 
                                 {couponItems?.map((couponItemsVal) => (
                                 <div className="jidnwenjrwerwer mb-3">
-                                    <input id={couponItemsVal.code} name="copn" type="radio" className="d-none position-absolute" />
+                                    <input id={couponItemsVal.code} name="coupon" type="radio" className="d-none position-absolute" 
+                                        checked={selectedCoupon === couponItemsVal.code}
+                                        disabled={couponApplied}
+                                        onChange={() => {
+                                        setSelectedCoupon(couponItemsVal.code);
+                                        setSelectedDiscount(parseInt(couponItemsVal.value));
+                                        setAppliedDiscount(parseInt(couponItemsVal.value));
+                                        }}
+                                    />
 
                                     <label htmlFor={couponItemsVal.code} className="w-100 position-relative">
                                         <div class="coupon">
@@ -677,11 +704,44 @@ export const Checkout = () => {
                                         type="text"
                                         className="form-control"
                                         placeholder="Enter Coupon Code"
+                                        value={selectedCoupon}
+                                        onChange={(e) => {
+                                            setSelectedCoupon(e.target.value);
+
+                                            const coupon = couponItems.find(c => c.code === e.target.value);
+                                            if (coupon) {
+                                            setSelectedDiscount(parseInt(coupon.value));
+                                            setAppliedDiscount(parseInt(coupon.value));
+                                            } else {
+                                            setSelectedDiscount(0);
+                                            setAppliedDiscount(0);
+                                            }
+                                        }}
+                                        disabled={couponApplied}
                                     />
 
-                                    <button className="btn position-absolute btn-main">
+                                    {!couponApplied ? (
+                                        <button
+                                        type="button"
+                                        className="btn position-absolute btn-main"
+                                        onClick={() => setCouponApplied(true)}
+                                        >
                                         Apply
-                                    </button>
+                                        </button>
+                                    ) : (
+                                        <button
+                                        type="button"
+                                        className="btn position-absolute btn-main"
+                                        onClick={() => {
+                                            setSelectedCoupon("");
+                                            setSelectedDiscount(0);
+                                            setAppliedDiscount(0);
+                                            setCouponApplied(false);
+                                        }}
+                                        >
+                                        Remove
+                                        </button>
+                                    )}
                                 </div>
                             </div>
 
@@ -773,6 +833,15 @@ export const Checkout = () => {
                                                 <i class="bi bi-currency-rupee"></i>{totalPrice.shipping_charges}
                                             </td>
                                         </tr>
+                                        {appliedDiscount > 0 && (
+                                            <tr>
+                                                <td className="sjkdrvgnhbjkdf">Coupon Discount</td>
+
+                                                <td className="sjkdrvgnhbjkdf"> (-) 
+                                                    <i class="bi bi-currency-rupee"></i>{appliedDiscount}
+                                                </td>
+                                            </tr>
+                                        )}
                                     </tbody>
                                 </Table>
 
@@ -785,7 +854,7 @@ export const Checkout = () => {
                                         <h4 className="mb-0">TOTAL PAYABLE</h4>
 
                                         <h4 className="mb-0">
-                                            <i class="bi bi-currency-rupee"></i>{Number(totalPrice.total_selling_price) + Number(totalPrice.shipping_charges)}
+                                            <i class="bi bi-currency-rupee"></i>{(Number(totalPrice.total_selling_price) + Number(totalPrice.shipping_charges)) - appliedDiscount}
                                         </h4>
                                     </div>
 
@@ -793,7 +862,7 @@ export const Checkout = () => {
                                         <h4 className="mb-0">YOUR TOTAL SAVINGS</h4>
 
                                         <h4 className="mb-0">
-                                            <i class="bi bi-currency-rupee"></i>{totalPrice.total_discount_price}
+                                            <i class="bi bi-currency-rupee"></i>{Number(totalPrice.total_discount_price || 0) + Number(appliedDiscount || 0)}
                                         </h4>
                                     </div>
                                 </div>
@@ -812,13 +881,13 @@ export const Checkout = () => {
             </div>
 
             <div className="col-lg-12">
-                <div className="diweurbhwer_inner mt-4">
+                <div className="diweurbhwer_inner container-fluid mt-4">
                      <TrandingProduct />
                 </div>
             </div>
 
             <div className="col-lg-12">
-                <div className="diweurbhwer_inner mt-4">
+                <div className="diweurbhwer_inner container-fluid mt-4">
                     <RecentlyViewed />
                 </div>
             </div>

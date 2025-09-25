@@ -4,7 +4,7 @@
   right: 0;
   width: 12rem;
   border: 1px solid var(--light-background-color);
-  z-index: 999;
+  z-index: 99999;
 }
 .dropdown-loggedin ul li {
   color: var(--text-main-color) !important;
