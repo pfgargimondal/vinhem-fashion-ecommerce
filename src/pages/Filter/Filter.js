@@ -16,7 +16,7 @@ export const Filter = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { products, initialProductList, setSortBy } = useFilter();
-  
+  // eslint-disable-next-line
   const [viewType, setViewType] = useState(false);
 
   const [resFltrMenu, setResFltrMenu] = useState(false);
