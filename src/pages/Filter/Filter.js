@@ -69,7 +69,7 @@ export const Filter = () => {
       }
     };
     fetchAllProduct();
-  }, [location.pathname, category, subcategory]);
+  }, [location.pathname, category, subcategory, initialProductList]);
 
 
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
