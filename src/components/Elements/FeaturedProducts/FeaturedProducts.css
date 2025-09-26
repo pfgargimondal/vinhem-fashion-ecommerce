@@ -3,7 +3,7 @@
 }
 
 .doiewjkrniuwewer{
-  height: 350px;  
+  height: 470px;  
   border-radius: 10px;
 }
 
@@ -15,16 +15,52 @@
   border-radius: 10px;
 }
 
-.doiewjkrniuwewer img:first-child{
-  z-index: 2;
+.dscnt-prce{
+  right: -3%;
+  position: absolute;
+  top: 35%;
+  background-image: url("/public/images/dscntprce.png");
+  background-repeat: no-repeat;
+  color: #fff;
+  background-size: 85px;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.2;
+  height: 38px;
+  text-align: center;
+  width: 86px !important;
+  z-index: 999;
 }
 
-.doiewjkrniuwewer:hover img:first-child{
+.nw-arrvl{
+  left: -2%;
+  position: absolute;
+  top: 3%;
+  background-image: url("/public/images/nwarrvl.png");
+  background-repeat: no-repeat;
+  color: #fff;
+  background-size: 101px;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.2;
+  height: 42px;
+  text-align: center;
+  width: 101px !important;
+  z-index: 999;
+}
+
+/* .doiewjkrniuwewer img:first-child{
+  z-index: 2;
+} */
+
+/* .doiewjkrniuwewer:hover img:first-child{
   visibility: hidden;
   opacity: 0;
   z-index: -9;
   transition: 0.3s ease-in-out;
-}
+} */
 
 .dfgjhbdfg {
   width: 100%;
@@ -47,6 +83,7 @@
   visibility: hidden;
   transition: 0.2s ease-in-out;
   transform: translateX(-50%);
+  display: none;
 }
 
 .dfgjhbdfg .images:hover .dbgdfhgv{
@@ -58,6 +95,14 @@
 
 .dbgdfhgv button:hover{
   background: #fff !important;
+}
+
+.btn-cart{
+  display: none;
+}
+
+.doiewjkrniuwewer img.first{
+  display: none;
 }
 
 .doikwenirnwekhrwer{
@@ -170,13 +215,20 @@
 }
 
 .fdbdfgdfgdf {
-  text-align: center;
   padding: 10px;
 }
 .fdbdfgdfgdf h6 {
-  color: gray;
-  font-size: 15px !important;
+  color: var(--text-main-color);
+  font-size: 12px !important;
   font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 25px;
+  user-select: none;
+  display: inline-block;
+  background: rgba(232, 232, 232, 0.7);
+}
+.fdbdfgdfgdf h6 i{
+  color: var(--pink-main-color);
 }
 .fdbdfgdfgdf h4 {
   font-size: 1rem !important;
@@ -184,6 +236,7 @@
 }
 .fdbdfgdfgdf h5 {
   font-weight: 600;
+  color: var(--pink-main-color);
 }
 
 .yudfdfgdfbgdfgdffgfg {
@@ -206,6 +259,20 @@
 .dfghdfg654 p {
   font-size: 13px;
   color: gray;
+}
+
+.sdfvgdfvrgrert label{
+  border: 1px solid #fff;
+  border-radius: 0.3rem;
+  display: flex !important;
+  align-items: center;
+  margin: 5px !important;
+  transition: 0.2s ease-in-out;
+}
+
+.clr-label{
+  border: 1px solid var(--text-gray-color) !important;
+  transition: 0.2s ease-in-out;
 }
 
 .fbgdfgd a {

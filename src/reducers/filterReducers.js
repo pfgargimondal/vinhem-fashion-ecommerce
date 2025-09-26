@@ -24,16 +24,16 @@ export const filterReducer = (state, action) => {
         case "SORT_BY":
             return {...state, sortBy: payload.sortBy}
 
-        // case "REST_FILTER":
-        //     return {
-        //         productList: [],
-        //         color: null,
-        //         fabric: null,
-        //         designer: null,    
-        //         size: null,
-        //         occasion: null,
-        //         sortBy: null
-        //     }
+        case "REST_FILTER":
+            return {
+                productList: [],
+                color: null,
+                fabric: null,
+                designer: null,    
+                size: null,
+                occasion: null,
+                sortBy: null
+            }
 
         default:
             throw new Error("No product found!");

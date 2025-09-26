@@ -184,7 +184,27 @@ form input:global(.form-control){
 .dfgndfjhbgdfgdf .sdfsdf {
   display: flex;
   align-items: center;
-  padding: 1rem;
+}
+.oknknkmer{
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.oknknkmer:hover{
+  text-decoration: underline;
+}
+.vew_dtls{
+  color: var(--pink-main-color);  
+}
+.dweknriwehrwer .cncl_ordr{
+  color: #dc3545 !important;
+}
+
+.dweknriwehrwer .return_ordr{
+  color: #ef7105 !important;
+}
+
+.dweknriwehrwer .cncl_ordr:hover{
+  text-decoration: underline;
 }
 .dfgndfjhbgdfgdf .dsfhsd {
   width: 20%;
@@ -248,6 +268,16 @@ form input:global(.form-control){
   font-size: 13px !important;
   border: none !important;
   border-radius: 8px !important;
+}
+
+.dfgndfjhbgdfgdf .dfgfd5544dvxc {
+    padding: 6px 15px !important;
+    background-color: #8b8f91 !important;
+    color: #1c1919 !important;
+    font-weight: 600;
+    font-size: 13px !important;
+    border: none !important;
+    border-radius: 8px !important;
 }
 
 .dbhdsf512 {

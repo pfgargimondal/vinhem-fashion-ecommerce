@@ -24,8 +24,18 @@ export const FeaturedProducts = ({ featuredProduct }) => {
     return (
         <div className="dfgjhbdfg">
             <div className="images">                          
-                <div className="image position-relative">
-                    
+                <div className="image row mx-0 position-relative">
+                    {featuredProduct?.discount && (
+                        <div className="dscnt-prce px-0">
+                        <span className="price">{featuredProduct?.discount}% OFF</span>
+                        </div>
+                    )}
+
+                    {(featuredProduct?.new_arrival.toLowerCase() === "yes") && (
+                        <div className="nw-arrvl px-0">
+                        <span className="price">New Arrival</span>
+                        </div>
+                    )}   
                     <div className="doiewjkrniuwewer position-relative overflow-hidden">
                         <Link to={`/products/${featuredProduct.slug}`}>
                             <img src={featuredProduct.encoded_image_url_1} alt="not found" />
@@ -74,7 +84,11 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                     </div>
 
                     <div className="fdbdfgdfgdf">
-                        <h6>{featuredProduct.designer}</h6>
+                        <h6 className="me-1"><i class="bi me-1 bi-truck"></i> Ships in {featuredProduct.shipping_time}</h6>
+
+                        {featuredProduct.product_category === "READY TO SHIP" && (
+                        <h6><i class="bi bi-rocket-takeoff"></i> Ready to ship</h6>
+                        )}
 
                         <h4>{featuredProduct.product_name}</h4>
 

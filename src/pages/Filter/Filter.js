@@ -20,9 +20,10 @@ export const Filter = () => {
   const [viewType, setViewType] = useState(false);
 
   const [resFltrMenu, setResFltrMenu] = useState(false);
-  // eslint-disable-next-line
   const [allProductdata, SetallProduct] = useState([]);
   const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
+  
+  console.log(products);
 
   const toTitleCase = (s = "") =>
   s
@@ -67,7 +68,7 @@ export const Filter = () => {
       }
     };
     fetchAllProduct();
-  }, [location.pathname, category, subcategory, initialProductList]);
+  }, [location.pathname, category, subcategory]);
 
 
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
@@ -199,10 +200,7 @@ export const Filter = () => {
                   <div className="idasijhdmsiejr d-flex align-items-center">
                     <div className="view-options d-flex me-3 align-items-center">
                       <div
-                        className={`grid-view me-1 ${
-                          !viewType ? "active" : ""
-                        }`}
-                        onClick={() => setViewType(!viewType)}
+                        className={`grid-view me-1 ${!viewType ? "active" : ""}`} onClick={() => setViewType(!viewType)}
                       >
                         <i class="bi bi-grid-3x3-gap"></i>
                       </div>
@@ -264,39 +262,43 @@ export const Filter = () => {
                       <option value="NEW_ARRIVALS">New Arrivals</option>
                       <option value="LOW_TO_HIGH">Price Low to High</option>
                       <option value="HIGH_TO_LOW">Price High to Low</option>
-                      <option value="">Discount High to Low</option>
+                      <option value="DISCOUNT_LOW_TO_HIGH">Discount Low to High</option>
                     </select>
                   </div>
                 </div>
               </div>
 
-              <div className="products-wrapper filtr-wrppr mt-5">
+              <div className="products-wrapper filtr-wrppr mt-3">
                 <div className="row">
                   {products?.map((product) => (
-                    <div
-                      className={`smdflcsdlpfkselkrpr ${
-                        !viewType ? "col-lg-3" : "col-lg-12"
-                      } mb-4`}
-                    >
+                    <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-4" : "col-lg-12"} mb-4`}>
                       <div className="dfgjhbdfg">
                         <div className="images">
                           <div className="image row mx-0 position-relative">
-                            <div
-                              className={`doiewjkrniuwewer position-relative overflow-hidden ${
-                                !viewType ? "col-lg-12" : "col-lg-3"
-                              }`}
-                            >
+                            {product?.discount && (
+                              <div className="dscnt-prce px-0">
+                                <span className="price">{product?.discount}% OFF</span>
+                              </div>
+                            )}
+
+                            {(product?.new_arrival.toLowerCase() === "yes") && (
+                              <div className="nw-arrvl px-0">
+                                <span className="price">New Arrival</span>
+                              </div>
+                            )}                            
+
+                            <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
                               <Link to={`/products/${product.slug}`}>
                                 <img
                                   src={product.encoded_image_url_1}
                                   alt={product.product_name}
                                 />
 
-                                <img
+                                {/* <img
                                   className="first"
                                   src={product.encoded_image_url_2}
                                   alt={product.product_name}
-                                />
+                                /> */}
                               </Link>
 
                               <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
@@ -350,13 +352,14 @@ export const Filter = () => {
                                 </button>
                               </div>
                             </div>
-                            <div
-                              className={`fdbdfgdfgdf ${
-                                !viewType ? "col-lg-12" : "col-lg-9"
-                              }`}
-                            >
-                              <h6>{product.designer}</h6>
 
+                            <div className={`fdbdfgdfgdf ${ !viewType ? "col-lg-12" : "col-lg-9"}`}>
+                              <h6 className="me-1"><i class="bi me-1 bi-truck"></i> Ships in {product.shipping_time}</h6>
+
+                              {product.product_category === "READY TO SHIP" && (
+                                <h6><i class="bi bi-rocket-takeoff"></i> Ready to ship</h6>
+                              )}
+                              
                               <h4>{product.product_name}</h4>
 
                               <h5>

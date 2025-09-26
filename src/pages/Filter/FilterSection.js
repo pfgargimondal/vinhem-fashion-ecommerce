@@ -5,6 +5,8 @@ export default function FilterSection({ allFilterMappingdata }) {
   const { setColor, setFabric, setDesigner, setSize, setOccasion } = useFilter();
   const [selectedTheme, setSelectedTheme] = useState("");
 
+  console.log(allFilterMappingdata);
+
   const toTitleCase = (str) =>
     str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
@@ -51,9 +53,9 @@ export default function FilterSection({ allFilterMappingdata }) {
                 const colorCode = colorObj.color_code;
 
                 return (
-                <div className="doewjkrnhweiurwer osdmcfosjrserr">
+                <div className="doewjkrnhweiurwer clor-fltr-optn osdmcfosjrserr sdfvgdfvrgrert">
                     <div id="content">
-                        <label key={index} htmlFor={colorValue} className="me-3">
+                        <label key={index} htmlFor={colorValue} className={`${(selectedTheme === colorCode) ? "clr-label" : ""} me-3 px-2 py-1`}>
                           <input
                               type="radio"
                               name={FilterMappingdata.filter_option}
@@ -66,8 +68,7 @@ export default function FilterSection({ allFilterMappingdata }) {
                                 handleSelect("color", colorValue);
                               }}
                               style={{
-                                  backgroundColor:
-                                      selectedTheme === colorCode ? colorCode : "transparent",
+                                  backgroundColor: colorCode,
                                   border: `1px solid #b0bec5;`,
                                   width: "30px",
                                   height: "30px",
@@ -76,7 +77,7 @@ export default function FilterSection({ allFilterMappingdata }) {
                               }}
                           />
 
-                          <span className="mt-1">{colorValue}</span>
+                          <span>{colorValue}</span>
                         </label>
                     </div>
                 </div>

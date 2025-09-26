@@ -77,8 +77,11 @@
 }
 
 .doewjkrnhweiurwer {
-  max-height: 12rem;
+  max-height: 14rem;
   overflow-y: auto;
+}
+.clor-fltr-optn{
+  display: inline-block;
 }
 .doewjkrnhweiurwer .radio-wrapper-5 {
   line-height: 1.5;

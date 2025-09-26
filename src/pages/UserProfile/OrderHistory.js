@@ -1,11 +1,36 @@
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-
 import { UserProfileNavMenu } from "../../components";
-
 import styles from "./Css/OrderHistory.module.css";
+import { useAuth } from "../../context/AuthContext";
+import http from "../../http";
+import { useEffect, useState } from "react";
 
 export const OrderHistory = () => {
+
+    const { token } = useAuth();
+    const [OrderHistory, setOrderHistory] = useState([]);
+
+    useEffect(() => {
+        if (!token) return;
+
+        const fetchOrderHistory = async () => {
+        try {
+            const res = await http.get("/user/get-order-history", {
+            headers: { Authorization: `Bearer ${token}` },
+            });
+            setOrderHistory(res.data.data || []);
+        } catch (error) {
+            console.error("Failed to fetch order history", error);
+        }
+        };
+
+        fetchOrderHistory();
+    }, [token]);
+
+    console.log(OrderHistory, 'OrderHistory');
+
+
     return (
         <div className={styles.ffhfdf}>
             <div className="ansjidnkuiweer container-fluid px-0">
@@ -31,7 +56,7 @@ export const OrderHistory = () => {
                                             <tr>
                                                 <th>Order Id</th>
 
-                                                <th>Product</th>
+                                                <th>Order Information</th>
 
                                                 <th>Date</th>
 
@@ -42,31 +67,74 @@ export const OrderHistory = () => {
                                         </thead>
                                         
                                         <tbody>
-                                            <tr>
-                                                <td>DC1487845</td>
+                                            {OrderHistory?.map((orderHistoryVal) => (
+                                                <tr>
+                                                    <td>{orderHistoryVal.order_id}</td>
 
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (2).webp" alt="" />
+                                                    <td>
+                                                        <div className={`${styles.sdfsdf} justify-content-between mb-3`}>
+    
+                                                            <p className="mb-0">No. of items: {orderHistoryVal.total_orderProduct}</p> 
+
+                                                            <p className={`${styles.oknknkmer} mb-0`}><i class={`bi ${styles.vew_dtls} bi-eye`}></i> View Details</p>
                                                         </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
+
+                                                        <div className={`d-flex ${styles.dweknriwehrwer} align-items-center justify-content-between`}>
+                                                            {orderHistoryVal.order_status === "Placed" ? (
+                                                                <button className={`btn ${styles.cncl_ordr} border-0 px-0`}>
+                                                                    <i className="bi me-1 bi-folder-x"></i> Cancel Order
+                                                                </button>
+                                                                ) : orderHistoryVal.order_status === "Pending" ? (
+                                                                <button className="btn border-0 px-0 text-muted">
+                                                                    <i className="bi me-1 bi-clock-history"></i> Pending Order
+                                                                </button>
+                                                                ) : orderHistoryVal.order_status === "Shipped" ? (
+                                                                <button className="btn border-0 px-0 text-muted">
+                                                                    <i className="bi me-1 bi-folder-x"></i> Cancellation Not Available
+                                                                </button>
+                                                                ) : orderHistoryVal.order_status === "Deliverd" ? (
+                                                                <button className={`btn ${styles.return_ordr} border-0 px-0`}>
+                                                                    <i className="bi me-1 bi-folder-x"></i> Return Order
+                                                                </button>
+                                                                ) : orderHistoryVal.order_status === "Returned" ? (
+                                                                <button className={`btn ${styles.return_ordr} border-0 px-0`}>
+                                                                    <i className="bi me-1 bi-folder-x"></i> Return Completed
+                                                                </button>
+                                                                ) : (
+                                                                <button className="btn border-0 px-0 text-muted">
+                                                                    <i className="bi me-1 bi-folder-x"></i> Cancellation Not Available
+                                                                </button>
+                                                                )}
+                                                            
+                                                            <button className={`btn ${styles.dwnld_invce} text-success border-0 px-0`}><i class="bi me-1 bi-file-earmark-arrow-down"></i> Download Invoice</button>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
 
-                                                <td>17-07-25</td>
+                                                    <td> {orderHistoryVal.order_date
+                                                        ? orderHistoryVal.order_date.split("-").reverse().join("-")
+                                                        : ""}</td>
 
-                                                <td>$1,190</td>
+                                                    <td>₹{orderHistoryVal.total_order_amount}</td>
 
-                                                <td>
-                                                    <button className={styles.dfgfd5544}>Delivery</button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
+                                                    <td>
+                                                        {orderHistoryVal.order_status === "Placed" ? (
+                                                            <button className={styles.dfgfd5544}>{orderHistoryVal.order_status}</button>
+                                                        ) : orderHistoryVal.order_status === "Pending" ? (
+                                                            <button className={styles.dfgfd5544c}>{orderHistoryVal.order_status}</button>
+                                                        ) : orderHistoryVal.order_status === "Shipped" ? (
+                                                            <button className={styles.dfgfd5544b}>{orderHistoryVal.order_status}</button>
+                                                        ) : orderHistoryVal.order_status === "Deliverd" ? (
+                                                            <button className={styles.dfgfd5544}>{orderHistoryVal.order_status}</button>
+                                                        ) : orderHistoryVal.order_status === "Returned" ? (
+                                                            <button className={styles.dfgfd5544dvxc}>{orderHistoryVal.order_status}</button>
+                                                        ) : (
+                                                            <button className={styles.dfgfd5544}>{orderHistoryVal.order_status}</button>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            
+                                            {/* <tr>
                                                 <td>AC7875845</td>
 
                                                 <td>
@@ -88,55 +156,7 @@ export const OrderHistory = () => {
                                                 <td>
                                                     <button className={styles.dfgfd5544a}>Cancel</button>
                                                 </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>FC1474785</td>
-
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product1 (2).webp" alt="" />
-                                                        </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>17-07-25</td>
-
-                                                <td>$1,190</td>
-
-                                                <td>
-                                                    <button className={styles.dfgfd5544b}>Shipping</button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>DC5247485</td>
-
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (1).webp" alt="" />
-                                                        </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>17-07-25</td>
-
-                                                <td>$1,190</td>
-                                                
-                                                <td>
-                                                    <button className={styles.dfgfd5544c}>Pending</button>
-                                                </td>
-                                            </tr>
+                                            </tr> */}
                                         </tbody>
                                     </Table>
                                 </div>

@@ -128,6 +128,8 @@ export const FilterProvider = ({children}) => {
             return products.sort((a, b) => b.selling_price - a.selling_price);
         } else if (state.sortBy === "NEW_ARRIVALS") {
             return products.filter(product => product.new_arrival === "Yes");
+        } else if (state.sortBy === "DISCOUNT_LOW_TO_HIGH") {
+            return products.sort((a, b) => a.discount - b.discount);
         } else {
             return products;
         }
