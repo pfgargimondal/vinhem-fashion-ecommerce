@@ -20,10 +20,11 @@ export const Filter = () => {
   const [viewType, setViewType] = useState(false);
 
   const [resFltrMenu, setResFltrMenu] = useState(false);
+  // eslint-disable-next-line
   const [allProductdata, SetallProduct] = useState([]);
   const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
   
-  console.log(products);
+  // console.log(products);
 
   const toTitleCase = (s = "") =>
   s
