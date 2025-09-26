@@ -89,6 +89,14 @@
   transition: 0.2s ease-in-out;
 }
 
+.dweknriwehrwer .cncl_ordr{
+  color: #dc3545 !important;
+}
+
+.dweknriwehrwer .cncl_ordr:hover{
+  text-decoration: underline;
+}
+
 .dfbghdfg p {
   font-size: 14px;
   font-weight: 600;
@@ -137,8 +145,25 @@ form input:global(.form-control){
   text-transform: uppercase;
 }
 
+.dfgndfjhbgdfgdf .sdfsdf {
+  display: flex;
+  align-items: center;
+}
+
 .dienwrhwerwer{
   text-align: right;
+}
+
+.oknknkmer{
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.oknknkmer:hover{
+  text-decoration: underline;
+}
+
+.vew_dtls{
+  color: var(--pink-main-color);  
 }
 
 .dnjhsddsfsd button {

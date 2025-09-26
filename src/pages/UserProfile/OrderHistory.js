@@ -28,7 +28,6 @@ export const OrderHistory = () => {
         fetchOrderHistory();
     }, [token]);
 
-    console.log(OrderHistory, 'OrderHistory');
 
 
     return (
@@ -105,8 +104,10 @@ export const OrderHistory = () => {
                                                                     <i className="bi me-1 bi-folder-x"></i> Cancellation Not Available
                                                                 </button>
                                                                 )}
+                                                                {orderHistoryVal.order_status === "Deliverd" && (
+                                                                    <button className={`btn ${styles.dwnld_invce} text-success border-0 px-0`}><i class="bi me-1 bi-file-earmark-arrow-down"></i> Download Invoice</button>
+                                                                )}
                                                             
-                                                            <button className={`btn ${styles.dwnld_invce} text-success border-0 px-0`}><i class="bi me-1 bi-file-earmark-arrow-down"></i> Download Invoice</button>
                                                         </div>
                                                     </td>
 

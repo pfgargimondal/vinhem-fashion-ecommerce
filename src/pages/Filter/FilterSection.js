@@ -5,7 +5,7 @@ export default function FilterSection({ allFilterMappingdata }) {
   const { setColor, setFabric, setDesigner, setSize, setOccasion } = useFilter();
   const [selectedTheme, setSelectedTheme] = useState("");
 
-  console.log(allFilterMappingdata);
+  // console.log(allFilterMappingdata);
 
   const toTitleCase = (str) =>
     str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());

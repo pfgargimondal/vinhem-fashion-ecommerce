@@ -331,27 +331,37 @@ export const ProductDetail = () => {
                         </Col>
 
                         <Col xs={9} className="large-image-tab">
-                          <Tab.Content>
-                            <Tab.Pane eventKey="first">
-                              <img src="../../images/1.jpg" alt="" />
-                            </Tab.Pane>
+                          <div className="doerfkwerewrewr position-relative">
+                            <Tab.Content>
+                              <Tab.Pane eventKey="first">
+                                <img src="../../images/1.jpg" alt="" />
+                              </Tab.Pane>
 
-                            <Tab.Pane eventKey="second">
-                              <img src="../../images/2.jpg" alt="" />
-                            </Tab.Pane>
+                              <Tab.Pane eventKey="second">
+                                <img src="../../images/2.jpg" alt="" />
+                              </Tab.Pane>
 
-                            <Tab.Pane eventKey="third">
-                              <img src="../../images/3.jpg" alt="" />
-                            </Tab.Pane>
+                              <Tab.Pane eventKey="third">
+                                <img src="../../images/3.jpg" alt="" />
+                              </Tab.Pane>
 
-                            <Tab.Pane eventKey="fourth">
-                              <img src="../../images/4.jpg" alt="" />
-                            </Tab.Pane>
+                              <Tab.Pane eventKey="fourth">
+                                <img src="../../images/4.jpg" alt="" />
+                              </Tab.Pane>
 
-                            <Tab.Pane eventKey="fifth">
-                              <img src="../../images/5.jpg" alt="" />
-                            </Tab.Pane>
-                          </Tab.Content>
+                              <Tab.Pane eventKey="fifth">
+                                <img src="../../images/5.jpg" alt="" />
+                              </Tab.Pane>
+                            </Tab.Content>
+
+                            <div className="gbsdeeer dscnt-prce px-0">
+                              <span className="price">30% OFF</span>
+                            </div>
+
+                            <div className="cffdrtrvwet nw-arrvl px-0">
+                              <span className="price">New Arrival</span>
+                            </div>
+                          </div>
                         </Col>
                       </Row>
                     </Tab.Container>
@@ -398,7 +408,7 @@ export const ProductDetail = () => {
 
                     <div className="jdfbdfgdf">
 
-                      <div class="diwenjrbwebrwehgrwer mt-5">
+                      <div class="diwenjrbwebrwehgrwer">
                         <h4 class="pb-2">Stitching Options</h4>
 
                         <hr class="mt-0" />

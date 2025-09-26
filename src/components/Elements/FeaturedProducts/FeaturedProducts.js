@@ -31,11 +31,12 @@ export const FeaturedProducts = ({ featuredProduct }) => {
                         </div>
                     )}
 
-                    {(featuredProduct?.new_arrival.toLowerCase() === "yes") && (
+                    {featuredProduct?.new_arrival?.toLowerCase() === "yes" && (
                         <div className="nw-arrvl px-0">
-                        <span className="price">New Arrival</span>
+                            <span className="price">New Arrival</span>
                         </div>
-                    )}   
+                    )}
+   
                     <div className="doiewjkrniuwewer position-relative overflow-hidden">
                         <Link to={`/products/${featuredProduct.slug}`}>
                             <img src={featuredProduct.encoded_image_url_1} alt="not found" />

@@ -199,7 +199,7 @@ export const Filter = () => {
               <div className="iduhweihriweurwerwer row align-items-center pb-3">
                 <div className="col-lg-9">
                   <div className="idasijhdmsiejr d-flex align-items-center">
-                    <div className="view-options d-flex me-3 align-items-center">
+                    {/* <div className="view-options d-flex me-3 align-items-center">
                       <div
                         className={`grid-view me-1 ${!viewType ? "active" : ""}`} onClick={() => setViewType(!viewType)}
                       >
@@ -212,7 +212,7 @@ export const Filter = () => {
                       >
                         <i class="bi bi-card-list"></i>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="doewnkrhwer">
                       <input
                         type="checkbox"

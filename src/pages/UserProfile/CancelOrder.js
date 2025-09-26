@@ -2,10 +2,34 @@ import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 import { UserProfileNavMenu } from "../../components";
-
 import styles from "./Css/CancelOrder.module.css";
+import http from "../../http";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export const CancelOrder = () => {
+
+    const { token } = useAuth();
+    const [CanceledOrder, setCanceledOrder] = useState([]);
+
+    useEffect(() => {
+        if (!token) return;
+
+        const fetchCancelOrder = async () => {
+        try {
+            const res = await http.get("/user/get-cancel-order", {
+            headers: { Authorization: `Bearer ${token}` },
+            });
+            setCanceledOrder(res.data.data || []);
+        } catch (error) {
+            console.error("Failed to fetch cancel order", error);
+        }
+        };
+
+        fetchCancelOrder();
+    }, [token]);
+
+
     return (
         <div className={styles.ffhfdf}>
             <div className="ansjidnkuiweer container-fluid px-0">
@@ -30,92 +54,43 @@ export const CancelOrder = () => {
                                         <thead>
                                             <tr>
                                                 <th>Order Id</th>
-                                                <th>Product</th>
-                                                <th>Date</th>
+                                                <th>Order Information</th>
+                                                <th>Order Date</th>
+                                                <th>Cancel Date</th>
                                                 <th>Total Amount</th>
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
-                                            <tr>
-                                                <td>DC1487845</td>
+                                            {CanceledOrder?.map((CanceledOrderVal) => (
+                                                <tr>
+                                                    <td>{CanceledOrderVal.order_id}</td>
 
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (2).webp" alt="" />
+                                                    <td>
+                                                        <div className={`${styles.sdfsdf} justify-content-between mb-3`}>
+    
+                                                            <p className="mb-0">No. of items: {CanceledOrderVal.total_orderProduct}</p> 
+
+                                                            <p className={`${styles.oknknkmer} mb-0`}><i class={`bi ${styles.vew_dtls} bi-eye`}></i> View Details</p>
                                                         </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
+
+                                                        <div className={`d-flex ${styles.dweknriwehrwer} align-items-center justify-content-between`}>
+                                                            <button className={`btn ${styles.cncl_ordr} border-0 px-0`}>
+                                                                <i className="bi me-1 bi-folder-x"></i> Cancelled Order
+                                                            </button>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
 
-                                                <td>17-07-25</td>
+                                                    <td> {CanceledOrderVal.order_date
+                                                        ? CanceledOrderVal.order_date.split("-").reverse().join("-")
+                                                        : ""}</td>
+                                                    <td> {CanceledOrderVal.cancel_date
+                                                        ? CanceledOrderVal.cancel_date.split("-").reverse().join("-")
+                                                        : ""}</td>
 
-                                                <td>$1,190</td>
-                                            </tr>  
-
-                                            <tr>
-                                                <td>DC1487845</td>
-
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (2).webp" alt="" />
-                                                        </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>17-07-25</td>
-
-                                                <td>$1,190</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>DC1487845</td>
-
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (2).webp" alt="" />
-                                                        </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>17-07-25</td>
-
-                                                <td>$1,190</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>DC1487845</td>
-
-                                                <td>
-                                                    <div className={styles.sdfsdf}>
-                                                        <div className={styles.dsfhsd}>
-                                                            <img src="./images/product2 (2).webp" alt="" />
-                                                        </div>
-                                                        <div className={styles.dbhdsf512}>
-                                                            <h6>World's Most Expensive T Shirt</h6>
-                                                            <p>Women's Clothes</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td>17-07-25</td>
-
-                                                <td>$1,190</td>
-                                            </tr>                                          
+                                                    <td>₹{CanceledOrderVal.total_order_amount}</td>
+                                                </tr>
+                                            ))}                          
                                         </tbody>
                                     </Table>
                                 </div>
