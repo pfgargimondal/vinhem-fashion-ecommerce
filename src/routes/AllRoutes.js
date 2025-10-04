@@ -33,7 +33,7 @@ export const AllRoutes = () => {
 
 
       <Route path="blog" element={ <Blog /> } />
-      <Route path="blog/:blogid" element={ <BlogDetails /> } />
+      <Route path="blog/:slug" element={ <BlogDetails /> } />
 
       <Route element={<ProtectedRoute />}>
           <Route path="profile" element={ <Profile /> } />

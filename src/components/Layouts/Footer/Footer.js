@@ -22,7 +22,7 @@ export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
 
                     <li><Link to="/terms-&-condition"><i class="bi me-2 bi-caret-right-fill"></i> Terms & Condition</Link></li>
 
-                    <li><Link to="/"><i class="bi me-2 bi-caret-right-fill"></i> Blog</Link></li>
+                    <li><Link to="/blog"><i class="bi me-2 bi-caret-right-fill"></i> Blog</Link></li>
                   </ul>
 
                   <img src="/images/comodo.png" className="simg img-fluid" alt="" />
@@ -34,13 +34,13 @@ export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
                   <h5>My Account</h5>
 
                   <ul className="f-link mb-0 ps-0">
-                    <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Become a Vendor</Link></li>
+                    {/* <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Become a Vendor</Link></li> */}
 
                     <li><Link to="/login"><i class="bi me-2 bi-caret-right-fill"></i> Sign in</Link></li>
 
                     <li><Link to="/register"><i class="bi me-2 bi-caret-right-fill"></i> Sign up</Link></li>
 
-                    <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Track Order</Link></li>
+                    {/* <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Track Order</Link></li> */}
 
                     <li><Link to="/faq"><i class="bi me-2 bi-caret-right-fill"></i> F.A.Q</Link></li>
                   </ul>
@@ -52,7 +52,7 @@ export const Footer = ({ shouldHideFullHeaderFooterRoutes }) => {
                   <h5>Customer Services</h5>
 
                   <ul className="f-link mb-0 ps-0">
-                    <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Payment Option</Link></li>
+                    {/* <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Payment Option</Link></li> */}
 
                     {/* <li><Link to=""><i class="bi me-2 bi-caret-right-fill"></i> Testimonial</Link></li> */}
 

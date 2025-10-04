@@ -7,6 +7,7 @@ import "./Css/Blog.css";
 
 export const Blog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [popularblogs, setPopularBlogs] = useState([]);
   const [imageBaseUrl, setImageBaseUrl] = useState("");
     useEffect(() => {
       const fetchBlogs = async () => {
@@ -15,6 +16,7 @@ export const Blog = () => {
                
                 const dataBlogs = getresponse.data;
                setBlogs(dataBlogs.data);
+               setPopularBlogs(dataBlogs.popularblog);
                setImageBaseUrl(dataBlogs.image_url);
 
                 console.log("API response:", dataBlogs);
@@ -31,6 +33,7 @@ export const Blog = () => {
 
   return (
     <div className="blog-wrapper">
+      <div className="container-fluid">
       <section className="dfgvswrfcxcfsrfsddf mb-5">
         <div id="topCarousel" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner rounded-2 shadow-sm">
@@ -129,9 +132,26 @@ export const Blog = () => {
               <div className="sidebar-block border rounded p-3 mb-4 shadow-sm">
                 <h5 className="mb-3">Popular Posts</h5>
                 <ul className="csdvfgherdfvsdf list-unstyled">
-                  <li className="mb-3 d-flex align-items-center">
+                  {popularblogs.map(popularblog => (
+                    <li className="mb-3 d-flex align-items-center">
+                          <img
+                            src={`${imageBaseUrl}/${popularblog?.blog_image}`}
+                            alt={popularblog?.title}
+                            className="me-3 rounded"
+                          />
+                          <div>
+                            <Link to={`/blog/${popularblog.slug}`} className="text-decoration-none fw-semibold">
+                              {popularblog?.title}
+                            </Link>
+                            {/* <p className="mb-0 small text-muted">
+                              Exploring bold hair trends.
+                            </p> */}
+                          </div>
+                        </li>
+                  ))}
+                  {/* <li className="mb-3 d-flex align-items-center"> */}
                       {/* eslint-disable-next-line */}
-                    <img
+                    {/* <img
                       src="./images/17550.jpg"
                       alt="Thumbnail of woman wearing avant-garde hairstyle"
                       className="me-3 rounded"
@@ -144,37 +164,7 @@ export const Blog = () => {
                         Exploring bold hair trends.
                       </p>
                     </div>
-                  </li>
-                  <li className="mb-3 d-flex align-items-center">
-                      {/* eslint-disable-next-line */}
-                    <img
-                      src="./images/17550.jpg"
-                      alt="Thumbnail of detailed leather handbag on display"
-                      className="me-3 rounded"
-                    />
-                    <div>
-                      <Link to="/" className="text-decoration-none fw-semibold">
-                        Luxury Leather Bags
-                      </Link>
-                      <p className="mb-0 small text-muted">Timeless craftsmanship.</p>
-                    </div>
-                  </li>
-                  <li className="d-flex align-items-center">
-                      {/* eslint-disable-next-line */}
-                    <img
-                      src="./images/17550.jpg"
-                      alt="Thumbnail of runway model in futuristic fashion wear"
-                      className="me-3 rounded"
-                    />
-                    <div>
-                      <Link to="/" className="text-decoration-none fw-semibold">
-                        Runway Highlights
-                      </Link>
-                      <p className="mb-0 small text-muted">
-                        Best moments from fashion week.
-                      </p>
-                    </div>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
 
@@ -207,6 +197,7 @@ export const Blog = () => {
             </div>
           </aside>
         </div>
+      </div>
       </div>
     </div>
   )
