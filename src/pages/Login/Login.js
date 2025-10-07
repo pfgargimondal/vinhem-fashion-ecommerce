@@ -134,7 +134,7 @@ export const Login = () => {
             </Link>
             {/* ✅ reCAPTCHA Widget */}
             <ReCAPTCHA
-              sitekey="6Lfg6HwrAAAAAIFNXRViSAvHT3R3edYCk8Hg_pHA" // 🔁 Replace this
+              sitekey="6LcCeOErAAAAAICZKbCAlflAeF0S3y_VdaqH4nJ3" // 🔁 Replace this
               onChange={handleCaptcha}
               className="mb-3"
             />
