@@ -1,6 +1,6 @@
   // eslint-disable-next-line
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { SwiperSlide } from 'swiper/react';
 import { useAuth } from "../../../context/AuthContext";
@@ -23,6 +23,19 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
   const { selectedCurrency, setSelectedCurrency } = useCurrency();
+  const navigate = useNavigate();
+  const searchRef = useRef(null);
+
+  /*search*/
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchValue = searchRef.current?.value?.trim();
+
+    searchValue && navigate(`/all-products?search=${encodeURIComponent(searchValue)}`);
+    
+    searchRef.current.value = "";
+  }
 
   useEffect(() => {
     const body = document.querySelector("html");
@@ -178,11 +191,13 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
                       </div>
 
                       <div className="col-lg-10">
-                        <div className={`search-field ${searchBarToggle ? "" : "search-field-hide"} position-relative`}>
-                          <input type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
+                        <form onSubmit={handleSearch}>
+                          <div className={`search-field ${searchBarToggle ? "" : "search-field-hide"} position-relative`}>
+                            <input ref={searchRef} type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
 
-                          <i class="bi position-absolute bi-search"></i>
-                        </div>
+                            <i class="bi position-absolute bi-search"></i>
+                          </div>
+                        </form>
                       </div>               
                     </div>
                   </div>

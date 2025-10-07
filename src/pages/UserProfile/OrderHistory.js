@@ -5,6 +5,8 @@ import styles from "./Css/OrderHistory.module.css";
 import { useAuth } from "../../context/AuthContext";
 import http from "../../http";
 import { useEffect, useState } from "react";
+import { downloadInvoicePDF } from "../../utils/downloadInvoice";
+import { Invoice } from "../Invoice/Invoice";
 
 export const OrderHistory = () => {
 
@@ -27,6 +29,10 @@ export const OrderHistory = () => {
 
         fetchOrderHistory();
     }, [token]);
+
+    const handleDownload = () => {
+        downloadInvoicePDF("invoice-content", "OrderInvoice.pdf");
+    };
 
 
 
@@ -105,9 +111,13 @@ export const OrderHistory = () => {
                                                                 </button>
                                                                 )}
                                                                 {orderHistoryVal.order_status === "Deliverd" && (
-                                                                    <button className={`btn ${styles.dwnld_invce} text-success border-0 px-0`}><i class="bi me-1 bi-file-earmark-arrow-down"></i> Download Invoice</button>
+                                                                    <button className={`btn ${styles.dwnld_invce} text-success border-0 px-0`} onClick={handleDownload}>
+                                                                        <i class="bi me-1 bi-file-earmark-arrow-down"></i> Download Invoice</button>
                                                                 )}
                                                             
+                                                        </div>
+                                                        <div style={{ display: "none" }}>
+                                                            <Invoice />
                                                         </div>
                                                     </td>
 

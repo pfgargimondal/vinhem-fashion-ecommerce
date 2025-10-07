@@ -18,13 +18,15 @@ export const Filter = () => {
   const { products, initialProductList, setSortBy } = useFilter();
   // eslint-disable-next-line
   const [viewType, setViewType] = useState(false);
-
   const [resFltrMenu, setResFltrMenu] = useState(false);
   // eslint-disable-next-line
   const [allProductdata, SetallProduct] = useState([]);
   const [allFilterMappingdata, SetallFilterMappingdata] = useState([]);
+
+  const search = useLocation().search;
+  const searchTerm = new URLSearchParams(search).get("search")?.trim() || "";  
   
-  // console.log(products);
+  console.log(products);
 
   const toTitleCase = (s = "") =>
   s
@@ -63,13 +65,29 @@ export const Filter = () => {
     const fetchAllProduct = async () => {
       try {
         const response = await http.post("/fetch-product", { category, subcategory });
-        initialProductList(response.data.data.all_product);
+
+        const allProducts = response.data.data.all_product || [];
+        
+        const normalizedSearch = searchTerm.toLowerCase();
+
+        const filteredProducts = searchTerm 
+          ? allProducts.filter(product => {
+            const name = product.product_name?.toLowerCase() || "";
+
+            return normalizedSearch.split(/\s+/).every(term => name.includes(term));
+          })
+          : allProducts;
+
+        initialProductList(filteredProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
     fetchAllProduct();
-  }, [location.pathname, category, subcategory, initialProductList]);
+    // eslint-disable-next-line
+  }, [location.pathname, category, subcategory, searchTerm]);
+
+  // console.log(searchTerm)
 
 
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ from context
@@ -199,7 +217,7 @@ export const Filter = () => {
               <div className="iduhweihriweurwerwer row align-items-center pb-3">
                 <div className="col-lg-9">
                   <div className="idasijhdmsiejr d-flex align-items-center">
-                    {/* <div className="view-options d-flex me-3 align-items-center">
+                    {/* <div className="view-options d-none me-3 align-items-center">
                       <div
                         className={`grid-view me-1 ${!viewType ? "active" : ""}`} onClick={() => setViewType(!viewType)}
                       >
@@ -243,7 +261,7 @@ export const Filter = () => {
                       </label>
                     </div>
                     <Link to={'/on-sale'}>
-                      <div className="btn btn-main">
+                      <div className="btn btn-main me-1">
                           <i class="bi me-1 bi-receipt"></i> On Sale
                       </div>
                     </Link>
@@ -271,121 +289,50 @@ export const Filter = () => {
 
               <div className="products-wrapper filtr-wrppr mt-3">
                 <div className="row">
-                  {products?.map((product) => (
-                    <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-4" : "col-lg-12"} mb-4`}>
-                      <div className="dfgjhbdfg">
-                        <div className="images">
-                          <div className="image row mx-0 position-relative">
-                            {product?.discount && (
-                              <div className="dscnt-prce px-0">
-                                <span className="price">{product?.discount}% OFF</span>
-                              </div>
-                            )}
-
-                            {(product?.new_arrival.toLowerCase() === "yes") && (
-                              <div className="nw-arrvl px-0">
-                                <span className="price">New Arrival</span>
-                              </div>
-                            )}                            
-
-                            <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
-                              <Link to={`/products/${product.slug}`}>
-                                <img
-                                  src={product.encoded_image_url_1}
-                                  alt={product.product_name}
-                                />
-
-                                {/* <img
-                                  className="first"
-                                  src={product.encoded_image_url_2}
-                                  alt={product.product_name}
-                                /> */}
-                              </Link>
-
-                              <div className="doikwenirnwekhrwer me-2 mt-2 d-flex position-relative">
-                                {user ? (
-                                  <>
-                                    <button
-                                      className="btn-cart mb-1"
-                                      type="button"
-                                      onClick={() => addToCart(product.id)}
-                                    >
-                                      <i class="fa-solid fa-cart-arrow-down"></i>
-                                    </button>
-                                    <button
-                                      onClick={() => toggleWishlist(product.id)}
-                                    >
-                                      <i
-                                        className={
-                                          wishlistIds.includes(product.id)
-                                            ? "fa-solid fa-heart"
-                                            : "fa-regular fa-heart"
-                                        }
-                                      ></i>
-                                    </button>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Link to="/login">
-                                      <button
-                                        className="btn-cart mb-1"
-                                        type="button"
-                                      >
-                                        <i class="fa-solid fa-cart-arrow-down"></i>
-                                      </button>
-                                    </Link>
-                                    <Link to="/login">
-                                      <button
-                                        className="btn-wishlist"
-                                        type="button"
-                                      >
-                                        <i class="fa-regular fa-heart"></i>
-                                        <i class="fa-solid d-none fa-heart"></i>
-                                      </button>
-                                    </Link>
-                                  </>
-                                )}
-                              </div>
-
-                              <div className="dbgdfhgv">
-                                <button className="btn btn-main w-100">
-                                  QUICK ADD
-                                </button>
-                              </div>
-                            </div>
-
-                            <div className={`fdbdfgdfgdf ${ !viewType ? "col-lg-12" : "col-lg-9"}`}>
-                              <h6 className="me-1"><i class="bi me-1 bi-truck"></i> Ships in {product.shipping_time}</h6>
-
-                              {product.product_category === "READY TO SHIP" && (
-                                <h6><i class="bi bi-rocket-takeoff"></i> Ready to ship</h6>
+                  {products?.length > 0 ? (
+                    products?.map((product) => (
+                      <div className={`smdflcsdlpfkselkrpr ${!viewType ? "col-lg-4" : "col-lg-12"} mb-4`}>
+                        <div className="dfgjhbdfg">
+                          <div className="images">
+                            <div className="image row mx-0 position-relative">
+                              {product?.discount && (
+                                <div className="dscnt-prce px-0">
+                                  <span className="price">{product?.discount}% <br/> OFF</span>
+                                </div>
                               )}
-                              
-                              <h4>{product.product_name}</h4>
 
-                              <h5>
-                                {new Intl.NumberFormat("en-IN", {
-                                  style: "currency",
-                                  currency: "INR",
-                                  maximumFractionDigits: 0,
-                                }).format(product.selling_price)}
-                              </h5>
+                              {(product?.new_arrival.toLowerCase() === "yes") && (
+                                <div className="nw-arrvl px-0">
+                                  <span className="price"><i>NEW IN</i></span>
+                                </div>
+                              )}
 
-                              <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
-                                <div className="doikwenirnwekhrwer position-relative">
+                              <div className={`doiewjkrniuwewer position-relative overflow-hidden ${!viewType ? "col-lg-12" : "col-lg-3"}`}>
+                                <Link to={`/products/${product.slug}`}>
+                                  <img
+                                    src={product?.encoded_image_url_1}
+                                    alt={product.product_name}
+                                  />
+
+                                  {/* <img
+                                    className="first"
+                                    src={product.encoded_image_url_2}
+                                    alt={product.product_name}
+                                  /> */}
+                                </Link>
+
+                                <div className="doikwenirnwekhrwer d-flex position-relative">
                                   {user ? (
                                     <>
                                       <button
-                                        className="btn-cart mb-1 me-1"
+                                        className="btn-cart mb-1"
                                         type="button"
                                         onClick={() => addToCart(product.id)}
                                       >
                                         <i class="fa-solid fa-cart-arrow-down"></i>
                                       </button>
                                       <button
-                                        onClick={() =>
-                                          toggleWishlist(product.id)
-                                        }
+                                        onClick={() => toggleWishlist(product.id)}
                                       >
                                         <i
                                           className={
@@ -425,12 +372,101 @@ export const Filter = () => {
                                   </button>
                                 </div>
                               </div>
+
+                              <div className={`fdbdfgdfgdf ${ !viewType ? "col-lg-12 px-1" : "col-lg-9"}`}>
+                                <h6><i class="bi me-1 bi-truck"></i> Ships in {product.shipping_time}</h6>
+
+                                {product.product_category === "READY TO SHIP" && (
+                                  <h6><i class="bi me-1 bi-rocket-takeoff"></i> Ready to ship</h6>
+                                )}
+
+                                {product.best_seller.toLowerCase() === "yes" && (
+                                  <h6><i class="bi bi-lightning-charge"></i> Best Seller</h6>
+                                )}                             
+
+                                <h4>{product.product_name}</h4>
+
+                                <div className="d-flex flex-wrap align-items-center">
+                                  <h5 className="mb-0">
+                                    {new Intl.NumberFormat("en-IN", {
+                                      style: "currency",
+                                      currency: "INR",
+                                      maximumFractionDigits: 0,
+                                    }).format(product.selling_price)}
+                                  </h5>
+
+                                  <span class="gdfg55 d-flex align-items-center ms-2"><i class="bi bi-currency-rupee"></i> {product.mrp_price}</span>
+
+                                  <span class="fghfgg114 d-flex align-items-center ms-2">{product?.discount}%OFF</span>
+                                </div>
+
+                                <div className="dlksfskjrewrwere d-flex align-items-center justify-content-between mt-5">
+                                  <div className="doikwenirnwekhrwer position-relative">
+                                    {user ? (
+                                      <>
+                                        <button
+                                          className="btn-cart mb-1 me-1"
+                                          type="button"
+                                          onClick={() => addToCart(product.id)}
+                                        >
+                                          <i class="fa-solid fa-cart-arrow-down"></i>
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            toggleWishlist(product.id)
+                                          }
+                                        >
+                                          <i
+                                            className={
+                                              wishlistIds.includes(product.id)
+                                                ? "fa-solid fa-heart"
+                                                : "fa-regular fa-heart"
+                                            }
+                                          ></i>
+                                        </button>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Link to="/login">
+                                          <button
+                                            className="btn-cart mb-1"
+                                            type="button"
+                                          >
+                                            <i class="fa-solid fa-cart-arrow-down"></i>
+                                          </button>
+                                        </Link>
+                                        <Link to="/login">
+                                          <button
+                                            className="btn-wishlist"
+                                            type="button"
+                                          >
+                                            <i class="fa-regular fa-heart"></i>
+                                            <i class="fa-solid d-none fa-heart"></i>
+                                          </button>
+                                        </Link>
+                                      </>
+                                    )}
+                                  </div>
+
+                                  <div className="dbgdfhgv">
+                                    <button className="btn btn-main w-100">
+                                      QUICK ADD
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    ))
+                  ) : (
+                    <div className="col-12 text-center py-5">
+                      <h5>No products found for your search.</h5>
+                      
+                      <p>Try changing your search or browse other categories.</p>
                     </div>
-                  ))}
+                  ) }
                 </div>
               </div>
             </div>

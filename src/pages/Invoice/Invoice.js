@@ -3,7 +3,7 @@ import "./Css/InvoiceResponsive.css";
 
 export const Invoice = () => {
   return (
-    <div className="invoice-box my-5">
+    <div id="invoice-content" className="invoice-box my-5">
       {/* Logo & Branding */}
 
       <table className="header">

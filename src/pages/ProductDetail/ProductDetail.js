@@ -26,6 +26,7 @@ export const ProductDetail = () => {
   // const [mesremntGuideImgShow, setMesremntGuideImgShow] = useState(false);
   const [activeGuide, setActiveGuide] = useState(null);
   const { slug } = useParams();
+  const [shareModal, setShareModal] = useState(false);
 
   useEffect(() => {
     if (slug) {
@@ -379,7 +380,8 @@ export const ProductDetail = () => {
                       </div>
 
                       <div className="dfhdfhd">
-                        <i className="fa-solid fa-arrow-up-from-bracket" />
+                        <i class="bi me-3 bi-share" onClick={() => setShareModal(!shareModal)}></i>
+
                         <i className="fa-regular fa-heart" />
                       </div>
                     </div>
@@ -1823,6 +1825,32 @@ export const ProductDetail = () => {
                 <img src="/images/sawewe.jpg" className="img-fluid" alt="" />
               </Tab>
             </Tabs>
+          </div>
+        </div>
+      </div>
+
+      {/* share modal */}
+
+      <div className={`${shareModal ? "share-social-modal-backdrop" : "share-social-modal-backdrop share-social-modal-backdrop-hide"} w-100 h-100 position-fixed`}></div>
+
+      <div className={`${shareModal ? "share-social-modal" : "share-social-modal share-social-modal-hide"} position-fixed bg-white`}>
+        <div className="s-s-m-header d-flex align-items-center justify-content-between p-3 border-bottom">
+          <h4 className="mb-0">Share</h4>
+
+          <i class="bi bi-x-lg" onClick={() => setShareModal(false)}></i>
+        </div>
+
+        <div className="s-s-m-options d-flex p-3 align-items-center justify-content-center">
+          <div className="dmnewknoirwer me-3 whtsapp-icon position-relative rounded-pill">
+            <i class="bi position-absolute fa-2x text-white bi-whatsapp"></i>
+          </div>
+
+          <div className="dmnewknoirwer me-3 facebook-icon position-relative rounded-pill">
+            <i class="fa-brands position-absolute fa-2x text-white fa-facebook-f"></i>
+          </div>
+
+          <div className="dmnewknoirwer instagram-icon position-relative rounded-pill">
+            <i class="bi position-absolute fa-2x text-white bi-instagram"></i>
           </div>
         </div>
       </div>
