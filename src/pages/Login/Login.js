@@ -130,7 +130,7 @@ export const Login = () => {
             </div>
 
             <Link className="forgot-link my-3" to="/">
-              Forgot password?
+              Forgot password? 
             </Link>
             {/* ✅ reCAPTCHA Widget */}
             <ReCAPTCHA
