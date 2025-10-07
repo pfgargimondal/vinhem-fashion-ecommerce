@@ -247,7 +247,8 @@ export const Register = () => {
                 <i className="fas fa-eye-slash"></i>
               </button>
             </div>
-
+            
+ 
             {/* ✅ reCAPTCHA Widget */}
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} // 🔁 Replace this
