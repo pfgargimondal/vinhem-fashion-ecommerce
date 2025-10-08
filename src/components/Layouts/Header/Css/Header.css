@@ -1,7 +1,3 @@
-header{
-  border-bottom: 1px solid var(--light-background-color);
-}
-
 header .advertisement-slider:before {
   position: absolute;
   content: "";
@@ -70,14 +66,12 @@ header .header-top {
   background: #fff;
   border-bottom: 1px solid var(--light-background-color);
 }
-
-header .header-top .doeiwhrkwdeor img {
+header .header-top .doeiwhrkwdeor img{
   width: 70%;
 }
-
 header .header-top .doeiwhrkwdeor ul li {
   display: inline-flex;
-  position: relative;
+  position: relative;  
 }
 header .header-top .doeiwhrkwdeor ul li:first-child:before {
   display: none;
@@ -146,7 +140,7 @@ header .header-top .doewhruiwerwer_right ul li span {
   font-size: 0.8rem;
 }
 .header-main-wrapper{
-  max-width: 80%;
+  max-width: 85%;
   margin-inline: auto;
   display: flex;
   justify-content: space-between;
@@ -176,6 +170,14 @@ header .header-main .doiewhirw_right ul.header-menu li a {
   padding: 1.6rem 1.2rem !important;
   text-transform: uppercase;
   cursor: pointer;
+}
+.is-fixed-top{
+  height: 126px;
+}
+.is-fixed-top .doiemwokjrmwewer{
+  position: fixed;
+  top: 0;
+  z-index: 99999;
 }
 header .header-main .doiewhirw_right .diewhrkewr_dropdown {
   position: absolute;
@@ -217,13 +219,12 @@ header .header-main .doiewhirw_right .diewhrkewr_dropdown .dowiehrwer_left .fdpo
 header .header-main .swiper-slide {
   width: auto !important;
   padding: 6px 19px;
-  font-size: 14px;
+  font-size: 15px;
   position: initial;
-  background: #f7f7f7;
   border-radius: 10px;
 }
 header .header-main .swiper-slide a {
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
 }
@@ -237,8 +238,12 @@ header .header-main .swiper-slide a {
   transition: 0.1s ease-in-out;
 }
 
+header .header-main{
+  border-bottom: 1px solid var(--light-background-color);
+}
+
 header .header-main .swiper-slide:hover .header-mega-menu{
-  z-index: 9999999;
+  z-index: 999;
   visibility: visible;
   transition: 0.1s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -317,7 +322,8 @@ header .header-main .swiper-slide:hover .header-mega-menu{
 .header-top .doiwehrwehirnwerwer select.form-select {
   border: 0 !important;
   cursor: pointer;
-  padding-inline: 0.2rem;
+  padding-left: 0.2rem;
+  padding-right: 1.7rem;
 }
 .header-top .doiwehrwehirnwerwer select.form-select:focus {
   outline: none;

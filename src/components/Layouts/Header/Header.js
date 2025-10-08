@@ -137,274 +137,276 @@ export const Header = ({ shouldHideHeader, shouldHideFullHeaderFooterRoutes }) =
           </div>
           </div>
 
-          <div className={`header-sticky-wrapper ${isSticky ? "fixed-top" : ""}`}>
-            { !shouldHideHeader && (
-            <div className="header-top py-2">
-              <div className="container-fluid">
-                <div className="row align-items-center">
-                  <div className="col-lg-2">
-                    <div className="doeiwhrkwdeor">
-                      <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
+          <div className={`header-sticky-wrapper ${isSticky ? "is-fixed-top" : ""} ${shouldHideHeader ? "d-none" : ""}`}>
+            <div className="doiemwokjrmwewer w-100">
+              { !shouldHideHeader && (
+              <div className="header-top py-2">
+                <div className="container-fluid">
+                  <div className="row align-items-center">
+                    <div className="col-lg-2">
+                      <div className="doeiwhrkwdeor">
+                        <Link to="/"><img src={Logo} className="img-fluid" alt="" /></Link>
 
-                      <div className="dwerkwenrwer d-none">
-                        <i class="bi me-2 bi-search" onClick={() => setSearchBarToggle(!searchBarToggle)}></i>
+                        <div className="dwerkwenrwer d-none">
+                          <i class="bi me-2 bi-search" onClick={() => setSearchBarToggle(!searchBarToggle)}></i>
 
-                        <Form.Select className="me-2" aria-label="Default select example">
-                          {currency.map(allCurrency => (
-                            <option
-                              key={allCurrency.id}
-                              value={allCurrency.id}
-                              selected={allCurrency.choice === 1}
-                            >
-                              {allCurrency.currency_type} ({allCurrency.currency_code})
-                            </option>
-                          ))}
-                        </Form.Select>
+                          <Form.Select className="me-2" aria-label="Default select example">
+                            {currency.map(allCurrency => (
+                              <option
+                                key={allCurrency.id}
+                                value={allCurrency.id}
+                                selected={allCurrency.choice === 1}
+                              >
+                                {allCurrency.currency_type} ({allCurrency.currency_code})
+                              </option>
+                            ))}
+                          </Form.Select>
 
-                        <i class="fa-solid fa-bars" id="res-toggle-btn" onClick={() => setResMenu(true)}></i>
+                          <i class="fa-solid fa-bars" id="res-toggle-btn" onClick={() => setResMenu(true)}></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="col-lg-6">
-                    <div className="doiwehrwehirnwerwer aosndkjnjhasekwewt row align-items-center">
-                      <div className="col-lg-2">
-                        <Form.Select
-                          className="me-2"
-                          aria-label="Select currency"
-                          value={selectedCurrency?.id || currency.find(c => c.choice === 1)?.id || ""}
-                          onChange={(e) => {
-                            const selectedObj = currency.find(c => c.id === parseInt(e.target.value));
-                            setSelectedCurrency(selectedObj);
-                          }}
-                        >
-                          {currency.map((allCurrency) => (
-                            <option
-                              key={allCurrency.id}
-                              value={allCurrency.id}
-                              selected={allCurrency.choice === 1}
-                            >
-                              {allCurrency.currency_type} ({allCurrency.currency_code})
-                            </option>
-                          ))}
-                        </Form.Select>
+                    <div className="col-lg-6">
+                      <div className="doiwehrwehirnwerwer aosndkjnjhasekwewt row align-items-center">
+                        <div className="col-lg-2">
+                          <Form.Select
+                            className="me-2"
+                            aria-label="Select currency"
+                            value={selectedCurrency?.id || currency.find(c => c.choice === 1)?.id || ""}
+                            onChange={(e) => {
+                              const selectedObj = currency.find(c => c.id === parseInt(e.target.value));
+                              setSelectedCurrency(selectedObj);
+                            }}
+                          >
+                            {currency.map((allCurrency) => (
+                              <option
+                                key={allCurrency.id}
+                                value={allCurrency.id}
+                                selected={allCurrency.choice === 1}
+                              >
+                                {allCurrency.currency_type} ({allCurrency.currency_code})
+                              </option>
+                            ))}
+                          </Form.Select>
+                        </div>
+
+                        <div className="col-lg-10">
+                          <form onSubmit={handleSearch}>
+                            <div className={`search-field ${searchBarToggle ? "" : "search-field-hide"} position-relative`}>
+                              <input ref={searchRef} type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
+
+                              <i class="bi position-absolute bi-search"></i>
+                            </div>
+                          </form>
+                        </div>               
                       </div>
-
-                      <div className="col-lg-10">
-                        <form onSubmit={handleSearch}>
-                          <div className={`search-field ${searchBarToggle ? "" : "search-field-hide"} position-relative`}>
-                            <input ref={searchRef} type="text" className="form-control rounded-pill ps-3" placeholder="Search for Pre-stitched saree" />
-
-                            <i class="bi position-absolute bi-search"></i>
-                          </div>
-                        </form>
-                      </div>               
                     </div>
-                  </div>
 
-                  <div className="col-lg-4">
-                    {resMenu && (<div className="res-menu-backdrop position-fixed w-100 h-100" onClick={() => setResMenu(false)}></div>)}
+                    <div className="col-lg-4">
+                      {resMenu && (<div className="res-menu-backdrop position-fixed w-100 h-100" onClick={() => setResMenu(false)}></div>)}
 
-                    <div className={`doewhruiwerwer_right ${resMenu ? "" : "doewhruiwerwer_right-hide"}`}>
-                      <Link to="/"><img src={Logo} className="img-fluid d-none" alt="" /></Link>
+                      <div className={`doewhruiwerwer_right ${resMenu ? "" : "doewhruiwerwer_right-hide"}`}>
+                        <Link to="/"><img src={Logo} className="img-fluid d-none" alt="" /></Link>
 
-                      <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
-                        <Link to={`/contact-us`}><li><i class="bi bi-headset"></i> Help</li></Link>
+                        <ul className="mb-0 ps-0 d-flex justify-content-between align-items-center">
+                          <Link to={`/contact-us`}><li><i class="bi bi-headset"></i> Help</li></Link>
 
-                        <li className="infrm-menu-divider">|</li>
-                        {/* {user ? (
-                          <> */}
-                            <Link to={`/wishlist`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>{wishlistCount}</span></li></Link>
-                            <li className="infrm-menu-divider">|</li>
-                            <Link to={`/cart`}><li><i class="bi bi-handbag"></i> Bag <span>{cartCount}</span></li></Link>
-                          {/* </>
-                        ):(
-                          <>
-                            <Link to={`/login`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
-                            <li className="infrm-menu-divider">|</li>
-                            <Link to={`/login`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
-                          </>
-                        )} */}
-
-                        <li className="infrm-menu-divider">|</li>
-
-                          <li className="position-relative">
-                          {user ? (
+                          <li className="infrm-menu-divider">|</li>
+                          {/* {user ? (
+                            <> */}
+                              <Link to={`/wishlist`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>{wishlistCount}</span></li></Link>
+                              <li className="infrm-menu-divider">|</li>
+                              <Link to={`/cart`}><li><i class="bi bi-handbag"></i> Cart <span>{cartCount}</span></li></Link>
+                            {/* </>
+                          ):(
                             <>
-                              <i className="bi bi-person" onClick={() => setUserDropdown(!userDropdown)}></i> <div className="mjeimojwjikrrr">{user.name}</div>
-                              {userDropdown && <DropdownLoggedIn />}
+                              <Link to={`/login`}><li><i class="bi bi-heart"></i> &nbsp;Wishlist <span>0</span></li></Link>
+                              <li className="infrm-menu-divider">|</li>
+                              <Link to={`/login`}><li><i class="bi bi-handbag"></i> Bag <span>0</span></li></Link>
                             </>
-                          ) : (
-                            <Link to="/register">
-                              <i className="bi bi-person"></i> Account
-                            </Link>
-                          )}
-                        </li>     
-                      </ul>
+                          )} */}
+
+                          <li className="infrm-menu-divider">|</li>
+
+                            <li className="position-relative">
+                            {user ? (
+                              <>
+                                <i className="bi bi-person" onClick={() => setUserDropdown(!userDropdown)}></i> <div className="mjeimojwjikrrr">{user.name}</div>
+                                {userDropdown && <DropdownLoggedIn />}
+                              </>
+                            ) : (
+                              <Link to="/register">
+                                <i className="bi bi-person"></i> Account
+                              </Link>
+                            )}
+                          </li>     
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            ) }      
+              ) }
 
-            { !shouldHideHeader && (
-            <div className="header-main bg-white py-2 position-relative">       
-              <div className="header-main-wrapper">
-                  {mainCategory?.map((category) => (
-                  <SwiperSlide key={category.id}>
-                    <NavLink to={`/${category.mainCategory_slug}`} end>
-                      {category.mainCategory_name}
-                    </NavLink>
+              { !shouldHideHeader && (
+              <div className="header-main bg-white py-2 position-relative">       
+                <div className="header-main-wrapper">
+                    {mainCategory?.map((category) => (
+                    <SwiperSlide key={category.id}>
+                      <NavLink to={`/${category.mainCategory_slug}`} end>
+                        {category.mainCategory_name}
+                      </NavLink>
 
-                    <div className="header-mega-menu position-absolute w-100">
-                      <div className="h-m-m-inner bg-white py-2 mt-3">
-                        <div className="container-fluid">
-                          <div className="row">
-                            <div className="col-lg-8">
-                              <div className="ojkmiweee_left py-3">
-                                <div className="row">
+                      <div className="header-mega-menu position-absolute w-100">
+                        <div className="h-m-m-inner bg-white py-2 mt-3">
+                          <div className="container-fluid">
+                            <div className="row">
+                              <div className="col-lg-8">
+                                <div className="ojkmiweee_left py-3">
+                                  <div className="row">
 
-                                  {category.head_categories?.map((headCat) => (
-                                    <div className="col-lg-3" key={headCat.id}>
+                                    {category.head_categories?.map((headCat) => (
+                                      <div className="col-lg-3" key={headCat.id}>
+                                        <div className="oieniuiewr_inner">
+                                          <h5>{headCat.headCategories_name}</h5>
+                                          <ul className="mb-0 ps-0">
+                                            {headCat.sub_categories?.slice(0, 8).map((subCat) => (
+                                              <li key={subCat.id}>
+                                                <Link to={`/${category.mainCategory_slug}/${subCat.subCategories_slug}`}>
+                                                  {subCat.subCategories_name.replace(/\s*\(Boys\)|\s*\(Girls\)/gi, "")}
+                                                </Link>
+                                              </li> 
+                                              
+                                            ))}
+
+                                            {/* Show "View All" if more than 8 */}
+                                            {headCat.sub_categories?.length > 8 && (
+                                              <li>
+                                                <Link to={`/${category.mainCategory_slug}`}>
+                                                  View All →
+                                                </Link>
+                                              </li>
+                                            )}
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    ))}
+
+                                    {/* <div className="col-lg-3">
                                       <div className="oieniuiewr_inner">
-                                        <h5>{headCat.headCategories_name}</h5>
-                                        <ul className="mb-0 ps-0">
-                                          {headCat.sub_categories?.slice(0, 6).map((subCat) => (
-                                            <li key={subCat.id}>
-                                              <Link to={`/${category.mainCategory_slug}/${subCat.subCategories_slug}`}>
-                                                {subCat.subCategories_name.replace(/\s*\(Boys\)|\s*\(Girls\)/gi, "")}
-                                              </Link>
-                                            </li> 
-                                            
-                                          ))}
+                                        <h5>Designers</h5>
 
-                                          {/* Show "View All" if more than 6 */}
-                                          {headCat.sub_categories?.length > 6 && (
-                                            <li>
-                                              <Link to={`/${category.mainCategory_slug}`}>
-                                                View All →
-                                              </Link>
-                                            </li>
-                                          )}
+                                        <ul className="mb-0 ps-0">
+                                          <li>
+                                            <Link>Vishwa By Pinki Sinha</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Ekaya Banaras</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Rishi and Vibhuti</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Anamika Khanna</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Preeti S Kapoor</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Chandrima</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Gulabo Jaipur</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>DiyaRajv vi</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Ajiesh Oberoi</Link>
+                                          </li>
                                         </ul>
                                       </div>
                                     </div>
-                                  ))}
 
-                                  {/* <div className="col-lg-3">
-                                    <div className="oieniuiewr_inner">
-                                      <h5>Designers</h5>
+                                    <div className="col-lg-3">
+                                      <div className="oieniuiewr_inner">
+                                        <h5>Trending</h5>
 
-                                      <ul className="mb-0 ps-0">
-                                        <li>
-                                          <Link>Vishwa By Pinki Sinha</Link>
-                                        </li>
+                                        <ul className="mb-0 ps-0">
+                                          <li>
+                                            <Link>Buzworthy Styles</Link>
+                                          </li>
 
-                                        <li>
-                                          <Link>Ekaya Banaras</Link>
-                                        </li>
+                                          <li>
+                                            <Link>Resort Ready</Link>
+                                          </li>
 
-                                        <li>
-                                          <Link>Rishi and Vibhuti</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Anamika Khanna</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Preeti S Kapoor</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Chandrima</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Gulabo Jaipur</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>DiyaRajv vi</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Ajiesh Oberoi</Link>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-
-                                  <div className="col-lg-3">
-                                    <div className="oieniuiewr_inner">
-                                      <h5>Trending</h5>
-
-                                      <ul className="mb-0 ps-0">
-                                        <li>
-                                          <Link>Buzworthy Styles</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Resort Ready</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>The Bridesmaid Edit</Link>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-
-                                  <div className="col-lg-3">
-                                    <div className="oieniuiewr_inner">
-                                      <h5>Trending</h5>
-
-                                      <ul className="mb-0 ps-0">
-                                        <li>
-                                          <Link>Buzworthy Styles</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>Resort Ready</Link>
-                                        </li>
-
-                                        <li>
-                                          <Link>The Bridesmaid Edit</Link>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div> */}
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="col-lg-4">
-                              <div className="ojkmiweee_right">
-                                <div className="row">
-                                  {category.mainCategory_banner?.map((CategoryBanner) => (
-                                    <div className="col-lg-6" key={CategoryBanner.id}>
-                                      <div className="pkopkerrwer text-center">
-                                        <img src={`${CategoryBanner.category_bannerImage_url}/${CategoryBanner.category_bannerImage}`} className="w-100" alt="" />
-                                        <div className="dkewbjnrkwejrwer mt-2">
-                                          <h5>{CategoryBanner.category_bannerTitle}</h5>
-                                          <a href={`${CategoryBanner.category_bannerURL}`}>SHOW NOW</a>
-                                        </div>
+                                          <li>
+                                            <Link>The Bridesmaid Edit</Link>
+                                          </li>
+                                        </ul>
                                       </div>
                                     </div>
-                                  ))}
+
+                                    <div className="col-lg-3">
+                                      <div className="oieniuiewr_inner">
+                                        <h5>Trending</h5>
+
+                                        <ul className="mb-0 ps-0">
+                                          <li>
+                                            <Link>Buzworthy Styles</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>Resort Ready</Link>
+                                          </li>
+
+                                          <li>
+                                            <Link>The Bridesmaid Edit</Link>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div> */}
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="col-lg-4">
+                                <div className="ojkmiweee_right">
+                                  <div className="row">
+                                    {category.mainCategory_banner?.map((CategoryBanner) => (
+                                      <div className="col-lg-6" key={CategoryBanner.id}>
+                                        <div className="pkopkerrwer text-center">
+                                          <img src={`${CategoryBanner.category_bannerImage_url}/${CategoryBanner.category_bannerImage}`} className="w-100" alt="" />
+                                          <div className="dkewbjnrkwejrwer mt-2">
+                                            <h5>{CategoryBanner.category_bannerTitle}</h5>
+                                            <a href={`${CategoryBanner.category_bannerURL}`}>SHOW NOW</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}  
-              </div>    
+                    </SwiperSlide>
+                  ))}  
+                </div>    
+              </div>
+              ) }
             </div>
-            ) }
           </div>
         </header>
       ) }

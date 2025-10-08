@@ -52,60 +52,62 @@ export const Home = () => {
   return (
     <>
       <div className="dfgdfvsdfsdfsdf">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={10}
-          slidesPerView={1}
-          navigation
-          autoplay={{ delay: 3000 }}
-          loop={true}
-        >
-          {/* Slide 1 */}
-          <SwiperSlide>
-            <div className="rehbgdfgnjh">
-              <div className="sdfsdfd">
-                <Link to={homepage?.data?.url}>
-                  <div className="gdfgdf215">
-                    <img
-                      src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+        <div className="container-fluid">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={10}
+            slidesPerView={1}
+            navigation
+            autoplay={{ delay: 3000 }}
+            loop={true}
+          >
+            {/* Slide 1 */}
+            <SwiperSlide>
+              <div className="rehbgdfgnjh">
+                <div className="sdfsdfd">
+                  <Link to={homepage?.data?.url}>
+                    <div className="gdfgdf215">
+                      <img
+                        src={`${homepage?.image_url}/${homepage?.data?.banner_image1}`}
+                        alt=""
+                      />
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
 
-          <SwiperSlide>
-            <div className="rehbgdfgnjh">
-              <div className="sdfsdfd">
-                <Link to={homepage?.data?.url2}>
-                  <div className="gdfgdf215">
-                    <img
-                      src={`${homepage?.image_url}/${homepage?.data?.side_banner_image2}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+            <SwiperSlide>
+              <div className="rehbgdfgnjh">
+                <div className="sdfsdfd">
+                  <Link to={homepage?.data?.url2}>
+                    <div className="gdfgdf215">
+                      <img
+                        src={`${homepage?.image_url}/${homepage?.data?.side_banner_image2}`}
+                        alt=""
+                      />
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
 
-          <SwiperSlide>
-            <div className="rehbgdfgnjh">
-              <div className="sdfsdfd">
-                <Link to={homepage?.data?.url3}>
-                  <div className="gdfgdf215">
-                    <img
-                      src={`${homepage?.image_url}/${homepage?.data?.side_banner_image3}`}
-                      alt=""
-                    />
-                  </div>
-                </Link>
+            <SwiperSlide>
+              <div className="rehbgdfgnjh">
+                <div className="sdfsdfd">
+                  <Link to={homepage?.data?.url3}>
+                    <div className="gdfgdf215">
+                      <img
+                        src={`${homepage?.image_url}/${homepage?.data?.side_banner_image3}`}
+                        alt=""
+                      />
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            </SwiperSlide>
+          </Swiper>
+        </div>
       </div>
 
       <div className="jdfgdfg65dfdf">

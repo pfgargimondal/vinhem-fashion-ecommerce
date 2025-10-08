@@ -7,7 +7,6 @@
   color: var(--pink-main-color);
   width: 2rem;
   height: 2rem;
-  background: rgba(255, 255, 255, 0.7);
 }
 
 .dfgdfvsdfsdfsdf .swiper-button-prev:after,
@@ -315,11 +314,9 @@
 
 .fgjhdfgdfgdf .swiper-button-prev,
 .fgjhdfgdfgdf .swiper-button-next{
-  background: #fff;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  opacity: 0.7;
 }
 
 .fgjhdfgdfgdf .swiper-button-prev:after,
