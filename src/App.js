@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const {pathname} = useLocation();
-  const hideHeaderRoutes = ["/login", "/register", "/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist", "/chat"];
+  const hideHeaderRoutes = ["/profile", "/change-password", "/order-history", "/cancelled-order", "/wishlist", "/chat"];
   const hideFullHeaderFooterRoutes = ["/invoice"];
 
   const shouldHideHeader = hideHeaderRoutes.includes(pathname);

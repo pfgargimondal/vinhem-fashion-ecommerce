@@ -49,8 +49,17 @@
   font-weight: 700;
 }
 
-.dbfggfhfh img{
+.dbfggfhfh{
+  height: 11rem;
+  border: 3px solid #EED59C;
+  border-radius: 15px 0 15px 0;
+  overflow: hidden;
+}
+
+.dfhdfg img{
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .fbsdsdf h4 a{
@@ -136,19 +145,11 @@
   font-weight: 600;
 }
 
-.fgjdfgf3298 {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
-
 .dfhdfg {
   width: 100%;
   transition: 0.3s ease-in-out;
 }
 .dfhdfg:hover {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   transition: 0.3s ease-in-out;
 }
 .dfhdfg:hover h4 {
@@ -168,6 +169,8 @@
 
 .fbsdsdf h4 {
   font-size: 20px;
+  text-align: center;
+  margin-top: 0.7rem;
 }
 
 .dfhdfgd464 {

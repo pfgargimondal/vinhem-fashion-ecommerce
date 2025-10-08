@@ -1,9 +1,15 @@
 import http from "../../http";
 import { Link } from "react-router-dom";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "./Css/Wedding.css";
 import "./Css/WeddingResponsive.css";
 import { useEffect, useState } from "react";
+import "swiper/css"; // core styles
+import "swiper/css/navigation"; // if using navigation
+import "swiper/css/pagination"; // if using pagination
+
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export const Wedding = () => {
   const [WeddingDetails, setWeddingDetails] = useState({});
@@ -28,15 +34,35 @@ export const Wedding = () => {
   return (
     <>
       <div className="dfgjhdfgdf">
-        <div className="fvxvfdfsf">
-          <Link to={WeddingDetails?.data?.section1to4?.section1_url}>
-          <div className="fvgndfjhgdfg">
-            <img
-              src={`${WeddingDetails?.image_url}/${WeddingDetails?.data?.section1to4?.section1_image}`}
-              alt=""
-            />
-          </div>
-          </Link>
+        <div className="container-fluid">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000 }}
+            loop={true}
+          >
+            <SwiperSlide>
+              <Link to={WeddingDetails?.data?.url}>
+              <img src={`${WeddingDetails?.image_url}/${WeddingDetails?.data?.section1to4?.section1_image1}`} className="img-fluid" alt="Slide 1" />
+              </Link>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Link to={WeddingDetails?.data?.url}>
+              <img src={`${WeddingDetails?.image_url}/${WeddingDetails?.data?.section1to4?.section1_image2}`} className="img-fluid" alt="Slide 2" />
+              </Link>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Link to={WeddingDetails?.data?.url}>
+              <img src={`${WeddingDetails?.image_url}/${WeddingDetails?.data?.section1to4?.section1_image3}`} className="img-fluid" alt="Slide 2" />
+              </Link>
+            </SwiperSlide>
+
+          </Swiper>
         </div>
       </div>
       <div className="sdgdfhbgdfr">

@@ -43,7 +43,7 @@ export default function RecentlyViewed() {
   return (
     <div className="dfbgghdfdfgdf">
       <div className="sdf58sdfs">
-        <h4 className="pb-2">Recently Viewed Products</h4>
+        <h4 className="pb-2">Recently Viewed</h4>
       </div>
 
       <div className="fgjhdfgdfgdf py-4">

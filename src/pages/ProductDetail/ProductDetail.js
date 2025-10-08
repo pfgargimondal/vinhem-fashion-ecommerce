@@ -12,12 +12,13 @@ import Modal from 'react-bootstrap/Modal';
 // eslint-disable-next-line
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
-
+import RecentlyViewed from "../../hooks/RecentlyViewed";
 import { FeaturedProducts } from "../../components";
 import "./Css/ProductDetail.css";
 import "./Css/ProductDetailResponsive.css";
 import "swiper/css";
 import { FooterTopComponent } from "../../components/Others/FooterTopComponent";
+import http from "../../http";
 
 export const ProductDetail = () => {
   const [show, setShow] = useState(false);
@@ -162,75 +163,10 @@ export const ProductDetail = () => {
   const handleMShow = () => setShowMjri(true);
 
   // eslint-disable-next-line
-  const [featuredProducts, setFeaturedProducts] = useState([
-    {
-      id: 1000,
-      img1: "/images/1.jpg",
-      img2: "/images/2.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1001,
-      img1: "/images/3.jpg",
-      img2: "/images/4.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1002,
-      img1: "/images/2.jpg",
-      img2: "/images/4.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1003,
-      img1: "/images/3.jpg",
-      img2: "/images/4.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1004,
-      img1: "/images/1.jpg",
-      img2: "/images/4.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1005,
-      img1: "/images/4.jpg",
-      img2: "/images/5.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-    {
-      id: 1006,
-      img1: "/images/3.jpg",
-      img2: "/images/2.jpg",
-      title: "COLLETTE",
-      description:
-        "Sample - Clothing And Accessory Boutiques For Sale",
-      price: "48.99",
-    },
-  ]);
-  // eslint-disable-next-line
   const [activeTab, setActiveTab] = useState("tab-1");
   const [showTabs, setShowTabs] = useState(false);
   const [showSizeModal, setShowSizeModal] = useState(false);
+  const [mssrmntSbmtConfrm, setMssrmntSbmtConfrm] = useState(null);
 
   const handleSizeModalClose = () => {   
     showTabs && setShowTabs(false);
@@ -275,16 +211,24 @@ export const ProductDetail = () => {
     }
   }, [showSizeModal]);
 
-  // useEffect(() => {
-  //   const fetchFeaturedProducts = async () => {
-  //     const URL = "http://localhost:8000/featured_products";
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     setFeaturedProducts(data);
-  //   }
+  const [productDetails, SetproductDetails] = useState({});
+  
+  useEffect(() => {
+    const fetchProductDetailsPage = async () => {
+      try {
+        const getresponse = await http.get(`/fetch-product-details/${slug}`);
+        SetproductDetails(getresponse.data);
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+      }
+    };
 
-  //   fetchFeaturedProducts();
-  // }, []);
+    if (slug) {
+      fetchProductDetailsPage();
+    }
+  }, [slug]);
+
+  console.log(productDetails);
 
   return (
     <>
@@ -374,7 +318,7 @@ export const ProductDetail = () => {
                     <div className="dsfbsdghfjs mb-1">
                       <div className="fgnjdfgfd">
                         <h2>
-                          Neha Khullar X Vinhem Fashion
+                          {productDetails?.data?.product_name}
                           {/* <i className="fa-solid fa-greater-than" /> */}
                         </h2>
                       </div>
@@ -387,13 +331,13 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="fhdfgh">
-                      <p className="d-flex align-items-center flex-wrap">Item ID: PMN124-S87LAZO4TH | Views 309 <i class="fa-solid ms-2 fa-info"></i></p>
+                      <p className="d-flex align-items-center flex-wrap">Item ID: PMN124-S87LAZO4TH | Views 309 <i class="bi ms-2 bi-eye"></i></p>
                     </div>
 
                     <div className="dfjghdfgdff58 mb-4">
                       <h4 className="d-flex mb-1">
                         <span className="discounted-price d-flex align-items-center">
-                          <i class="bi bi-currency-rupee"></i> 30,322
+                          <i class="bi bi-currency-rupee"></i> {productDetails?.data?.selling_price}
                         </span>
 
                         <span className="gdfg55 d-flex align-items-center ms-2">
@@ -666,6 +610,26 @@ export const ProductDetail = () => {
                               Personalized Styling
                             </li>
                           </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="diwenjrbwebrwehgrwer mt-5">
+                      <h4 className="pb-2 me-2 mb-0">Offers & EMI</h4>
+
+                      <hr className="mt-0" />
+
+                      <div className="injdewrwer d-flex">
+                        <h4 className="mb-0 me-2">Coupon Code -</h4>
+
+                        <div className="oijdmkmeiwrew">
+                          <div className="copn-cde text-center py-2 px-3 mb-2 me-2 rounded-2">
+                            <h5 className="mb-0">F1010 & 10% Off</h5>
+                          </div>
+
+                          <div className="copn-cde text-center py-2 px-3 me-2 rounded-2">
+                            <h5 className="mb-0">B1G1 & Buy 1 Get 1</h5>
+                          </div>                          
                         </div>
                       </div>
                     </div>
@@ -972,105 +936,33 @@ export const ProductDetail = () => {
                           className="mySwiper"
                           style={{ height: "100%" }}
                         >
-                          <SwiperSlide>
-                            <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                <div className="image d-flex position-relative">
-                                  <div className="doiewjkrniuwewer position-relative col-lg-4 overflow-hidden">
-                                    <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
+                          {productDetails?.data?.matching_product.map((matchingProduct) => (
+                            <SwiperSlide key={matchingProduct.id}>
+                              <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
+                                <Link to={`/products/${matchingProduct.slug}`}>
+                                <div className="images">
+                                  <div className="image d-flex position-relative">
+                                    <div className="doiewjkrniuwewer position-relative col-lg-4 overflow-hidden">
+                                      <img src={matchingProduct?.encoded_image_url_2} alt={matchingProduct.product_name}/>
 
-                                    <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                  </div>
+                                      <img className="first" src={matchingProduct?.encoded_image_url_1} alt={matchingProduct.product_name} />
+                                    </div>
 
-                                  <div className="fdbdfgdfgdf col-lg-8">
-                                    <h4>Clothing And Accessory Boutiques For Sale</h4>
+                                    <div className="fdbdfgdfgdf col-lg-8">
+                                      <h4>{matchingProduct.product_name}</h4>
 
-                                    <h5>$48.99</h5>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                <div className="image d-flex position-relative">
-                                  <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                    <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                    <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                  </div>
-
-                                  <div className="fdbdfgdfgdf col-lg-8">
-                                    <h4>Clothing And Accessory Boutiques For Sale</h4>
-
-                                    <h5>$48.99</h5>
+                                      <h5>{new Intl.NumberFormat("en-IN", {
+                                            style: "currency",
+                                            currency: "INR",
+                                            maximumFractionDigits: 0,
+                                          }).format(matchingProduct.selling_price)}</h5>
+                                    </div>
                                   </div>
                                 </div>
+                                </Link>
                               </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                <div className="image d-flex position-relative">
-                                  <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                    <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                    <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                  </div>
-
-                                  <div className="fdbdfgdfgdf col-lg-8">
-                                    <h4>Clothing And Accessory Boutiques For Sale</h4>
-
-                                    <h5>$48.99</h5>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                <div className="image d-flex position-relative">
-                                  <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                    <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                    <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                  </div>
-
-                                  <div className="fdbdfgdfgdf col-lg-8">
-                                    <h4>Clothing And Accessory Boutiques For Sale</h4>
-
-                                    <h5>$48.99</h5>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="dfgjhbdfg sdfvdscsddfgdfg p-2 mb-3">
-                              <div className="images">
-                                <div className="image d-flex position-relative">
-                                  <div className="doiewjkrniuwewer col-lg-4 position-relative overflow-hidden">
-                                    <img src="/images/91EEQIClSCL._UY1100_.jpg" alt="not found" />
-
-                                    <img className="first" src="/images/91JmoXA-H9L._UY350_.jpg" alt="not found" />
-                                  </div>
-
-                                  <div className="fdbdfgdfgdf col-lg-8">
-                                    <h4>Clothing And Accessory Boutiques For Sale</h4>
-
-                                    <h5>$48.99</h5>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
+                            </SwiperSlide>
+                          ))}
                         </Swiper>
                       </div>
                     </div>
@@ -1086,11 +978,9 @@ export const ProductDetail = () => {
 
                       <div className="fgjhdfgdfgdf py-4">
                         <Swiper {...swiperConfig}>
-                          {featuredProducts.map((featuredProduct) => (
+                          {productDetails?.data?.similar_product.map((featuredProduct) => (
                             <SwiperSlide key={featuredProduct.id}>
-                              <FeaturedProducts
-                                featuredProduct={featuredProduct}
-                              />
+                              <FeaturedProducts featuredProduct={featuredProduct} />
                             </SwiperSlide>
                           ))}
                         </Swiper>
@@ -1108,13 +998,13 @@ export const ProductDetail = () => {
 
                       <div className="fgjhdfgdfgdf py-4">
                         <Swiper {...swiperConfig}>
-                          {featuredProducts.map((featuredProduct) => (
+                          {/* {featuredProducts.map((featuredProduct) => (
                             <SwiperSlide key={featuredProduct.id}>
                               <FeaturedProducts
                                 featuredProduct={featuredProduct}
                               />
                             </SwiperSlide>
-                          ))}
+                          ))} */}
                         </Swiper>
                       </div>
                     </div>
@@ -1123,23 +1013,7 @@ export const ProductDetail = () => {
 
                 <div className="col-lg-12">
                   <div className="diweurbhwer_inner mt-4">
-                    <div className="dfbgghdfdfgdf">
-                      <div className="sdf58sdfs">
-                        <h4 className="pb-2">Recently Viewed</h4>
-                      </div>
-
-                      <div className="fgjhdfgdfgdf py-4">
-                        <Swiper {...swiperConfig}>
-                          {featuredProducts.map((featuredProduct) => (
-                            <SwiperSlide key={featuredProduct.id}>
-                              <FeaturedProducts
-                                featuredProduct={featuredProduct}
-                              />
-                            </SwiperSlide>
-                          ))}
-                        </Swiper>
-                      </div>
-                    </div>
+                    <RecentlyViewed />
                   </div>
                 </div>
               </div>
@@ -1623,9 +1497,7 @@ export const ProductDetail = () => {
                       <label className="form-label">Additional customization requests here.</label>
 
                       <textarea name="" className="form-control" placeholder="Please specify any additional customization requests here." style={{ height: "150px" }}></textarea>
-                    </div>
-
-                    <button className="btn btn-main w-100">Add On</button>
+                    </div>                    
                   </div>
                 )}
               </div>
@@ -1649,8 +1521,8 @@ export const ProductDetail = () => {
           )}
         </div>
 
-        <div className="doewrjhwerwerwer d-flex align-items-center justify-content-end p-4">
-          <button className="btn btn-main">Add to Cart</button>
+        <div className="doiewnjkrhwerwerwer d-flex align-items-center justify-content-end px-4 pt-2 pb-3">
+          <button onClick={() => setMssrmntSbmtConfrm(!mssrmntSbmtConfrm)} className="btn btn-main w-100">Review & Submit</button>
         </div>
       </div>)}
 
@@ -1825,6 +1697,36 @@ export const ProductDetail = () => {
                 <img src="/images/sawewe.jpg" className="img-fluid" alt="" />
               </Tab>
             </Tabs>
+          </div>
+        </div>
+      </div>
+
+      {/* mssrmnt sbmt cnfrmtn */}
+
+      <div className={`${mssrmntSbmtConfrm ? "mssrmnt-sbmt-modal-backdrop" : "mssrmnt-sbmt-modal-backdrop mssrmnt-sbmt-modal-backdrop-hide"} w-100 h-100 position-fixed`}></div>
+
+      <div className={`${mssrmntSbmtConfrm ? "mssrmnt-sbmt-modal" : "mssrmnt-sbmt-modal mssrmnt-sbmt-modal-hide"} position-fixed bg-white`}>
+        <div className="size-guide-modal-header d-flex align-items-center justify-content-between px-4 py-2">
+          <h4 className="mb-0"></h4>
+
+          <i class="fa-solid fa-xmark" onClick={() => setMssrmntSbmtConfrm(false)}></i>
+        </div>
+
+        <div className="dkewhrwerwer px-4 py-3">
+          <div className="dkjjenwjknkweh text-center">
+            <h4>Once submitted then cannot be changed</h4>
+
+            <p>Do you want to proceed?</p>
+
+            <div className="dfsfdtgrefcd row align-items-center justify-content-between">
+              <div className="col-lg-5 mb-3">
+                <button className="btn btn-main w-100">Yes, Proceed</button>
+              </div>
+
+              <div className="col-lg-5 mb-3">
+                <button onClick={() => setMssrmntSbmtConfrm(false)} className="btn btn-main w-100">Cancel</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

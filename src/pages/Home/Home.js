@@ -209,26 +209,22 @@ export const Home = () => {
             <h2 className="mb-3">Top Categories</h2>
           </div>
 
-          <div className="fgjdfgf3298">
+          <div className="fgjdfgf3298 row">
             {homepage?.data?.home_category.map((topCategorie) => (
-              <div className="dfhdfg" key={topCategorie.id}>
-                <div className="fbdfg">
-                  <div className="d-flex sdvsdfdvgdfg align-items-center">
-                    <div className="dbfggfhfh">
+              <div className="col-lg-2">
+                <div className="dfhdfg" key={topCategorie.id}>
+                  <div className="dbfggfhfh">
                       <img src={`${homepage.image_url}/${topCategorie.image}`} className="img-fluid" alt={topCategorie.title} />
                     </div>
 
-                    <div className="adfdfddgdfg">
-                      <div className="fbsdsdf">
-                        <h4 className="mb-0">
-                          <Link to={`${topCategorie.url}`}>{topCategorie.category_name}</Link>
-                        </h4>
-                      </div>
+                    <div className="fbsdsdf">
+                      <h4 className="mb-0">
+                        <Link to={`${topCategorie.url}`}>{topCategorie.category_name}</Link>
+                      </h4>
                     </div>
-                  </div>
                 </div>
               </div>
-            ))}            
+            ))}
           </div>
         </div>
       </div>
@@ -297,7 +293,7 @@ export const Home = () => {
       <div className="fbnghksdfsdfsf mt-5 pt-3 pb-5 mb-4">
         <div className="container-fluid">
           <div className="sdf58sdfs">
-            <h4 className="mb-3">{homepage?.data?.section3_title1}</h4>
+            <h4 className="mb-4">{homepage?.data?.section3_title1}</h4>
           </div>
           <div className="dfgnhdfgdf">
             <div className="row">

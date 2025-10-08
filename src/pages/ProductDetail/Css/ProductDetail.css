@@ -384,7 +384,7 @@
   background: rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(1rem);
           backdrop-filter: blur(1rem);
-  z-index: 9999;
+  z-index: 999999;
 }
 
 .customize-modal {
@@ -393,7 +393,7 @@
   top: 2%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 99999;
+  z-index: 999999;
   transition: 0.1s ease-in-out;
 }
 .customize-modal #co-close-btn {
@@ -559,14 +559,7 @@
 }
 .fhdfgh p i{
   color: var(--pink-main-color);
-  font-style: italic;
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 50%;
-  border: 1px solid var(--pink-main-color);
-  text-align: center;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 1.2rem;
 }
 .ikasdnjiknswjirhwer p {
   color: var(--grey-border-color);
@@ -995,6 +988,20 @@
    font-size: 0.9rem;
 }
 
+.injdewrwer > h4 {
+    color: var(--grey-border-color);
+    font-size: 1.3rem;
+}
+
+.copn-cde {
+    border: 2px dotted var(--pink-main-color);
+    background: #fcd6ee;
+}
+
+.copn-cde h5 {
+    color: var(--pink-main-color);
+}
+
 .doiwejrwer p{
   font-size: 0.75rem !important;
   line-height: 1.4 !important;
@@ -1125,6 +1132,49 @@
   border-bottom: 1px solid #d7d7d7;
 }
 
+.mssrmnt-sbmt-modal{
+  width: 35%;
+  border-radius: 10px;  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+  opacity: 1;
+  transition: 0.1s ease-in-out;
+  border: 1px solid var(--light-background-color);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.mssrmnt-sbmt-modal-hide{
+  opacity: 0 !important;
+  z-index: -9999 !important;
+  transition: 0.1s ease-in-out;
+}
+
+.mssrmnt-sbmt-modal .size-guide-modal-header{
+  border-bottom: 0 !important;
+}
+
+.mssrmnt-sbmt-modal .dkewhrwerwer {
+  height: auto;
+}
+
+.mssrmnt-sbmt-modal-backdrop{
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  opacity: 1;
+  transition: 0.1s ease-in-out;
+}
+
+.mssrmnt-sbmt-modal-backdrop-hide{
+  z-index: -9999 !important;
+  opacity: 0 !important;
+  transition: 0.1s ease-in-out;
+}
+
 .size-guide-modal-header i{
   cursor: pointer;
 }
@@ -1135,7 +1185,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
+  z-index: 999999;
   opacity: 1;
   transition: 0.1s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -1151,7 +1201,7 @@
   background: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 999999;
   opacity: 1;
   transition: 0.1s ease-in-out;
 }
