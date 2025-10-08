@@ -1706,8 +1706,8 @@ export const ProductDetail = () => {
       <div className={`${mssrmntSbmtConfrm ? "mssrmnt-sbmt-modal-backdrop" : "mssrmnt-sbmt-modal-backdrop mssrmnt-sbmt-modal-backdrop-hide"} w-100 h-100 position-fixed`}></div>
 
       <div className={`${mssrmntSbmtConfrm ? "mssrmnt-sbmt-modal" : "mssrmnt-sbmt-modal mssrmnt-sbmt-modal-hide"} position-fixed bg-white`}>
-        <div className="size-guide-modal-header d-flex align-items-center justify-content-between px-4 py-2">
-          <h4 className="mb-0"></h4>
+        <div className="size-guide-modal-header d-flex align-items-center justify-content-end px-4 py-2">
+          {/* <h4 className="mb-0"></h4> */}
 
           <i class="fa-solid fa-xmark" onClick={() => setMssrmntSbmtConfrm(false)}></i>
         </div>
