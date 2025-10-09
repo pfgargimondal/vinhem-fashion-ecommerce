@@ -241,7 +241,7 @@ export const ProductDetail = () => {
                   <div className="sticky-top">
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                       <Row>
-                        <Col xs={3} className="small-image-tabs">
+                        <Col xs={3} className="small-image-tabs pe-0">
                           <Nav variant="pills" className="flex-column">
                             <Nav.Item>
                               <Nav.Link eventKey="first">
@@ -341,11 +341,11 @@ export const ProductDetail = () => {
                         </span>
 
                         <span className="gdfg55 d-flex align-items-center ms-2">
-                          <i class="bi bi-currency-rupee"></i> 37,902
+                          <i class="bi bi-currency-rupee"></i> {productDetails?.data?.mrp_price}
                         </span>
 
                         <span className="fghfgg114 d-flex align-items-center ms-2">
-                          20%OFF
+                          {productDetails?.data?.discount}%OFF
                         </span>
                       </h4>
 

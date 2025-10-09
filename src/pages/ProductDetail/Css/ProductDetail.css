@@ -347,14 +347,15 @@
 }
 
 .cffdrtrvwet.nw-arrvl{
-  left: 8%;
+  left: -0.5%;
   background-size: 95px;
   width: 95px !important;
   line-height: 2.9 !important;
 }
 
 .gbsdeeer.dscnt-prce{
-  right: 10%;
+  right: 5%;
+  top: 0.2%;
 }
 
 .large-image-tab .tab-content > .active {
@@ -371,6 +372,7 @@
   max-width: 100%;
   max-height: 600px;
   border-radius: 0.375rem;
+  width: 100%;
 }
 
 
@@ -1101,7 +1103,7 @@
   top: 2%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9999;
+  z-index: 9999999;
   opacity: 1;
   transition: 0.1s ease-in-out;
 }
@@ -1117,7 +1119,7 @@
   backdrop-filter: blur(15px);
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999999;
   opacity: 1;
   transition: 0.1s ease-in-out;
 }

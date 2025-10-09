@@ -18,7 +18,7 @@
 .dscnt-prce{
   right: 1%;
   position: absolute;
-  top: -1.5%;
+  top: -0.2%;
   background-image: url("/public/images/dscnt.png");
   background-repeat: no-repeat;
   color: #fff;
@@ -34,7 +34,7 @@
 }
 
 .dscnt-prce span.price{
-  padding-top: 2rem;
+  padding-top: 1.4rem;
   display: block;
 }
 

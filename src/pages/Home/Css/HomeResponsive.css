@@ -53,6 +53,10 @@
         align-items: center;
     }
 
+    .sdfsdfsdfsd{
+        height: auto;
+    }
+
     header .header-main .doiewhirw_right ul.header-menu li a{
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -169,6 +173,13 @@
     }
 }
 
+
+
+@media only screen and (max-width: 767px){
+    .dbfggfhfh {
+        height: 24rem;
+    }
+}
 
 
 
